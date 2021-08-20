@@ -1,6 +1,11 @@
 {
 	"cSpell.words": [
-		"gtag"
+		"Hotspot",
+		"codegen",
+		"frontpage",
+		"gtag",
+		"plusplus",
+		"serializers"
 	],
 	"files.trimTrailingWhitespace": true,
 	"files.trimFinalNewlines": true,

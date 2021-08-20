@@ -11,7 +11,7 @@ module.exports = {
 		'plugin:react/recommended',
 		'airbnb-typescript',
 		'plugin:jsx-a11y/recommended',
-		'plugin:prettier/recommended',
+		'plugin:prettier/recommended'
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
@@ -40,6 +40,8 @@ module.exports = {
 		],
 		'react/react-in-jsx-scope': 'off',
 		'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-		'no-console': ['error', { allow: ['warn', 'error'] }]
+		'no-console': ['error', { allow: ['warn', 'error'] }],
+		'no-underscore-dangle': ['error', { allow: ['_ref', '_type', '_key'] }],
+		'@typescript-eslint/naming-convention': 'off'
 	}
 };
