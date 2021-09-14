@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { FC, useEffect, useRef } from 'react';
+import { MdArrowDropDown } from 'react-icons/md';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { MainNavItem } from '../../data-hooks/useMainNav';
+import { MainNavItem } from '../../../data-hooks/useMainNav';
+import styles from '../../../styles/nav-section.module.scss';
 import { focusIndexState, isOpenSelector, openIndexState } from './state';
 import SubPage from './subPage';
 
@@ -33,18 +35,21 @@ const NavSection: FC<Props> = ({ item: { title, subPages, slug }, index }: Props
 	}
 
 	return (
-		<>
-			<button type="button" onClick={buttonClick} ref={buttonRef}>
+		<div className={styles.sectionWrap}>
+			<button type="button" onClick={buttonClick} ref={buttonRef} className={`${styles.navButton} ${isOpen ? styles.open : styles.closed}`}>
+				<MdArrowDropDown />
 				{title}
 			</button>
 			{isOpen && (
 				<ul>
 					{subPages.map((sp, i) => (
-						<SubPage key={sp._id} page={sp} parentSlug={slug} last={i === subPages.length - 1} />
+						<li key={sp._id}>
+							<SubPage page={sp} parentSlug={slug} last={i === subPages.length - 1} />
+						</li>
 					))}
 				</ul>
 			)}
-		</>
+		</div>
 	);
 };
 

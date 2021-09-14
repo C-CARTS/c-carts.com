@@ -1,0 +1,31 @@
+.header {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 0.4rem 0;
+	> .logo {
+		flex: 0 0 auto;
+	}
+
+	> .nav {
+		&,
+		& nav {
+			flex: 1 1 auto;
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			justify-content: flex-end;
+		}
+	}
+}
+
+.logo a {
+	display: block;
+	padding: 0.25rem 0.5rem 0 0.25rem;
+	border-bottom: 0.25rem solid transparent;
+	&:focus-within {
+		outline: transparent;
+		border-bottom-color: var(--theme-color);
+	}
+}

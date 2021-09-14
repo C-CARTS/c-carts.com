@@ -10,8 +10,10 @@
 		"next": "11.1.0",
 		"next-data-hooks": "^0.5.0",
 		"next-sanity": "^0.4.0",
+		"next-sanity-image": "^3.1.5",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
+		"react-icons": "^4.2.0",
 		"recoil": "^0.4.1",
 		"sanity-codegen": "^0.9.5",
 		"workbox-expiration": "^6.1.5",
@@ -43,6 +45,7 @@
 		"husky": "^7.0.1",
 		"next-pwa": "^5.2.23",
 		"prettier": "^2.3.2",
+		"sass": "^1.40.1",
 		"typescript": "^4.3.5",
 		"webpack": "^5.50.0",
 		"workbox-webpack-plugin": "^6.1.5"

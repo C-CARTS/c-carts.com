@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { MainNavItem } from '../../data-hooks/useMainNav';
+import { MainNavItem } from '../../../data-hooks/useMainNav';
 import NavSection from './navSection';
 import { focusIndexState, openIndexState } from './state';
 

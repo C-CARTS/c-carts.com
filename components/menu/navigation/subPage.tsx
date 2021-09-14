@@ -1,6 +1,6 @@
 import { FC, KeyboardEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { Page } from '../../sanity/schema';
+import { Page } from '../../../sanity/schema';
 import { openIndexState } from './state';
 
 interface Props {
@@ -24,7 +24,7 @@ const SubPage: FC<Props> = ({ parentSlug, last, page: { title, slug } }: Props) 
 		const { current: slugVal } = slug;
 		return (
 			<a href={`/${parentSlugVal}/${slugVal}`} onKeyDown={onKeyDown}>
-				{title}
+				<span>{title}</span>
 			</a>
 		);
 	}
