@@ -1,48 +1,42 @@
-import type { NextPage } from 'next';
-import { GetStaticProps } from 'next';
+import type { GetStaticPathsContext, GetStaticProps } from 'next';
+import { getDataHooksProps } from 'next-data-hooks';
 import Head from 'next/head';
-import Block from '../components/blockContent/block';
-import sanityClient from '../sanity/sanityClient';
-import { Page, SiteConfig } from '../sanity/schema';
+import MainNav from '../components/navigation/mainNav';
+import useMainNav from '../data-hooks/useMainNav';
+import useSiteConfig from '../data-hooks/useSiteConfig';
+import { SiteConfig } from '../sanity/schema';
 
-interface Props {
-	siteConfig: SiteConfig;
-	page: Page;
-}
+function Home() {
+	const { title }: SiteConfig = useSiteConfig();
+	const mainNav = useMainNav();
 
-const Home: NextPage<Props> = ({ siteConfig: { title }, page: { description, content } }: Props) => {
 	return (
 		<>
 			<Head>
 				<title>{title}</title>
-				{description && description.length > 0 && <meta name="description" content={description} />}
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<MainNav nav={mainNav} />
 			<main>
 				<h1>{title}</h1>
-				{content && content.length > 0 && content.map((block) => <Block block={block} key={block._key} />)}
 			</main>
 		</>
 	);
-};
+}
 
-export const getStaticProps: GetStaticProps = async () => {
-	const siteConfig = await sanityClient.get('siteConfig', process.env.SANITY_SITE_CONFIG_ID ?? 'No SANITY_SITE_CONFIG_ID');
+Home.dataHooks = [useSiteConfig, useMainNav];
 
-	if (siteConfig) {
-		const ref = siteConfig?.frontpage?._ref;
-		if (ref && ref.length > 0) {
-			const page = await sanityClient.get('page', ref);
-			return {
-				props: {
-					siteConfig,
-					page
-				}
-			};
+export const getStaticProps: GetStaticProps = async (context: GetStaticPathsContext) => {
+	const dataHooksProps = await getDataHooksProps({
+		context,
+		dataHooks: Home.dataHooks
+	});
+
+	return {
+		props: {
+			...dataHooksProps
 		}
-	}
-
-	throw new Error('Could not load data from CMS.');
+	};
 };
 
 export default Home;

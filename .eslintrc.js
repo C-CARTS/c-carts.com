@@ -41,7 +41,7 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 		'no-console': ['error', { allow: ['warn', 'error'] }],
-		'no-underscore-dangle': ['error', { allow: ['_ref', '_type', '_key'] }],
+		'no-underscore-dangle': ['error', { allow: ['_ref', '_type', '_key', '_id'] }],
 		'@typescript-eslint/naming-convention': 'off'
 	}
 };

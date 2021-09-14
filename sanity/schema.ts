@@ -152,6 +152,13 @@ export interface NavItem extends SanityDocument {
 	title?: string;
 
 	/**
+	 * Slug — `slug`
+	 *
+	 *
+	 */
+	slug?: { _type: 'slug'; current: string };
+
+	/**
 	 * Routes — `array`
 	 *
 	 *
@@ -212,7 +219,7 @@ export interface SiteConfig extends SanityDocument {
 	 *
 	 * Select pages for the top menu
 	 */
-	mainNavigation?: Array<SanityKeyedReference<NavItem | Page>>;
+	mainNavigation?: Array<SanityKeyedReference<NavItem>>;
 
 	/**
 	 * Address — `text`

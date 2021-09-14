@@ -1,8 +1,15 @@
-import type { AppProps } from 'next/app';
+/* eslint-disable react/jsx-props-no-spreading */
+import { NextDataHooksProvider } from 'next-data-hooks';
+import { AppProps } from 'next/app';
 import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
-	// eslint-disable-next-line react/jsx-props-no-spreading
-	return <Component {...pageProps} />;
+function App({ Component, pageProps }: AppProps) {
+	const { children, ...rest } = pageProps;
+
+	return (
+		<NextDataHooksProvider {...rest}>
+			<Component {...rest}>{children}</Component>
+		</NextDataHooksProvider>
+	);
 }
-export default MyApp;
+export default App;
