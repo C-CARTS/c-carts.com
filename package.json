@@ -53,8 +53,8 @@
 	"name": "next-app",
 	"private": true,
 	"scripts": {
-		"build": "next build",
-		"dev": "cross-env FORCE_COLOR=true NODE_OPTIONS='--inspect' next dev",
+		"build": "cross-env NODE_ENV=production FORCE_COLOR=true next build",
+		"dev": "cross-env NODE_ENV=development FORCE_COLOR=true NODE_OPTIONS='--inspect' next dev",
 		"lint": "eslint . --fix --color",
 		"prepare": "husky install",
 		"report": "eslint . --output-file eslint-report.html --format html && .\\eslint-report.html",
