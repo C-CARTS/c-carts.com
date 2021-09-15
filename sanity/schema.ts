@@ -1,20 +1,20 @@
 import type {
+	SanityReference,
+	SanityKeyedReference,
 	SanityAsset,
-	SanityBlock,
-	SanityDocument,
+	SanityImage,
 	SanityFile,
 	SanityGeoPoint,
-	SanityImage,
-	SanityImageAsset,
+	SanityBlock,
+	SanityDocument,
 	SanityImageCrop,
-	SanityImageDimensions,
 	SanityImageHotspot,
-	SanityImageMetadata,
-	SanityImagePalette,
-	SanityImagePaletteSwatch,
 	SanityKeyed,
-	SanityKeyedReference,
-	SanityReference
+	SanityImageAsset,
+	SanityImageMetadata,
+	SanityImageDimensions,
+	SanityImagePalette,
+	SanityImagePaletteSwatch
 } from 'sanity-codegen';
 
 export type {

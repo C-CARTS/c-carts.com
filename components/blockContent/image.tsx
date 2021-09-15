@@ -18,17 +18,21 @@ const ImageComponent: FC<Props> = ({ block: { text, image } }: Props) => {
 	if (image) {
 		const { alt, caption } = image;
 		const hasFigCaption = text || caption;
-		return (
-			<figure>
-				{/* eslint-disable-next-line react/jsx-props-no-spreading */}
-				<SanityImage alt={alt} img={image} layout="intrinsic" {...(hasFigCaption ? { 'aria-describedby': figCaptId } : {})} />
-				{hasFigCaption && (
+
+		// eslint-disable-next-line react/jsx-props-no-spreading
+		const img = <SanityImage alt={alt} img={image} layout="intrinsic" {...(hasFigCaption ? { 'aria-describedby': figCaptId } : {})} />;
+
+		if (hasFigCaption) {
+			return (
+				<figure>
+					{img}
 					<figcaption className="sr" id={figCaptId}>
 						{text ? <PortableText blocks={text} /> : caption}
 					</figcaption>
-				)}
-			</figure>
-		);
+				</figure>
+			);
+		}
+		return <div className="standalone-img">{img}</div>;
 	}
 	return null;
 };

@@ -1,5 +1,5 @@
 :root {
-	--layout-spacing: max(4vh, 2rem);
+	--layout-spacing: min(4vh, 1.5rem);
 	--side-padding: clamp(1rem, 5vw, 3rem);
 	--max-width: min(90vw, 51rem);
 	--base-font: 20px;

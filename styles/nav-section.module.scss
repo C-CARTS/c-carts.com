@@ -12,6 +12,7 @@
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
+	white-space: nowrap;
 	justify-content: center;
 
 	&:focus-within,

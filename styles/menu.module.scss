@@ -3,7 +3,7 @@
 	flex-flow: row nowrap;
 	align-items: center;
 	justify-content: flex-start;
-	padding: 0.4rem var(--side-padding);
+	padding: 0.4rem var(--side-padding) 0 var(--side-padding);
 	> .logo {
 		flex: 0 0 auto;
 	}
