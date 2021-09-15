@@ -1,7 +1,7 @@
 :root {
 	--layout-spacing: max(4vh, 2rem);
 	--side-padding: clamp(1rem, 5vw, 3rem);
-	--max-width: min(90vw, 80rem);
+	--max-width: min(90vw, 51rem);
 	--base-font: 20px;
 
 	--black-val: 0, 0, 0;
@@ -59,29 +59,6 @@ body > * {
 
 main {
 	margin-top: var(--layout-spacing);
-}
-
-footer {
-	margin-top: auto;
-	padding-top: var(--layout-spacing);
-}
-
-footer p {
-	border-top: 1px solid var(--layout-border);
-	padding-top: 0.25em;
-	font-size: 0.9rem;
-}
-
-:is(h1, h2, h3) {
-	line-height: 1.2;
-}
-
-:is(h2, h3):not(:first-child) {
-	margin-top: 2em;
-}
-
-article * + * {
-	margin-top: 1em;
 }
 
 a {

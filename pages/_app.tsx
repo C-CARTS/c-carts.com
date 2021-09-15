@@ -5,6 +5,7 @@ import Head from 'next/head';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import '../styles/globals.scss';
+import '../styles/type.scss';
 
 function App({ Component, pageProps }: AppProps) {
 	const { children, ...rest } = pageProps;
