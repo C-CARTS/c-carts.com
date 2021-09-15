@@ -1,27 +1,17 @@
 import type { GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
 import React from 'react';
-import HeadContent from '../components/generic/headContent';
-import Menu from '../components/menu/menu';
+import PageContent from '../components/generic/pageContent';
 import useHomepage from '../data-hooks/useHomepage';
 import useMainNav from '../data-hooks/useMainNav';
 import useSiteConfig from '../data-hooks/useSiteConfig';
-import { SiteConfig } from '../sanity/schema';
 
 function Home() {
-	const { title, logo }: SiteConfig = useSiteConfig();
+	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	const page = useHomepage();
 
-	return (
-		<>
-			<HeadContent page={page} />
-			<Menu nav={mainNav} logo={logo} title={title ?? ''} />
-			<main>
-				<h1>{title}</h1>
-			</main>
-		</>
-	);
+	return <PageContent siteConfig={siteConfig} mainNav={mainNav} page={page} />;
 }
 
 Home.dataHooks = [useSiteConfig, useMainNav, useHomepage];

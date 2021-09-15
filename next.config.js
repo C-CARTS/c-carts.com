@@ -2,6 +2,10 @@ const withPWA = require('next-pwa');
 const runtimeCaching = require('./cache.js');
 
 module.exports = withPWA({
+	i18n: {
+		locales: ['en'],
+		defaultLocale: 'en'
+	},
 	webpack5: true,
 	future: {
 		strictPostcssConfiguration: true

@@ -10,7 +10,7 @@ interface Props extends Omit<ImageProps, 'src'> {
 
 const Logo: FC<Props> = ({ logo }: Props) => {
 	if (logo) {
-		return <SanityImage img={logo} layout="intrinsic" width={110} height={55} />;
+		return <SanityImage img={logo} layout="intrinsic" width={110} height={55} alt="" />;
 	}
 	return null;
 };

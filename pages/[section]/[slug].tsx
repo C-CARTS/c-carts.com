@@ -1,28 +1,18 @@
 import type { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
 import React from 'react';
-import HeadContent from '../../components/generic/headContent';
-import Menu from '../../components/menu/menu';
+import PageContent from '../../components/generic/pageContent';
 import useMainNav, { getMainNav } from '../../data-hooks/useMainNav';
 import usePage from '../../data-hooks/usePage';
 import useSiteConfig from '../../data-hooks/useSiteConfig';
 import sanityClient from '../../sanity/sanityClient';
-import { SiteConfig } from '../../sanity/schema';
 
 function Slug() {
-	const { title, logo }: SiteConfig = useSiteConfig();
+	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	const page = usePage();
 
-	return (
-		<>
-			<HeadContent page={page} />
-			<Menu nav={mainNav} logo={logo} title={title ?? ''} />
-			<main>
-				<h1>{title}</h1>
-			</main>
-		</>
-	);
+	return <PageContent siteConfig={siteConfig} mainNav={mainNav} page={page} />;
 }
 
 Slug.dataHooks = [useSiteConfig, useMainNav, usePage];
