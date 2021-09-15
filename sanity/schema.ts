@@ -374,11 +374,11 @@ export type ImageSection = {
 	label?: string;
 
 	/**
-	 * Text — `simplePortableText`
+	 * Text — `portableText`
 	 *
 	 *
 	 */
-	text?: SimplePortableText;
+	text?: PortableText;
 
 	/**
 	 * Image — `figure`
@@ -386,13 +386,6 @@ export type ImageSection = {
 	 *
 	 */
 	image?: Figure;
-
-	/**
-	 * Call to action — `cta`
-	 *
-	 *
-	 */
-	cta?: Cta;
 };
 
 export type TextSection = {

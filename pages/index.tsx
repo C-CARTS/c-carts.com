@@ -10,8 +10,8 @@ function Home() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	const page = useHomepage();
-
-	return <PageContent siteConfig={siteConfig} mainNav={mainNav} page={page} />;
+	const { title } = siteConfig;
+	return <PageContent title={title} siteConfig={siteConfig} mainNav={mainNav} page={page} />;
 }
 
 Home.dataHooks = [useSiteConfig, useMainNav, useHomepage];

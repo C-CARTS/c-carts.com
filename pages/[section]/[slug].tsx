@@ -11,8 +11,8 @@ function Slug() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	const page = usePage();
-
-	return <PageContent siteConfig={siteConfig} mainNav={mainNav} page={page} />;
+	const { title } = page;
+	return <PageContent title={title} siteConfig={siteConfig} mainNav={mainNav} page={page} />;
 }
 
 Slug.dataHooks = [useSiteConfig, useMainNav, usePage];

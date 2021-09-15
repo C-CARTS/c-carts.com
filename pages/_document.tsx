@@ -12,6 +12,7 @@ export default class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
+					<link rel="stylesheet" href="https://use.typekit.net/rwo5ved.css" />
 					{/* Global Site Tag (gtag.js) - Google Analytics */}
 					<script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
 					<script
