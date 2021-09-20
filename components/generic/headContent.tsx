@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import { FC } from 'react';
-import { Page } from '../../sanity/schema';
 
 interface Props {
-	page: Page;
+	title: string | undefined;
+	description: string | undefined;
 }
 
-const HeadContent: FC<Props> = ({ page: { title, description } }: Props) => {
+const HeadContent: FC<Props> = ({ title, description }: Props) => {
 	return (
 		<Head>
 			{description && <meta name="description" content={description} />}

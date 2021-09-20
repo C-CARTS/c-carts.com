@@ -1,7 +1,9 @@
 import type { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
 import React from 'react';
-import PageContent from '../../components/generic/pageContent';
+import PageContent from '../../components/generic/genericPage';
+import PageComponent from '../../components/generic/page';
+import useJobs from '../../data-hooks/useJobs';
 import useMainNav, { getMainNav } from '../../data-hooks/useMainNav';
 import usePage from '../../data-hooks/usePage';
 import useSiteConfig from '../../data-hooks/useSiteConfig';
@@ -12,10 +14,14 @@ function Slug() {
 	const mainNav = useMainNav();
 	const page = usePage();
 	const { title } = page;
-	return <PageContent title={title} siteConfig={siteConfig} mainNav={mainNav} page={page} />;
+	return (
+		<PageContent title={title ?? ''} siteConfig={siteConfig} mainNav={mainNav}>
+			<PageComponent page={page} />
+		</PageContent>
+	);
 }
 
-Slug.dataHooks = [useSiteConfig, useMainNav, usePage];
+Slug.dataHooks = [useSiteConfig, useMainNav, usePage, useJobs];
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const config = await sanityClient.get('siteConfig', process.env.NEXT_PUBLIC_SANITY_SITE_CONFIG_ID ?? 'No Config');

@@ -1,15 +1,15 @@
 import { GetServerSidePropsContext, GetStaticPropsContext } from 'next';
 import { createDataHook } from 'next-data-hooks';
 import sanityClient from '../sanity/sanityClient';
-import { Page } from '../sanity/schema';
+import { Job } from '../sanity/schema';
 
-const usePage = createDataHook<Page>('page', async (context: GetStaticPropsContext | GetServerSidePropsContext) => {
+const useJob = createDataHook<Job>('job', async (context: GetStaticPropsContext | GetServerSidePropsContext) => {
 	const { params } = context;
 	if (params) {
 		const { slug } = params;
 
 		if (typeof slug === 'string') {
-			const data = await sanityClient.getAll('page', `slug.current == "${slug}"`);
+			const data = await sanityClient.getAll('job', `slug.current == "${slug}"`);
 			return data[0];
 		}
 	}
@@ -17,4 +17,4 @@ const usePage = createDataHook<Page>('page', async (context: GetStaticPropsConte
 	throw new Error('Not found');
 });
 
-export default usePage;
+export default useJob;

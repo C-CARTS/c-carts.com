@@ -63,7 +63,7 @@ export interface Page extends SanityDocument {
 	 *
 	 *
 	 */
-	content?: Array<SanityKeyed<Hero> | SanityKeyed<ImageSection> | SanityKeyed<TextSection>>;
+	content?: Array<SanityKeyed<Hero> | SanityKeyed<ImageSection> | SanityKeyed<TextSection> | SanityKeyed<JobsSection>>;
 
 	/**
 	 * Description — `text`
@@ -134,6 +134,43 @@ export interface Author extends SanityDocument {
 	 *
 	 */
 	bio?: Array<SanityKeyed<SanityBlock>>;
+}
+
+/**
+ * Job
+ *
+ *
+ */
+export interface Job extends SanityDocument {
+	_type: 'job';
+
+	/**
+	 * Name — `string`
+	 *
+	 *
+	 */
+	name?: string;
+
+	/**
+	 * Slug — `slug`
+	 *
+	 *
+	 */
+	slug?: { _type: 'slug'; current: string };
+
+	/**
+	 * Hourly Rate — `number`
+	 *
+	 *
+	 */
+	rate?: number;
+
+	/**
+	 * Job Description — `portableText`
+	 *
+	 *
+	 */
+	content?: PortableText;
 }
 
 /**
@@ -355,6 +392,23 @@ export type Hero = {
 
 export type PortableText = Array<SanityKeyed<SanityBlock> | SanityKeyed<Figure>>;
 
+export type JobsSection = {
+	_type: 'jobsSection';
+	/**
+	 * Label — `string`
+	 *
+	 *
+	 */
+	label?: string;
+
+	/**
+	 * Number to Show (0 for all) — `number`
+	 *
+	 *
+	 */
+	count?: number;
+};
+
 export type SimplePortableText = Array<SanityKeyed<SanityBlock>>;
 
 export type ImageSection = {
@@ -412,4 +466,4 @@ export type TextSection = {
 	text?: PortableText;
 };
 
-export type Documents = Page | Author | NavItem | SiteConfig;
+export type Documents = Page | Author | Job | NavItem | SiteConfig;
