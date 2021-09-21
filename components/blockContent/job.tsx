@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import PortableText from '../../sanity/portableText';
 import { Job } from '../../sanity/schema';
-
+import styles from '../../styles/job.module.scss';
 interface Props {
 	hideHeading?: boolean;
 	job: Job;
@@ -9,8 +9,12 @@ interface Props {
 
 const JobsComponent: FC<Props> = ({ job: { name, rate, content }, hideHeading }: Props) => (
 	<section className="job">
-		{!hideHeading && <h2>{name}</h2>}
-		{rate && <span className="rate">${rate}</span>}
+		{hideHeading && <h3>{name}</h3>}
+		{rate && (
+			<p className={styles.rate}>
+				<span className="sr">Pay Rate:</span>${rate}
+			</p>
+		)}
 		<PortableText blocks={content} />
 	</section>
 );
