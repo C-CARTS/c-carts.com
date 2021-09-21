@@ -2,6 +2,7 @@ import { FC } from 'react';
 import PortableText from '../../sanity/portableText';
 import { Job } from '../../sanity/schema';
 import styles from '../../styles/job.module.scss';
+
 interface Props {
 	hideHeading?: boolean;
 	job: Job;
