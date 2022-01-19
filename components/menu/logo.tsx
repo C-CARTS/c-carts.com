@@ -4,10 +4,10 @@ import { ImageProps } from 'next/image';
 import styled from 'styled-components';
 import SanityImage from '../generic/basicSanityImage';
 
-const LogoWrap = styled.div`
-	margin: 1rem 0;
+const LogoWrap = styled.span`
+	display: block;
+	padding: 0.1rem 0.5rem;
 `;
-
 interface Props extends Omit<ImageProps, 'src'> {
 	logo: SanityImageSource | undefined;
 }

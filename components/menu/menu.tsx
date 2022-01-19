@@ -28,6 +28,22 @@ const Header = styled.div`
 	}
 `;
 
+const LogoLink = styled.a`
+	display: block;
+	margin: 0.5rem 0;
+	border-bottom: 0.2rem solid transparent;
+
+	&:hover,
+	&:focus-within {
+		outline-color: transparent;
+		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+	}
+
+	&:focus-within {
+		background: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
+	}
+`;
+
 interface Props {
 	title: string;
 	logo: SanityImageSource | undefined;
@@ -37,11 +53,11 @@ interface Props {
 export default function Menu({ title, nav, logo }: Props) {
 	return (
 		<Header className="header-content">
-			<Link href="/">
-				<a>
+			<Link href="/" passHref>
+				<LogoLink>
 					<Logo logo={logo} />
 					<span className="sr">{title}</span>
-				</a>
+				</LogoLink>
 			</Link>
 			<MainNav nav={nav} />
 		</Header>

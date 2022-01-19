@@ -29,8 +29,9 @@ const SectionWrap = styled.div`
 		min-width: min(90vw, 12rem);
 		background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 		border: 0.05rem solid ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-		border-top: 0;
+		//border-top: 0;
 		list-style: none;
+		box-shadow: 0.2rem 0.2rem 0 0.025rem ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}22;
 
 		li {
 			padding: 0.2rem 0;
@@ -47,7 +48,7 @@ const SectionWrap = styled.div`
 				> span {
 					text-decoration: underline;
 					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-					text-decoration-thickness: 0.2rem;
+					text-decoration-thickness: 0.15rem;
 				}
 			}
 
@@ -56,7 +57,7 @@ const SectionWrap = styled.div`
 				> span {
 					text-decoration: underline;
 					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
-					text-decoration-thickness: 0.2rem;
+					text-decoration-thickness: 0.15rem;
 					background: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
 				}
 			}
@@ -81,7 +82,7 @@ const NavButton = styled.button`
 	white-space: nowrap;
 	justify-content: center;
 
-	&:focus-within,
+	&:focus-visible,
 	&.open,
 	&.open:hover {
 		outline: transparent;
@@ -145,7 +146,7 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 
 	return (
 		<SectionWrap ref={menuRef}>
-			<NavButton type="button" onClick={buttonClick} ref={buttonRef}>
+			<NavButton type="button" onClick={buttonClick} ref={buttonRef} className={isOpen ? 'open' : 'closed'}>
 				<MdArrowDropDown />
 				{title}
 			</NavButton>
