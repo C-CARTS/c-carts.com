@@ -5,6 +5,7 @@ import { MainNavItem } from '../../data-hooks/useMainNav';
 import { ThemeProps } from '../../types/theme';
 import Menu from '../menu/menu';
 import HeadContent from './headContent';
+import SkipLink from './skipLink';
 
 interface Props {
 	title: string;
@@ -26,13 +27,14 @@ const MainWrap = styled.div`
 	margin: 0 auto;
 `;
 
-export default function GenericPage({ title, description, children, mainNav, siteConfig: { logo } }: Props) {
+export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle } }: Props) {
 	return (
 		<ContentWrap>
+			<SkipLink />
 			<HeadContent title={title} description={description} />
-			<Menu nav={mainNav} logo={logo} title={title ?? ''} />
+			<Menu nav={mainNav} shortTitle={shortTitle} />
 			<main>
-				<MainWrap>
+				<MainWrap id="main-content">
 					{title && <h1>{title}</h1>}
 					{children}
 				</MainWrap>

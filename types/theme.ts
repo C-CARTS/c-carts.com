@@ -13,7 +13,7 @@ export interface PrimaryThemePalette extends ThemePalette {
 export interface Colors {
 	primary: PrimaryThemePalette;
 	secondary: ThemePalette;
-	error: ThemePalette;
+	error: Omit<ThemePalette, 'subtle'>;
 }
 
 export interface Typography {

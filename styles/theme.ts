@@ -3,22 +3,21 @@ import type ThemeType from '../types/theme';
 const Theme: ThemeType = {
 	colors: {
 		primary: {
-			color: '#0d19a3',
-			subtle: '#e7e8ec',
-			contrastColor: '#ffffff',
+			color: '#fc4445',
+			subtle: '#FDD9D9',
+			contrastColor: '#0a0000',
 			background: '#ffffff',
-			text: '#000000',
+			text: '#0a0000',
 			layoutBorder: '#cccccc'
 		},
 		secondary: {
-			color: '#15db95',
-			subtle: '#c2eadc',
+			color: '#3feee6',
+			subtle: '#DFF2F1',
 			contrastColor: '#000000'
 		},
 		error: {
-			color: '#f57390',
-			subtle: '#efdde1',
-			contrastColor: '#030e12'
+			color: '#fc4445',
+			contrastColor: '#000000'
 		}
 	},
 	typography: {

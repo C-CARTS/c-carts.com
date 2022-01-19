@@ -52,13 +52,13 @@ const SectionWrap = styled.div`
 				}
 			}
 
-			&:focus-within {
+			&:focus-visible {
 				outline-color: transparent;
 				> span {
 					text-decoration: underline;
-					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 					text-decoration-thickness: 0.15rem;
-					background: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
+					background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
 				}
 			}
 		}
@@ -86,15 +86,15 @@ const NavButton = styled.button`
 	&.open,
 	&.open:hover {
 		outline: transparent;
-		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 		transition: all 0.2s ease-in;
-		background: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
+		background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
 	}
 
 	&.open,
 	&.open:hover {
 		svg {
-			color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+			color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 			transition: all 0.2s ease-in;
 		}
 	}

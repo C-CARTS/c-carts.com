@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable @next/next/no-img-element */
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
 import { ThemeProps } from '../../types/theme';
-import Logo from './logo';
 import MainNav from './navigation/mainNav';
 
 const Header = styled.div`
@@ -19,7 +17,7 @@ const Header = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	div {
+	a {
 		grid-area: logo;
 	}
 
@@ -29,35 +27,39 @@ const Header = styled.div`
 `;
 
 const LogoLink = styled.a`
-	display: block;
-	margin: 0.5rem 0;
-	border-bottom: 0.2rem solid transparent;
-
-	&:hover,
-	&:focus-within {
-		outline-color: transparent;
-		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+	font-size: 1.5rem;
+	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
+	text-decoration-color: transparent;
+	transition: all 0.2s ease-out;
+	outline-color: transparent;
+	padding: 0.5rem 1rem;
+	&,
+	&:visited {
+		color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 	}
 
-	&:focus-within {
-		background: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
+	&:hover,
+	&:focus-visible {
+		transition: all 0.2s ease-in;
+		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
+		outline-color: transparent;
+	}
+
+	&:focus-visible {
+		background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
 	}
 `;
 
 interface Props {
-	title: string;
-	logo: SanityImageSource | undefined;
+	shortTitle: string;
 	nav: MainNavItem[];
 }
 
-export default function Menu({ title, nav, logo }: Props) {
+export default function Menu({ shortTitle, nav }: Props) {
 	return (
 		<Header className="header-content">
 			<Link href="/" passHref>
-				<LogoLink>
-					<Logo logo={logo} />
-					<span className="sr">{title}</span>
-				</LogoLink>
+				<LogoLink>{shortTitle}</LogoLink>
 			</Link>
 			<MainNav nav={nav} />
 		</Header>
