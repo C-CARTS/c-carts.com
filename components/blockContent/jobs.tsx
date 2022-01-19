@@ -1,13 +1,12 @@
-import { FC } from 'react';
+import { JobsSection } from '@c-carts/cms';
 import useJobs from '../../data-hooks/useJobs';
-import { JobsSection } from '../../sanity/schema';
 import Job from './job';
 
 interface Props {
 	block: JobsSection;
 }
 
-const JobsComponent: FC<Props> = ({ block: { count } }: Props) => {
+export default function JobsComponent({ block: { count } }: Props) {
 	const jobs = useJobs().sort((j1, j2) => new Date(j2._updatedAt).getTime() - new Date(j1._updatedAt).getTime());
 
 	if (jobs.length === 0) {
@@ -28,6 +27,4 @@ const JobsComponent: FC<Props> = ({ block: { count } }: Props) => {
 			))}
 		</>
 	);
-};
-
-export default JobsComponent;
+}

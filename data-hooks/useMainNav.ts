@@ -1,7 +1,7 @@
+import { NavItem, Page, SanityKeyedReference } from '@c-carts/cms';
 import { GetServerSidePropsContext, GetStaticPropsContext } from 'next';
 import { createDataHook } from 'next-data-hooks';
 import sanityClient from '../sanity/sanityClient';
-import { NavItem, Page, SanityKeyedReference } from '../sanity/schema';
 import useSiteConfig from './useSiteConfig';
 
 export interface MainNavItem extends NavItem {

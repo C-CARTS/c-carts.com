@@ -7,7 +7,7 @@ import useHomepage from '../data-hooks/useHomepage';
 import useMainNav from '../data-hooks/useMainNav';
 import useSiteConfig from '../data-hooks/useSiteConfig';
 
-function Home() {
+export default function Home() {
 	const siteConfig = useSiteConfig();
 	const { title: siteName } = siteConfig;
 	const mainNav = useMainNav();
@@ -34,5 +34,3 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPathsCont
 		}
 	};
 };
-
-export default Home;

@@ -9,7 +9,7 @@ import usePage from '../../data-hooks/usePage';
 import useSiteConfig from '../../data-hooks/useSiteConfig';
 import sanityClient from '../../sanity/sanityClient';
 
-function Slug() {
+export default function Slug() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	const page = usePage();
@@ -59,5 +59,3 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPathsCont
 		}
 	};
 };
-
-export default Slug;

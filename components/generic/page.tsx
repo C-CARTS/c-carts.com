@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
-import { Page } from '../../sanity/schema';
+import { Page } from '@c-carts/cms';
+import React from 'react';
 import Block from '../blockContent/block';
 
 interface Props {
 	page: Page;
 }
 
-const PageComponent: FC<Props> = ({ page: { content } }: Props) => {
+export default function PageComponent({ page: { content } }: Props) {
+	// eslint-disable-next-line react/jsx-no-useless-fragment
 	return <>{content && content?.map((block) => <Block key={block._key} block={block} />)}</>;
-};
-
-export default PageComponent;
+}

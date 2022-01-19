@@ -1,19 +1,119 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { FC, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 import { MainNavItem } from '../../../data-hooks/useMainNav';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
-import styles from '../../../styles/nav-section.module.scss';
+import { ThemeProps } from '../../../types/theme';
 import { focusIndexState, isOpenSelector, openIndexState } from './state';
 import SubPage from './subPage';
+
+const navButonHeight = '2rem';
+
+const SectionWrap = styled.div`
+	margin-left: 1rem;
+	position: relative;
+
+	&:first-of-type {
+		margin-left: 0;
+	}
+
+	ul {
+		position: absolute;
+		top: ${navButonHeight};
+		left: 0;
+		display: flex;
+		flex-flow: column nowrap;
+		padding: 0.75rem 0;
+		min-width: min(90vw, 12rem);
+		background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+		border: 0.05rem solid ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+		border-top: 0;
+		list-style: none;
+
+		li {
+			padding: 0.2rem 0;
+		}
+
+		a {
+			display: block;
+			padding: 0 0.25rem;
+			color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
+			text-decoration-color: transparent;
+			width: 95%;
+
+			&:hover {
+				> span {
+					text-decoration: underline;
+					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+					text-decoration-thickness: 0.2rem;
+				}
+			}
+
+			&:focus-within {
+				outline-color: transparent;
+				> span {
+					text-decoration: underline;
+					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+					text-decoration-thickness: 0.2rem;
+					background: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
+				}
+			}
+		}
+	}
+`;
+
+const NavButton = styled.button`
+	-webkit-appearance: none;
+	border: none;
+	background: none;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
+	padding: 0.25rem 0.5rem 0.1rem 0.5rem;
+	min-width: 5.5rem;
+	height: ${navButonHeight};
+	border-bottom: 0.15rem solid transparent;
+	transition: all 0.2s ease-out;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	white-space: nowrap;
+	justify-content: center;
+
+	&:focus-within,
+	&.open,
+	&.open:hover {
+		outline: transparent;
+		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+		transition: all 0.2s ease-in;
+		background: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
+	}
+
+	&.open,
+	&.open:hover {
+		svg {
+			color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+			transition: all 0.2s ease-in;
+		}
+	}
+
+	&:hover {
+		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+	}
+
+	svg {
+		margin-right: 0.1rem;
+		transition: all 0.2s ease-out;
+	}
+`;
 
 interface Props {
 	index: number;
 	item: MainNavItem;
 }
 
-const NavSection: FC<Props> = ({ item: { title, subPages, slug }, index }: Props) => {
+export default function NavSection({ item: { title, slug, subPages }, index }: Props) {
 	const buttonRef = useRef<HTMLButtonElement | null>(null);
 	const setOpenIndex = useSetRecoilState(openIndexState);
 	const [focusIndex, setFocusIndex] = useRecoilState(focusIndexState);
@@ -35,20 +135,20 @@ const NavSection: FC<Props> = ({ item: { title, subPages, slug }, index }: Props
 		}
 	}, [focusIndex, setFocusIndex, index]);
 
-	function buttonClick(): void {
+	const buttonClick = useCallback(() => {
 		if (isOpen) {
 			setOpenIndex(null);
 		} else {
 			setOpenIndex(index);
 		}
-	}
+	}, [index, isOpen, setOpenIndex]);
 
 	return (
-		<div className={styles.sectionWrap} ref={menuRef}>
-			<button type="button" onClick={buttonClick} ref={buttonRef} className={`${styles.navButton} ${isOpen ? styles.open : styles.closed}`}>
+		<SectionWrap ref={menuRef}>
+			<NavButton type="button" onClick={buttonClick} ref={buttonRef}>
 				<MdArrowDropDown />
 				{title}
-			</button>
+			</NavButton>
 			{isOpen && (
 				<ul>
 					{subPages.map((sp, i) => (
@@ -58,8 +158,6 @@ const NavSection: FC<Props> = ({ item: { title, subPages, slug }, index }: Props
 					))}
 				</ul>
 			)}
-		</div>
+		</SectionWrap>
 	);
-};
-
-export default NavSection;
+}

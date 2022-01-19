@@ -10,7 +10,7 @@ import sanityClient from '../../../sanity/sanityClient';
 
 const jobsSlug = 'jobs';
 
-function Job() {
+export default function Job() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	const navItem = mainNav.filter((mn) => mn.subPages.filter((sp) => sp.slug?.current === jobsSlug).length > 0)[0];
@@ -69,5 +69,3 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPathsCont
 		}
 	};
 };
-
-export default Job;

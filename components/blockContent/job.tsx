@@ -1,27 +1,25 @@
-import { FC } from 'react';
+import { Job } from '@c-carts/cms';
 import PortableText from '../../sanity/portableText';
-import { Job } from '../../sanity/schema';
-import styles from '../../styles/job.module.scss';
 
 interface Props {
 	hideHeading?: boolean;
 	job: Job;
 }
 
-const JobsComponent: FC<Props> = ({ job: { name, rate, content }, hideHeading }: Props) => (
-	<section className="job">
-		{hideHeading && <h3>{name}</h3>}
-		{rate && (
-			<p className={styles.rate}>
-				<span className="sr">Pay Rate:</span>${rate}
-			</p>
-		)}
-		<PortableText blocks={content} />
-	</section>
-);
+export default function JobsComponent({ job: { name, rate, content }, hideHeading }: Props) {
+	return (
+		<section className="job">
+			{hideHeading && <h3>{name}</h3>}
+			{rate && (
+				<p>
+					<span className="sr">Pay Rate:</span>${rate}
+				</p>
+			)}
+			<PortableText blocks={content} />
+		</section>
+	);
+}
 
 JobsComponent.defaultProps = {
 	hideHeading: false
 };
-
-export default JobsComponent;

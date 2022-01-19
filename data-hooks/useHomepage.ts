@@ -1,7 +1,7 @@
+import { Page } from '@c-carts/cms';
 import { GetServerSidePropsContext, GetStaticPropsContext } from 'next';
 import { createDataHook } from 'next-data-hooks';
 import sanityClient from '../sanity/sanityClient';
-import { Page } from '../sanity/schema';
 import useSiteConfig from './useSiteConfig';
 
 const useHomepage = createDataHook<Page>('useHomepage', async (context: GetStaticPropsContext | GetServerSidePropsContext) => {

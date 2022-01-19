@@ -1,21 +1,21 @@
-/* eslint-disable @next/next/no-img-element */
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { useNextSanityImage } from 'next-sanity-image';
-import Image, { ImageProps } from 'next/image';
-import { FC } from 'react';
-import { imageClient } from '../../sanity/sanityClient';
+import { ImageWithAlt } from '@c-carts/cms';
+import BasicSanityImage, { BaseProps } from './basicSanityImage';
 
-interface Props extends Omit<ImageProps, 'src'> {
-	img: SanityImageSource;
+interface SharedProps extends Omit<BaseProps, 'src' | 'omitAlt' | 'alt'> {
+	src: ImageWithAlt;
 }
 
-const SanityImage: FC<Props> = ({ img, ...rest }: Props) => {
-	const imageProps = useNextSanityImage(imageClient, img);
-	if (imageProps?.src) {
-		// eslint-disable-next-line react/jsx-props-no-spreading
-		return <Image {...imageProps} {...rest} />;
-	}
-	return null;
-};
+interface FixedProps extends SharedProps {
+	height: number;
+}
 
-export default SanityImage;
+interface AspectProps extends SharedProps {
+	aspectRatio: string;
+}
+
+export type Props = FixedProps | AspectProps;
+
+export default function SanityImage({ src: { asset, alt, emptyAlt }, ...rest }: Props) {
+	// eslint-disable-next-line react/jsx-props-no-spreading
+	return <BasicSanityImage src={asset} alt={alt} omitAlt={emptyAlt || undefined} {...rest} />;
+}

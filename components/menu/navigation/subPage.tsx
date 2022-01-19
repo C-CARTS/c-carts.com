@@ -1,6 +1,6 @@
-import { FC, KeyboardEvent } from 'react';
+import { Page } from '@c-carts/cms';
+import { KeyboardEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { Page } from '../../../sanity/schema';
 import { openIndexState } from './state';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 	parentSlug: { _type: 'slug'; current: string } | undefined;
 }
 
-const SubPage: FC<Props> = ({ parentSlug, last, page: { title, slug } }: Props) => {
+export default function SubPage({ parentSlug, last, page: { title, slug } }: Props) {
 	const setOpenIndex = useSetRecoilState(openIndexState);
 
 	function onKeyDown({ key, shiftKey }: KeyboardEvent<HTMLAnchorElement>): void {
@@ -29,5 +29,4 @@ const SubPage: FC<Props> = ({ parentSlug, last, page: { title, slug } }: Props) 
 		);
 	}
 	return null;
-};
-export default SubPage;
+}

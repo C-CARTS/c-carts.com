@@ -1,7 +1,7 @@
+import { Job } from '@c-carts/cms';
 import { GetServerSidePropsContext, GetStaticPropsContext } from 'next';
 import { createDataHook } from 'next-data-hooks';
 import sanityClient from '../sanity/sanityClient';
-import { Job } from '../sanity/schema';
 
 const useJob = createDataHook<Job>('job', async (context: GetStaticPropsContext | GetServerSidePropsContext) => {
 	const { params } = context;
