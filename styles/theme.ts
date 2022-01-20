@@ -18,6 +18,11 @@ const Theme: ThemeType = {
 		error: {
 			color: '#fc4445',
 			contrastColor: '#000000'
+		},
+		link: {
+			color: '#3D6E6B',
+			subtle: '#DFF2F1',
+			underline: '#3feee6'
 		}
 	},
 	typography: {
@@ -25,7 +30,8 @@ const Theme: ThemeType = {
 		baseLineHeight: 1.6,
 		fontFamily: 'system-ui, sans-serif',
 		normalFontWeight: 400,
-		boldFontWeight: 700
+		boldFontWeight: 700,
+		maxCharacterWidth: '80ch'
 	},
 	baseSpacing: 1,
 	breakpoints: {

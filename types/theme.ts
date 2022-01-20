@@ -14,6 +14,9 @@ export interface Colors {
 	primary: PrimaryThemePalette;
 	secondary: ThemePalette;
 	error: Omit<ThemePalette, 'subtle'>;
+	link: Pick<ThemePalette, 'color' | 'subtle'> & {
+		underline: string;
+	};
 }
 
 export interface Typography {
@@ -22,6 +25,7 @@ export interface Typography {
 	baseLineHeight: number;
 	normalFontWeight: number;
 	boldFontWeight: number;
+	maxCharacterWidth: string;
 }
 
 export interface BreakPoint {

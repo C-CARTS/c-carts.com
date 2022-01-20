@@ -57,7 +57,7 @@ export default function SanityImage(props: Props) {
 			const w = rWidth ?? width;
 			const h = Math.round(w / calculatedAspectRatio);
 
-			return imageUrlBuilder.width(w).rect(0, 0, originalWidth, originalHeight).height(h).fit('fillmax').format('webp');
+			return imageUrlBuilder.width(w).rect(0, 0, originalWidth, originalHeight).height(h).fit('fill').format('webp');
 		},
 		[calculatedAspectRatio, width]
 	);

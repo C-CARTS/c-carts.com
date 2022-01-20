@@ -33,7 +33,24 @@ body{
 }
 
 a {
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 	text-underline-offset: 0.15em;
+	text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.link.underline};
+	transition: text-decoration-color 0.2s ease-out;
+
+	&:hover, &:focus-visible {
+		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.link.color};
+		transition: text-decoration-color 0.2s ease-in, color 0.2s ease-in;
+	}
+
+	&:focus-visible {
+		background: ${({ theme }: ThemeProps) => theme.colors.link.subtle};
+		outline-color: transparent;
+	}
+
+	&:active{
+		color: ${({ theme }: ThemeProps) => theme.colors.link.color};
+	}
 }
 
 .sr {
@@ -50,7 +67,7 @@ a {
 p,
 blockquote,
 li {
-	max-width: 75ch;
+	max-width: 80ch;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
 }
 
@@ -119,7 +136,7 @@ p,
 blockquote,
 li {
 	line-height: 1.5;
-	max-width: 75ch;
+	max-width: 80ch;
 }
 
 h1, h2, h3, h4,h5, h6 {

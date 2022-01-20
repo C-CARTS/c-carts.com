@@ -6,7 +6,7 @@ import { MainNavItem } from '../../data-hooks/useMainNav';
 import { ThemeProps } from '../../types/theme';
 import MainNav from './navigation/mainNav';
 
-const Header = styled.div`
+const Header = styled.header`
 	padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides};
 	width: min(100%, ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px);
 	margin: 0 auto;

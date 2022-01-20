@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
 import { ThemeProps } from '../../types/theme';
+import Footer from '../footer/footer';
 import Menu from '../menu/menu';
 import HeadContent from './headContent';
 import SkipLink from './skipLink';
@@ -19,27 +20,33 @@ const ContentWrap = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
 	margin: 0 auto;
+	height: 100%;
+	min-height: 100vh;
 `;
 
 const MainWrap = styled.div`
 	padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} ${theme.sizes.contentPaddingSides} ${theme.sizes.contentPaddingBottom}`};
 	width: min(100%, ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px);
 	margin: 0 auto;
+	flex: 1 1 auto;
 `;
 
-export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle } }: Props) {
+export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo } }: Props) {
 	return (
-		<ContentWrap>
+		<>
 			<SkipLink />
-			<HeadContent title={title} description={description} />
-			<Menu nav={mainNav} shortTitle={shortTitle} />
-			<main>
+			<ContentWrap>
+				<HeadContent title={title} description={description} />
+				<Menu nav={mainNav} shortTitle={shortTitle} />
 				<MainWrap id="main-content">
-					{title && <h1>{title}</h1>}
-					{children}
+					<main>
+						{title && <h1>{title}</h1>}
+						{children}
+					</main>
 				</MainWrap>
-			</main>
-		</ContentWrap>
+				<Footer address={address} phone={phone} logo={logo} />
+			</ContentWrap>
+		</>
 	);
 }
 
