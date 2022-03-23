@@ -10,7 +10,7 @@ interface FixedProps extends SharedProps {
 }
 
 interface AspectProps extends SharedProps {
-	aspectRatio: string;
+	aspectratio: string;
 }
 
 export type Props = FixedProps | AspectProps;

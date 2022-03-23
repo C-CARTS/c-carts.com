@@ -18,13 +18,13 @@ interface FixedProps extends BaseProps {
 }
 
 interface AspectProps extends BaseProps {
-	aspectRatio: string;
+	aspectratio: string;
 }
 
 export type Props = FixedProps | AspectProps;
 
 export function isAspectProps(props: Props): props is AspectProps {
-	return typeof (props as AspectProps)?.aspectRatio === 'string';
+	return typeof (props as AspectProps)?.aspectratio === 'string';
 }
 
 export default function SanityImage(props: Props) {
@@ -44,8 +44,8 @@ export default function SanityImage(props: Props) {
 
 	const calculatedAspectRatio = useMemo(() => {
 		if (isAspectProps(props)) {
-			const { aspectRatio } = props;
-			const [w, h] = aspectRatio.trim().split('/');
+			const { aspectratio } = props;
+			const [w, h] = aspectratio.trim().split('/');
 			return parseInt(w, 10) / parseInt(h, 10);
 		}
 		const { height } = props;

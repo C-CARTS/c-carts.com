@@ -84,7 +84,7 @@ export default function Footer({ address, phone, logo }: Props) {
 				</Contact>
 				{logo && (
 					<Logo>
-						<BasicSanityImage src={logo} omitAlt width={400} aspectRatio="384/151" layout="responsive" />
+						<BasicSanityImage src={logo} omitAlt width={400} aspectratio="384/151" layout="responsive" />
 					</Logo>
 				)}
 			</FooterContent>

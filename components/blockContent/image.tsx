@@ -6,5 +6,5 @@ interface Props {
 }
 
 export default function ImageComponent({ block: { image, aspectRatio } }: Props) {
-	return <SanityImage src={image} aspectRatio={aspectRatio || '4/3'} width={1200} layout="responsive" />;
+	return <SanityImage src={image} aspectratio={aspectRatio || '4/3'} width={1200} layout="responsive" />;
 }
