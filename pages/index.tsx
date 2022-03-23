@@ -3,6 +3,7 @@ import { getDataHooksProps } from 'next-data-hooks';
 import React from 'react';
 import GenericPage from '../components/generic/genericPage';
 import PageComponent from '../components/generic/page';
+import News from '../components/news';
 import useHomepage from '../data-hooks/useHomepage';
 import useMainNav from '../data-hooks/useMainNav';
 import useSiteConfig from '../data-hooks/useSiteConfig';
@@ -20,7 +21,7 @@ export default function Home() {
 	);
 }
 
-Home.dataHooks = [useSiteConfig, useMainNav, useHomepage];
+Home.dataHooks = [useSiteConfig, useMainNav, useHomepage, ...News.dataHooks];
 
 export const getStaticProps: GetStaticProps = async (context: GetStaticPathsContext) => {
 	const dataHooksProps = await getDataHooksProps({

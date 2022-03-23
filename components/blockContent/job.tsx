@@ -1,5 +1,5 @@
 import { Job } from '@c-carts/cms';
-import { PortableText } from '@portabletext/react';
+import PortableText from '../../sanity/portableText';
 
 interface Props {
 	hideHeading?: boolean;
@@ -15,7 +15,7 @@ export default function JobsComponent({ job: { name, rate, content }, hideHeadin
 					<span className="sr">Pay Rate:</span>${rate}
 				</p>
 			)}
-			<PortableText value={content} />
+			<PortableText blocks={content} />
 		</section>
 	);
 }
