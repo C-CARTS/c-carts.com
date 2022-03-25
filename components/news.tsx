@@ -27,7 +27,7 @@ export default function News({ news }: Props) {
 		<div>
 			{content &&
 				content.map((cnt) => (
-					<Link key={cnt._key} href={`/http://localhost:3000/about-us/news-updates/${cnt.dateTime}`}>
+					<Link key={cnt._key} href={`/http://localhost:3000/about-us/news-updates/${cnt.dateTime}`} passHref>
 						<NewsContainer key={cnt._key}>
 							<Heading>{cnt.newsHeading}</Heading>
 							<SubHeading>{cnt.dateTime}</SubHeading>
