@@ -5356,6 +5356,11 @@ sanity-codegen@^0.9, sanity-codegen@^0.9.8:
     jsdom-global "^3.0.2"
     regenerator-runtime "0.13.9"
 
+sanity@^2.20.0:
+  version "2.20.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/sanity/-/sanity-2.20.0.tgz#7b971d5ac211c86c346106daf7fc4f561bb3b2a7"
+  integrity sha1-e5cdWsIRyGw0YQba9/xPVhuzsqc=
+
 scheduler@^0.20.2:
   version "0.20.2"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"

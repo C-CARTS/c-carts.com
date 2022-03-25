@@ -18,6 +18,7 @@ export default function Block({ block }: Props) {
 			return <TextComponent block={block as TextSection} />;
 		case 'jobsSection':
 			return <JobsComponent block={block as JobsSection} />;
+
 		default:
 			assertUnreachable(_type);
 	}

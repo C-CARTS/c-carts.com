@@ -1,17 +1,24 @@
 import { Page } from '@c-carts/cms';
+import Link from 'next/link';
 import styled from 'styled-components';
 import PortableText from '../sanity/portableText';
-
 import { ThemeProps } from '../types/theme';
 
-const Heading = styled.h1`
+const NewsContainer = styled.div`
 	font-family: ${({ theme }: ThemeProps) => theme.typography.fontFamily};
+`;
+
+const Heading = styled.h1`
 	font-size: 1.35rem;
 `;
 
-type Props = {
+const SubHeading = styled.h2`
+	font-size: 1.1rem;
+`;
+
+interface Props {
 	news: Page;
-};
+}
 
 export default function News({ news }: Props) {
 	const { content } = news;
@@ -20,11 +27,13 @@ export default function News({ news }: Props) {
 		<div>
 			{content &&
 				content.map((cnt) => (
-					<div key={cnt._key}>
-						<Heading>{cnt.newsHeading}</Heading>
-						<h2>{cnt.dateTime}</h2>
-						<PortableText blocks={cnt.content} />
-					</div>
+					<Link key={cnt._key} href={`/http://localhost:3000/about-us/news-updates/${cnt.dateTime}`}>
+						<NewsContainer key={cnt._key}>
+							<Heading>{cnt.newsHeading}</Heading>
+							<SubHeading>{cnt.dateTime}</SubHeading>
+							<PortableText block={cnt.content} />
+						</NewsContainer>
+					</Link>
 				))}
 		</div>
 	);

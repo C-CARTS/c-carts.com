@@ -1,16 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { Page } from '@c-carts/cms';
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
-import GenericPage from '../../components/generic/genericPage';
-// eslint-disable-next-line import/no-named-as-default
-import News from '../../components/news';
-import useMainNav, { getMainNav } from '../../data-hooks/useMainNav';
-import useNews from '../../data-hooks/useNews';
-import useSiteConfig from '../../data-hooks/useSiteConfig';
-import sanityClient from '../../sanity/sanityClient';
-
-type NewsType = Page;
+import GenericPage from '../../../components/generic/genericPage';
+import News from '../../../components/news';
+import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
+import useNews from '../../../data-hooks/useNews';
+import useSiteConfig from '../../../data-hooks/useSiteConfig';
+import sanityClient from '../../../sanity/sanityClient';
 
 const newsSlug = 'news-updates';
 export default function NewsUpdates() {
@@ -19,15 +15,15 @@ export default function NewsUpdates() {
 
 	const navItems = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === newsSlug).length > 0)[0];
 	const { slug: navSlug } = navItems;
-	const { title: newsHeading, slug: nwSlug } = navItems.subPages.filter((pg) => pg.slug.current === newsSlug)[0];
+	const { title: headline, slug: newzSlug } = navItems.subPages.filter((pg) => pg.slug.current === newsSlug)[0];
 
-	const news: NewsType = useNews();
+	const news = useNews();
 	const { title } = news;
 
 	return (
 		<GenericPage title={title ?? 'news'} siteConfig={siteConfig} mainNav={mainNav}>
 			<News news={news} />
-			<a href={`/${navSlug?.current}/${nwSlug?.current}`}>Back to {newsHeading}</a>
+			<a href={`/${navSlug?.current}/${newzSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);
 }
@@ -43,10 +39,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		const mainNav = await getMainNav(mainNavigation, pages, navItems);
 
 		const newsNavItem = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === newsSlug).length > 0)[0];
-		const newsPg = newsNavItem.subPages.filter((pg) => pg.slug.current === newsSlug)[0];
-		const slugPath: string = newsPg.slug.current.toString();
+		const section = newsNavItem.slug?.current ?? '';
+		// TODO chnage the path to news
+		const newz = await sanityClient.getAll('job');
 
-		const paths = [{ params: { slug: slugPath } }];
+		const paths = newz.map((n) => ({ params: { section, slug: n.slug?.current } }));
 
 		return {
 			paths,

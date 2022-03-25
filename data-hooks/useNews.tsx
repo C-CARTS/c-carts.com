@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext, GetStaticPropsContext } from 'next';
+import { GetStaticPropsContext, GetServerSidePropsContext } from 'next';
 import { createDataHook } from 'next-data-hooks';
 import sanityClient from '../sanity/sanityClient';
 
@@ -17,5 +17,4 @@ const useNews = createDataHook('news', async (context: GetStaticPropsContext | G
 
 	throw new Error('Not Found');
 });
-
 export default useNews;
