@@ -1,10 +1,9 @@
-import { Page } from '@c-carts/cms';
-import Link from 'next/link';
+import { News } from '@c-carts/cms';
+
 import styled from 'styled-components';
-import PortableText from '../sanity/portableText';
 import { ThemeProps } from '../types/theme';
 
-const NewsContainer = styled.div`
+const NewsContainer = styled.section`
 	font-family: ${({ theme }: ThemeProps) => theme.typography.fontFamily};
 `;
 
@@ -17,24 +16,19 @@ const SubHeading = styled.h2`
 `;
 
 interface Props {
-	news: Page;
+	news: News[];
 }
 
-export default function News({ news }: Props) {
-	const { content } = news;
-
+export default function LatestNews({ news }: Props) {
+	console.log('NEWS COMPONENT IS REACHED');
 	return (
-		<div>
-			{content &&
-				content.map((cnt) => (
-					<Link key={cnt._key} href={`/http://localhost:3000/about-us/news-updates/${cnt.dateTime}`} passHref>
-						<NewsContainer key={cnt._key}>
-							<Heading>{cnt.newsHeading}</Heading>
-							<SubHeading>{cnt.dateTime}</SubHeading>
-							<PortableText block={cnt.content} />
-						</NewsContainer>
-					</Link>
-				))}
-		</div>
+		<NewsContainer>
+			{news.map((nz) => (
+				<div key={nz._id}>
+					<Heading>{nz.headline}</Heading>
+					<SubHeading>{nz.dateTime}</SubHeading>
+				</div>
+			))}
+		</NewsContainer>
 	);
 }

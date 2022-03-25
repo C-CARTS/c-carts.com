@@ -10,6 +10,7 @@ interface Props {
 }
 
 export default function Block({ block }: Props) {
+	console.log('Reached HERE', block.text[0].children);
 	const { _type } = block;
 	switch (_type) {
 		case 'imageSection':
@@ -18,7 +19,6 @@ export default function Block({ block }: Props) {
 			return <TextComponent block={block as TextSection} />;
 		case 'jobsSection':
 			return <JobsComponent block={block as JobsSection} />;
-
 		default:
 			assertUnreachable(_type);
 	}

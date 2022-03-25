@@ -2,7 +2,7 @@
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
 import GenericPage from '../../../components/generic/genericPage';
-import News from '../../../components/news';
+import LatestNews from '../../../components/news';
 import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useNews from '../../../data-hooks/useNews';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
@@ -18,11 +18,10 @@ export default function NewsUpdates() {
 	const { title: headline, slug: newzSlug } = navItems.subPages.filter((pg) => pg.slug.current === newsSlug)[0];
 
 	const news = useNews();
-	const { title } = news;
 
 	return (
-		<GenericPage title={title ?? 'news'} siteConfig={siteConfig} mainNav={mainNav}>
-			<News news={news} />
+		<GenericPage title={'title' ?? 'news'} siteConfig={siteConfig} mainNav={mainNav}>
+			<LatestNews news={news} />
 			<a href={`/${navSlug?.current}/${newzSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);
@@ -41,8 +40,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		const newsNavItem = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === newsSlug).length > 0)[0];
 		const section = newsNavItem.slug?.current ?? '';
 		// TODO chnage the path to news
-		const newz = await sanityClient.getAll('job');
-
+		const newz = await sanityClient.getAll('news');
+		console.log('newz');
 		const paths = newz.map((n) => ({ params: { section, slug: n.slug?.current } }));
 
 		return {
