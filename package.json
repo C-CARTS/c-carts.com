@@ -5,7 +5,7 @@
 		"url": "https://github.com/rblackman"
 	},
 	"dependencies": {
-		"@c-carts/cms": "^1.0.10",
+		"@c-carts/cms": "^1.0.12",
 		"@sanity/client": "^3.3.0",
 		"@sanity/image-url": "^1.0.1",
 		"dayjs": "^1.11.0",
