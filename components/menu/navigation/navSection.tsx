@@ -69,7 +69,8 @@ const NavButton = styled.button`
 	-webkit-appearance: none;
 	border: none;
 	background: none;
-	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.35}px;
+	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 	padding: 0.25rem 0.5rem 0.1rem 0.5rem;
 	min-width: 5.5rem;
@@ -81,6 +82,7 @@ const NavButton = styled.button`
 	align-items: center;
 	white-space: nowrap;
 	justify-content: center;
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 
 	&:focus-visible,
 	&.open,

@@ -29,6 +29,7 @@ const Theme: ThemeType = {
 		baseFontSize: 20,
 		baseLineHeight: 1.6,
 		fontFamily: 'system-ui, sans-serif',
+		headingFont: 'Roboto',
 		normalFontWeight: 400,
 		boldFontWeight: 700,
 		maxCharacterWidth: '80ch'

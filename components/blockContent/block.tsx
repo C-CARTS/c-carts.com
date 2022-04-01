@@ -1,16 +1,16 @@
-import { ImageSection, JobsSection, TextSection } from '@c-carts/cms';
+import { ImageSection, JobsSection, NewsSection, TextSection } from '@c-carts/cms';
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
 import ImageComponent from './image';
 import JobsComponent from './jobs';
+import NewsComponent from './newz';
 import TextComponent from './text';
 
 interface Props {
-	block: SanityKeyed<ImageSection> | SanityKeyed<TextSection> | SanityKeyed<JobsSection>;
+	block: SanityKeyed<ImageSection> | SanityKeyed<TextSection> | SanityKeyed<JobsSection> | SanityKeyed<NewsSection>;
 }
 
 export default function Block({ block }: Props) {
-	console.log('Reached HERE', block.text[0].children);
 	const { _type } = block;
 	switch (_type) {
 		case 'imageSection':
@@ -19,6 +19,8 @@ export default function Block({ block }: Props) {
 			return <TextComponent block={block as TextSection} />;
 		case 'jobsSection':
 			return <JobsComponent block={block as JobsSection} />;
+		case 'newsSection':
+			return <NewsComponent block={block as NewsSection} />;
 		default:
 			assertUnreachable(_type);
 	}

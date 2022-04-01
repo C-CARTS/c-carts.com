@@ -141,6 +141,7 @@ li {
 
 h1, h2, h3, h4,h5, h6 {
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
+	font-family: ${({ theme }: ThemeProps) => theme.typography.headingFont};
 }
 
 h1 {

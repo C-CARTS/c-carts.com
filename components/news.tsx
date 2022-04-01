@@ -1,5 +1,4 @@
 import { News } from '@c-carts/cms';
-
 import styled from 'styled-components';
 import { ThemeProps } from '../types/theme';
 
@@ -20,7 +19,6 @@ interface Props {
 }
 
 export default function LatestNews({ news }: Props) {
-	console.log('NEWS COMPONENT IS REACHED');
 	return (
 		<NewsContainer>
 			{news.map((nz) => (

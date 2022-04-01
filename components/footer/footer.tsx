@@ -10,7 +10,7 @@ interface Props {
 }
 
 const FooterElement = styled.footer`
-	background: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}44;
+	background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 `;
 
