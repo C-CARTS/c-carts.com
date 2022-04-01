@@ -21,10 +21,11 @@ export default function NewsComponent({ block: { count } }: Props) {
 
 	return (
 		<>
-			<h2>News</h2>
-			{filtered.map((j) => (
+			{filtered.map((j: any) => (
 				<News nz={j} key={j._id} />
 			))}
 		</>
 	);
 }
+
+NewsComponent.datahooks = [useNewz];

@@ -21,6 +21,7 @@ export interface Colors {
 
 export interface Typography {
 	fontFamily: string;
+	headingFont: string;
 	baseFontSize: number;
 	baseLineHeight: number;
 	normalFontWeight: number;

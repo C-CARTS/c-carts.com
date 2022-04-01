@@ -6,7 +6,7 @@ import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useNews from '../../../data-hooks/useNews';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
-import NewsComponent from '../../../components/blockContent/news';
+import LatestNews from '../../../components/news';
 
 const newsSlug = 'news-updates';
 
@@ -19,10 +19,10 @@ export default function News() {
 	const { title: headline, slug: newzSlug } = navItems.subPages.filter((pg) => pg.slug.current === newsSlug)[0];
 
 	const news = useNews();
-	const { slug } = news;
+
 	return (
-		<GenericPage title={slug.current ?? 'news'} siteConfig={siteConfig} mainNav={mainNav}>
-			<NewsComponent nz={news} />
+		<GenericPage title={'title' ?? 'news'} siteConfig={siteConfig} mainNav={mainNav}>
+			<LatestNews news={news} />
 			<a href={`/${navSlug?.current}/${newzSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);

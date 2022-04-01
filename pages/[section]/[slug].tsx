@@ -29,6 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const { mainNavigation } = config;
 	if (mainNavigation) {
 		const pages = await sanityClient.getAll('page');
+
 		const navItems = await sanityClient.getAll('navItem');
 
 		const mainNav = await getMainNav(mainNavigation, pages, navItems);
