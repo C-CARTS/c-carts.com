@@ -22,7 +22,7 @@ export default function NewsComponent({ block: { count } }: Props) {
 	return (
 		<>
 			{filtered.map((j: any) => (
-				<News nz={j} key={j._id} />
+				<News news={j} key={j._id} />
 			))}
 		</>
 	);

@@ -28,10 +28,10 @@ const SubHeading = styled.h2`
 `;
 
 interface Props {
-	nz: News;
+	news: News;
 }
 
-export default function NewsComponent({ nz: { headline, dateTime, content } }: Props) {
+export default function NewsComponent({ news: { headline, dateTime, content } }: Props) {
 	return (
 		<NewsContainer className="news">
 			<Heading>{headline}</Heading>
