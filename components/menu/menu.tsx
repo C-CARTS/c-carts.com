@@ -45,6 +45,20 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	nav {
 		grid-area: menu;
 	}
+
+	@media (max-width: 420px) {
+		grid-template-area: 'full';
+
+		a {
+			grid-area: full;
+		}
+
+		nav {
+			grid-area: full;
+			flex-flow: column nowrap;
+			align-items: center;
+		}
+	}
 `;
 
 interface LinkProps {
@@ -77,11 +91,12 @@ const LogoLink = styled.a.attrs((props: LinkProps) => ({
 	&:hover,
 	&:focus-visible {
 		transition: all 0.2s ease-in;
-		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
+		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 		outline-color: transparent;
 	}
 	&:focus-visible {
 		background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
+		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 	}
 `;
 
