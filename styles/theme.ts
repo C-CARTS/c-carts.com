@@ -32,7 +32,8 @@ const Theme: ThemeType = {
 		headingFont: 'Roboto',
 		normalFontWeight: 400,
 		boldFontWeight: 700,
-		maxCharacterWidth: '80ch'
+		maxCharacterWidth: '80ch',
+		baseLetterSpacing: 1.25
 	},
 	baseSpacing: 1,
 	breakpoints: {

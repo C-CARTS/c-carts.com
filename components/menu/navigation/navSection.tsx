@@ -5,6 +5,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../../data-hooks/useMainNav';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
+import titleState from '../../../state/changeProperty';
 import { ThemeProps } from '../../../types/theme';
 import { focusIndexState, isOpenSelector, openIndexState } from './state';
 import SubPage from './subPage';
@@ -31,7 +32,8 @@ const SectionWrap = styled.div`
 		border: 0.05rem solid ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		//border-top: 0;
 		list-style: none;
-		box-shadow: 0.2rem 0.2rem 0 0.025rem ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}22;
+
+		box-shadow: 0.2rem 0.2rem 0 0.025rem ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}px;
 
 		li {
 			padding: 0.2rem 0;
@@ -65,24 +67,36 @@ const SectionWrap = styled.div`
 	}
 `;
 
-const NavButton = styled.button`
+interface NavigationProp {
+	fontColor: string;
+}
+
+const NavButton = styled.button.attrs((props: NavigationProp) => ({
+	fontColor: props.fontColor
+}))`
 	-webkit-appearance: none;
 	border: none;
 	background: none;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.35}px;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
-	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
+	color: ${({ fontColor }: NavigationProp) => {
+		if (fontColor === 'Homepage') {
+			const colorValue = ({ theme }: ThemeProps) => theme.colors.primary.background;
+			return colorValue;
+		}
+		const colorValue = ({ theme }: ThemeProps) => theme.colors.primary.text;
+		return colorValue;
+	}};
 	padding: 0.25rem 0.5rem 0.1rem 0.5rem;
 	min-width: 5.5rem;
 	height: ${navButonHeight};
-	border-bottom: 0.15rem solid transparent;
+	border-bottom: 0.25rem solid transparent;
 	transition: all 0.2s ease-out;
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
 	white-space: nowrap;
 	justify-content: center;
-	color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 
 	&:focus-visible,
 	&.open,
@@ -146,9 +160,11 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 		}
 	}, [index, isOpen, setOpenIndex]);
 
+	const pageTitle = useRecoilValue(titleState);
+
 	return (
 		<SectionWrap ref={menuRef}>
-			<NavButton type="button" onClick={buttonClick} ref={buttonRef} className={isOpen ? 'open' : 'closed'}>
+			<NavButton fontColor={pageTitle} type="button" onClick={buttonClick} ref={buttonRef} className={isOpen ? 'open' : 'closed'}>
 				<MdArrowDropDown />
 				{title}
 			</NavButton>

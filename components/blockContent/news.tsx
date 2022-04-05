@@ -22,9 +22,35 @@ const Heading = styled.h1`
 
 const SubHeading = styled.h2`
 	font-size: 1.001rem;
-	font-weight: 400;
-	align-self: flex-end;
+	font-weight: bold;
+	align-self: flex-start;
 	font-family: 'NotoSans';
+`;
+
+const ContentWrapper = styled.div`
+	a {
+		&,
+		&:link {
+			text-decoration: underline;
+			text-decoration-thickness: 0.15rem;
+			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+		}
+		&:hover {
+			text-decoration: underline;
+			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.error.contrastColor};
+			text-decoration-thickness: 0.15rem;
+		}
+		&:focus,
+		&:focus-visible {
+			outline-color: transparent;
+			> span {
+				text-decoration: underline;
+				text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
+				text-decoration-thickness: 0.15rem;
+				background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
+			}
+		}
+	}
 `;
 
 interface Props {
@@ -36,9 +62,9 @@ export default function NewsComponent({ news: { headline, dateTime, content } }:
 		<NewsContainer className="news">
 			<Heading>{headline}</Heading>
 			<SubHeading>{getDate(dateTime)}</SubHeading>
-			<div style={{ fontFamily: 'Corbert', fontSize: '2.2em' }}>
+			<ContentWrapper>
 				<PortableText blocks={content} />
-			</div>
+			</ContentWrapper>
 		</NewsContainer>
 	);
 }

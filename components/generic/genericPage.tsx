@@ -29,10 +29,17 @@ const ContentWrap = styled.div`
 const changeValues = (val: string) => {
 	switch (val) {
 		case 'Homepage':
-			return `height: 300px; background-image:url("http://placeimg.com/1200/420/any"); -webkit-transition: 0.25s all ease-in-out; -moz-transition: 0.25s all ease-in-out; -o-transition: 0.25s all ease-in-out; transition: 0.25s all ease-in;
+			return `height: 400px; background-image:url("http://placeimg.com/1200/420/any");
+			background-repeat:no-repeat;
+			background-size:cover;
+			background-attachment: fixed;
+			-webkit-transition: 0.25s all ease-in-out;
+			-moz-transition: 0.25s all ease-in-out;
+			-o-transition: 0.25s all ease-in-out;
+			transition: 0.25s all ease-in;
 		`;
 		default:
-			return `height:100%; background-image: none;`;
+			return `background-image: none;`;
 	}
 };
 
@@ -50,13 +57,48 @@ const Wrapper = styled.div.attrs((home) => ({
 const MainWrap = styled.div`
 	padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} ${theme.sizes.contentPaddingSides} ${theme.sizes.contentPaddingBottom}`};
 	//width: min(100%, ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px);
+	width: 100%;
 	margin: 0 auto;
 	flex: 1 1 auto;
-	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-	width: 100%;
+	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 
 	h1 {
 		font-family: ${({ theme }: ThemeProps) => theme.typography.headingFont};
+	}
+
+	div > p {
+		padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} 0 ${theme.sizes.contentPaddingBottom}`};
+		line-height: calc(${({ theme }: ThemeProps) => theme.typography.baseLineHeight} + 0.25);
+		letter-spacing: ${({ theme }: ThemeProps) => theme.typography.baseLetterSpacing}px;
+	}
+
+	ul > li {
+		letter-spacing: ${({ theme }: ThemeProps) => theme.typography.baseLetterSpacing}px;
+		line-height: calc(${({ theme }: ThemeProps) => theme.typography.baseLineHeight} + 0.25);
+	}
+
+	div > p a {
+		&,
+		&:link {
+			text-decoration: underline;
+			text-decoration-thickness: 0.15rem;
+			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+		}
+		&:hover {
+			text-decoration: underline;
+			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.error.contrastColor};
+			text-decoration-thickness: 0.15rem;
+		}
+		&:focus,
+		&:focus-visible {
+			outline-color: transparent;
+			> span {
+				text-decoration: underline;
+				text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
+				text-decoration-thickness: 0.15rem;
+				background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
+			}
+		}
 	}
 `;
 
@@ -72,8 +114,8 @@ export default function GenericPage({ title, description, children, mainNav, sit
 					<Menu nav={mainNav} shortTitle={shortTitle} />
 				</Wrapper>
 				<MainWrap id="main-content">
-					<main>
-						{title && <h1>{title}</h1>}
+					<main style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', flexWrap: 'nowrap', alignItems: 'center' }}>
+						{title && <h1> {title}</h1>}
 						{children}
 					</main>
 				</MainWrap>

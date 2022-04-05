@@ -20,6 +20,7 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	ops: props.ops
 }))`
 	padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides}px;
+	padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
 	background-color: ${({ backgroundColor }: HeaderProps) => {
 		if (backgroundColor === 'Homepage') {
 			const value = ({ theme }: ThemeProps) => theme.colors.primary.contrastColor;
@@ -29,7 +30,7 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 		return layout;
 	}};
 	opacity: ${(props) => props.ops};
-
+	max-width: 100%;
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: max-content 1fr;
@@ -56,6 +57,7 @@ const LogoLink = styled.a.attrs((props: LinkProps) => ({
 	font-size: 1.5rem;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
+	text-decoration-thickness: 0.15em;
 	transition: all 0.2s ease-out;
 	outline-color: transparent;
 	padding: 0.5rem 1rem;
@@ -64,7 +66,7 @@ const LogoLink = styled.a.attrs((props: LinkProps) => ({
 	&:visited {
 		color: ${({ colour }: LinkProps) => {
 			if (colour === 'Homepage') {
-				const result = ({ theme }: ThemeProps) => theme.colors.primary.layoutBorder;
+				const result = ({ theme }: ThemeProps) => theme.colors.primary.background;
 				return result;
 			}
 			const original = ({ theme }: ThemeProps) => theme.colors.primary.text;
@@ -91,7 +93,7 @@ interface Props {
 export default function Menu({ shortTitle, nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	return (
-		<Header backgroundColor={pageTitle} ops={pageTitle === 'Homepage' ? 0.6 : 1} className="header-content">
+		<Header backgroundColor={pageTitle} ops={pageTitle === 'Homepage' ? 0.8 : 1} className="header-content">
 			<Link href="/" passHref>
 				<LogoLink colour={pageTitle}>{shortTitle}</LogoLink>
 			</Link>

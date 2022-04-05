@@ -10,7 +10,7 @@ interface Props {
 }
 
 const FooterElement = styled.footer`
-	background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+	background: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 `;
 
@@ -84,7 +84,7 @@ export default function Footer({ address, phone, logo }: Props) {
 				</Contact>
 				{logo && (
 					<Logo>
-						<BasicSanityImage src={logo} omitAlt width={400} aspectratio="384/151" layout="responsive" />
+						<BasicSanityImage src={logo} alt="C-CARTS LOGO" width={400} aspectratio="384/151" layout="responsive" />
 					</Logo>
 				)}
 			</FooterContent>
