@@ -12,23 +12,14 @@ import { ThemeProps } from '../../types/theme';
 import MainNav from './navigation/mainNav';
 
 interface HeaderProps {
-	backgroundColor: string | undefined;
 	ops: number;
 }
 const Header = styled.header.attrs((props: HeaderProps) => ({
-	backgroundColor: props.backgroundColor,
 	ops: props.ops
 }))`
 	padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides}px;
 	padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
-	background-color: ${({ backgroundColor }: HeaderProps) => {
-		if (backgroundColor === 'Homepage') {
-			const value = ({ theme }: ThemeProps) => theme.colors.primary.contrastColor;
-			return value;
-		}
-		const layout = `${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}`;
-		return layout;
-	}};
+	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 	opacity: ${(props) => props.ops};
 	max-width: 100%;
 	margin: 0 auto;
@@ -61,37 +52,24 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	}
 `;
 
-interface LinkProps {
-	colour: string;
-}
-
-const LogoLink = styled.a.attrs((props: LinkProps) => ({
-	colour: props.colour
-}))`
+const LogoLink = styled.a`
 	font-size: 1.5rem;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
-	text-decoration-thickness: 0.15em;
+	text-decoration-thickness: 0.22rem;
 	transition: all 0.2s ease-out;
 	outline-color: transparent;
 	padding: 0.5rem 1rem;
 
 	&,
 	&:visited {
-		color: ${({ colour }: LinkProps) => {
-			if (colour === 'Homepage') {
-				const result = ({ theme }: ThemeProps) => theme.colors.primary.background;
-				return result;
-			}
-			const original = ({ theme }: ThemeProps) => theme.colors.primary.text;
-			return original;
-		}};
+		color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 	}
 
 	&:hover,
 	&:focus-visible {
 		transition: all 0.2s ease-in;
-		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		outline-color: transparent;
 	}
 	&:focus-visible {
@@ -105,12 +83,17 @@ interface Props {
 	nav: MainNavItem[];
 }
 
+/**
+ * It returns a header with a logo and a navigation bar.
+ * @param {Props}  - shortTitle: The short title of the site.
+ * @returns The Menu component is returning a Header component.
+ */
 export default function Menu({ shortTitle, nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	return (
-		<Header backgroundColor={pageTitle} ops={pageTitle === 'Homepage' ? 0.8 : 1} className="header-content">
+		<Header ops={pageTitle === 'Homepage' ? 0.75 : 1} className="header-content">
 			<Link href="/" passHref>
-				<LogoLink colour={pageTitle}>{shortTitle}</LogoLink>
+				<LogoLink>{shortTitle}</LogoLink>
 			</Link>
 			<MainNav nav={nav} />
 		</Header>

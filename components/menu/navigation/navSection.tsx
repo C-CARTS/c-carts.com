@@ -5,7 +5,6 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../../data-hooks/useMainNav';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
-import titleState from '../../../state/changeProperty';
 import { ThemeProps } from '../../../types/theme';
 import { focusIndexState, isOpenSelector, openIndexState } from './state';
 import SubPage from './subPage';
@@ -50,7 +49,7 @@ const SectionWrap = styled.div`
 				> span {
 					text-decoration: underline;
 					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-					text-decoration-thickness: 0.15rem;
+					text-decoration-thickness: 0.22rem;
 				}
 			}
 
@@ -59,7 +58,7 @@ const SectionWrap = styled.div`
 				> span {
 					text-decoration: underline;
 					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
-					text-decoration-thickness: 0.15rem;
+					text-decoration-thickness: 0.22rem;
 					background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
 				}
 			}
@@ -67,26 +66,13 @@ const SectionWrap = styled.div`
 	}
 `;
 
-interface NavigationProp {
-	fontColor: string;
-}
-
-const NavButton = styled.button.attrs((props: NavigationProp) => ({
-	fontColor: props.fontColor
-}))`
+const NavButton = styled.button`
 	-webkit-appearance: none;
 	border: none;
 	background: none;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.35}px;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
-	color: ${({ fontColor }: NavigationProp) => {
-		if (fontColor === 'Homepage') {
-			const colorValue = ({ theme }: ThemeProps) => theme.colors.primary.background;
-			return colorValue;
-		}
-		const colorValue = ({ theme }: ThemeProps) => theme.colors.primary.text;
-		return colorValue;
-	}};
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 	padding: 0.25rem 0.5rem 0.1rem 0.5rem;
 	min-width: 5.5rem;
 	height: ${navButonHeight};
@@ -125,6 +111,9 @@ const NavButton = styled.button.attrs((props: NavigationProp) => ({
 	}
 `;
 
+/* The above code is creating a navigation menu for the site. It is using the useRecoilState hook to
+set the focusIndexState atom. This atom is used to set the focus on the button when the focusIndex
+is set. */
 interface Props {
 	index: number;
 	item: MainNavItem;
@@ -145,6 +134,7 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 	});
 
 	// set focus if the focus index is set
+	/* This is a useEffect hook that is used to set the focus on the button when the focusIndex is set. */
 	useEffect(() => {
 		if (focusIndex === index && buttonRef.current) {
 			buttonRef.current.focus();
@@ -160,11 +150,9 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 		}
 	}, [index, isOpen, setOpenIndex]);
 
-	const pageTitle = useRecoilValue(titleState);
-
 	return (
 		<SectionWrap ref={menuRef}>
-			<NavButton fontColor={pageTitle} type="button" onClick={buttonClick} ref={buttonRef} className={isOpen ? 'open' : 'closed'}>
+			<NavButton type="button" onClick={buttonClick} ref={buttonRef} className={isOpen ? 'open' : 'closed'}>
 				<MdArrowDropDown />
 				{title}
 			</NavButton>

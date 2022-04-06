@@ -19,6 +19,16 @@ export default function MainNav({ nav }: Props) {
 	const [openIndex, setOpenIndex] = useRecoilState(openIndexState);
 	const setFocusIndex = useSetRecoilState(focusIndexState);
 
+	/**
+	 * When the escape key is pressed, if the openIndex is not null, set the focusIndex to the openIndex
+	 * and set the openIndex to null
+	 * @param {KeyboardEvent}  - The function to be called when the key is pressed.
+	 */
+	/* This is a React Hook that is used to call a function when a specific event occurs. In this case,
+	the event is the keydown event. The function is called when the keydown event occurs. The function
+	is passed a parameter called `key` that contains the key that was pressed. If the key that was
+	pressed is the escape key and the openIndex is not null, then set the focusIndex to the openIndex
+	and set the openIndex to null. */
 	useEffect(() => {
 		function escapeFunction({ key }: KeyboardEvent) {
 			if (key === 'Escape' && openIndex) {

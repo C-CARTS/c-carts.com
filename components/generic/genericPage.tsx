@@ -82,11 +82,11 @@ const MainWrap = styled.div`
 		&:link {
 			text-decoration: underline;
 			text-decoration-thickness: 0.15rem;
-			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 		}
 		&:hover {
 			text-decoration: underline;
-			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.error.contrastColor};
+			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 			text-decoration-thickness: 0.15rem;
 		}
 		&:focus,

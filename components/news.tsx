@@ -14,6 +14,11 @@ const SubHeading = styled.h2`
 	font-size: 1.1rem;
 `;
 
+/**
+ * It takes in a news array and returns a news container with the news inside of it.
+ * @param {Props}  - news: An array of News objects.
+ * @returns A list of news headlines.
+ */
 interface Props {
 	news: News[];
 }

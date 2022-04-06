@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useCallback, useMemo } from 'react';
 import { basicClient } from '../../sanity/sanityClient';
 
+/* It's defining the props that are required for the SanityImage component. */
 export interface BaseProps extends Omit<ImageProps, 'src' | 'width' | 'height' | 'alt' | 'layout'> {
 	src: SanityImageSource;
 	width: number;
@@ -23,13 +24,23 @@ interface AspectProps extends BaseProps {
 
 export type Props = FixedProps | AspectProps;
 
+/**
+ * It checks if the props object has an aspectratio property.
+ * @param {Props} props - Props
+ * @returns A boolean value.
+ */
 export function isAspectProps(props: Props): props is AspectProps {
 	return typeof (props as AspectProps)?.aspectratio === 'string';
 }
 
+/**
+ * It takes a bunch of props and returns an image
+ * @param {Props} props - Props
+ */
 export default function SanityImage(props: Props) {
 	const { src, alt: altText, omitAlt, width, ...rest } = props;
 
+	/* It's a memoization helper that makes sure that the alt text is only calculated once. */
 	const alt = useMemo(() => {
 		if (omitAlt) {
 			return '';
@@ -42,6 +53,7 @@ export default function SanityImage(props: Props) {
 		return altText;
 	}, [altText, omitAlt]);
 
+	/* It's a memoization helper that makes sure that the aspect ratio is only calculated once. */
 	const calculatedAspectRatio = useMemo(() => {
 		if (isAspectProps(props)) {
 			const { aspectratio } = props;
@@ -52,6 +64,7 @@ export default function SanityImage(props: Props) {
 		return width / height;
 	}, [props, width]);
 
+	/* It's a memoization helper that makes sure that the aspect ratio is only calculated once. */
 	const imageBuilder: UseNextSanityImageBuilder = useCallback(
 		(imageUrlBuilder, { width: rWidth, originalImageDimensions: { width: originalWidth, height: originalHeight } }) => {
 			const w = rWidth ?? width;
@@ -62,6 +75,7 @@ export default function SanityImage(props: Props) {
 		[calculatedAspectRatio, width]
 	);
 
+	/* It's using the `useNextSanityImage` hook to get the image props. */
 	const imageProps = useNextSanityImage(basicClient, src, {
 		imageBuilder
 	});
