@@ -69,11 +69,9 @@ const MainWrap = styled.div`
 	div > p {
 		padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} 0 ${theme.sizes.contentPaddingBottom}`};
 		line-height: calc(${({ theme }: ThemeProps) => theme.typography.baseLineHeight} + 0.25);
-		letter-spacing: ${({ theme }: ThemeProps) => theme.typography.baseLetterSpacing}px;
 	}
 
 	ul > li {
-		letter-spacing: ${({ theme }: ThemeProps) => theme.typography.baseLetterSpacing}px;
 		line-height: calc(${({ theme }: ThemeProps) => theme.typography.baseLineHeight} + 0.25);
 	}
 
@@ -102,6 +100,18 @@ const MainWrap = styled.div`
 	}
 `;
 
+const Main = styled.main`
+	max-width: 1200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	h1 {
+		margin-right: auto;
+		text-indent: 6rem;
+	}
+`;
+
 export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo } }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 
@@ -114,10 +124,10 @@ export default function GenericPage({ title, description, children, mainNav, sit
 					<Menu nav={mainNav} shortTitle={shortTitle} />
 				</Wrapper>
 				<MainWrap id="main-content">
-					<main style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', flexWrap: 'nowrap', alignItems: 'center' }}>
+					<Main>
 						{title && <h1> {title}</h1>}
 						{children}
-					</main>
+					</Main>
 				</MainWrap>
 				<Footer address={address} phone={phone} logo={logo} />
 			</ContentWrap>

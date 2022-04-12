@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -6,20 +7,24 @@ import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
+import useMediaQuery from '../../hooks/useMediaQueryHook';
 import titleState from '../../state/changeProperty';
 
 import { ThemeProps } from '../../types/theme';
 import MainNav from './navigation/mainNav';
+import SideNav from './navigation/sideNav/sideNav';
 
 interface HeaderProps {
 	ops: number;
+	UiBreakPoint: boolean;
 }
 const Header = styled.header.attrs((props: HeaderProps) => ({
-	ops: props.ops
+	ops: props.ops,
+	UiBreakPoint: props.UiBreakPoint
 }))`
 	padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides}px;
 	padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
-	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+	background-color: ${({ UiBreakPoint }: HeaderProps) => (UiBreakPoint ? 'none' : (theme: ThemeProps) => theme.theme.colors.primary.background)};
 	opacity: ${(props) => props.ops};
 	max-width: 100%;
 	margin: 0 auto;
@@ -90,12 +95,22 @@ interface Props {
  */
 export default function Menu({ shortTitle, nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
+	const query = '(max-width:700px)';
+	const breakpoint = useMediaQuery({ query });
+
 	return (
-		<Header ops={pageTitle === 'Homepage' ? 0.75 : 1} className="header-content">
-			<Link href="/" passHref>
-				<LogoLink>{shortTitle}</LogoLink>
-			</Link>
-			<MainNav nav={nav} />
+		// eslint-disable-next-line react/no-unstable-nested-components
+		<Header ops={pageTitle === 'Homepage' ? 0.75 : 1} UiBreakPoint={breakpoint} className="header-content">
+			{breakpoint ? (
+				<SideNav nav={nav} />
+			) : (
+				<>
+					<Link href="/" passHref>
+						<LogoLink>{shortTitle}</LogoLink>
+					</Link>
+					<MainNav nav={nav} />
+				</>
+			)}
 		</Header>
 	);
 }
