@@ -8,6 +8,8 @@
 		"@c-carts/cms": "^1.0.10",
 		"@sanity/client": "^3.3.0",
 		"@sanity/image-url": "^1.0.1",
+		"@types/d3": "^7.1.0",
+		"d3": "^7.4.4",
 		"dayjs": "^1.11.0",
 		"next": "^12.0.8",
 		"next-data-hooks": "^0.5.1",

@@ -110,6 +110,11 @@ const Main = styled.main`
 		margin-right: auto;
 		text-indent: 6rem;
 	}
+	@media (max-width: 1200px) {
+		h1 {
+			text-indent: 0;
+		}
+	}
 `;
 
 export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo } }: Props) {

@@ -16,6 +16,9 @@ const SideNavButton = styled.button`
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 	text-align: center;
+	width: fit-content;
+	padding: 0.75rem;
+
 	height: ${navButtonHeight};
 	border-bottom: 0.25rem solid transparent;
 	transition: all 0.2s ease-out;
@@ -50,6 +53,11 @@ const SideNavButton = styled.button`
 		transition: all 0.2s ease-out;
 	}
 `;
+const ListContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+`;
 
 export interface Props {
 	nav: MainNavItem[];
@@ -57,6 +65,7 @@ export interface Props {
 
 export default function SideNav({ nav }: Props) {
 	const [buttonState, setButtonState] = useState(false);
+	const [keyPressState, setKeypresed] = useState(false);
 	const buttonClick = useCallback(() => {
 		if (buttonState) {
 			setButtonState(false);
@@ -65,13 +74,30 @@ export default function SideNav({ nav }: Props) {
 		}
 	}, [setButtonState, buttonState]);
 
+	const keyPress = useCallback(() => {
+		const event = KeyboardEvent;
+		if (event.key === 'Enter' || event.key === 'Tab' || event.key === 'Space') {
+			setKeypresed(true);
+		} else {
+			setKeypresed(false);
+		}
+	}, []);
+
 	return (
 		// eslint-disable-next-line react/button-has-type
-		<div>
-			<SideNavButton type="button" onClick={buttonClick}>
-				<AiOutlineMenu aria-label="Side Menu" />
+		<ListContainer>
+			<SideNavButton
+				aria-label="Side Navigation Menu"
+				aria-haspopup="menu"
+				aria-controls="ccarts"
+				aria-expanded={buttonState || keyPressState}
+				type="button"
+				onClick={buttonClick}
+				onKeyPress={keyPress}
+			>
+				<AiOutlineMenu />
 			</SideNavButton>
 			{buttonState ? <SideSection nav={nav} /> : ''}
-		</div>
+		</ListContainer>
 	);
 }

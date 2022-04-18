@@ -5,7 +5,7 @@ import { ThemeProps } from '../../../../types/theme';
 import { Props } from './sideNav';
 import SideNavigationSection from './sideNavigationSection';
 
-const SideSectionNav = styled.div`
+const SideSectionNav = styled.nav`
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -14,6 +14,7 @@ const SideSectionNav = styled.div`
 	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 	opacity: 0.55;
 	margin-top: 0.35rem;
+	padding: 0.25rem;
 `;
 
 const LogoLink = styled.a`

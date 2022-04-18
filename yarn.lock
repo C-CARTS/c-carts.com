@@ -2184,6 +2184,216 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
+"@types/d3-array@*":
+  version "3.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-array/-/d3-array-3.0.2.tgz#71c35bca8366a40d1b8fce9279afa4a77fb0065d"
+  integrity sha1-ccNbyoNmpA0bj86Sea+kp3+wBl0=
+
+"@types/d3-axis@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-axis/-/d3-axis-3.0.1.tgz#6afc20744fa5cc0cbc3e2bd367b140a79ed3e7a8"
+  integrity sha1-avwgdE+lzAy8PivTZ7FAp57T56g=
+  dependencies:
+    "@types/d3-selection" "*"
+
+"@types/d3-brush@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-brush/-/d3-brush-3.0.1.tgz#ae5f17ce391935ca88b29000e60ee20452c6357c"
+  integrity sha1-rl8XzjkZNcqIspAA5g7iBFLGNXw=
+  dependencies:
+    "@types/d3-selection" "*"
+
+"@types/d3-chord@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-chord/-/d3-chord-3.0.1.tgz#54c8856c19c8e4ab36a53f73ba737de4768ad248"
+  integrity sha1-VMiFbBnI5Ks2pT9zunN95HaK0kg=
+
+"@types/d3-color@*":
+  version "3.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-color/-/d3-color-3.0.2.tgz#53f2d6325f66ee79afd707c05ac849e8ae0edbb0"
+  integrity sha1-U/LWMl9m7nmv1wfAWshJ6K4O27A=
+
+"@types/d3-contour@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-contour/-/d3-contour-3.0.1.tgz#9ff4e2fd2a3910de9c5097270a7da8a6ef240017"
+  integrity sha1-n/Ti/So5EN6cUJcnCn2opu8kABc=
+  dependencies:
+    "@types/d3-array" "*"
+    "@types/geojson" "*"
+
+"@types/d3-delaunay@*":
+  version "6.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-delaunay/-/d3-delaunay-6.0.0.tgz#c09953ac7e5460997f693d2d7bf3522e0d4a88e6"
+  integrity sha1-wJlTrH5UYJl/aT0te/NSLg1KiOY=
+
+"@types/d3-dispatch@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-dispatch/-/d3-dispatch-3.0.1.tgz#a1b18ae5fa055a6734cb3bd3cbc6260ef19676e3"
+  integrity sha1-obGK5foFWmc0yzvTy8YmDvGWduM=
+
+"@types/d3-drag@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-drag/-/d3-drag-3.0.1.tgz#fb1e3d5cceeee4d913caa59dedf55c94cb66e80f"
+  integrity sha1-+x49XM7u5NkTyqWd7fVclMtm6A8=
+  dependencies:
+    "@types/d3-selection" "*"
+
+"@types/d3-dsv@*":
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-dsv/-/d3-dsv-3.0.0.tgz#f3c61fb117bd493ec0e814856feb804a14cfc311"
+  integrity sha1-88YfsRe9ST7A6BSFb+uAShTPwxE=
+
+"@types/d3-ease@*":
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-ease/-/d3-ease-3.0.0.tgz#c29926f8b596f9dadaeca062a32a45365681eae0"
+  integrity sha1-wpkm+LWW+dra7KBioypFNlaB6uA=
+
+"@types/d3-fetch@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-fetch/-/d3-fetch-3.0.1.tgz#f9fa88b81aa2eea5814f11aec82ecfddbd0b8fe0"
+  integrity sha1-+fqIuBqi7qWBTxGuyC7P3b0Lj+A=
+  dependencies:
+    "@types/d3-dsv" "*"
+
+"@types/d3-force@*":
+  version "3.0.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-force/-/d3-force-3.0.3.tgz#76cb20d04ae798afede1ea6e41750763ff5a9c82"
+  integrity sha1-dssg0ErnmK/t4epuQXUHY/9anII=
+
+"@types/d3-format@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-format/-/d3-format-3.0.1.tgz#194f1317a499edd7e58766f96735bdc0216bb89d"
+  integrity sha1-GU8TF6SZ7dflh2b5ZzW9wCFruJ0=
+
+"@types/d3-geo@*":
+  version "3.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-geo/-/d3-geo-3.0.2.tgz#e7ec5f484c159b2c404c42d260e6d99d99f45d9a"
+  integrity sha1-5+xfSEwVmyxATELSYObZnZn0XZo=
+  dependencies:
+    "@types/geojson" "*"
+
+"@types/d3-hierarchy@*":
+  version "3.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-hierarchy/-/d3-hierarchy-3.0.2.tgz#ca63f2f4da15b8f129c5b7dffd71d904cba6aca2"
+  integrity sha1-ymPy9NoVuPEpxbff/XHZBMumrKI=
+
+"@types/d3-interpolate@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-interpolate/-/d3-interpolate-3.0.1.tgz#e7d17fa4a5830ad56fe22ce3b4fac8541a9572dc"
+  integrity sha1-59F/pKWDCtVv4izjtPrIVBqVctw=
+  dependencies:
+    "@types/d3-color" "*"
+
+"@types/d3-path@*":
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-path/-/d3-path-3.0.0.tgz#939e3a784ae4f80b1fde8098b91af1776ff1312b"
+  integrity sha1-k546eErk+Asf3oCYuRrxd2/xMSs=
+
+"@types/d3-polygon@*":
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-polygon/-/d3-polygon-3.0.0.tgz#5200a3fa793d7736fa104285fa19b0dbc2424b93"
+  integrity sha1-UgCj+nk9dzb6EEKF+hmw28JCS5M=
+
+"@types/d3-quadtree@*":
+  version "3.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-quadtree/-/d3-quadtree-3.0.2.tgz#433112a178eb7df123aab2ce11c67f51cafe8ff5"
+  integrity sha1-QzESoXjrffEjqrLOEcZ/Ucr+j/U=
+
+"@types/d3-random@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-random/-/d3-random-3.0.1.tgz#5c8d42b36cd4c80b92e5626a252f994ca6bfc953"
+  integrity sha1-XI1Cs2zUyAuS5WJqJS+ZTKa/yVM=
+
+"@types/d3-scale-chromatic@*":
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-scale-chromatic/-/d3-scale-chromatic-3.0.0.tgz#103124777e8cdec85b20b51fd3397c682ee1e954"
+  integrity sha1-EDEkd36M3shbILUf0zl8aC7h6VQ=
+
+"@types/d3-scale@*":
+  version "4.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-scale/-/d3-scale-4.0.2.tgz#41be241126af4630524ead9cb1008ab2f0f26e69"
+  integrity sha1-Qb4kESavRjBSTq2csQCKsvDybmk=
+  dependencies:
+    "@types/d3-time" "*"
+
+"@types/d3-selection@*":
+  version "3.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-selection/-/d3-selection-3.0.2.tgz#23e48a285b24063630bbe312cc0cfe2276de4a59"
+  integrity sha1-I+SKKFskBjYwu+MSzAz+InbeSlk=
+
+"@types/d3-shape@*":
+  version "3.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-shape/-/d3-shape-3.0.2.tgz#4b1ca4ddaac294e76b712429726d40365cd1e8ca"
+  integrity sha1-Sxyk3arClOdrcSQpcm1ANlzR6Mo=
+  dependencies:
+    "@types/d3-path" "*"
+
+"@types/d3-time-format@*":
+  version "4.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-time-format/-/d3-time-format-4.0.0.tgz#ee7b6e798f8deb2d9640675f8811d0253aaa1946"
+  integrity sha1-7ntueY+N6y2WQGdfiBHQJTqqGUY=
+
+"@types/d3-time@*":
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-time/-/d3-time-3.0.0.tgz#e1ac0f3e9e195135361fa1a1d62f795d87e6e819"
+  integrity sha1-4awPPp4ZUTU2H6Gh1i95XYfm6Bk=
+
+"@types/d3-timer@*":
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-timer/-/d3-timer-3.0.0.tgz#e2505f1c21ec08bda8915238e397fb71d2fc54ce"
+  integrity sha1-4lBfHCHsCL2okVI445f7cdL8VM4=
+
+"@types/d3-transition@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-transition/-/d3-transition-3.0.1.tgz#c9a96125567173d6163a6985b874f79154f4cc3d"
+  integrity sha1-yalhJVZxc9YWOmmFuHT3kVT0zD0=
+  dependencies:
+    "@types/d3-selection" "*"
+
+"@types/d3-zoom@*":
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-zoom/-/d3-zoom-3.0.1.tgz#4bfc7e29625c4f79df38e2c36de52ec3e9faf826"
+  integrity sha1-S/x+KWJcT3nfOOLDbeUuw+n6+CY=
+  dependencies:
+    "@types/d3-interpolate" "*"
+    "@types/d3-selection" "*"
+
+"@types/d3@^7.1.0":
+  version "7.1.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3/-/d3-7.1.0.tgz#8f32a7e7f434d8f920c8b1ebdfed55e18c033720"
+  integrity sha1-jzKn5/Q02PkgyLHr3+1V4YwDNyA=
+  dependencies:
+    "@types/d3-array" "*"
+    "@types/d3-axis" "*"
+    "@types/d3-brush" "*"
+    "@types/d3-chord" "*"
+    "@types/d3-color" "*"
+    "@types/d3-contour" "*"
+    "@types/d3-delaunay" "*"
+    "@types/d3-dispatch" "*"
+    "@types/d3-drag" "*"
+    "@types/d3-dsv" "*"
+    "@types/d3-ease" "*"
+    "@types/d3-fetch" "*"
+    "@types/d3-force" "*"
+    "@types/d3-format" "*"
+    "@types/d3-geo" "*"
+    "@types/d3-hierarchy" "*"
+    "@types/d3-interpolate" "*"
+    "@types/d3-path" "*"
+    "@types/d3-polygon" "*"
+    "@types/d3-quadtree" "*"
+    "@types/d3-random" "*"
+    "@types/d3-scale" "*"
+    "@types/d3-scale-chromatic" "*"
+    "@types/d3-selection" "*"
+    "@types/d3-shape" "*"
+    "@types/d3-time" "*"
+    "@types/d3-time-format" "*"
+    "@types/d3-timer" "*"
+    "@types/d3-transition" "*"
+    "@types/d3-zoom" "*"
+
 "@types/eslint-scope@^3.7.0":
   version "3.7.3"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/eslint-scope/-/eslint-scope-3.7.3.tgz#125b88504b61e3c8bc6f870882003253005c3224"
@@ -2209,6 +2419,11 @@
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
+
+"@types/geojson@*":
+  version "7946.0.8"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/geojson/-/geojson-7946.0.8.tgz#30744afdb385e2945e22f3b033f897f76b1f12ca"
+  integrity sha1-MHRK/bOF4pReIvOwM/iX92sfEso=
 
 "@types/glob@^7.1.1":
   version "7.2.0"
@@ -2958,6 +3173,11 @@ colorette@^1.2.2:
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.3.0.tgz#ff45d2f0edb244069d3b772adeb04fed38d0a0af"
   integrity sha512-ecORCqbSFP7Wm8Y6lyqMJjexBQqXSF7SSeaTyGGphogUjBlFP9m9o08wy86HL2uB7fMTxtOUzLMk7ogKcxMg1w==
 
+commander@7:
+  version "7.2.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
+  integrity sha1-o2y1fQtQHOEI5NIFWaFQo5HZerc=
+
 commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
@@ -3101,6 +3321,250 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
   integrity sha512-jXKhWqXPmlUeoQnF/EhTtTl4C9SnrxSH/jZUih3jmO6lBKr99rP3/+FmrMj4EFpOXzMtXHAZkd3x0E6h6Fgflw==
 
+"d3-array@2 - 3", "d3-array@2.10.0 - 3", "d3-array@2.5.0 - 3", d3-array@3:
+  version "3.1.6"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-array/-/d3-array-3.1.6.tgz#0342c835925826f49b4d16eb7027aec334ffc97d"
+  integrity sha1-A0LINZJYJvSbTRbrcCeuwzT/yX0=
+  dependencies:
+    internmap "1 - 2"
+
+d3-axis@3:
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-axis/-/d3-axis-3.0.0.tgz#c42a4a13e8131d637b745fc2973824cfeaf93322"
+  integrity sha1-xCpKE+gTHWN7dF/Clzgkz+r5MyI=
+
+d3-brush@3:
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-brush/-/d3-brush-3.0.0.tgz#6f767c4ed8dcb79de7ede3e1c0f89e63ef64d31c"
+  integrity sha1-b3Z8Ttjct53n7ePhwPieY+9k0xw=
+  dependencies:
+    d3-dispatch "1 - 3"
+    d3-drag "2 - 3"
+    d3-interpolate "1 - 3"
+    d3-selection "3"
+    d3-transition "3"
+
+d3-chord@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-chord/-/d3-chord-3.0.1.tgz#d156d61f485fce8327e6abf339cb41d8cbba6966"
+  integrity sha1-0VbWH0hfzoMn5qvzOctB2Mu6aWY=
+  dependencies:
+    d3-path "1 - 3"
+
+"d3-color@1 - 3", d3-color@3:
+  version "3.1.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-color/-/d3-color-3.1.0.tgz#395b2833dfac71507f12ac2f7af23bf819de24e2"
+  integrity sha1-OVsoM9+scVB/EqwvevI7+BneJOI=
+
+d3-contour@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-contour/-/d3-contour-3.0.1.tgz#2c64255d43059599cd0dba8fe4cc3d51ccdd9bbd"
+  integrity sha1-LGQlXUMFlZnNDbqP5Mw9Uczdm70=
+  dependencies:
+    d3-array "2 - 3"
+
+d3-delaunay@6:
+  version "6.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-delaunay/-/d3-delaunay-6.0.2.tgz#7fd3717ad0eade2fc9939f4260acfb503f984e92"
+  integrity sha1-f9NxetDq3i/Jk59CYKz7UD+YTpI=
+  dependencies:
+    delaunator "5"
+
+"d3-dispatch@1 - 3", d3-dispatch@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-dispatch/-/d3-dispatch-3.0.1.tgz#5fc75284e9c2375c36c839411a0cf550cbfc4d5e"
+  integrity sha1-X8dShOnCN1w2yDlBGgz1UMv8TV4=
+
+"d3-drag@2 - 3", d3-drag@3:
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-drag/-/d3-drag-3.0.0.tgz#994aae9cd23c719f53b5e10e3a0a6108c69607ba"
+  integrity sha1-mUqunNI8cZ9TteEOOgphCMaWB7o=
+  dependencies:
+    d3-dispatch "1 - 3"
+    d3-selection "3"
+
+"d3-dsv@1 - 3", d3-dsv@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-dsv/-/d3-dsv-3.0.1.tgz#c63af978f4d6a0d084a52a673922be2160789b73"
+  integrity sha1-xjr5ePTWoNCEpSpnOSK+IWB4m3M=
+  dependencies:
+    commander "7"
+    iconv-lite "0.6"
+    rw "1"
+
+"d3-ease@1 - 3", d3-ease@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-ease/-/d3-ease-3.0.1.tgz#9658ac38a2140d59d346160f1f6c30fda0bd12f4"
+  integrity sha1-llisOKIUDVnTRhYPH2ww/aC9EvQ=
+
+d3-fetch@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-fetch/-/d3-fetch-3.0.1.tgz#83141bff9856a0edb5e38de89cdcfe63d0a60a22"
+  integrity sha1-gxQb/5hWoO21443onNz+Y9CmCiI=
+  dependencies:
+    d3-dsv "1 - 3"
+
+d3-force@3:
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-force/-/d3-force-3.0.0.tgz#3e2ba1a61e70888fe3d9194e30d6d14eece155c4"
+  integrity sha1-Piuhph5wiI/j2RlOMNbRTuzhVcQ=
+  dependencies:
+    d3-dispatch "1 - 3"
+    d3-quadtree "1 - 3"
+    d3-timer "1 - 3"
+
+"d3-format@1 - 3", d3-format@3:
+  version "3.1.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-format/-/d3-format-3.1.0.tgz#9260e23a28ea5cb109e93b21a06e24e2ebd55641"
+  integrity sha1-kmDiOijqXLEJ6TshoG4k4uvVVkE=
+
+d3-geo@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-geo/-/d3-geo-3.0.1.tgz#4f92362fd8685d93e3b1fae0fd97dc8980b1ed7e"
+  integrity sha1-T5I2L9hoXZPjsfrg/ZfciYCx7X4=
+  dependencies:
+    d3-array "2.5.0 - 3"
+
+d3-hierarchy@3:
+  version "3.1.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-hierarchy/-/d3-hierarchy-3.1.2.tgz#b01cd42c1eed3d46db77a5966cf726f8c09160c6"
+  integrity sha1-sBzULB7tPUbbd6WWbPcm+MCRYMY=
+
+"d3-interpolate@1 - 3", "d3-interpolate@1.2.0 - 3", d3-interpolate@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-interpolate/-/d3-interpolate-3.0.1.tgz#3c47aa5b32c5b3dfb56ef3fd4342078a632b400d"
+  integrity sha1-PEeqWzLFs9+1bvP9Q0IHimMrQA0=
+  dependencies:
+    d3-color "1 - 3"
+
+"d3-path@1 - 3", d3-path@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-path/-/d3-path-3.0.1.tgz#f09dec0aaffd770b7995f1a399152bf93052321e"
+  integrity sha1-8J3sCq/9dwt5lfGjmRUr+TBSMh4=
+
+d3-polygon@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-polygon/-/d3-polygon-3.0.1.tgz#0b45d3dd1c48a29c8e057e6135693ec80bf16398"
+  integrity sha1-C0XT3RxIopyOBX5hNWk+yAvxY5g=
+
+"d3-quadtree@1 - 3", d3-quadtree@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-quadtree/-/d3-quadtree-3.0.1.tgz#6dca3e8be2b393c9a9d514dabbd80a92deef1a4f"
+  integrity sha1-bco+i+Kzk8mp1RTau9gKkt7vGk8=
+
+d3-random@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-random/-/d3-random-3.0.1.tgz#d4926378d333d9c0bfd1e6fa0194d30aebaa20f4"
+  integrity sha1-1JJjeNMz2cC/0eb6AZTTCuuqIPQ=
+
+d3-scale-chromatic@3:
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-scale-chromatic/-/d3-scale-chromatic-3.0.0.tgz#15b4ceb8ca2bb0dcb6d1a641ee03d59c3b62376a"
+  integrity sha1-FbTOuMorsNy20aZB7gPVnDtiN2o=
+  dependencies:
+    d3-color "1 - 3"
+    d3-interpolate "1 - 3"
+
+d3-scale@4:
+  version "4.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-scale/-/d3-scale-4.0.2.tgz#82b38e8e8ff7080764f8dcec77bd4be393689396"
+  integrity sha1-grOOjo/3CAdk+Nzsd71L45Nok5Y=
+  dependencies:
+    d3-array "2.10.0 - 3"
+    d3-format "1 - 3"
+    d3-interpolate "1.2.0 - 3"
+    d3-time "2.1.1 - 3"
+    d3-time-format "2 - 4"
+
+"d3-selection@2 - 3", d3-selection@3:
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-selection/-/d3-selection-3.0.0.tgz#c25338207efa72cc5b9bd1458a1a41901f1e1b31"
+  integrity sha1-wlM4IH76csxbm9FFihpBkB8eGzE=
+
+d3-shape@3:
+  version "3.1.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-shape/-/d3-shape-3.1.0.tgz#c8a495652d83ea6f524e482fca57aa3f8bc32556"
+  integrity sha1-yKSVZS2D6m9STkgvyleqP4vDJVY=
+  dependencies:
+    d3-path "1 - 3"
+
+"d3-time-format@2 - 4", d3-time-format@4:
+  version "4.1.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-time-format/-/d3-time-format-4.1.0.tgz#7ab5257a5041d11ecb4fe70a5c7d16a195bb408a"
+  integrity sha1-erUlelBB0R7LT+cKXH0WoZW7QIo=
+  dependencies:
+    d3-time "1 - 3"
+
+"d3-time@1 - 3", "d3-time@2.1.1 - 3", d3-time@3:
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-time/-/d3-time-3.0.0.tgz#65972cb98ae2d4954ef5c932e8704061335d4975"
+  integrity sha1-ZZcsuYri1JVO9cky6HBAYTNdSXU=
+  dependencies:
+    d3-array "2 - 3"
+
+"d3-timer@1 - 3", d3-timer@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-timer/-/d3-timer-3.0.1.tgz#6284d2a2708285b1abb7e201eda4380af35e63b0"
+  integrity sha1-YoTSonCChbGrt+IB7aQ4CvNeY7A=
+
+"d3-transition@2 - 3", d3-transition@3:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-transition/-/d3-transition-3.0.1.tgz#6869fdde1448868077fdd5989200cb61b2a1645f"
+  integrity sha1-aGn93hRIhoB3/dWYkgDLYbKhZF8=
+  dependencies:
+    d3-color "1 - 3"
+    d3-dispatch "1 - 3"
+    d3-ease "1 - 3"
+    d3-interpolate "1 - 3"
+    d3-timer "1 - 3"
+
+d3-zoom@3:
+  version "3.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3-zoom/-/d3-zoom-3.0.0.tgz#d13f4165c73217ffeaa54295cd6969b3e7aee8f3"
+  integrity sha1-0T9BZccyF//qpUKVzWlps+eu6PM=
+  dependencies:
+    d3-dispatch "1 - 3"
+    d3-drag "2 - 3"
+    d3-interpolate "1 - 3"
+    d3-selection "2 - 3"
+    d3-transition "2 - 3"
+
+d3@^7.4.4:
+  version "7.4.4"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/d3/-/d3-7.4.4.tgz#bfbf87487c37d3196efebd5a63e3a0ed8299d8ff"
+  integrity sha1-v7+HSHw30xlu/r1aY+Og7YKZ2P8=
+  dependencies:
+    d3-array "3"
+    d3-axis "3"
+    d3-brush "3"
+    d3-chord "3"
+    d3-color "3"
+    d3-contour "3"
+    d3-delaunay "6"
+    d3-dispatch "3"
+    d3-drag "3"
+    d3-dsv "3"
+    d3-ease "3"
+    d3-fetch "3"
+    d3-force "3"
+    d3-format "3"
+    d3-geo "3"
+    d3-hierarchy "3"
+    d3-interpolate "3"
+    d3-path "3"
+    d3-polygon "3"
+    d3-quadtree "3"
+    d3-random "3"
+    d3-scale "4"
+    d3-scale-chromatic "3"
+    d3-selection "3"
+    d3-shape "3"
+    d3-time "3"
+    d3-time-format "4"
+    d3-timer "3"
+    d3-transition "3"
+    d3-zoom "3"
+
 damerau-levenshtein@^1.0.7:
   version "1.0.8"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
@@ -3189,6 +3653,13 @@ del@^4.1.1:
     p-map "^2.0.0"
     pify "^4.0.1"
     rimraf "^2.6.3"
+
+delaunator@5:
+  version "5.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/delaunator/-/delaunator-5.0.0.tgz#60f052b28bd91c9b4566850ebf7756efe821d81b"
+  integrity sha1-YPBSsovZHJtFZoUOv3dW7+gh2Bs=
+  dependencies:
+    robust-predicates "^3.0.0"
 
 dequal@^2.0.2:
   version "2.0.2"
@@ -4040,6 +4511,13 @@ hyperscript@^2.0.2:
     class-list "~0.1.0"
     html-element "^2.0.0"
 
+iconv-lite@0.6:
+  version "0.6.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/iconv-lite/-/iconv-lite-0.6.3.tgz#a52f80bf38da1952eb5c681790719871a1a72501"
+  integrity sha1-pS+AvzjaGVLrXGgXkHGYcaGnJQE=
+  dependencies:
+    safer-buffer ">= 2.1.2 < 3.0.0"
+
 icss-replace-symbols@^1.0.2, icss-replace-symbols@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/icss-replace-symbols/-/icss-replace-symbols-1.1.0.tgz#06ea6f83679a7749e386cfe1fe812ae5db223ded"
@@ -4111,6 +4589,11 @@ internal-slot@^1.0.3:
     get-intrinsic "^1.1.0"
     has "^1.0.3"
     side-channel "^1.0.4"
+
+"internmap@1 - 2":
+  version "2.0.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/internmap/-/internmap-2.0.3.tgz#6685f23755e43c524e251d29cbc97248e3061009"
+  integrity sha1-ZoXyN1XkPFJOJR0py8lySOMGEAk=
 
 into-stream@^3.1.0:
   version "3.1.0"
@@ -5352,6 +5835,11 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
+robust-predicates@^3.0.0:
+  version "3.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/robust-predicates/-/robust-predicates-3.0.1.tgz#ecde075044f7f30118682bd9fb3f123109577f9a"
+  integrity sha1-7N4HUET38wEYaCvZ+z8SMQlXf5o=
+
 rollup-plugin-terser@^7.0.0:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-7.0.2.tgz#e8fbba4869981b2dc35ae7e8a502d5c6c04d324d"
@@ -5376,6 +5864,11 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
+rw@1:
+  version "1.3.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/rw/-/rw-1.3.3.tgz#3f862dfa91ab766b14885ef4d01124bfda074fb4"
+  integrity sha1-P4Yt+pGrdmsUiF700BEkv9oHT7Q=
+
 rxjs@^6.0.0, rxjs@^6.5.3:
   version "6.6.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
@@ -5392,6 +5885,11 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
+
+"safer-buffer@>= 2.1.2 < 3.0.0":
+  version "2.1.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
+  integrity sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=
 
 same-origin@^0.1.1:
   version "0.1.1"

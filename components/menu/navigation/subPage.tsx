@@ -28,7 +28,7 @@ export default function SubPage({ parentSlug, last, page: { title, slug } }: Pro
 		const { current: parentSlugVal } = parentSlug;
 		const { current: slugVal } = slug;
 		return (
-			<a href={`/${parentSlugVal}/${slugVal}`} onKeyDown={onKeyDown}>
+			<a aria-current="page" href={`/${parentSlugVal}/${slugVal}`} onKeyDown={onKeyDown}>
 				<span>{title}</span>
 			</a>
 		);
