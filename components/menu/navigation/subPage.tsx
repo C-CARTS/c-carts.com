@@ -3,12 +3,17 @@ import { KeyboardEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { openIndexState } from './state';
 
+/* This is a React component that takes in a `page` and `parentSlug` as props. */
 interface Props {
 	page: Page;
 	last: boolean;
 	parentSlug: { _type: 'slug'; current: string } | undefined;
 }
 
+/**
+ * The SubPage component is a React component that renders a link to a sub page.
+ * @param {Props}  - ParentSlug is the slug of the parent page.
+ */
 export default function SubPage({ parentSlug, last, page: { title, slug } }: Props) {
 	const setOpenIndex = useSetRecoilState(openIndexState);
 
@@ -23,7 +28,7 @@ export default function SubPage({ parentSlug, last, page: { title, slug } }: Pro
 		const { current: parentSlugVal } = parentSlug;
 		const { current: slugVal } = slug;
 		return (
-			<a href={`/${parentSlugVal}/${slugVal}`} onKeyDown={onKeyDown}>
+			<a aria-current="page" href={`/${parentSlugVal}/${slugVal}`} onKeyDown={onKeyDown}>
 				<span>{title}</span>
 			</a>
 		);

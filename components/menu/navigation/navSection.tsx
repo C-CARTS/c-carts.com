@@ -31,7 +31,8 @@ const SectionWrap = styled.div`
 		border: 0.05rem solid ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		//border-top: 0;
 		list-style: none;
-		box-shadow: 0.2rem 0.2rem 0 0.025rem ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}22;
+
+		box-shadow: 0.2rem 0.2rem 0 0.025rem ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}px;
 
 		li {
 			padding: 0.2rem 0;
@@ -48,7 +49,7 @@ const SectionWrap = styled.div`
 				> span {
 					text-decoration: underline;
 					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-					text-decoration-thickness: 0.15rem;
+					text-decoration-thickness: 0.22rem;
 				}
 			}
 
@@ -57,7 +58,7 @@ const SectionWrap = styled.div`
 				> span {
 					text-decoration: underline;
 					text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
-					text-decoration-thickness: 0.15rem;
+					text-decoration-thickness: 0.22rem;
 					background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
 				}
 			}
@@ -75,14 +76,13 @@ const NavButton = styled.button`
 	padding: 0.25rem 0.5rem 0.1rem 0.5rem;
 	min-width: 5.5rem;
 	height: ${navButonHeight};
-	border-bottom: 0.15rem solid transparent;
+	border-bottom: 0.25rem solid transparent;
 	transition: all 0.2s ease-out;
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
 	white-space: nowrap;
 	justify-content: center;
-	color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 
 	&:focus-visible,
 	&.open,
@@ -111,6 +111,9 @@ const NavButton = styled.button`
 	}
 `;
 
+/* The above code is creating a navigation menu for the site. It is using the useRecoilState hook to
+set the focusIndexState atom. This atom is used to set the focus on the button when the focusIndex
+is set. */
 interface Props {
 	index: number;
 	item: MainNavItem;
@@ -131,6 +134,7 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 	});
 
 	// set focus if the focus index is set
+	/* This is a useEffect hook that is used to set the focus on the button when the focusIndex is set. */
 	useEffect(() => {
 		if (focusIndex === index && buttonRef.current) {
 			buttonRef.current.focus();

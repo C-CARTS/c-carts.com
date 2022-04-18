@@ -27,6 +27,7 @@ export interface Typography {
 	normalFontWeight: number;
 	boldFontWeight: number;
 	maxCharacterWidth: string;
+	baseLetterSpacing: number;
 }
 
 export interface BreakPoint {
