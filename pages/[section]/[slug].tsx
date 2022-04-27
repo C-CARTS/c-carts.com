@@ -7,6 +7,8 @@ import useJobs from '../../data-hooks/useJobs';
 import useMainNav, { getMainNav } from '../../data-hooks/useMainNav';
 import useNewz from '../../data-hooks/useNewz';
 import usePage from '../../data-hooks/usePage';
+import useScheduleData from '../../data-hooks/useSchedule';
+import useSchedule from '../../data-hooks/useSchedules';
 import useSiteConfig from '../../data-hooks/useSiteConfig';
 import sanityClient from '../../sanity/sanityClient';
 
@@ -22,7 +24,7 @@ export default function Slug() {
 	);
 }
 
-Slug.dataHooks = [useSiteConfig, useMainNav, usePage, useJobs, useNewz];
+Slug.dataHooks = [useSiteConfig, useMainNav, usePage, useJobs, useNewz, useSchedule, useScheduleData];
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const config = await sanityClient.get('siteConfig', process.env.NEXT_PUBLIC_SANITY_SITE_CONFIG_ID ?? 'No Config');
