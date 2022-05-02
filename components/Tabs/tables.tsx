@@ -8,12 +8,15 @@ interface Props {
 
 const TableContainer = styled.div`
 	width: 100%;
-
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 	table,
 	tr,
 	td {
 		border: 1px solid white;
 		border-collapse: collapse;
+		text-align: center;
 	}
 
 	th,
@@ -42,5 +45,8 @@ const TableContainer = styled.div`
 `;
 
 export default function Tables({ code }: Props) {
-	return <TableContainer dangerouslySetInnerHTML={{ __html: code }} />;
+	return (
+		// Reduced Service
+		<TableContainer dangerouslySetInnerHTML={{ __html: code }} />
+	);
 }

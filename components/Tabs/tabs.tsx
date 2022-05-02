@@ -4,6 +4,8 @@ import { withRouter } from 'next/router';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { ThemeProps } from '../../types/theme';
+import useScheduleData from '../../data-hooks/useSchedule';
+import SubTab from './subTab';
 
 const TabContainer = styled.div`
 	width: 100%;
@@ -43,12 +45,15 @@ function Tabs({ router }: any) {
 		query: { tab }
 	} = router;
 
-	const route = '/riding/maps-and-schedule';
+	const route = '/riding/maps-and-schedule/';
+
 	const isTabOne = tab === 'N' || tab == null;
 	const isTabTwo = tab === 'S';
 	const isTabThree = tab === 'ED';
 	const isTabFour = tab === 'RC';
 	const isTabFive = tab === 'RS';
+	const data = useScheduleData();
+	const { code, url, pdfUrl } = data;
 
 	return (
 		<TabContainer>
@@ -80,11 +85,11 @@ function Tabs({ router }: any) {
 				</Tab>
 			</TabHead>
 			<TabBody>
-				{isTabOne && <p>This is tab one content</p>}
-				{isTabTwo && <p>This is tab two content</p>}
-				{isTabThree && <p>Tab three</p>}
-				{isTabFour && <p>Tab four</p>}
-				{isTabFive && <p>Tab five</p>}
+				{isTabOne && <SubTab code={code[0]} url={url[0]} pdfUrl={pdfUrl[0]} tabActive={tab} />}
+				{isTabTwo && <SubTab code={code[1]} url={url[1]} pdfUrl={pdfUrl[1]} tabActive={tab} />}
+				{isTabThree && <SubTab code={code[2]} url={url[2]} pdfUrl={pdfUrl[2]} tabActive={tab} />}
+				{isTabFour && <SubTab code={code[3]} url={url[3]} pdfUrl={pdfUrl[3]} tabActive={tab} />}
+				{isTabFive && <SubTab code={code[4]} url={url[4]} pdfUrl={pdfUrl[4]} tabActive={tab} />}
 			</TabBody>
 		</TabContainer>
 	);
