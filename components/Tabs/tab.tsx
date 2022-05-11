@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
 import { activeLabelSelector } from '../../state/tabState';
 
 function Tab(props: any) {

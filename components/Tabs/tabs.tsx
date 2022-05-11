@@ -14,7 +14,7 @@ const TabNames = styled.div`
 	flex-wrap: nowrap;
 	justify-content: space-evenly;
 	align-content: center;
-	background: #229117;
+	background: #29af1d;
 	width: 100%;
 
 	margin: 2rem 0 0 0;
@@ -25,6 +25,10 @@ const TabNames = styled.div`
 		background-color: #fff;
 		color: #000;
 	}
+	@media (max-width: 580px) {
+		flex-direction: column;
+		flex-wrap: wrap;
+	}
 `;
 
 const IndividualTab = styled.button`
@@ -32,7 +36,8 @@ const IndividualTab = styled.button`
 	text-transform: capitalize;
 	background: none;
 	border: none;
-	color: #fff;
+	color: #000000;
+
 	cursor: pointer;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
 
@@ -41,6 +46,7 @@ const IndividualTab = styled.button`
 	&:focus-visible {
 		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
 		background-color: #fff;
+
 		color: #000;
 	}
 `;

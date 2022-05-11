@@ -35,6 +35,7 @@ const ButtonContainer = styled.div`
 	justify-content: center;
 	align-content: center;
 	width: 100%;
+	margin-top: 0.5rem;
 `;
 
 const ActiveButton = styled.button`

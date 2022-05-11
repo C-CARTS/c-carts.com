@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ThemeProps } from '../../types/theme';
 
 /* eslint-disable react/no-danger */
 
@@ -9,15 +10,15 @@ const TableContainer = styled.div`
 	flex-wrap: nowrap;
 	align-items: flex-start;
 	justify-content: center;
-
-	.westbound,
-	.eastbound {
-		height: 100%;
+	margin-top: 1rem;
+	table {
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
 	}
-
 	thead {
 		font-weight: bold;
 	}
+
 	table tr td {
 		empty-cells: show;
 	}
@@ -33,12 +34,17 @@ const TableContainer = styled.div`
 	tr:hover {
 		background-color: #ddd;
 	}
-	th {
-		font-size: 1rem;
+	table > thead tr th {
+		font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.048rem);
+	}
+	caption {
+		font-weight: 600;
 	}
 
 	@media (max-width: 580px) {
+		min-width: fit-content;
 		flex-direction: column;
+		flex-wrap: wrap;
 	}
 
 	.a {
@@ -160,13 +166,14 @@ const TableContainer = styled.div`
 	.q,
 	.r {
 		color: #000;
-		-webkit-text-stroke-width: 0.0625rem;
+		-webkit-text-stroke-width: 0.0325rem;
 		-webkit-text-fill-color: #000;
 		border: 0.125rem solid #fff;
 	}
 	.r {
 		background-color: #ea0088;
-		-webkit-text-stroke-color: #fff;
+
+		-webkit-text-stroke-color: #000000;
 	}
 	.s {
 		color: #fff;
