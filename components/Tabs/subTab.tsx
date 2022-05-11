@@ -1,57 +1,111 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-// import Link from 'next/link';
-// import { withRouter } from 'next/router';
-// import { ButtonHTMLAttributes, useCallback, useEffect, useMemo, useState } from 'react';
-// import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useCallback } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-// import { activeIndexAtom, labelArrayAtom, mapTabstate, pdfTabState, scheduleTabstate } from '../../state/subTabState';
+import { getFile } from '@sanity/asset-utils';
+import urlFor from '../../sanity/urlFor';
+import subTabAtom from '../../state/subTabState';
 import { ThemeProps } from '../../types/theme';
-// import MapsTab from './mapTab';
-// import PdfTab from './pdfTab';
-// import Tables from './tables';
+import MapsTab from './mapTab';
+import Tables from './tables';
+import PdfTab from './pdfTab';
+import config from '../../sanity/sanityConfig';
 
 interface Prop {
-	code: any;
-	url: string;
-	pdfUrl: string;
-	tabActive: string;
+	content: any;
+	map: any;
+	pdf: any;
 }
 
-interface Label {
-	subHeading: string;
-}
+const getPdfUrl = (input: any) => {
+	const filedData = getFile(input, config);
+	const {
+		asset: { url }
+	} = filedData;
+	if (url) {
+		return url;
+	}
+	return null;
+};
 
-const Button = styled.button.attrs(({ subHeading }: Label) => ({
-	lbl: subHeading
-}))`
-	background: none;
+const ButtonContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-content: center;
+	width: 100%;
+`;
+
+const ActiveButton = styled.button`
+	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
 	border: none;
-	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.04}rem;
-	border-bottom: 2px;
-	border-bottom-color: #cccce0;
-	border-bottom-style: solid;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.0419}rem;
+	margin-right: 5px;
+	margin-left: 5px;
+	padding: 5px;
+
+	&:last-child {
+		border-right: none;
+	}
+
 	&:hover {
-		border-bottom-color: #51c6d0;
+		border-bottom: 0.18rem solid ${({ theme }: ThemeProps) => theme.colors.link.color};
+		color: #000000;
+	}
+
+	&:focus,
+	&:active,
+	&:focus-visible {
+		border-bottom: 0.2rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
 	}
 `;
 
-function SubTab({ code, url, pdfUrl, tabActive }: Prop) {
-	// const [currentIndex, setCurrentIndex] = useRecoilState(activeIndexAtom);
-	// const setLabelArray = useSetRecoilState(labelArrayAtom);
+const FirstButton = styled(ActiveButton)`
+	&:first-child {
+		border-bottom: 0.2rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
+	}
+`;
 
+function SubTab({ content, map, pdf }: Prop) {
+	const [subTabAttribute, setSubTabAttribute] = useRecoilState(subTabAtom);
+	const { code } = content;
+	const imageUrl = urlFor(map.asset._ref);
+	const url = getPdfUrl(pdf);
+	const onSubTabClick = useCallback(
+		(event: any) => {
+			const attribute = event.currentTarget.getAttribute('id');
+			setSubTabAttribute(attribute);
+		},
+		[setSubTabAttribute]
+	);
+	const display = (val: string) => {
+		switch (val) {
+			case 'file':
+				return <PdfTab pdfUrl={url} />;
+			case 'image':
+				return <MapsTab mapUrl={imageUrl} />;
+			default:
+				return <Tables code={code} />;
+		}
+	};
+
+	const Button = subTabAttribute === 'code' || subTabAttribute === '' ? FirstButton : ActiveButton;
 	return (
-		<div>
-			<p>
-				{code}
-				{url}
-				{pdfUrl}
-				{tabActive}
-			</p>
-
-			<Button lbl="schedule">ScheduleTab</Button>
-			<Button lbl="map">MapTab</Button>
-			<Button lbl="pdf">PdfTab</Button>
-		</div>
+		<>
+			<ButtonContainer>
+				<Button id={content._type} onClick={(e) => onSubTabClick(e)}>
+					ScheduleTab
+				</Button>
+				<Button id={map._type} onClick={(e) => onSubTabClick(e)}>
+					MapTab
+				</Button>
+				<Button id={pdf._type} onClick={(e) => onSubTabClick(e)}>
+					PdfTab
+				</Button>
+			</ButtonContainer>
+			{display(subTabAttribute)}
+		</>
 	);
 }
 

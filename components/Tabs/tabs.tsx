@@ -1,98 +1,96 @@
-/* eslint-disable react/no-this-in-sfc */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import { withRouter } from 'next/router';
-import Link from 'next/link';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useEffect, useMemo } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+
+import ConvertToCapital from '../../helpers/capitalizationUtil';
+import { activeIndexAtom, labelArrayAtom, activeLabelSelector } from '../../state/tabState';
 import { ThemeProps } from '../../types/theme';
-import useScheduleData from '../../data-hooks/useSchedule';
-import SubTab from './subTab';
 
-const TabContainer = styled.div`
-	width: 100%;
-	height: 100%;
-	box-shadow: -1px 0px 5px 0px rgba(184, 184, 184, 1);
-	padding: 0.78rem;
-`;
-
-const TabHead = styled.div`
-	border-bottom: 1px solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
+const TabNames = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	align-content: center;
+	background: #229117;
 	width: 100%;
-	@media (max-width: 520px) {
-		flex-direction: column;
+
+	margin: 2rem 0 0 0;
+	padding: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.25);
+
+	& :hover {
+		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.color};
+		background-color: #fff;
+		color: #000;
 	}
 `;
 
-const TabBody = styled.div`
-	height: 100%;
-	width: 100%;
+const IndividualTab = styled.button`
+	padding: 0.25rem calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides} * 0.115) 0.25rem;
+	text-transform: capitalize;
+	background: none;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
+
+	&:focus,
+	&:active,
+	&:focus-visible {
+		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
+		background-color: #fff;
+		color: #000;
+	}
 `;
 
-interface Props {
-	selected: Boolean;
+const DefaultTab = styled(IndividualTab)`
+	&:first-child {
+		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
+		background-color: #fff;
+		color: #000;
+	}
+`;
+
+const TabContent = styled.div`
+	padding: 10px;
+`;
+
+interface TabsProps {
+	activeIndex: number;
+	children: JSX.Element[] | JSX.Element;
 }
 
-const Tab = styled.div.attrs(({ selected }: Props) => ({
-	select: selected
-}))`
-	padding: 0.35rem;
-`;
+function Tabs(props: TabsProps) {
+	const [activeIndex, setActiveIndex] = useRecoilState(activeIndexAtom);
+	const setLabelArray = useSetRecoilState(labelArrayAtom);
+	const currentLabel = useRecoilValue(activeLabelSelector);
+	const labelTab = useRecoilValue(labelArrayAtom);
+	const { activeIndex: initialActiveIndex, children } = props;
+	const childrenArray = useMemo(() => (Array.isArray(children) ? children : [children]), [children]);
 
-function Tabs({ router }: any) {
-	const {
-		query: { tab }
-	} = router;
+	useEffect(() => {
+		const tabLabels = childrenArray.map((tab) => tab.props.label);
+		setLabelArray(tabLabels);
+		if (initialActiveIndex > 0 && initialActiveIndex < tabLabels.length) {
+			setActiveIndex(initialActiveIndex);
+		}
+	}, [childrenArray, initialActiveIndex, setActiveIndex, setLabelArray]);
 
-	const route = '/riding/maps-and-schedule/';
-
-	const isTabOne = tab === 'N' || tab == null;
-	const isTabTwo = tab === 'S';
-	const isTabThree = tab === 'ED';
-	const isTabFour = tab === 'RC';
-	const isTabFive = tab === 'RS';
-	const data = useScheduleData();
-	const { code, url, pdfUrl } = data;
-
+	const ActiveTab = currentLabel === labelTab[0] ? DefaultTab : IndividualTab;
 	return (
-		<TabContainer>
-			<TabHead>
-				<Tab select={isTabOne}>
-					<Link href={{ pathname: `${route}`, query: { tab: 'N' } }}>
-						<a>Eagel Express- North</a>
-					</Link>
-				</Tab>
-				<Tab select={isTabTwo}>
-					<Link href={{ pathname: `${route}`, query: { tab: 'S' } }}>
-						<a>Eagel Express- South</a>
-					</Link>
-				</Tab>
-				<Tab select={isTabTwo}>
-					<Link href={{ pathname: `${route}`, query: { tab: 'ED' } }}>
-						<a>Eagel Express- South</a>
-					</Link>
-				</Tab>
-				<Tab select={isTabFour}>
-					<Link href={{ pathname: `${route}`, query: { tab: 'RC' } }}>
-						<a>Rantoul Connector</a>
-					</Link>
-				</Tab>
-				<Tab select={isTabFive}>
-					<Link href={{ pathname: `${route}`, query: { tab: 'RS' } }}>
-						<a>Reduced Service</a>
-					</Link>
-				</Tab>
-			</TabHead>
-			<TabBody>
-				{isTabOne && <SubTab code={code[0]} url={url[0]} pdfUrl={pdfUrl[0]} tabActive={tab} />}
-				{isTabTwo && <SubTab code={code[1]} url={url[1]} pdfUrl={pdfUrl[1]} tabActive={tab} />}
-				{isTabThree && <SubTab code={code[2]} url={url[2]} pdfUrl={pdfUrl[2]} tabActive={tab} />}
-				{isTabFour && <SubTab code={code[3]} url={url[3]} pdfUrl={pdfUrl[3]} tabActive={tab} />}
-				{isTabFive && <SubTab code={code[4]} url={url[4]} pdfUrl={pdfUrl[4]} tabActive={tab} />}
-			</TabBody>
-		</TabContainer>
+		<>
+			<TabNames>
+				{childrenArray.map((tab, index) => (
+					<ActiveTab key={tab.props.label} onClick={() => setActiveIndex(index)}>
+						{ConvertToCapital(tab.props.label)}
+					</ActiveTab>
+				))}
+			</TabNames>
+			<TabContent>{childrenArray[activeIndex] && childrenArray[activeIndex].props.children}</TabContent>
+		</>
 	);
 }
 
-export default withRouter(Tabs);
+export default Tabs;

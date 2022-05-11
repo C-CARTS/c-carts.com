@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
+import { ImageUrlBuilder } from 'next-sanity-image';
 import styled from 'styled-components';
 
 interface Prop {
-	mapUrl: string;
+	mapUrl: ImageUrlBuilder;
 }
 
 const DisplayMap = styled.div`
@@ -17,9 +18,13 @@ const DisplayMap = styled.div`
 `;
 
 export default function MapsTab({ mapUrl }: Prop) {
+	const url: string | null = mapUrl.toString();
+	if (url === null) {
+		return <div>Image is either incorrect or null</div>;
+	}
 	return (
 		<DisplayMap>
-			<img src={mapUrl} alt="Display Route Maps" />
+			<img src={url} alt="Display Route Maps" />
 		</DisplayMap>
 	);
 }

@@ -1,12 +1,9 @@
-import { MapsSection } from '@c-carts/cms';
 import useSchedule from '../../data-hooks/useSchedules';
-import Schedl from './schedule';
+import SubTab from '../tabs/subTab';
+import Tab from '../tabs/tab';
+import Tabs from '../tabs/tabs';
 
-interface Props {
-	block: MapsSection;
-}
-
-export default function ScheduleComponent({ block: { count } }: Props) {
+export default function ScheduleComponent() {
 	const mps = useSchedule();
 
 	if (mps.length === 0) {
@@ -17,14 +14,14 @@ export default function ScheduleComponent({ block: { count } }: Props) {
 		);
 	}
 
-	const filtered = count === 0 ? mps : mps.slice(0, count);
-
 	return (
-		<>
-			{filtered.map((j: any) => (
-				<Schedl key={j._id} />
+		<Tabs activeIndex={0}>
+			{mps.map((j: any) => (
+				<Tab key={j._id} label={j.slug.current}>
+					<SubTab content={j.content} pdf={j.routePdfs} map={j.images} key={j._id} />
+				</Tab>
 			))}
-		</>
+		</Tabs>
 	);
 }
 

@@ -2,10 +2,11 @@
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
 import GenericPage from '../../../components/generic/genericPage';
-import ScheduleComponent from '../../../components/blockContent/schedule';
+import ScheduleComponent from '../../../components/blockContent/schedules';
 import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
+import useSchedule from '../../../data-hooks/useSchedules';
 
 const mpSlug = 'maps-and-schedule';
 /**
@@ -20,14 +21,14 @@ function MapsAndSchedule() {
 	const { title: headline, slug: mpsSlug } = navItems.subPages.filter((pg) => pg.slug.current === mpSlug)[0];
 
 	return (
-		<GenericPage title={'title' ?? 'Maps and Schedule'} siteConfig={siteConfig} mainNav={mainNav}>
+		<GenericPage title={'Maps and Schedule' ?? 'Maps'} siteConfig={siteConfig} mainNav={mainNav}>
 			<ScheduleComponent />
 			<a href={`/${navSlug?.current}/${mpsSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);
 }
 export default MapsAndSchedule;
-MapsAndSchedule.dataHooks = [useSiteConfig, useMainNav];
+MapsAndSchedule.dataHooks = [useSiteConfig, useMainNav, useSchedule];
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const config = await sanityClient.get('siteConfig', process.env.NEXT_PUBLIC_SANITY_SITE_CONFIG_ID ?? 'No Config');

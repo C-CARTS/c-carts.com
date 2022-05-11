@@ -6,6 +6,7 @@
 	},
 	"dependencies": {
 		"@c-carts/cms": "^1.0.28",
+		"@sanity/asset-utils": "^1.2.3",
 		"@sanity/client": "^3.3.0",
 		"@sanity/image-url": "^1.0.1",
 		"@types/d3": "^7.1.0",
