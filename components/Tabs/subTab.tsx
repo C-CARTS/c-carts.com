@@ -94,14 +94,14 @@ function SubTab({ content, map, pdf }: Prop) {
 	const Button = subTabAttribute === 'code' || subTabAttribute === '' ? FirstButton : ActiveButton;
 	return (
 		<>
-			<ButtonContainer>
-				<Button id={content._type} onClick={(e) => onSubTabClick(e)}>
+			<ButtonContainer role="tablist" aria-label="subtab panel">
+				<Button role="tab" aria-controls={content._type} aria-selected={content._type === subTabAttribute} id={content._type} onClick={(e) => onSubTabClick(e)}>
 					ScheduleTab
 				</Button>
-				<Button id={map._type} onClick={(e) => onSubTabClick(e)}>
+				<Button role="tab" aria-controls={map._type} aria-selected={map._type === subTabAttribute} id={map._type} onClick={(e) => onSubTabClick(e)}>
 					MapTab
 				</Button>
-				<Button id={pdf._type} onClick={(e) => onSubTabClick(e)}>
+				<Button role="tab" aria-controls={pdf._type} aria-selected={pdf._type === subTabAttribute} id={pdf._type} onClick={(e) => onSubTabClick(e)}>
 					PdfTab
 				</Button>
 			</ButtonContainer>

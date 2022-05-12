@@ -1,3 +1,5 @@
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useMemo } from 'react';
@@ -87,14 +89,22 @@ function Tabs(props: TabsProps) {
 	const ActiveTab = currentLabel === labelTab[0] ? DefaultTab : IndividualTab;
 	return (
 		<>
-			<TabNames>
+			<TabNames role="tablist" aria-label="Schedules and Maps tab panel">
 				{childrenArray.map((tab, index) => (
-					<ActiveTab key={tab.props.label} onClick={() => setActiveIndex(index)}>
+					<ActiveTab
+						role="tab"
+						aria-controls={tab.props.label}
+						aria-selected={currentLabel === tab.props.label}
+						key={tab.props.label}
+						onClick={() => setActiveIndex(index)}
+					>
 						{ConvertToCapital(tab.props.label)}
 					</ActiveTab>
 				))}
 			</TabNames>
-			<TabContent>{childrenArray[activeIndex] && childrenArray[activeIndex].props.children}</TabContent>
+			<TabContent aria-labelledby={labelTab[activeIndex]} tabIndex={0}>
+				{childrenArray[activeIndex] && childrenArray[activeIndex].props.children}
+			</TabContent>
 		</>
 	);
 }

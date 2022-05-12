@@ -34,9 +34,10 @@ const TableContainer = styled.div`
 	tr:hover {
 		background-color: #ddd;
 	}
-	table > thead tr th {
-		font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.048rem);
+	table > thead > tr > th {
+		font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.0512rem);
 	}
+
 	caption {
 		font-weight: 600;
 	}
@@ -236,10 +237,18 @@ const TableContainer = styled.div`
 	}
 `;
 
+const InnerContainer = styled(TableContainer)`
+	column-width: 10rem;
+`;
+
 interface Prop {
 	code: any;
 }
 
 export default function Tables({ code }: Prop) {
-	return <TableContainer dangerouslySetInnerHTML={{ __html: code }} />;
+	return (
+		<TableContainer aria-labelledby="code" tabIndex={0}>
+			<InnerContainer dangerouslySetInnerHTML={{ __html: code }} />
+		</TableContainer>
+	);
 }

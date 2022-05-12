@@ -23,7 +23,7 @@ export default function MapsTab({ mapUrl }: Prop) {
 		return <div>Image is either incorrect or null</div>;
 	}
 	return (
-		<DisplayMap>
+		<DisplayMap aria-labelledby="image" tabIndex={0}>
 			<img src={url} alt="Display Route Maps" />
 		</DisplayMap>
 	);
