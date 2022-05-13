@@ -17,7 +17,7 @@ const TabNames = styled.div`
 	justify-content: space-evenly;
 	align-content: center;
 	background: #29af1d;
-	width: 100%;
+	width: fit-content;
 
 	margin: 2rem 0 0 0;
 	padding: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.25);
@@ -102,7 +102,7 @@ function Tabs(props: TabsProps) {
 					</ActiveTab>
 				))}
 			</TabNames>
-			<TabContent aria-labelledby={labelTab[activeIndex]} tabIndex={0}>
+			<TabContent className="tabbed-content" aria-labelledby={labelTab[activeIndex]} tabIndex={0}>
 				{childrenArray[activeIndex] && childrenArray[activeIndex].props.children}
 			</TabContent>
 		</>

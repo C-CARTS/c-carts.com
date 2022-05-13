@@ -27,6 +27,7 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	background-color: ${({ UiBreakPoint }: HeaderProps) => (UiBreakPoint ? 'none' : (theme: ThemeProps) => theme.theme.colors.primary.background)};
 	opacity: ${(props) => props.ops};
 	max-width: 100%;
+	max-width: 100%;
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: max-content 1fr;
@@ -42,15 +43,15 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 		grid-area: menu;
 	}
 
-	@media (max-width: 420px) {
+	@media (max-width: 700px) {
 		grid-template-area: 'full';
-
+		grid-gap: 0;
 		a {
-			grid-area: full;
+			grid-area: 'full';
 		}
 
 		nav {
-			grid-area: full;
+			grid-area: 'full';
 			flex-flow: column nowrap;
 			align-items: center;
 		}

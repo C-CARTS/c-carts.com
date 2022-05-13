@@ -52,6 +52,9 @@ const Wrapper = styled.div.attrs((home) => ({
 }))`
 	${({ home }: Prop) => changeValues(home)}
 	width: 100%;
+	@media (max-width: 700px) {
+		height: 100%;
+	}
 `;
 
 const MainWrap = styled.div`

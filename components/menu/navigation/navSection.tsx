@@ -153,7 +153,7 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 	return (
 		<SectionWrap ref={menuRef}>
 			<NavButton type="button" onClick={buttonClick} ref={buttonRef} className={isOpen ? 'open' : 'closed'}>
-				<MdArrowDropDown />
+				<MdArrowDropDown aria-hidden="true" />
 				{title}
 			</NavButton>
 			{isOpen && (

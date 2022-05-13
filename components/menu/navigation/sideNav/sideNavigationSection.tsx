@@ -1,26 +1,29 @@
-import { useCallback, useEffect, useRef } from 'react';
-import { MdArrowDropDown, MdArrowRight } from 'react-icons/md';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
-import useOnClickOutside from '../../../../hooks/useOnClickOutside';
-import { focusedIndexSideNav, isSideMenuOpen, openSideMenuIndex } from '../../../../state/sideNavState';
 import { ThemeProps } from '../../../../types/theme';
 import SubPage from '../subPage';
 
-const SideNavButton = styled.button`
+const SideNavContainer = styled.div`
 	-webkit-appearance: none;
+	width: min(100%, ${(props) => props.theme.breakpoints.largeDesktop});
+	width: 100vw;
+	height: 100%;
+	text-align: center;
 	border: none;
 	background: none;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.25}px;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 	margin-bottom: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.21);
-	width: min(100%, ${(props) => props.theme.breakpoints.largeDesktop});
 	border-bottom: 0.25rem solid transparent;
 	transition: all 0.2s ease-out;
-	white-space: nowrap;
-
+	h2 {
+		font-weight: 800;
+	}
+	li {
+		font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.079rem);
+		font-weight: 600;
+	}
 	&:focus-visible,
 	&.open,
 	&.open:hover {
@@ -59,46 +62,14 @@ const List = styled.ul`
 `;
 
 interface Props {
-	index: number;
 	item: MainNavItem;
 }
 
-export default function SideNavigationSection({ item: { title, slug, subPages }, index }: Props) {
-	const buttonRef = useRef<HTMLButtonElement | null>(null);
-	const setOpenIndex = useSetRecoilState(openSideMenuIndex);
-	const [focusMenuIndex, setMenuIndexFocus] = useRecoilState(focusedIndexSideNav);
-	const menuRef = useRef<HTMLDivElement | null>(null);
-	const isOpen = useRecoilValue(isSideMenuOpen(index));
-
-	// close menu on click if outside menu contex
-	useOnClickOutside(menuRef, () => {
-		if (isOpen) {
-			setOpenIndex(null);
-		}
-	});
-
-	useEffect(() => {
-		if (focusMenuIndex === index && buttonRef.current) {
-			buttonRef.current.focus();
-			setMenuIndexFocus(null);
-		}
-	}, [focusMenuIndex, setMenuIndexFocus, index]);
-
-	const buttonClick = useCallback(() => {
-		if (isOpen) {
-			setOpenIndex(null);
-		} else {
-			setOpenIndex(index);
-		}
-	}, [index, isOpen, setOpenIndex]);
-
+export default function SideNavigationSection({ item: { title, slug, subPages } }: Props) {
 	return (
-		<>
-			<SideNavButton aria-expanded={isOpen} type="button" name={title} onClick={buttonClick} ref={buttonRef} className={isOpen ? 'open' : 'closed'}>
-				{!isOpen ? <MdArrowRight /> : <MdArrowDropDown />}
-				{title}
-			</SideNavButton>
-			{isOpen && (
+		<SideNavContainer>
+			<h2>{title}</h2>
+			{title && (
 				<List>
 					{subPages.map((sp, i) => (
 						<li key={sp._id}>
@@ -107,6 +78,6 @@ export default function SideNavigationSection({ item: { title, slug, subPages },
 					))}
 				</List>
 			)}
-		</>
+		</SideNavContainer>
 	);
 }

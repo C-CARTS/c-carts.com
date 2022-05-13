@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { useCallback, useState } from 'react';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
 // eslint-disable-next-line import/no-cycle
@@ -10,50 +10,39 @@ const navButtonHeight = '2rem';
 
 const SideNavButton = styled.button`
 	-webkit-appearance: none;
-	border: none;
-	background: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+	height: 100%;
+
+	background: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.35}px;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
-	color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+	color: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
 	text-align: center;
 	width: fit-content;
 	padding: 0.75rem;
 
 	height: ${navButtonHeight};
-	border-bottom: 0.25rem solid transparent;
-	transition: all 0.2s ease-out;
+
 	display: flex;
-	flex-flow: row nowrap;
+	flex-direction: row;
+	flex-wrap: nowrap;
 	align-items: center;
 	white-space: nowrap;
 	justify-content: center;
 
-	&:focus-visible,
-	&.open,
-	&.open:hover {
-		outline: transparent;
-		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
-		transition: all 0.2s ease-in;
-		background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
+	& {
+		margin-left: 1.05rem;
+		margin-top: 0.45rem;
+		margin-bottom: 0.45rem;
 	}
 
-	&.open,
-	&.open:hover {
-		svg {
-			color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
-			transition: all 0.2s ease-in;
-		}
-	}
-
-	&:hover {
-		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-	}
-
-	svg {
-		transition: all 0.2s ease-out;
+	&:focus-visible {
+		border-color: #fff;
+		border-width: 0.15rem;
+		border-style: solid;
 	}
 `;
 const ListContainer = styled.div`
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -74,14 +63,16 @@ export default function SideNav({ nav }: Props) {
 		}
 	}, [setButtonState, buttonState]);
 
-	const keyPress = useCallback(() => {
-		const event = KeyboardEvent;
-		if (event.key === 'Enter' || event.key === 'Tab' || event.key === 'Space') {
-			setKeypresed(true);
-		} else {
-			setKeypresed(false);
-		}
-	}, []);
+	const keyPress = useCallback(
+		(event) => {
+			if (event.key === 'Enter' || event.key === 'Tab' || event.key === 'Space') {
+				setKeypresed(true);
+			} else {
+				setKeypresed(false);
+			}
+		},
+		[setKeypresed]
+	);
 
 	return (
 		// eslint-disable-next-line react/button-has-type
@@ -95,7 +86,7 @@ export default function SideNav({ nav }: Props) {
 				onClick={buttonClick}
 				onKeyPress={keyPress}
 			>
-				<AiOutlineMenu />
+				{buttonState ? <AiOutlineClose /> : <AiOutlineMenu />}
 			</SideNavButton>
 			{buttonState ? <SideSection nav={nav} /> : ''}
 		</ListContainer>

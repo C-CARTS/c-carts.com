@@ -1,24 +1,23 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import { MainNavItem } from '../../../../data-hooks/useMainNav';
 import { ThemeProps } from '../../../../types/theme';
-// eslint-disable-next-line import/no-cycle
-import { Props } from './sideNav';
 import SideNavigationSection from './sideNavigationSection';
 
 const SideSectionNav = styled.nav`
 	display: flex;
+	width: 100%;
+	height: max-content;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
 	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 	opacity: 0.55;
-	margin-top: 0.35rem;
-	padding: 0.25rem;
 `;
 
 const LogoLink = styled.a`
-	font-size: 1.5rem;
+	font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.086rem);
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
 	text-decoration-thickness: 0.22rem;
@@ -43,13 +42,17 @@ const LogoLink = styled.a`
 	}
 `;
 
+export interface Props {
+	nav: MainNavItem[];
+}
+
 export default function SideSection({ nav }: Props) {
 	return (
 		<SideSectionNav>
 			<Link href="/" passHref>
 				<LogoLink>C-CARTS</LogoLink>
 			</Link>
-			{nav && nav.map((item, index) => <SideNavigationSection key={item._id} item={item} index={index} />)}
+			{nav && nav.map((item) => <SideNavigationSection key={item._id} item={item} />)}
 		</SideSectionNav>
 	);
 }
