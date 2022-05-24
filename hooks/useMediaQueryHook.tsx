@@ -12,7 +12,6 @@ interface Prop {
 
 export default function useMediaQuery({ query }: Prop) {
 	const onServerSide = isServer();
-	console.warn({ onServerSide });
 	const mediaMatch = onServerSide ? { matches: false, addEventListener: () => {}, removeEventListener: () => {} } : window.matchMedia(query); // return a MediaQueryList object
 	const [breakPoints, setBreakpoints] = useState(mediaMatch.matches); // save returned state from above line
 

@@ -1,12 +1,17 @@
+import { MapsSection } from '@c-carts/cms';
 import useSchedule from '../../data-hooks/useSchedules';
 import SubTab from '../tabs/subTab';
 import Tab from '../tabs/tab';
 import Tabs from '../tabs/tabs';
 
-export default function ScheduleComponent() {
+interface Props {
+	block: MapsSection;
+}
+
+export default function ScheduleComponent({ block }: Props) {
 	const mps = useSchedule();
 
-	if (mps.length === 0) {
+	if (mps.length === 0 && block.label.length < 0) {
 		return (
 			<p className="news unavailable">
 				<strong>There are currently no schedules available</strong>

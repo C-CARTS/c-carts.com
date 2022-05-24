@@ -1,39 +1,36 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
-import GenericPage from '../../../components/generic/genericPage';
-import ScheduleComponent from '../../../components/blockContent/schedules';
 import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
+import PerformanceOperations from '../../../components/blockContent/performance';
+import GenericPage from '../../../components/generic/genericPage';
+import usePerformance from '../../../data-hooks/usePerformance';
 import sanityClient from '../../../sanity/sanityClient';
-import useSchedule from '../../../data-hooks/useSchedules';
 
-const mpSlug = 'maps-and-schedule';
-/**
- * It renders a page that shows the news updates.
- * @returns A page with a news component and a link back to the news page.
- */
-function MapsAndSchedule() {
+const performanceSlug = 'performance';
+
+function Perform() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
-	const navItems = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === mpSlug).length > 0)[0];
+
+	const navItems = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === performanceSlug).length > 0)[0];
 	const { slug: navSlug } = navItems;
-	const { title: headline, slug: mpsSlug } = navItems.subPages.filter((pg) => pg.slug.current === mpSlug)[0];
+	const { title: headline, slug: performzSlug } = navItems.subPages.filter((pg) => pg.slug.current === performanceSlug)[0];
 
 	return (
-		<GenericPage title={'Maps and Schedule' ?? 'Maps'} siteConfig={siteConfig} mainNav={mainNav}>
-			<ScheduleComponent
+		<GenericPage title={'Performance' || 'Fiscal year Data'} siteConfig={siteConfig} mainNav={mainNav}>
+			<PerformanceOperations
 				block={{
-					_type: 'mapsSection',
+					_type: 'performanceSection',
 					label: 'string'
 				}}
 			/>
-			<a href={`/${navSlug?.current}/${mpsSlug?.current}`}>Back to {headline}</a>
+			<a href={`/${navSlug?.current}/${performzSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);
 }
-export default MapsAndSchedule;
-MapsAndSchedule.dataHooks = [useSiteConfig, useMainNav, useSchedule];
+export default Perform;
+Perform.dataHooks = [useSiteConfig, useMainNav, usePerformance];
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const config = await sanityClient.get('siteConfig', process.env.NEXT_PUBLIC_SANITY_SITE_CONFIG_ID ?? 'No Config');
@@ -43,10 +40,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		const navItems = await sanityClient.getAll('navItem');
 		const mainNav = await getMainNav(mainNavigation, pages, navItems);
 
-		const newsNavItem = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === mpSlug).length > 0)[0];
+		const newsNavItem = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === performanceSlug).length > 0)[0];
 		const section = newsNavItem.slug?.current ?? '';
 
-		const mapz = await sanityClient.getAll('maps');
+		const mapz = await sanityClient.getAll('performance');
 
 		const paths = mapz.map((n) => ({ params: { section, slug: n.slug?.current } }));
 
@@ -65,7 +62,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context: GetStaticPathsContext) => {
 	const dataHookProps = await getDataHooksProps({
 		context,
-		dataHooks: MapsAndSchedule.dataHooks
+		dataHooks: Perform.dataHooks
 	});
 	return {
 		props: {
