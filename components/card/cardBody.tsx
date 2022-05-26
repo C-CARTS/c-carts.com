@@ -17,8 +17,13 @@ const CardBodyContent = styled.div`
 
 const TextSection = styled(CardBodyContent)`
 	padding-bottom: 0px;
+	margin-bottom: 0px;
 	width: ${({ theme }: ThemeProps) => theme.widths.elevelByTwelve}%;
-	height: fit-content;
+	height: max-content;
+	p {
+		max-width: ${({ theme }: ThemeProps) => theme.widths.tenByTwelve}%;
+		margin-bottom: 0px;
+	}
 `;
 
 interface Prop {

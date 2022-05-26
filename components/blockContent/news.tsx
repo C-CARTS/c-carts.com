@@ -2,14 +2,31 @@
 import { News } from '@c-carts/cms';
 import styled from 'styled-components';
 
-import { ThemeProps } from '../../types/theme';
 import Card from '../card/card';
 
-const NewsContainer = styled.section`
-	font-family: ${({ theme }: ThemeProps) => theme.typography.fontFamily};
+const CardOuterContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	flex-wrap: nowrap;
+	width: 100%;
+
+	.outer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+`;
+
+const CardInnerContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	.inner {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+	}
 `;
 
 // const Heading = styled.h1`
@@ -56,9 +73,5 @@ interface Props {
 }
 
 export default function NewsComponent({ news }: Props) {
-	return (
-		<NewsContainer>
-			<Card news={news} />
-		</NewsContainer>
-	);
+	return <Card news={news} />;
 }

@@ -110,10 +110,12 @@ const MainWrap = styled.div`
 
 const Main = styled.main`
 	max-width: 1200px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
+	flex-wrap: nowrap;
 	justify-content: flex-start;
-	align-items: center;
+	align-items: flex-start;
 	h1 {
 		width: 100%;
 	}
