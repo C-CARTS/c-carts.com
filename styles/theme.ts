@@ -62,6 +62,19 @@ const Theme: ThemeType = {
 		contentPaddingSides: 'clamp(1rem, 5vw, 3rem)',
 		contentPaddingTop: 'clamp(1rem, 3vh, 2rem)',
 		contentPaddingBottom: 'clamp(2rem, 5vh, 5rem)'
+	},
+	widths: {
+		oneByTwelve: 8.33,
+		twoByTwelve: 16.67,
+		threeByTwelve: 25,
+		fourByTwelve: 33,
+		fiveByTwelve: 41.67,
+		sixByTwelve: 50,
+		sevenByTwelve: 58.33,
+		eightByTwelve: 66.66,
+		nineByTwelve: 75,
+		tenByTwelve: 83.33,
+		elevelByTwelve: 91.66
 	}
 };
 

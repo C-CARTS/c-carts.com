@@ -3,7 +3,7 @@ import { ResponsiveRadialBar } from '@nivo/radial-bar';
 export default function MyResponsivePie({ data }: any) {
 	return (
 		<ResponsiveRadialBar
-			aria-label="C-Carts Trips taken responsive chart"
+			aria-label="C-Carts Trips taken radial pie chart"
 			role="application"
 			data={data}
 			valueFormat=">-.2f"

@@ -17,6 +17,7 @@ body{
 	line-height: ${({ theme }: ThemeProps) => theme.typography.baseLineHeight};
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.baseLineHeight};
 	font-style: normal;
+
 }
 
 .content-wrap {
@@ -160,6 +161,9 @@ h3 {
 	font-size: 1em;
 	line-height: 1.5;
 }
-
+div{
+	padding: 0px;
+	margin:0px;
+}
 
 `;

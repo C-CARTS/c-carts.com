@@ -32,20 +32,26 @@ const ButtonContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: center;
+	justify-content: flex-start;
 	align-content: center;
 	width: 100%;
-	margin-top: 0.5rem;
+	margin: 0.5rem 0px 0px 0px;
+	padding: 0px;
+
+	@media (max-width: 580px) {
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
 `;
 
 const ActiveButton = styled.button`
 	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
 	border: none;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.0419}rem;
-	margin-right: 5px;
-	margin-left: 5px;
-	padding: 5px;
+	width: ${({ theme }: ThemeProps) => theme.widths.twoByTwelve}%;
+	margin-right: 0.6rem;
 
+	padding: 5px;
 	&:last-child {
 		border-right: none;
 	}
@@ -59,6 +65,10 @@ const ActiveButton = styled.button`
 	&:active,
 	&:focus-visible {
 		border-bottom: 0.2rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
+	}
+
+	@media (max-width: 580px) {
+		width: 100%;
 	}
 `;
 

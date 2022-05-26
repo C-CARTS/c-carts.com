@@ -51,6 +51,19 @@ export interface Sizes {
 	contentPaddingTop: string;
 	contentPaddingBottom: string;
 }
+export interface Widths {
+	oneByTwelve: number;
+	twoByTwelve: number;
+	threeByTwelve: number;
+	fourByTwelve: number;
+	fiveByTwelve: number;
+	sixByTwelve: number;
+	sevenByTwelve: number;
+	eightByTwelve: number;
+	nineByTwelve: number;
+	tenByTwelve: number;
+	elevelByTwelve: number;
+}
 
 export default interface Theme {
 	baseSpacing: number;
@@ -58,6 +71,7 @@ export default interface Theme {
 	typography: Typography;
 	breakpoints: BreakPoints;
 	sizes: Sizes;
+	widths: Widths;
 }
 
 export type ThemeProps = { theme: Theme };

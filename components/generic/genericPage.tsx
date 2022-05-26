@@ -62,20 +62,25 @@ const MainWrap = styled.div`
 	//width: min(100%, ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px);
 	width: 100%;
 	margin: 0 auto;
-	flex: 1 1 auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 
 	h1 {
 		font-family: ${({ theme }: ThemeProps) => theme.typography.headingFont};
+		width: 100%;
 	}
 
 	div > p {
-		padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} 0 ${theme.sizes.contentPaddingBottom}`};
+		padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} 0px ${theme.sizes.contentPaddingBottom} 0px`};
 		line-height: calc(${({ theme }: ThemeProps) => theme.typography.baseLineHeight} + 0.25);
+		width: ${({ theme }: ThemeProps) => theme.widths.tenByTwelve}%;
 	}
 
 	ul > li {
 		line-height: calc(${({ theme }: ThemeProps) => theme.typography.baseLineHeight} + 0.25);
+		width: ${({ theme }: ThemeProps) => theme.widths.tenByTwelve}%;
 	}
 
 	div > p a {
@@ -107,11 +112,10 @@ const Main = styled.main`
 	max-width: 1200px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	h1 {
-		margin-right: auto;
-		text-indent: 6rem;
+		width: 100%;
 	}
 	@media (max-width: 1200px) {
 		h1 {
