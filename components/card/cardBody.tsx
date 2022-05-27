@@ -19,23 +19,33 @@ const TextSection = styled(CardBodyContent)`
 	padding-bottom: 0px;
 	margin-bottom: 0px;
 	width: ${({ theme }: ThemeProps) => theme.widths.elevelByTwelve}%;
-	height: max-content;
+
 	p {
 		max-width: ${({ theme }: ThemeProps) => theme.widths.tenByTwelve}%;
 		margin-bottom: 0px;
+		max-height: 7rem;
+		margin-bottom: 1.125rem;
+
+		overflow: hidden;
+
+		display: -webkit-box;
+		-webkit-line-clamp: 3; /* number of lines to show */
+		-webkit-box-orient: vertical;
+		text-overflow: ellipsis;
 	}
 `;
 
 interface Prop {
 	content: PortableText | undefined;
+	slug: string;
 }
-export default function CardBody({ content }: Prop) {
+export default function CardBody({ content, slug }: Prop) {
 	return (
 		<CardBodyContent>
 			<TextSection>
 				<PortableTxt blocks={content} />
 			</TextSection>
-			<CardButton />
+			<CardButton slug={slug} />
 		</CardBodyContent>
 	);
 }

@@ -14,16 +14,15 @@ const CardContainer = styled.article`
 	margin: 0px 0.325rem;
 	&:hover {
 		box-shadow: 0 2px 4px rgba(#000, 0.2), 0 4px 8px rgba(#000, 0.2);
-		cursor: pointer;
 
 		.button-primary {
 			transform: translate(10px, 0);
+			cursor: pointer;
 		}
 	}
 	&:active {
 		box-shadow: none;
 		transform-origin: center;
-		transform: scale(0.98);
 	}
 
 	@media (max-width: 820px) {
@@ -35,11 +34,11 @@ interface Props {
 	news: News;
 }
 
-export default function Card({ news: { headline, dateTime, content } }: Props) {
+export default function Card({ news: { slug, headline, dateTime, content } }: Props) {
 	return (
 		<CardContainer>
 			<CardHeader headline={headline} date={dateTime} />
-			<CardBody content={content} />
+			<CardBody content={content} slug={slug.current} />
 		</CardContainer>
 	);
 }

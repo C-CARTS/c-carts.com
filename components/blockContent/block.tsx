@@ -20,7 +20,6 @@ interface Props {
 
 export default function Block({ block }: Props) {
 	const { _type } = block;
-
 	switch (_type) {
 		case 'imageSection':
 			return <ImageComponent block={block as ImageSection} />;
