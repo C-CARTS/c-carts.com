@@ -7,7 +7,7 @@ interface Trips {
 
 const PieChartContainer = styled.div`
 	max-height: 19rem;
-	width: 100%;
+
 	svg {
 		width: 100%;
 	}

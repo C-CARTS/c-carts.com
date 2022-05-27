@@ -15,6 +15,7 @@ interface TTypes {
 
 const BarChartContainer = styled.div`
 	max-height: 19rem;
+
 	width: 100%;
 	svg {
 		width: 100%;
