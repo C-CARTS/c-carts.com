@@ -12,29 +12,21 @@ interface Props {
 }
 
 const Container = styled.div`
-	width: 100%;
-	max-width: 1200px;
-	flex-direction: row;
-	flex-wrap: wrap;
-	margin: auto;
 	font-family: ${({ theme }: ThemeProps) => theme.typography.fontFamily};
-`;
-
-const CardOuterContainer = styled.div`
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-`;
-
-const CardInnerContainer = styled.div`
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
+	max-width: 1200px;
 	width: 100%;
 
-	@media (max-width: 880px) {
-		flex-direction: column;
-		flex-wrap: nowrap;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: minmax(450px, auto);
+	grid-row-gap: 1.25rem;
+	grid-column-gap: 0.6rem;
+
+	@media (max-width: 900px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media (max-width: 720px) {
+		grid-template-columns: 1fr;
 	}
 `;
 
@@ -57,14 +49,10 @@ export default function NewsComponent({ block: { count } }: Props) {
 	const filtered = count === 0 ? newsUpdates : newsUpdates.slice(0, count);
 
 	return (
-		<Container>
-			<CardOuterContainer>
-				<CardInnerContainer>
-					{filtered.map((j: any) => (
-						<News news={j} key={j._id} />
-					))}
-				</CardInnerContainer>
-			</CardOuterContainer>
+		<Container className="Container">
+			{filtered.map((j: any) => (
+				<News news={j} key={j._id} />
+			))}
 		</Container>
 	);
 }

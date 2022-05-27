@@ -1,23 +1,25 @@
 import { News } from '@c-carts/cms';
 import styled from 'styled-components';
-import { ThemeProps } from '../../types/theme';
+
 import CardBody from './cardBody';
 import CardHeader from './cardHeader';
 
 const CardContainer = styled.article`
-	width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
-	max-width: 400px;
-	display: block;
+	width: 100%;
 	background-color: #aeabb4;
-	box-shadow: 10px 5px 40px 20px darken(#341cac, 5%);
+	box-shadow: 0px 7px 30px -10px rgba(150, 170, 180, 0.5);
 	transition: 0.25s;
 	margin: 0px 0.325rem;
 	&:hover {
-		box-shadow: 0 2px 4px rgba(#000, 0.2), 0 4px 8px rgba(#000, 0.2);
+		box-shadow: 0 5px 10px rgba(56, 56, 56, 0.445), 0 15px 40px rgba(50, 50, 50, 0.35);
+		pointer-events: auto;
+		transform: scale(1.05);
+
+		transition: all 150ms ease-in-out;
 
 		.button-primary {
-			transform: translate(10px, 0);
 			cursor: pointer;
+			transform: translate(10px, 0);
 		}
 	}
 	&:active {
