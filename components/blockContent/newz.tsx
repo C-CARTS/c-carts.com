@@ -15,7 +15,6 @@ const Container = styled.div`
 	font-family: ${({ theme }: ThemeProps) => theme.typography.fontFamily};
 	max-width: 1200px;
 	width: 100%;
-
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: minmax(450px, auto);

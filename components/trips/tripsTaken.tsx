@@ -6,8 +6,11 @@ interface Trips {
 }
 
 const PieChartContainer = styled.div`
-	height: 25rem;
-	width: 35rem;
+	max-height: 19rem;
+	width: 100%;
+	svg {
+		width: 100%;
+	}
 `;
 
 const Pie = dynamic(() => import('./responsivePie'), {

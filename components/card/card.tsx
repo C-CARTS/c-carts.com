@@ -9,9 +9,9 @@ const CardContainer = styled.article`
 	background-color: #aeabb4;
 	box-shadow: 0px 7px 30px -10px rgba(150, 170, 180, 0.5);
 	transition: 0.25s;
-	margin: 0px 0.325rem;
+
 	&:hover {
-		box-shadow: 0 5px 10px rgba(56, 56, 56, 0.445), 0 15px 40px rgba(50, 50, 50, 0.35);
+		box-shadow: 0 5px 10px rgba(56, 56, 56, 0.871), 0 15px 40px rgba(50, 50, 50, 0.871);
 		pointer-events: auto;
 		transform: scale(1.05);
 

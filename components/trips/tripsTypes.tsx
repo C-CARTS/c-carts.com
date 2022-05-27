@@ -14,9 +14,11 @@ interface TTypes {
 }
 
 const BarChartContainer = styled.div`
-	height: 25rem;
-	width: 35rem;
-	min-width: 35rem;
+	max-height: 19rem;
+	width: 100%;
+	svg {
+		width: 100%;
+	}
 `;
 
 export default function TripsTypes({ ttypes }: TTypes) {
