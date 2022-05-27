@@ -30,6 +30,7 @@ const changeValues = (val: string) => {
 	switch (val) {
 		case 'Homepage':
 			return `height: 400px; background-image:url("http://placeimg.com/1200/420/any");
+
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
@@ -52,6 +53,7 @@ const Wrapper = styled.div.attrs((home) => ({
 }))`
 	${({ home }: Prop) => changeValues(home)}
 	width: 100%;
+
 	@media (max-width: 700px) {
 		height: 100%;
 	}
@@ -60,6 +62,7 @@ const Wrapper = styled.div.attrs((home) => ({
 const MainWrap = styled.div`
 	padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} ${theme.sizes.contentPaddingSides} ${theme.sizes.contentPaddingBottom}`};
 	//width: min(100%, ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px);
+	max-width: 1200px;
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -126,6 +129,11 @@ const Main = styled.main`
 	}
 `;
 
+const MenuWrapper = styled.div`
+	max-width: 1200px;
+	width: 100%;
+`;
+
 export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo } }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 
@@ -135,7 +143,9 @@ export default function GenericPage({ title, description, children, mainNav, sit
 			<ContentWrap>
 				<HeadContent title={title} description={description} />
 				<Wrapper home={pageTitle}>
-					<Menu nav={mainNav} shortTitle={shortTitle} />
+					<MenuWrapper>
+						<Menu nav={mainNav} shortTitle={shortTitle} />
+					</MenuWrapper>
 				</Wrapper>
 				<MainWrap id="main-content">
 					<Main>

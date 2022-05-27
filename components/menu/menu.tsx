@@ -26,45 +26,57 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
 	background-color: ${({ UiBreakPoint }: HeaderProps) => (UiBreakPoint ? 'none' : (theme: ThemeProps) => theme.theme.colors.primary.background)};
 	opacity: ${(props) => props.ops};
-	max-width: 100%;
+	width: 100vw;
 	margin: 0 auto;
-	display: grid;
-	grid-template-columns: max-content 1fr;
-	grid-gap: 1rem;
-	grid-template-areas: 'logo menu';
-	justify-content: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
 	align-items: center;
 
-	a {
-		grid-area: logo;
+	/* a {
+		width: ${({ theme }: ThemeProps) => theme.widths.twoByTwelve};
 	}
 	nav {
-		grid-area: menu;
+		width: 100%;
 	}
 
 	@media (max-width: 700px) {
-		grid-template-area: 'full';
-		grid-gap: 0;
-		a {
-			grid-area: 'full';
-		}
-
 		nav {
-			grid-area: 'full';
 			flex-flow: column nowrap;
 			align-items: center;
 		}
+	} */
+`;
+
+const InnerHeaderWrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	max-width: 1200px;
+	width: 100%;
+
+	margin: 0 auto;
+
+	justify-content: center;
+	a {
+		width: ${({ theme }: ThemeProps) => theme.widths.twoByTwelve}%;
+	}
+
+	nav {
+		width: ${({ theme }: ThemeProps) => theme.widths.nineByTwelve}%;
 	}
 `;
 
 const LogoLink = styled.a`
 	font-size: 1.5rem;
+
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
 	text-decoration-thickness: 0.22rem;
 	transition: all 0.2s ease-out;
 	outline-color: transparent;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0.5rem;
 
 	&,
 	&:visited {
@@ -100,16 +112,17 @@ export default function Menu({ shortTitle, nav }: Props) {
 
 	return (
 		// eslint-disable-next-line react/no-unstable-nested-components
+
 		<Header ops={pageTitle === 'Homepage' ? 0.75 : 1} UiBreakPoint={breakpoint} className="header-content">
 			{breakpoint ? (
 				<SideNav nav={nav} />
 			) : (
-				<>
+				<InnerHeaderWrapper>
 					<Link href="/" passHref>
 						<LogoLink>{shortTitle}</LogoLink>
 					</Link>
 					<MainNav nav={nav} />
-				</>
+				</InnerHeaderWrapper>
 			)}
 		</Header>
 	);
