@@ -1,26 +1,28 @@
 import { RefObject, useEffect } from 'react';
 
-type AnyEvent = MouseEvent | TouchEvent;
+export type ClickEvent = MouseEvent | TouchEvent;
 
 // eslint-disable-next-line no-unused-vars
-type Handler = (e: AnyEvent) => void;
+type HandlerFunction = (event: ClickEvent) => void;
 
-function useOnClickOutside<T extends HTMLElement = HTMLElement>(ref: RefObject<T>, handler: Handler): void {
+function useOnClickOutside<T extends HTMLElement = HTMLElement>(ref: RefObject<T>, handler: HandlerFunction): void {
 	useEffect(() => {
-		const listener = (event: AnyEvent) => {
-			const el = ref?.current;
+		const listener = (event: ClickEvent) => {
+			const element = ref?.current;
 
 			// Do nothing if clicking ref's element or descendent elements
-			if (!el || el.contains(event.target as Node)) {
+			if (!element || element.contains(event.target as Node)) {
 				return;
 			}
 
 			handler(event);
 		};
 
+		// bind click and touch events
 		document.addEventListener(`mousedown`, listener);
 		document.addEventListener(`touchstart`, listener);
 
+		// unbind when hook is unmounted
 		return () => {
 			document.removeEventListener(`mousedown`, listener);
 			document.removeEventListener(`touchstart`, listener);
