@@ -1853,10 +1853,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@c-carts/cms@^1.0.42":
-  version "1.0.43"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@c-carts/cms/-/cms-1.0.43.tgz#e0eeb14ebef41864fba99065ba4ebbc681a72823"
-  integrity sha1-4O6xTr70GGT7qZBluk67xoGnKCM=
+"@c-carts/cms@^1.0.45":
+  version "1.0.45"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@c-carts/cms/-/cms-1.0.45.tgz#4cf871a9b48ceaf40f282274515a7ee6bdd6e0f7"
+  integrity sha1-TPhxqbSM6vQPKCJ0UVp+5r3W4Pc=
   dependencies:
     sanity-codegen "^0.9"
 
@@ -2303,12 +2303,12 @@
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
-"@sanity/client@^3.3.0":
-  version "3.3.0"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@sanity/client/-/client-3.3.0.tgz#0b01b1ee25f9d12e0fd9d119fe752f0aeb18843a"
-  integrity sha1-CwGx7iX50S4P2dEZ/nUvCusYhDo=
+"@sanity/client@^3.3.1":
+  version "3.3.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@sanity/client/-/client-3.3.1.tgz#d07ff73557be2eef35ecc5b09e0347d0bdfe859a"
+  integrity sha1-0H/3NVe+Lu817MWwngNH0L3+hZo=
   dependencies:
-    "@sanity/eventsource" "^3.0.2"
+    "@sanity/eventsource" "^4.0.0"
     "@sanity/generate-help-url" "^3.0.0"
     get-it "^6.0.1"
     make-error "^1.3.0"
@@ -2328,13 +2328,13 @@
     "@rexxars/eventsource-polyfill" "^1.0.0"
     eventsource "^1.0.6"
 
-"@sanity/eventsource@^3.0.2":
-  version "3.0.2"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@sanity/eventsource/-/eventsource-3.0.2.tgz#483a75e9118aa510957b23a638be560d926dc4d3"
-  integrity sha1-SDp16RGKpRCVeyOmOL5WDZJtxNM=
+"@sanity/eventsource@^4.0.0":
+  version "4.0.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@sanity/eventsource/-/eventsource-4.0.0.tgz#ec9c352e87a2f79db8d25eedbb009ced21ec2e97"
+  integrity sha1-7Jw1Loei95240l7tuwCc7SHsLpc=
   dependencies:
     event-source-polyfill "1.0.25"
-    eventsource "^1.0.6"
+    eventsource "^2.0.2"
 
 "@sanity/generate-help-url@2.18.0":
   version "2.18.0"
@@ -4511,6 +4511,11 @@ eventsource@^1.0.6, eventsource@^1.0.7:
   dependencies:
     original "^1.0.0"
 
+eventsource@^2.0.2:
+  version "2.0.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/eventsource/-/eventsource-2.0.2.tgz#76dfcc02930fb2ff339520b6d290da573a9e8508"
+  integrity sha1-dt/MApMPsv8zlSC20pDaVzqehQg=
+
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
@@ -6422,10 +6427,10 @@ sanity-codegen@^0.9, sanity-codegen@^0.9.8:
     jsdom-global "^3.0.2"
     regenerator-runtime "0.13.9"
 
-sanity@^2.20.0:
-  version "2.20.0"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/sanity/-/sanity-2.20.0.tgz#7b971d5ac211c86c346106daf7fc4f561bb3b2a7"
-  integrity sha1-e5cdWsIRyGw0YQba9/xPVhuzsqc=
+sanity@^2.29.3:
+  version "2.29.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/sanity/-/sanity-2.29.3.tgz#02b401f477b5d2af766f4cbc080e09f903c4d6c5"
+  integrity sha1-ArQB9He10q92b0y8CA4J+QPE1sU=
 
 scheduler@^0.20.2:
   version "0.20.2"
