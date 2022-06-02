@@ -1,5 +1,5 @@
 import { NewsSection } from '@c-carts/cms';
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useNewz from '../../data-hooks/useNewz';
@@ -17,7 +17,7 @@ const Container = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: minmax(450px, auto);
+	grid-template-rows: minmax(250px, auto);
 	grid-row-gap: 1.25rem;
 	grid-column-gap: 0.6rem;
 
@@ -32,8 +32,7 @@ const Container = styled.div`
 export default function NewsComponent({ block: { count } }: Props) {
 	const newsUpdates = useNewz();
 	const setNewsObject = useSetRecoilState(newsObjectState);
-
-	useEffect(() => {
+	useMemo(() => {
 		setNewsObject(newsUpdates);
 	}, [newsUpdates, setNewsObject]);
 

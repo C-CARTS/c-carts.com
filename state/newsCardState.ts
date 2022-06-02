@@ -11,21 +11,12 @@ export const newsSlugState = atom<string>({
 	default: ''
 });
 
-export const newsSelector = selector<News | null>({
+export const newsSelector = selector<News | undefined>({
 	key: 'newsSelector',
 	get: ({ get }) => {
 		const newsArray = get(newsObjectState);
 		const slug = get(newsSlugState);
-
-		let result = null;
-		newsArray.forEach((element) => {
-			if (element.slug.current === slug) {
-				result = element;
-				return result;
-			}
-			return null;
-		});
-
-		return result;
+		const result = newsArray.filter((news) => news.slug.current === slug);
+		return result[0];
 	}
 });

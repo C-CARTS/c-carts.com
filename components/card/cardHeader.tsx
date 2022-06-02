@@ -3,28 +3,28 @@ import { ThemeProps } from '../../types/theme';
 import getDate from '../../utils/dateTime';
 
 const Header = styled.header`
+	flex: 0 0 auto;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	height: 250px;
-	width: 100%;
+	justify-content: stretch;
+	align-items: stretch;
+	flex-wrap: nowrap;
 	padding: 0.625rem;
-	background-image: url('http://placehold.jp/300x150.png');
+	min-height: 170px;
 	background-size: cover;
-	color: #fff;
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 `;
 
 const Heading = styled.h3`
 	text-transform: uppercase;
-	height: ${({ theme }: ThemeProps) => theme.widths.nineByTwelve}%;
 	margin: 0px;
 `;
 
 const Date = styled.span`
-	color: #ffffff;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-weight: 600;
-	height: ${({ theme }: ThemeProps) => theme.widths.twoByTwelve}%;
 `;
 
 interface Props {

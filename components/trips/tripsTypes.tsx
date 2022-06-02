@@ -14,11 +14,19 @@ interface TTypes {
 }
 
 const BarChartContainer = styled.div`
-	max-height: 19rem;
-
-	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	height: 100%;
 	svg {
+		max-height: 20rem;
 		width: 100%;
+		font-weight: bold;
+	}
+	span {
+		font-size: 1rem;
+		font-style: italic;
+		font-weight: 500;
 	}
 `;
 
@@ -49,6 +57,7 @@ export default function TripsTypes({ ttypes }: TTypes) {
 	return (
 		<BarChartContainer>
 			<BarChart data={field} />
+			<span aria-hidden>Bar chart for all different type of trips taken by C-Carts vehicles</span>
 		</BarChartContainer>
 	);
 }

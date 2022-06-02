@@ -22,8 +22,8 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	ops: props.ops,
 	UiBreakPoint: props.UiBreakPoint
 }))`
-	padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides}px;
-	padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
+	//padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides}px;
+	//padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
 	background-color: ${({ UiBreakPoint }: HeaderProps) => (UiBreakPoint ? 'none' : (theme: ThemeProps) => theme.theme.colors.primary.background)};
 	opacity: ${(props) => props.ops};
 	width: 100vw;
@@ -33,20 +33,6 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: center;
-
-	/* a {
-		width: ${({ theme }: ThemeProps) => theme.widths.twoByTwelve};
-	}
-	nav {
-		width: 100%;
-	}
-
-	@media (max-width: 700px) {
-		nav {
-			flex-flow: column nowrap;
-			align-items: center;
-		}
-	} */
 `;
 
 const InnerHeaderWrapper = styled.div`
@@ -55,28 +41,27 @@ const InnerHeaderWrapper = styled.div`
 	flex-wrap: nowrap;
 	max-width: 1200px;
 	width: 100%;
-
 	margin: 0 auto;
 
-	justify-content: center;
 	a {
-		width: ${({ theme }: ThemeProps) => theme.widths.twoByTwelve}%;
+		width: 100%;
+		justify-self: flex-start;
 	}
 
 	nav {
-		width: ${({ theme }: ThemeProps) => theme.widths.nineByTwelve}%;
+		width: 100%;
+		justify-self: flex-end;
 	}
 `;
 
 const LogoLink = styled.a`
 	font-size: 1.5rem;
-
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
 	text-decoration-thickness: 0.22rem;
 	transition: all 0.2s ease-out;
 	outline-color: transparent;
-	padding: 0.5rem 0.5rem;
+	//padding: 0.5rem 0.5rem;
 
 	&,
 	&:visited {
@@ -119,7 +104,7 @@ export default function Menu({ shortTitle, nav }: Props) {
 			) : (
 				<InnerHeaderWrapper>
 					<Link href="/" passHref>
-						<LogoLink>{shortTitle}</LogoLink>
+						<LogoLink id="logoLink">{shortTitle}</LogoLink>
 					</Link>
 					<MainNav nav={nav} />
 				</InnerHeaderWrapper>

@@ -21,9 +21,33 @@ const TableContainer = styled.div`
 	#directW {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
-	#directE {
+	#directE table > th > td {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
+
+	#rantoulW {
+		width: ${({ theme }: ThemeProps) => theme.widths.fourByTwelve}%;
+	}
+
+	@media (max-width: 988px) {
+		#rantoulW {
+			width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
+		}
+	}
+
+	#rantoulE {
+		width: ${({ theme }: ThemeProps) => theme.widths.sixByTwelve}%;
+	}
+
+	@media (max-width: 898px) {
+		#rantoulW,
+		#rantoulE,
+		#directW,
+		#directE {
+			width: 100%;
+		}
+	}
+
 	thead {
 		font-weight: bold;
 	}

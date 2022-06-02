@@ -30,7 +30,6 @@ const changeValues = (val: string) => {
 	switch (val) {
 		case 'Homepage':
 			return `height: 400px; background-image:url("http://placeimg.com/1200/420/any");
-
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
@@ -38,6 +37,15 @@ const changeValues = (val: string) => {
 			-moz-transition: 0.25s all ease-in-out;
 			-o-transition: 0.25s all ease-in-out;
 			transition: 0.25s all ease-in;
+			width:100vw;
+			padding:0px;
+
+			.menuWrapper{
+				#logoLink{
+					padding-left: clamp(1rem, 5vw, 3rem);
+				}
+
+			}
 		`;
 		default:
 			return `background-image: none;`;
@@ -51,8 +59,12 @@ interface Prop {
 const Wrapper = styled.div.attrs((home) => ({
 	value: home
 }))`
-	${({ home }: Prop) => changeValues(home)}
 	width: 100%;
+	padding-top: clamp(1rem, 3vh, 2rem);
+	padding-right: clamp(1rem, 5vw, 3rem);
+	padding-bottom: clamp(2rem, 5vh, 5rem);
+	padding-left: clamp(1rem, 5vw, 3rem);
+	${({ home }: Prop) => changeValues(home)}
 
 	@media (max-width: 700px) {
 		height: 100%;
@@ -143,7 +155,7 @@ export default function GenericPage({ title, description, children, mainNav, sit
 			<ContentWrap>
 				<HeadContent title={title} description={description} />
 				<Wrapper home={pageTitle}>
-					<MenuWrapper>
+					<MenuWrapper className="menuWrapper">
 						<Menu nav={mainNav} shortTitle={shortTitle} />
 					</MenuWrapper>
 				</Wrapper>

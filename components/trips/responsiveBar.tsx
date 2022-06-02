@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-bind */
 
 import { ResponsiveBar } from '@nivo/bar';
@@ -6,17 +7,28 @@ interface Bar {
 	data: any;
 }
 
+const extraProp = {
+	description: `Above diagram is a stacked bar chart with X axis representing months October, Novermber and december from left to right respectively. The Y axis
+				represents a numeric value representing total trips of certain type. Types of trips being represented include:
+				education,employment,medical,misc,personal,shopping and social.`
+};
+
 export default function MyResponsiveBar({ data }: Bar) {
 	return (
 		<ResponsiveBar
+			{...extraProp}
+			isFocusable
 			data={data}
 			keys={['education', 'employment', 'medical', 'misc', 'personal', 'shopping', 'social']}
 			indexBy="month"
-			margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+			margin={{ top: 50, right: 130, bottom: 60, left: 60 }}
 			padding={0.3}
-			valueScale={{ type: 'linear' }}
+			valueScale={{ type: 'band' }}
 			indexScale={{ type: 'band', round: true }}
-			colors={{ scheme: 'nivo' }}
+			colors={{ scheme: 'dark2' }}
+			enableLabel
+			innerPadding={2}
+			groupMode="stacked"
 			borderColor={{
 				from: 'color',
 				modifiers: [['darker', 1.6]]

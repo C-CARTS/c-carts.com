@@ -13,6 +13,7 @@ const newsSlug = 'news-updates';
  * It renders a page that shows the news updates.
  * @returns A page with a news component and a link back to the news page.
  */
+
 export default function NewsUpdates() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
@@ -24,9 +25,11 @@ export default function NewsUpdates() {
 	const news = useNews();
 
 	return (
-		<GenericPage title={'title' ?? 'news'} siteConfig={siteConfig} mainNav={mainNav}>
+		<GenericPage title="" siteConfig={siteConfig} mainNav={mainNav}>
 			<NewsComponent news={news} />
-			<a href={`/${navSlug?.current}/${newzSlug?.current}`}>Back to {headline}</a>
+			<a style={{ padding: '0.325rem 0px', borderBottomWidth: '0.45rem' }} href={`/${navSlug?.current}/${newzSlug?.current}`}>
+				{headline}
+			</a>
 		</GenericPage>
 	);
 }

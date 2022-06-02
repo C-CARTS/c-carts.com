@@ -3,6 +3,7 @@ import CardNews from '../../../../components/card/cardNews';
 
 import GenericPage from '../../../../components/generic/genericPage';
 import useMainNav from '../../../../data-hooks/useMainNav';
+
 import useSiteConfig from '../../../../data-hooks/useSiteConfig';
 
 export default function CardNewsDisplay() {

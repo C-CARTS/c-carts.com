@@ -1,42 +1,51 @@
 import { useRouter } from 'next/router';
 import { MouseEvent, useCallback } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilCallback } from 'recoil';
 import styled from 'styled-components';
-import { newsSlugState } from '../../state/newsCardState';
+
 import { ThemeProps } from '../../types/theme';
+import { processSnapshot } from '../../utils/helperFunctions';
 
-const BtnCard = styled.button`
+const ReadMoreLink = styled.a`
 	border: none;
-
 	font-family: inherit;
-	color: #cc4d4d;
-	font-size: 0.96rem;
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
+	font-size: 1.25rem;
+	font-weight: 500;
+	padding: 0.25rem 1.5rem;
+	white-space: nowrap;
+	background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+	text-decoration: none;
 
-	width: ${({ theme }: ThemeProps) => theme.widths.fourByTwelve}%;
-	transition: 0.25s;
-
-	border-radius: 0.25rem;
-
-	&:active {
-		transform: scale(0.98);
+	&:hover {
+		border-bottom: 4px solid ${({ theme }: ThemeProps) => theme.colors.link.subtle};
+	}
+	& {
+		border-bottom: 4px solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
 	}
 `;
 
 interface Prop {
-	slug: string;
+	news: string;
 }
 
-export default function CardButton({ slug }: Prop) {
-	const { push } = useRouter();
-	const setSlugValue = useSetRecoilState(newsSlugState);
-
+export default function CardButton({ news }: Prop) {
+	const { asPath, push } = useRouter();
+	const saveState = useRecoilCallback(({ snapshot }) => () => {
+		processSnapshot(snapshot);
+	});
 	const clickEvent = useCallback(
-		(event: MouseEvent<HTMLButtonElement> | undefined, id: string) => {
+		(event: MouseEvent<HTMLAnchorElement> | undefined) => {
 			event?.preventDefault();
-			setSlugValue(id);
-			push(`${event?.currentTarget.baseURI}/news/${id}`);
+			push(`${event?.currentTarget.baseURI}/news/${news}`);
+			saveState();
 		},
-		[push, setSlugValue]
+		[push, news, saveState]
 	);
-	return <BtnCard onClick={(e) => clickEvent(e, slug)}>Read More</BtnCard>;
+
+	return (
+		<ReadMoreLink href={`${asPath}/news/${news}`} onClick={(event) => clickEvent(event)}>
+			ReadMore
+		</ReadMoreLink>
+	);
 }

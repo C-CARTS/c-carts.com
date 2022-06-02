@@ -7,6 +7,7 @@ import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from '../styles/globalStyles';
 import Theme from '../styles/theme';
+import { InitState } from '../utils/helperFunctions';
 
 function App({ Component, pageProps }: AppProps) {
 	const { children, ...rest } = pageProps;
@@ -15,7 +16,7 @@ function App({ Component, pageProps }: AppProps) {
 		<ThemeProvider theme={Theme}>
 			<GlobalStyles />
 			<NextDataHooksProvider {...rest}>
-				<RecoilRoot>
+				<RecoilRoot initializeState={InitState}>
 					<Head>
 						<link rel="icon" href="/favicon.ico" />
 					</Head>
