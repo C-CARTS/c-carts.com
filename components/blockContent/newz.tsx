@@ -16,10 +16,12 @@ const Container = styled.div`
 	max-width: 1200px;
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: minmax(250px, auto);
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto;
+	justify-items: stretch;
+	align-items: stretch;
 	grid-row-gap: 1.25rem;
-	grid-column-gap: 0.6rem;
+	grid-column-gap: 1rem;
 
 	@media (max-width: 900px) {
 		grid-template-columns: repeat(2, 1fr);

@@ -13,7 +13,7 @@ const CardBodyContent = styled.div`
 	flex-wrap: nowrap;
 	align-items: flex-start;
 	justify-content: flex-start;
-	padding: 0.625rem;
+	flex-flow: 1 1 auto;
 `;
 
 const TextSection = styled(CardBodyContent)`

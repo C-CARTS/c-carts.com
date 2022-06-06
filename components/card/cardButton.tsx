@@ -9,13 +9,15 @@ import { processSnapshot } from '../../utils/helperFunctions';
 const ReadMoreLink = styled.a`
 	border: none;
 	font-family: inherit;
-	color: ${({ theme }: ThemeProps) => theme.colors.primary.color};
-	font-size: 1.25rem;
-	font-weight: 500;
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.contrastColor};
+	font-size: 1rem;
+	font-weight: 600;
 	padding: 0.25rem 1.5rem;
 	white-space: nowrap;
 	background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 	text-decoration: none;
+	flex-flow: 0 0 auto;
+	align-self: flex-end;
 
 	&:hover {
 		border-bottom: 4px solid ${({ theme }: ThemeProps) => theme.colors.link.subtle};

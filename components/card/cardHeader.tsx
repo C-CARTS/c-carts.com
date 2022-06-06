@@ -10,21 +10,22 @@ const Header = styled.header`
 	flex-wrap: nowrap;
 	justify-content: stretch;
 	align-items: stretch;
+	flex-flow: 0 0 auto;
 	flex-wrap: nowrap;
-	padding: 0.625rem;
-	min-height: 170px;
-	background-size: cover;
-	color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.contrastColor};
 `;
 
 const Heading = styled.h3`
 	text-transform: uppercase;
 	margin: 0px;
+	padding: 0px;
+	font-size: 1.315rem;
 `;
 
 const Date = styled.span`
 	text-transform: capitalize;
 	font-weight: 600;
+	font-size: 0.8rem;
 `;
 
 interface Props {

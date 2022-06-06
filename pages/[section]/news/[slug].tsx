@@ -8,7 +8,7 @@ import useNews from '../../../data-hooks/useNews';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
 
-const newsSlug = 'news-updates';
+const newsSlug = 'news';
 /**
  * It renders a page that shows the news updates.
  * @returns A page with a news component and a link back to the news page.

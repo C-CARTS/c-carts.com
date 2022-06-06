@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
+const ChartComponent = dynamic(() => import('./responsivePie'), { ssr: false });
+
 interface Trips {
 	trips: Array<Object>;
 }
@@ -21,10 +23,6 @@ const PieChartContainer = styled.div`
 		font-weight: 800;
 	}
 `;
-
-const Pie = dynamic(() => import('./responsivePie'), {
-	ssr: false
-});
 
 export default function TripsTaken({ trips }: Trips) {
 	const dt = trips.filter((element: any) => element.month);
@@ -53,7 +51,7 @@ export default function TripsTaken({ trips }: Trips) {
 	return (
 		// eslint-disable-next-line jsx-a11y/aria-role
 		<PieChartContainer role="graphics-document" tabIndex={0}>
-			<Pie data={data} />
+			<ChartComponent data={data} />
 			<span aria-hidden>Radial Pie chart for all trips taken by C-Carts vehicles for month of october,november and december</span>
 		</PieChartContainer>
 	);

@@ -6,13 +6,14 @@ import CardHeader from './cardHeader';
 
 const CardContainer = styled.article`
 	width: 100%;
-	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder} * 0.29rem;
 	box-shadow: 0px 7px 30px -10px rgba(162, 178, 185, 0.5);
 	transition: 0.25s;
 	display: flex;
-	flex-flow: column nowrap;
+	flex-flow: row wrap;
 	align-items: stretch;
 	justify-content: stretch;
+	padding: 0.625rem 0.625rem;
 
 	&:hover {
 		box-shadow: 0 5px 10px rgba(56, 56, 56, 0.171), 0 15px 40px rgba(50, 50, 50, 0.171);

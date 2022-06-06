@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-bind */
 
-import { ResponsiveBar } from '@nivo/bar';
+import * as am5 from '@amcharts/amcharts5';
+import * as am5Pie from '@amcharts/amcharts5/';
+import { useLayoutEffect, useRef } from 'react';
 
 interface Bar {
 	data: any;
@@ -14,75 +16,42 @@ const extraProp = {
 };
 
 export default function MyResponsiveBar({ data }: Bar) {
-	return (
-		<ResponsiveBar
-			{...extraProp}
-			isFocusable
-			data={data}
-			keys={['education', 'employment', 'medical', 'misc', 'personal', 'shopping', 'social']}
-			indexBy="month"
-			margin={{ top: 50, right: 130, bottom: 60, left: 60 }}
-			padding={0.3}
-			valueScale={{ type: 'band' }}
-			indexScale={{ type: 'band', round: true }}
-			colors={{ scheme: 'dark2' }}
-			enableLabel
-			innerPadding={2}
-			groupMode="stacked"
-			borderColor={{
-				from: 'color',
-				modifiers: [['darker', 1.6]]
-			}}
-			axisTop={undefined}
-			axisRight={null}
-			axisBottom={{
-				tickSize: 5,
-				tickPadding: 5,
-				tickRotation: 0,
-				legend: 'Month',
-				legendPosition: 'middle',
-				legendOffset: 42
-			}}
-			axisLeft={{
-				tickSize: 5,
-				tickPadding: 5,
-				tickRotation: 0,
-				legend: 'Trip Type',
-				legendPosition: 'middle',
-				legendOffset: -48
-			}}
-			labelSkipWidth={12}
-			labelSkipHeight={12}
-			labelTextColor={{
-				from: 'color',
-				modifiers: [['darker', 1.6]]
-			}}
-			legends={[
-				{
-					dataFrom: 'keys',
-					anchor: 'bottom-right',
-					direction: 'column',
-					justify: false,
-					translateX: 120,
-					translateY: 0,
-					itemsSpacing: 2,
-					itemWidth: 100,
-					itemHeight: 20,
-					itemDirection: 'left-to-right',
-					itemOpacity: 0.85,
-					symbolSize: 20,
-					effects: [
-						{
-							on: 'hover',
-							style: {
-								itemOpacity: 1
-							}
-						}
-					]
-				}
-			]}
-			role="application"
-			ariaLabel="Bar chart for displaying different trip types"
-		/>
-	);
+	const toor = useRef(null);
+
+	useLayoutEffect(() => {
+		const root = am5.Root.new('pieChart');
+
+		const pie = root.container.children.push(
+			am5Pie.PieChart.new(root, {
+				layout: root.verticalLayout,
+				innerRadius: am5.percent(40)
+			})
+		);
+
+		const pp = am5Pie;
+		const series = pie.series.push(
+			am5Pie.PieSeries.new(root, {
+				valueField: data.y,
+				categoryField: data.x,
+				alignLabels: false,
+				legendLabelText: data.id
+			})
+		);
+
+		series.ticks.template.setAll({ forceHidden: true });
+		series.labels.template.setAll({ forceHidden: true });
+		series.slices.template.setAll({
+			tooltipText: '{category}: {value} '
+		});
+		series.slices.template.states.create('hover', { scale: 0.95 });
+
+		series.data.setAll(data);
+		toor.current = root;
+
+		return () => {
+			root.dispose();
+		};
+	}, [data]);
+
+	return <div id="pieChart" style={{ width: '100%', height: '500px', backgroundColor: 'Highlight' }} />;
 }

@@ -40,7 +40,9 @@ const changeValues = (val: string) => {
 			width:100vw;
 			padding:0px;
 
+
 			.menuWrapper{
+
 				#logoLink{
 					padding-left: clamp(1rem, 5vw, 3rem);
 				}
