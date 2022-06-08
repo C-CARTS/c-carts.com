@@ -1,9 +1,7 @@
 import { PortableText } from '@c-carts/cms';
-import { useMemo } from 'react';
-import { useSetRecoilState } from 'recoil';
+
 import styled from 'styled-components';
 import PortableTxt from '../../sanity/portableText';
-import { newsSlugState } from '../../state/newsCardState';
 
 import CardButton from './cardButton';
 
@@ -13,7 +11,7 @@ const CardBodyContent = styled.div`
 	flex-wrap: nowrap;
 	align-items: flex-start;
 	justify-content: flex-start;
-	flex-flow: 1 1 auto;
+	flex: 1 1 auto;
 `;
 
 const TextSection = styled(CardBodyContent)`
@@ -35,10 +33,6 @@ interface Prop {
 	slug: string;
 }
 export default function CardBody({ content, slug }: Prop) {
-	const setNewsSlug = useSetRecoilState(newsSlugState);
-	useMemo(() => {
-		setNewsSlug(slug);
-	}, [slug, setNewsSlug]);
 	return (
 		<CardBodyContent>
 			<TextSection>

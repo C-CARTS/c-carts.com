@@ -1,9 +1,8 @@
 import { NewsSection } from '@c-carts/cms';
-import { useMemo } from 'react';
-import { useSetRecoilState } from 'recoil';
+
 import styled from 'styled-components';
 import useNewz from '../../data-hooks/useNewz';
-import { newsObjectState } from '../../state/newsCardState';
+
 import { ThemeProps } from '../../types/theme';
 import News from './news';
 
@@ -33,10 +32,6 @@ const Container = styled.div`
 
 export default function NewsComponent({ block: { count } }: Props) {
 	const newsUpdates = useNewz();
-	const setNewsObject = useSetRecoilState(newsObjectState);
-	useMemo(() => {
-		setNewsObject(newsUpdates);
-	}, [newsUpdates, setNewsObject]);
 
 	if (newsUpdates.length === 0) {
 		return (

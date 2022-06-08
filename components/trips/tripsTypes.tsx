@@ -32,31 +32,25 @@ const BarChartContainer = styled.div`
 
 export default function TripsTypes({ ttypes }: TTypes) {
 	const { month1, month2, month3 } = ttypes;
-	const months: any = [month1, month2, month3];
+	const months = [month1, month2, month3];
 
 	const field = months.flatMap((item: any) => {
 		if (item.month !== '' || item.month !== undefined) {
 			item.education;
-			item.educationColor = 'hsl(292, 70%, 50%)';
 			item.employment;
-			item.employmentColor = 'hsl(303, 70%, 50%)';
 			item.medical;
-			item.medicalColor = 'hsl(169, 20%, 36%)';
 			item.misc;
-			item.miscColor = 'hsl(395, 70%, 50%)';
 			item.personal;
-			item.personalColor = 'hsl(3, 20%, 50%)';
 			item.shopping;
-			item.shoppingColor = 'hsl(25, 70%, 50%)';
 			item.social;
-			item.socialColor = 'hsl(36, 70%, 50%)';
+			item.month;
 		}
 		return item;
 	});
 
 	return (
 		<BarChartContainer>
-			<BarChart data={field} />
+			<BarChart data={field} chartId="tripTypesChart" />
 			<span aria-hidden>Bar chart for all different type of trips taken by C-Carts vehicles</span>
 		</BarChartContainer>
 	);

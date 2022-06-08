@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router';
 import { MouseEvent, useCallback } from 'react';
-import { useRecoilCallback } from 'recoil';
+
 import styled from 'styled-components';
 
 import { ThemeProps } from '../../types/theme';
-import { processSnapshot } from '../../utils/helperFunctions';
 
 const ReadMoreLink = styled.a`
 	border: none;
@@ -33,20 +32,17 @@ interface Prop {
 
 export default function CardButton({ news }: Prop) {
 	const { asPath, push } = useRouter();
-	const saveState = useRecoilCallback(({ snapshot }) => () => {
-		processSnapshot(snapshot);
-	});
+
 	const clickEvent = useCallback(
 		(event: MouseEvent<HTMLAnchorElement> | undefined) => {
 			event?.preventDefault();
-			push(`${event?.currentTarget.baseURI}/news/${news}`);
-			saveState();
+			push(`${event?.currentTarget.baseURI}/story/${news}`);
 		},
-		[push, news, saveState]
+		[push, news]
 	);
 
 	return (
-		<ReadMoreLink href={`${asPath}/news/${news}`} onClick={(event) => clickEvent(event)}>
+		<ReadMoreLink href={`${asPath}/story/${news}`} onClick={(event) => clickEvent(event)}>
 			ReadMore
 		</ReadMoreLink>
 	);

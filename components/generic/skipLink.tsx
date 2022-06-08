@@ -32,7 +32,7 @@ const SkipLinkText = styled.span`
 export default function SkipLink() {
 	return (
 		<SkipLinkAnchor href="#main-content">
-			<SkipLinkText>Skip to main content</SkipLinkText>
+			<SkipLinkText className="skipLink">Skip to main content</SkipLinkText>
 		</SkipLinkAnchor>
 	);
 }

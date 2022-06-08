@@ -1,6 +1,4 @@
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { newsSelector } from '../../state/newsCardState';
 import PortableTxt from '../../sanity/portableText';
 import getDate from '../../utils/dateTime';
 import { ThemeProps } from '../../types/theme';
@@ -14,21 +12,22 @@ const NewsCard = styled.div`
 	box-shadow: 2px 3px 2px -12px ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 `;
 
-export default function CardNews() {
-	const selectedNews = useRecoilValue(newsSelector);
+export default function CardNews(props: any) {
+	const {
+		props: { currentNews }
+	} = props;
 
-	if (selectedNews === undefined) {
+	if (currentNews === undefined) {
 		return <ErrorMessage>The selected item does not exist</ErrorMessage>;
 	}
-	const { headline, content, dateTime } = selectedNews;
+
+	const { headline, content, dateTime } = currentNews;
 
 	return (
 		<NewsCard>
 			<h2>{headline}</h2>
 			<h3>{getDate(dateTime)}</h3>
-			<div>
-				<PortableTxt blocks={content} />
-			</div>
+			<PortableTxt blocks={content} />
 		</NewsCard>
 	);
 }

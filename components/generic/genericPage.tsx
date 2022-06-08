@@ -33,10 +33,7 @@ const changeValues = (val: string) => {
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
-			-webkit-transition: 0.25s all ease-in-out;
-			-moz-transition: 0.25s all ease-in-out;
-			-o-transition: 0.25s all ease-in-out;
-			transition: 0.25s all ease-in;
+
 			width:100vw;
 			padding:0px;
 

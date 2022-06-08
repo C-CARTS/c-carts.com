@@ -5,27 +5,54 @@ import GenericPage from '../../../../components/generic/genericPage';
 import useMainNav from '../../../../data-hooks/useMainNav';
 
 import useSiteConfig from '../../../../data-hooks/useSiteConfig';
+import sanityClient from '../../../../sanity/sanityClient';
 
-export default function CardNewsDisplay() {
+export default function CardNewsDisplay(props: any) {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	return (
 		<GenericPage title="News" siteConfig={siteConfig} mainNav={mainNav}>
-			<CardNews />
+			<CardNews props={props} />
 		</GenericPage>
 	);
 }
 
 CardNewsDisplay.dataHooks = [useSiteConfig, useMainNav];
 
-export async function getServerSideProps(context: any) {
+export async function getStaticPaths() {
+	const config = await sanityClient.get('siteConfig', process.env.NEXT_PUBLIC_SANITY_SITE_CONFIG_ID ?? 'No Config');
+	const { mainNavigation } = config;
+	if (mainNavigation) {
+		const section = 'about-us';
+		// TODO change the path to news
+		const newz = await sanityClient.getAll('news');
+
+		const paths = newz.map((n) => ({ params: { section, slug: n.slug?.current } }));
+		return {
+			paths,
+			fallback: false
+		};
+	}
+	return {
+		paths: [],
+		fallback: false
+	};
+}
+
+export async function getStaticProps(context: any) {
+	const {
+		params: { slug }
+	} = context;
+	const newz = await sanityClient.getAll('news');
+	const currentNews = newz.find((nz) => nz.slug.current === slug);
 	const dataHookProps = await getDataHooksProps({
 		context,
 		dataHooks: CardNewsDisplay.dataHooks
 	});
 	return {
 		props: {
-			...dataHookProps
+			...dataHookProps,
+			currentNews
 		}
 	};
 }
