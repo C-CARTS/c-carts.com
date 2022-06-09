@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+
 import PortableTxt from '../../sanity/portableText';
 import getDate from '../../utils/dateTime';
-import { ThemeProps } from '../../types/theme';
 
 const ErrorMessage = styled.div`
 	font-size: 1.2rem;
@@ -9,7 +9,13 @@ const ErrorMessage = styled.div`
 `;
 
 const NewsCard = styled.div`
-	box-shadow: 2px 3px 2px -12px ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
+	padding-left: 2rem;
+	padding-top: 2rem;
+	box-shadow: 2px 4px 12px hsl(220deg 0% 80%);
+	box-shadow: 2px 4px 12px hsl(0deg 0% 80%);
+	box-shadow: 2px 4px 12px hsl(360deg 0% 80%);
+	box-shadow: 2px 4px 12px hsl(180deg 0% 80%);
+	border-radius: 5px;
 `;
 
 export default function CardNews(props: any) {

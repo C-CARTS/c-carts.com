@@ -33,13 +33,9 @@ const changeValues = (val: string) => {
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
-
 			width:100vw;
 			padding:0px;
-
-
 			.menuWrapper{
-
 				#logoLink{
 					padding-left: clamp(1rem, 5vw, 3rem);
 				}
