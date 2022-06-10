@@ -5,12 +5,20 @@ import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
 interface Bar {
 	data: any[];
 	chartId: string;
 }
+
+const StackedBarChart = styled.div`
+	width: 100%;
+	max-height: 80rem;
+	background-color: Menu;
+	height: 38rem;
+`;
 
 // const extraProp = {
 // 	description: `Above diagram is a stacked bar chart with X axis representing months October, Novermber and december from left to right respectively. The Y axis
@@ -21,12 +29,12 @@ interface Bar {
 export default function MyResponsiveBar({ data, chartId }: Bar) {
 	const toor = useRef<any>(null);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const root = am5.Root.new(chartId, {
 			useSafeResolution: true
 		});
 		root.setThemes([am5themes_Animated.new(root)]);
-
+		root.tabindex = 0;
 		const xy = root.container.children.push(
 			am5xy.XYChart.new(root, {
 				panX: false,
@@ -36,21 +44,25 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 				layout: root.verticalLayout,
 				scale: 1,
 				focusable: true,
-				ariaLabel: 'Chart: Total trips for different purposes for last quarter'
+				ariaLabel: 'Chart: Total trips for different purposes for last quarter',
+				tabindexOrder: 1
 			})
 		);
 
-		xy.set(
-			'scrollbarX',
-			am5.Scrollbar.new(root, {
-				orientation: 'horizontal'
-			})
-		);
+		// xy.set(
+		// 	'scrollbarX',
+		// 	am5.Scrollbar.new(root, {
+		// 		orientation: 'horizontal'
+		// 	})
+		// );
 
 		const xAxi = xy.xAxes.push(
 			am5xy.CategoryAxis.new(root, {
 				categoryField: 'month',
-				renderer: am5xy.AxisRendererX.new(root, {}),
+				renderer: am5xy.AxisRendererX.new(root, {
+					cellStartLocation: 0.1,
+					cellEndLocation: 0.9
+				}),
 				tooltip: am5.Tooltip.new(root, {})
 			})
 		);
@@ -60,7 +72,6 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 		const yAxi = xy.yAxes.push(
 			am5xy.ValueAxis.new(root, {
 				min: 0,
-
 				renderer: am5xy.AxisRendererY.new(root, {})
 			})
 		);
@@ -68,7 +79,9 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 		const legend = xy.children.push(
 			am5.Legend.new(root, {
 				centerX: am5.p0,
-				x: am5.p0
+				x: 100,
+				position: 'relative',
+				toggleKey: 'active'
 			})
 		);
 
@@ -85,7 +98,10 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 			);
 			series.columns.template.setAll({
 				tooltipText: '{name}, {categoryX}: {valueY}',
-				tooltipY: am5.percent(10)
+				tooltipY: am5.percent(10),
+				focusableGroup: 'Trips Taken',
+				ariaLabel: 'Column {name}. Trip type {categoryX}, trip value {valueY}. Use arrow keys to select other columns in this series',
+				tabindexOrder: 30
 			});
 			series.columns.template.set('focusable', true);
 
@@ -96,6 +112,8 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 					sprite: am5.Label.new(root, {
 						text: '{valueY}',
 						fill: root.interfaceColors.get('alternativeText'),
+						focusable: true,
+						ariaLabel: 'Column: {name}, TripeType : {valueX}, Number of Trips {valueY}',
 						centerY: am5.p50,
 						centerX: am5.p50,
 						populateText: true
@@ -120,5 +138,5 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 		};
 	}, [data, chartId]);
 
-	return <div id={chartId} style={{ width: '100%', height: '30rem', backgroundColor: 'Menu' }} />;
+	return <StackedBarChart id={chartId} />;
 }
