@@ -5,7 +5,7 @@ import { TripTypes } from '@c-carts/cms';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
-const BarChart = dynamic(() => import('./responsiveBar'), {
+const BarChart = dynamic(() => import('./stackedBarChart'), {
 	ssr: false
 });
 
@@ -18,11 +18,7 @@ const BarChartContainer = styled.div`
 	flex-direction: column;
 	flex-wrap: nowrap;
 	height: 100%;
-	svg {
-		max-height: 20rem;
-		width: 100%;
-		font-weight: bold;
-	}
+	z-index: 10;
 	span {
 		font-size: 1rem;
 		font-style: italic;
@@ -31,9 +27,7 @@ const BarChartContainer = styled.div`
 `;
 
 export default function TripsTypes({ ttypes }: TTypes) {
-	const { month1, month2, month3 } = ttypes;
-	const months = [month1, month2, month3];
-
+	const months = Object.entries(ttypes).splice(1);
 	const field = months.flatMap((item: any) => {
 		if (item.month !== '' || item.month !== undefined) {
 			item.education;
@@ -51,7 +45,7 @@ export default function TripsTypes({ ttypes }: TTypes) {
 	return (
 		<BarChartContainer>
 			<BarChart data={field} chartId="tripTypesChart" />
-			<span aria-hidden>Bar chart for all different type of trips taken by C-Carts vehicles</span>
+			<span aria-hidden>Stacked Bar chart represent trips taken for specific purpose by C-Carts vehicles for month of Cotober, november and december</span>
 		</BarChartContainer>
 	);
 }

@@ -10,6 +10,7 @@ const Nav = styled.nav`
 	flex-flow: row nowrap;
 	justify-content: center;
 	align-items: center;
+	z-index: 1000;
 `;
 interface Props {
 	nav: MainNavItem[];

@@ -6,6 +6,8 @@ import { useEffect, useRef } from 'react';
 import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
+import styled from 'styled-components';
+import MyTheme from './chartsTheme';
 // const extraProps = {
 // 	title: 'Radial Pie Chart denoting total trips by C-Carts Vehicle',
 // 	description: `Chart consist of three concentric circles with data for December, November and October from outer to innermost circle
@@ -13,12 +15,17 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 // 				number of trips which were of type denied, lift ,sixty plus.`
 // };
 
+const ClusteredChartConntainer = styled.div`
+	min-width: 25rem;
+	height: 35rem;
+`;
+
 interface Props {
 	data: any;
 	chartId: string;
 }
 
-export default function MyResponsivePie({ data, chartId }: Props) {
+export default function ClusterdColumChart({ data, chartId }: Props) {
 	const toor = useRef<any>(null);
 
 	useEffect(() => {
@@ -34,14 +41,17 @@ export default function MyResponsivePie({ data, chartId }: Props) {
 				wheelX: 'panX',
 				wheelY: 'panY',
 				layout: root.verticalLayout,
-				ariaLabel: 'Chart: Total trips for different purposes for last quarter'
+				focusable: true,
+				tabindexOrder: 10,
+				ariaLabel: 'Stacked Bar chart depicting different ride types and their amount for month of october, november and december'
 			})
 		);
 
 		const legend = xy.children.push(
 			am5.Legend.new(root, {
-				centerX: am5.p50,
-				x: am5.p50
+				x: 90,
+				position: 'relative',
+				toggleKey: 'active'
 			})
 		);
 
@@ -81,16 +91,23 @@ export default function MyResponsivePie({ data, chartId }: Props) {
 			series.columns.template.setAll({
 				tooltipText: '{name}, {categoryX}:{valueY}',
 				width: am5.percent(90),
-				tooltipY: 0
+				tooltipY: 0,
+				focusable: true,
+				focusableGroup: 'Trips Types',
+				ariaLabel: 'Column {name}. Trip type {categoryX}, trip value {valueY}. Use arrow keys to select other columns in this series',
+				tabindexOrder: 30
 			});
+
 			series.data.setAll(data);
 			series.appear(1000, 100);
 			series.bullets.push(() => {
 				return am5.Bullet.new(root, {
-					locationY: 0,
+					locationY: 1,
 					sprite: am5.Label.new(root, {
 						text: '{valueY}',
 						fill: root.interfaceColors.get('alternativeText'),
+						focusable: true,
+						ariaLabel: 'Column: {name}, Trip : {valueX}, Number of Trips {valueY}',
 						centerY: 0,
 						centerX: am5.p50,
 						populateText: true
@@ -114,5 +131,5 @@ export default function MyResponsivePie({ data, chartId }: Props) {
 		};
 	}, [chartId, data]);
 
-	return <div id={chartId} style={{ width: '25rem', height: '45rem' }} />;
+	return <ClusteredChartConntainer id={chartId} />;
 }

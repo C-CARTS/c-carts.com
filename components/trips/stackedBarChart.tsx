@@ -13,11 +13,9 @@ interface Bar {
 	chartId: string;
 }
 
-const StackedBarChart = styled.div`
-	width: 100%;
-	max-height: 80rem;
-	background-color: Menu;
-	height: 38rem;
+const StackedChartContainer = styled.div`
+	min-width: 30rem;
+	height: 30rem;
 `;
 
 // const extraProp = {
@@ -26,7 +24,7 @@ const StackedBarChart = styled.div`
 // 				education,employment,medical,misc,personal,shopping and social.`
 // };
 
-export default function MyResponsiveBar({ data, chartId }: Bar) {
+export default function StackedBarChart({ data, chartId }: Bar) {
 	const toor = useRef<any>(null);
 
 	useEffect(() => {
@@ -44,8 +42,8 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 				layout: root.verticalLayout,
 				scale: 1,
 				focusable: true,
-				ariaLabel: 'Chart: Total trips for different purposes for last quarter',
-				tabindexOrder: 1
+				ariaLabel: 'Chart: depicting total trips which are either denied or above Sixty Plus or Lyft has been provided',
+				tabindexOrder: 10
 			})
 		);
 
@@ -79,7 +77,7 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 		const legend = xy.children.push(
 			am5.Legend.new(root, {
 				centerX: am5.p0,
-				x: 100,
+				x: 90,
 				position: 'relative',
 				toggleKey: 'active'
 			})
@@ -93,7 +91,8 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 					xAxis: xAxi,
 					yAxis: yAxi,
 					valueYField: fieldName,
-					categoryXField: 'month'
+					categoryXField: 'month',
+					maskBullets: false
 				})
 			);
 			series.columns.template.setAll({
@@ -103,17 +102,30 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 				ariaLabel: 'Column {name}. Trip type {categoryX}, trip value {valueY}. Use arrow keys to select other columns in this series',
 				tabindexOrder: 30
 			});
+			// If DataItem is zero
+			series.columns.template.onPrivate('height', (height, target) => {
+				if (target !== undefined && target.dataItem?.bullets !== undefined) {
+					am5.array.each(target.dataItem.bullets, (bullet) => {
+						if (height === 0) {
+							bullet.get('sprite').hide();
+						} else {
+							bullet.get('sprite').show();
+						}
+					});
+				}
+			});
 			series.columns.template.set('focusable', true);
 
 			series.data.setAll(data);
 			series.appear(1000, 100);
+
 			series.bullets.push(() => {
 				return am5.Bullet.new(root, {
 					sprite: am5.Label.new(root, {
 						text: '{valueY}',
 						fill: root.interfaceColors.get('alternativeText'),
 						focusable: true,
-						ariaLabel: 'Column: {name}, TripeType : {valueX}, Number of Trips {valueY}',
+						ariaLabel: 'Column: {valueX}, TripeType : {name}, Number of Trips {valueY}',
 						centerY: am5.p50,
 						centerX: am5.p50,
 						populateText: true
@@ -138,5 +150,5 @@ export default function MyResponsiveBar({ data, chartId }: Bar) {
 		};
 	}, [data, chartId]);
 
-	return <StackedBarChart id={chartId} />;
+	return <StackedChartContainer id={chartId} />;
 }

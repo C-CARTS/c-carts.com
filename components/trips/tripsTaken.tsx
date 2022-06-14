@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
-const ChartComponent = dynamic(() => import('./responsivePie'), { ssr: false });
+const ChartComponent = dynamic(() => import('./clusteredColChart'), { ssr: false });
 
 interface Trips {
 	trips: Array<Object>;
@@ -18,10 +18,6 @@ const PieChartContainer = styled.div`
 		font-weight: 500;
 		width: 100%;
 	}
-	svg {
-		width: 100%;
-		font-weight: 800;
-	}
 `;
 
 export default function TripsTaken({ trips }: Trips) {
@@ -37,7 +33,10 @@ export default function TripsTaken({ trips }: Trips) {
 		// eslint-disable-next-line jsx-a11y/aria-role
 		<PieChartContainer role="graphics-document" tabIndex={0}>
 			<ChartComponent data={data} chartId="tripsTakePie" />
-			<span aria-hidden>Radial Pie chart for all trips taken by C-Carts vehicles for month of october,november and december</span>
+			<span aria-hidden>
+				Below is a Clustered Bar chart for trips which were denied,Lyft provided or over sixty plus by C-Carts vehicles for month of october,november and
+				december
+			</span>
 		</PieChartContainer>
 	);
 }
