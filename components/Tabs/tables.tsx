@@ -1,3 +1,4 @@
+import { Maps } from '@c-carts/cms';
 import styled from 'styled-components';
 import { ThemeProps } from '../../types/theme';
 
@@ -296,7 +297,7 @@ const InnerContainer = styled(TableContainer)`
 `;
 
 interface Prop {
-	code: any;
+	code: Maps['content'];
 }
 
 export default function Tables({ code }: Prop) {

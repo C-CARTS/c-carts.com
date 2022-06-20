@@ -1,32 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useCallback } from 'react';
+import { MouseEventHandler, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { getFile } from '@sanity/asset-utils';
+import { Maps } from '@c-carts/cms';
 import urlFor from '../../sanity/urlFor';
 import subTabAtom from '../../state/subTabState';
 import { ThemeProps } from '../../types/theme';
 import MapsTab from './mapTab';
 import Tables from './tables';
 import PdfTab from './pdfTab';
-import config from '../../sanity/sanityConfig';
+import getPdfUrl from '../../utils/getPdfUrl';
 
 interface Prop {
-	content: any;
-	map: any;
-	pdf: any;
+	content: Maps['content'];
+	map: Maps['images'];
+	pdf: Maps['routePdfs'];
 }
-
-const getPdfUrl = (input: any) => {
-	const filedData = getFile(input, config);
-	const {
-		asset: { url }
-	} = filedData;
-	if (url) {
-		return url;
-	}
-	return null;
-};
 
 const ButtonContainer = styled.div`
 	display: flex;
@@ -83,10 +72,14 @@ function SubTab({ content, map, pdf }: Prop) {
 	const { code } = content;
 	const imageUrl = urlFor(map.asset._ref);
 	const url = getPdfUrl(pdf);
-	const onSubTabClick = useCallback(
-		(event: any) => {
-			const attribute = event.currentTarget.getAttribute('id');
-			setSubTabAttribute(attribute);
+	const onSubTabClick = useCallback<MouseEventHandler<HTMLButtonElement>>(
+		(event: React.MouseEvent<HTMLButtonElement>) => {
+			if (event.currentTarget !== null) {
+				const attribute = event.currentTarget.getAttribute('id');
+				if (typeof attribute === 'string') {
+					setSubTabAttribute(attribute);
+				}
+			}
 		},
 		[setSubTabAttribute]
 	);

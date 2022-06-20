@@ -1,3 +1,5 @@
+import { News } from '@c-carts/cms';
+import { GetStaticPropsContext } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
 import CardNews from '../../../../components/card/cardNews';
 
@@ -7,12 +9,18 @@ import useMainNav from '../../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../../sanity/sanityClient';
 
-export default function CardNewsDisplay(props: any) {
+interface Props {
+	props: {
+		currentNews: News;
+	};
+}
+
+export default function CardNewsDisplay({ props: { currentNews } }: Props) {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	return (
 		<GenericPage title="News" siteConfig={siteConfig} mainNav={mainNav}>
-			<CardNews props={props} />
+			<CardNews currentNews={currentNews} />
 		</GenericPage>
 	);
 }
@@ -39,7 +47,7 @@ export async function getStaticPaths() {
 	};
 }
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps(context: GetStaticPropsContext) {
 	const {
 		params: { slug }
 	} = context;

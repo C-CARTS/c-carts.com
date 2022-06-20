@@ -1,6 +1,7 @@
-import { PerformanceSection } from '@c-carts/cms';
+import { PerformanceSection, Performance } from '@c-carts/cms';
 import styled from 'styled-components';
 import usePerformance from '../../data-hooks/usePerformance';
+import Archive from '../trips/archive';
 import SystemOperations from '../trips/systemOperations';
 import TripsTaken from '../trips/tripsTaken';
 import TripsTypes from '../trips/tripsTypes';
@@ -12,10 +13,11 @@ interface Props {
 const ChartsContainer = styled.div`
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(1, 1fr);
 	grid-template-rows: minmax(450px, auto);
 	align-items: center;
 	justify-content: center;
+	grid-row-gap: 2.35rem;
 	@media (max-width: 1100px) {
 		grid-template-columns: 1fr;
 	}
@@ -33,15 +35,16 @@ export default function PerformanceOperations({ block }: Props) {
 	}
 
 	return (
-		<ChartsContainer>
-			{prfm.map((val) => (
-				<>
-					<TripsTaken key={val._id} trips={val.trips} />
-					<TripsTypes key={val._id} ttypes={val.tripTypes} />
-					<SystemOperations key={val._id} system={val.systemOps} />
-				</>
+		<div style={{ width: '100%' }}>
+			{prfm.map((val: Performance) => (
+				<ChartsContainer className="charts" key={val._id}>
+					<TripsTaken trips={val.trips} />
+					<TripsTypes ttypes={val.tripTypes} />
+					<SystemOperations system={val.systemOps} />
+					<Archive data={val.finance} />
+				</ChartsContainer>
 			))}
-		</ChartsContainer>
+		</div>
 	);
 }
 

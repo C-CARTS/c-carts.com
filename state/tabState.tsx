@@ -11,7 +11,7 @@ export const activeIndexAtom = atom({
 /**
  * It is the atom to track all labels of Tabs, and the default value is [].
  */
-export const labelArrayAtom = atom<any[]>({
+export const labelArrayAtom = atom<string[]>({
 	key: 'labelArray',
 	default: []
 });

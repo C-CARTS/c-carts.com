@@ -17,10 +17,13 @@ export default function useMediaQuery({ query }: Prop) {
 
 	useEffect(() => {
 		/**
-		 * It adds an event listener to the mediaMatch object.
-		 * @param {any} e - The event object that was passed to the handler.
+		 * `const handler: EventListenerOrEventListenerObject = (e: any) => setBreakpoints(e.matches);`
+		 *
+		 * The above function is a React hook that listens for changes to the mediaMatch object and then
+		 * updates the breakpoints state
+		 * @param {any} e - any - The event object.
 		 */
-		const handler = (e: any) => setBreakpoints(e.matches);
+		const handler: EventListenerOrEventListenerObject = (e: any) => setBreakpoints(e.matches);
 		mediaMatch.addEventListener('change', handler);
 		return () => mediaMatch.removeEventListener('change', handler);
 	});

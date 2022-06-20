@@ -7,15 +7,16 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { TripTypeRow } from '@c-carts/cms';
 
 interface Bar {
-	data: any[];
+	data: Array<TripTypeRow | 'tripTypes'>;
 	chartId: string;
 }
 
 const StackedChartContainer = styled.div`
-	min-width: 30rem;
-	height: 30rem;
+	width: 100%;
+	height: 35rem;
 `;
 
 // const extraProp = {
@@ -42,17 +43,10 @@ export default function StackedBarChart({ data, chartId }: Bar) {
 				layout: root.verticalLayout,
 				scale: 1,
 				focusable: true,
-				ariaLabel: 'Chart: depicting total trips which are either denied or above Sixty Plus or Lyft has been provided',
+				ariaLabel: 'Chart: depicting total trips taken for different purposes in october, november and december',
 				tabindexOrder: 10
 			})
 		);
-
-		// xy.set(
-		// 	'scrollbarX',
-		// 	am5.Scrollbar.new(root, {
-		// 		orientation: 'horizontal'
-		// 	})
-		// );
 
 		const xAxi = xy.xAxes.push(
 			am5xy.CategoryAxis.new(root, {
@@ -76,8 +70,7 @@ export default function StackedBarChart({ data, chartId }: Bar) {
 
 		const legend = xy.children.push(
 			am5.Legend.new(root, {
-				centerX: am5.p0,
-				x: 90,
+				centerX: 0,
 				position: 'relative',
 				toggleKey: 'active'
 			})
@@ -92,29 +85,31 @@ export default function StackedBarChart({ data, chartId }: Bar) {
 					yAxis: yAxi,
 					valueYField: fieldName,
 					categoryXField: 'month',
-					maskBullets: false
+					maskBullets: false,
+					focusable: true,
+					focusableGroup: 'types',
+					tabindexOrder: 30,
+					role: 'figure'
 				})
 			);
 			series.columns.template.setAll({
 				tooltipText: '{name}, {categoryX}: {valueY}',
-				tooltipY: am5.percent(10),
-				focusableGroup: 'Trips Taken',
-				ariaLabel: 'Column {name}. Trip type {categoryX}, trip value {valueY}. Use arrow keys to select other columns in this series',
-				tabindexOrder: 30
+				tooltipY: am5.percent(20)
 			});
 			// If DataItem is zero
-			series.columns.template.onPrivate('height', (height, target) => {
-				if (target !== undefined && target.dataItem?.bullets !== undefined) {
-					am5.array.each(target.dataItem.bullets, (bullet) => {
-						if (height === 0) {
-							bullet.get('sprite').hide();
-						} else {
-							bullet.get('sprite').show();
-						}
-					});
-				}
-			});
-			series.columns.template.set('focusable', true);
+			// series.columns.template.onPrivate('height', (height, target) => {
+			// 	if (target !== undefined && target.dataItem?.bullets !== undefined) {
+			// 		am5.array.each(target.dataItem.bullets, (bullet) => {
+			// 			if (height === 0) {
+			// 				bullet.get('sprite').hide();
+			// 			} else {
+			// 				bullet.get('sprite').show();
+			// 			}
+			// 		});
+			// 	}
+			// });
+			// series.columns.template.set('focusable', true);
+			series.columns.template.set('width', 60);
 
 			series.data.setAll(data);
 			series.appear(1000, 100);
@@ -125,10 +120,12 @@ export default function StackedBarChart({ data, chartId }: Bar) {
 						text: '{valueY}',
 						fill: root.interfaceColors.get('alternativeText'),
 						focusable: true,
-						ariaLabel: 'Column: {valueX}, TripeType : {name}, Number of Trips {valueY}',
+						tabindexOrder: 40,
+						ariaLabel: 'Column: {categoryX}, TripType : {name}, Number of Trips {valueY}',
 						centerY: am5.p50,
 						centerX: am5.p50,
-						populateText: true
+						populateText: true,
+						role: 'figure'
 					})
 				});
 			});

@@ -1,4 +1,4 @@
-const ConvertToCapital = (label: any) => {
+const ConvertToCapital = (label: string) => {
 	const value = label.toString();
 	const mutate: string = value.replace('-', '  ');
 	const mutateTwo: string = mutate.replace('-', '  ');

@@ -1,4 +1,4 @@
-import { NewsSection } from '@c-carts/cms';
+import { NewsSection, News as NewsType } from '@c-carts/cms';
 
 import styled from 'styled-components';
 import useNewz from '../../data-hooks/useNewz';
@@ -45,7 +45,7 @@ export default function NewsComponent({ block: { count } }: Props) {
 
 	return (
 		<Container className="Container">
-			{filtered.map((j: any) => (
+			{filtered.map((j: NewsType) => (
 				<News news={j} key={j._id} />
 			))}
 		</Container>

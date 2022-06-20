@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { useCallback, useState } from 'react';
+import { KeyboardEvent, useCallback, useState } from 'react';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
 // eslint-disable-next-line import/no-cycle
 import SideSection from './sideSection';
@@ -64,7 +64,7 @@ export default function SideNav({ nav }: Props) {
 	}, [setButtonState, buttonState]);
 
 	const keyPress = useCallback(
-		(event) => {
+		(event: KeyboardEvent<HTMLButtonElement>) => {
 			if (event.key === 'Enter' || event.key === 'Tab' || event.key === 'Space') {
 				setKeypresed(true);
 			} else {
@@ -76,17 +76,17 @@ export default function SideNav({ nav }: Props) {
 
 	return (
 		// eslint-disable-next-line react/button-has-type
-		<ListContainer>
+		<ListContainer role="navigation" aria-label="Hamburger Menu">
 			<SideNavButton
-				aria-label="Side Navigation Menu"
-				aria-haspopup="menu"
-				aria-controls="ccarts"
-				aria-expanded={buttonState || keyPressState}
+				role="button"
+				aria-haspopup="true"
+				aria-expanded={keyPressState}
 				type="button"
+				aria-label="Side Navigation Menu"
 				onClick={buttonClick}
 				onKeyPress={keyPress}
 			>
-				{buttonState ? <AiOutlineClose /> : <AiOutlineMenu />}
+				{buttonState ? <AiOutlineClose aria-hidden="true" /> : <AiOutlineMenu aria-hidden="true" />}
 			</SideNavButton>
 			{buttonState ? <SideSection nav={nav} /> : ''}
 		</ListContainer>

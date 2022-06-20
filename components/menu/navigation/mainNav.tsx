@@ -50,7 +50,7 @@ export default function MainNav({ nav }: Props) {
 	}
 
 	return (
-		<Nav>
+		<Nav aria-label="C-Carts Menu">
 			{nav.map((item, index) => (
 				<NavSection key={item._id} item={item} index={index} />
 			))}

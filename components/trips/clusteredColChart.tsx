@@ -7,7 +7,8 @@ import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import styled from 'styled-components';
-import MyTheme from './chartsTheme';
+import { ThemeProps } from '../../types/theme';
+
 // const extraProps = {
 // 	title: 'Radial Pie Chart denoting total trips by C-Carts Vehicle',
 // 	description: `Chart consist of three concentric circles with data for December, November and October from outer to innermost circle
@@ -16,12 +17,13 @@ import MyTheme from './chartsTheme';
 // };
 
 const ClusteredChartConntainer = styled.div`
-	min-width: 25rem;
+	//width: ${({ theme }: ThemeProps) => theme.widths.eightByTwelve}%;
+	width: 100%;
 	height: 35rem;
 `;
 
 interface Props {
-	data: any;
+	data: Array<{ id: string; Denied: number; Lift: number; SixtyPlus: number }>;
 	chartId: string;
 }
 
@@ -43,7 +45,7 @@ export default function ClusterdColumChart({ data, chartId }: Props) {
 				layout: root.verticalLayout,
 				focusable: true,
 				tabindexOrder: 10,
-				ariaLabel: 'Stacked Bar chart depicting different ride types and their amount for month of october, november and december'
+				ariaLabel: 'Clustered Bar Chart dipicting C-Carts trips which were deined or Lift or Above Sixty Plus'
 			})
 		);
 
@@ -74,7 +76,7 @@ export default function ClusterdColumChart({ data, chartId }: Props) {
 			})
 		);
 
-		function makeSeries(nam: string, fieldName: any) {
+		function makeSeries(nam: string, fieldName: string) {
 			const series = xy.series.push(
 				am5xy.ColumnSeries.new(root, {
 					name: nam,
@@ -82,6 +84,10 @@ export default function ClusterdColumChart({ data, chartId }: Props) {
 					yAxis: yAxi,
 					valueYField: fieldName,
 					categoryXField: 'id',
+					tabindexOrder: 20,
+					focusable: true,
+					focusableGroup: 'trips',
+					role: 'figure',
 					tooltip: am5.Tooltip.new(root, {
 						labelText: '{name}, {categoryX}: {valueY}'
 					})
@@ -90,12 +96,8 @@ export default function ClusterdColumChart({ data, chartId }: Props) {
 
 			series.columns.template.setAll({
 				tooltipText: '{name}, {categoryX}:{valueY}',
-				width: am5.percent(90),
-				tooltipY: 0,
-				focusable: true,
-				focusableGroup: 'Trips Types',
-				ariaLabel: 'Column {name}. Trip type {categoryX}, trip value {valueY}. Use arrow keys to select other columns in this series',
-				tabindexOrder: 30
+				width: am5.percent(100),
+				tooltipY: 0
 			});
 
 			series.data.setAll(data);
@@ -107,9 +109,11 @@ export default function ClusterdColumChart({ data, chartId }: Props) {
 						text: '{valueY}',
 						fill: root.interfaceColors.get('alternativeText'),
 						focusable: true,
-						ariaLabel: 'Column: {name}, Trip : {valueX}, Number of Trips {valueY}',
+						ariaLabel: 'Column: {id}, Trip : {name}, Number of Trips {valueY}',
 						centerY: 0,
 						centerX: am5.p50,
+						tabindexOrder: 30,
+						role: 'figure',
 						populateText: true
 					})
 				});
@@ -126,6 +130,7 @@ export default function ClusterdColumChart({ data, chartId }: Props) {
 		xy.appear(1000, 100);
 
 		toor.current = root;
+
 		return () => {
 			root.dispose();
 		};

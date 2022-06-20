@@ -1,4 +1,4 @@
-import { MapsSection } from '@c-carts/cms';
+import { MapsSection, Maps } from '@c-carts/cms';
 import useSchedule from '../../data-hooks/useSchedules';
 import SubTab from '../tabs/subTab';
 import Tab from '../tabs/tab';
@@ -21,7 +21,7 @@ export default function ScheduleComponent({ block }: Props) {
 
 	return (
 		<Tabs activeIndex={0}>
-			{mps.map((j: any) => (
+			{mps.map((j: Maps) => (
 				<Tab key={j._id} label={j.slug.current}>
 					<SubTab content={j.content} pdf={j.routePdfs} map={j.images} key={j._id} />
 				</Tab>

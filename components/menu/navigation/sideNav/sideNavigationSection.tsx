@@ -3,7 +3,7 @@ import { MainNavItem } from '../../../../data-hooks/useMainNav';
 import { ThemeProps } from '../../../../types/theme';
 import SubPage from '../subPage';
 
-const SideNavContainer = styled.div`
+const SideNavContainer = styled.nav`
 	-webkit-appearance: none;
 	width: min(100%, ${(props) => props.theme.breakpoints.largeDesktop});
 	width: 100vw;
@@ -70,9 +70,9 @@ export default function SideNavigationSection({ item: { title, slug, subPages } 
 		<SideNavContainer>
 			<h2>{title}</h2>
 			{title && (
-				<List>
+				<List role="menubar" aria-label={`${title} Section`}>
 					{subPages.map((sp, i) => (
-						<li key={sp._id}>
+						<li key={sp._id} role="none">
 							<SubPage page={sp} parentSlug={slug} last={i === subPages.length - 1} />
 						</li>
 					))}

@@ -48,9 +48,9 @@ export interface Props {
 
 export default function SideSection({ nav }: Props) {
 	return (
-		<SideSectionNav>
+		<SideSectionNav id="sideSection" role="menubar">
 			<Link href="/" passHref>
-				<LogoLink>C-CARTS</LogoLink>
+				<LogoLink role="link">C-CARTS</LogoLink>
 			</Link>
 			{nav && nav.map((item) => <SideNavigationSection key={item._id} item={item} />)}
 		</SideSectionNav>

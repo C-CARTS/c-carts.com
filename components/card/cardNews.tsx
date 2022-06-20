@@ -1,3 +1,5 @@
+import { News } from '@c-carts/cms';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import PortableTxt from '../../sanity/portableText';
@@ -18,11 +20,11 @@ const NewsCard = styled.div`
 	border-radius: 5px;
 `;
 
-export default function CardNews(props: any) {
-	const {
-		props: { currentNews }
-	} = props;
+interface Props {
+	currentNews: News;
+}
 
+export default function CardNews({ currentNews }: Props) {
 	if (currentNews === undefined) {
 		return <ErrorMessage>The selected item does not exist</ErrorMessage>;
 	}
