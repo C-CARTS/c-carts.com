@@ -14,13 +14,13 @@ const TabNames = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: flex-start;
+	justify-content: space-between;
 
 	align-content: center;
 	background: #29af1d;
 	width: 100%;
 
-	padding: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.25);
+	padding: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.15);
 
 	& :hover {
 		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.color};
@@ -34,12 +34,12 @@ const TabNames = styled.div`
 `;
 
 const IndividualTab = styled.button`
-	padding: 0.25rem calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides} * 0.115) 0.25rem;
+	padding: 0.25rem 0px;
 	text-transform: capitalize;
 	background: none;
 	border: none;
 	color: #000000;
-	width: ${({ theme }: ThemeProps) => theme.widths.twoByTwelve}%;
+	width: 30%;
 	cursor: pointer;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
 

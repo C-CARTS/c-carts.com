@@ -4,6 +4,13 @@ import { ThemeProps } from '../../types/theme';
 
 /* eslint-disable react/no-danger */
 
+const TableMobileWrap = styled.div`
+	width: 100%;
+	max-width: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+`;
+
 const TableContainer = styled.div`
 	width: 100%;
 	display: flex;
@@ -12,6 +19,7 @@ const TableContainer = styled.div`
 	align-items: flex-start;
 	justify-content: center;
 	margin-top: 1rem;
+
 	.westbound table {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
@@ -302,8 +310,11 @@ interface Prop {
 
 export default function Tables({ code }: Prop) {
 	return (
-		<TableContainer aria-labelledby="code" tabIndex={0}>
-			<InnerContainer dangerouslySetInnerHTML={{ __html: code }} />
-		</TableContainer>
+		<TableMobileWrap>
+			<TableContainer aria-labelledby="code" tabIndex={0}>
+				<InnerContainer dangerouslySetInnerHTML={{ __html: code }} />
+			</TableContainer>
+		</TableMobileWrap>
 	);
 }
+/// TO-DO Fix issue with layout of table for reduced Service

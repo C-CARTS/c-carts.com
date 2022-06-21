@@ -30,7 +30,7 @@ export const fiscalYearState = atom<string>({
 	default: ''
 });
 
-export const fiscalDataSelector = selector<Array<Object | string>>({
+export const fiscalDataSelector = selector<Array<any>>({
 	key: 'fiscalDataSelector',
 	get: ({ get }) => {
 		const year = get(fiscalYearState);

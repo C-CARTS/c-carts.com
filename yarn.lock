@@ -3,9 +3,9 @@
 
 
 "@amcharts/amcharts5@^5.2.6":
-  version "5.2.6"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@amcharts/amcharts5/-/amcharts5-5.2.6.tgz#2dc466686cbd91215ac7e5e665625f8fb82326cf"
-  integrity sha1-LcRmaGy9kSFax+XmZWJfj7gjJs8=
+  version "5.2.8"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@amcharts/amcharts5/-/amcharts5-5.2.8.tgz#c7d9369e8d5c8612071318b7e378da06de20a6b0"
+  integrity sha1-x9k2no1chhIHExi343jaBt4gprA=
   dependencies:
     "@types/d3" "^7.0.0"
     "@types/d3-chord" "^3.0.0"
@@ -1817,7 +1817,7 @@
     "@babel/parser" "^7.16.7"
     "@babel/types" "^7.16.7"
 
-"@babel/traverse@^7.13.0":
+"@babel/traverse@^7.13.0", "@babel/traverse@^7.18.2":
   version "7.18.5"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/traverse/-/traverse-7.18.5.tgz#94a8195ad9642801837988ab77f36e992d9a20cd"
   integrity sha1-lKgZWtlkKAGDeYird/NumS2aIM0=
@@ -1864,7 +1864,7 @@
     debug "^4.1.0"
     globals "^11.1.0"
 
-"@babel/traverse@^7.18.0", "@babel/traverse@^7.18.2":
+"@babel/traverse@^7.18.0":
   version "7.18.2"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/traverse/-/traverse-7.18.2.tgz#b77a52604b5cc836a9e1e08dca01cba67a12d2e8"
   integrity sha1-t3pSYEtcyDap4eCNygHLpnoS0ug=
@@ -1904,10 +1904,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@c-carts/cms@^1.0.46":
-  version "1.0.53"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@c-carts/cms/-/cms-1.0.53.tgz#f5ff0d8b69929eaa30448ba7ca034af8fdd3a502"
-  integrity sha1-9f8Ni2mSnqowRIunygNK+P3TpQI=
+"@c-carts/cms@^1.0.64":
+  version "1.0.64"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@c-carts/cms/-/cms-1.0.64.tgz#fa0e0dcb9b3c90760c5259bcf42e0ed050edf047"
+  integrity sha1-+g4Ny5s8kHYMUlm89C4O0FDt8Ec=
   dependencies:
     sanity-codegen "^0.9"
 
@@ -2494,9 +2494,9 @@
     string.prototype.matchall "^4.0.6"
 
 "@types/d3-array@*":
-  version "3.0.2"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-array/-/d3-array-3.0.2.tgz#71c35bca8366a40d1b8fce9279afa4a77fb0065d"
-  integrity sha1-ccNbyoNmpA0bj86Sea+kp3+wBl0=
+  version "3.0.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-array/-/d3-array-3.0.3.tgz#87d990bf504d14ad6b16766979d04e943c046dac"
+  integrity sha1-h9mQv1BNFK1rFnZpedBOlDwEbaw=
 
 "@types/d3-axis@*":
   version "3.0.1"
@@ -2518,9 +2518,9 @@
   integrity sha1-VMiFbBnI5Ks2pT9zunN95HaK0kg=
 
 "@types/d3-color@*":
-  version "3.0.2"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-color/-/d3-color-3.0.2.tgz#53f2d6325f66ee79afd707c05ac849e8ae0edbb0"
-  integrity sha1-U/LWMl9m7nmv1wfAWshJ6K4O27A=
+  version "3.1.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-color/-/d3-color-3.1.0.tgz#6594da178ded6c7c3842f3cc0ac84b156f12f2d4"
+  integrity sha1-ZZTaF43tbHw4QvPMCshLFW8S8tQ=
 
 "@types/d3-contour@*":
   version "3.0.1"
@@ -2531,9 +2531,9 @@
     "@types/geojson" "*"
 
 "@types/d3-delaunay@*":
-  version "6.0.0"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-delaunay/-/d3-delaunay-6.0.0.tgz#c09953ac7e5460997f693d2d7bf3522e0d4a88e6"
-  integrity sha1-wJlTrH5UYJl/aT0te/NSLg1KiOY=
+  version "6.0.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-delaunay/-/d3-delaunay-6.0.1.tgz#006b7bd838baec1511270cb900bf4fc377bbbf41"
+  integrity sha1-AGt72Di67BURJwy5AL9Pw3e7v0E=
 
 "@types/d3-dispatch@*":
   version "3.0.1"
@@ -2582,9 +2582,9 @@
     "@types/geojson" "*"
 
 "@types/d3-hierarchy@*":
-  version "3.0.2"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-hierarchy/-/d3-hierarchy-3.0.2.tgz#ca63f2f4da15b8f129c5b7dffd71d904cba6aca2"
-  integrity sha1-ymPy9NoVuPEpxbff/XHZBMumrKI=
+  version "3.1.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-hierarchy/-/d3-hierarchy-3.1.0.tgz#4561bb7ace038f247e108295ef77b6a82193ac25"
+  integrity sha1-RWG7es4DjyR+EIKV73e2qCGTrCU=
 
 "@types/d3-interpolate@*":
   version "3.0.1"
@@ -2642,10 +2642,10 @@
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-selection/-/d3-selection-3.0.2.tgz#23e48a285b24063630bbe312cc0cfe2276de4a59"
   integrity sha1-I+SKKFskBjYwu+MSzAz+InbeSlk=
 
-"@types/d3-shape@*":
-  version "3.0.2"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-shape/-/d3-shape-3.0.2.tgz#4b1ca4ddaac294e76b712429726d40365cd1e8ca"
-  integrity sha1-Sxyk3arClOdrcSQpcm1ANlzR6Mo=
+"@types/d3-shape@*", "@types/d3-shape@^3.0.0":
+  version "3.1.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-shape/-/d3-shape-3.1.0.tgz#1d87a6ddcf28285ef1e5c278ca4bdbc0658f3505"
+  integrity sha1-HYem3c8oKF7x5cJ4ykvbwGWPNQU=
   dependencies:
     "@types/d3-path" "*"
 
@@ -2655,13 +2655,6 @@
   integrity sha1-w8Fex0NrTOJOON5RdYaFDx/qjok=
   dependencies:
     "@types/d3-path" "^1"
-
-"@types/d3-shape@^3.0.0":
-  version "3.1.0"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@types/d3-shape/-/d3-shape-3.1.0.tgz#1d87a6ddcf28285ef1e5c278ca4bdbc0658f3505"
-  integrity sha1-HYem3c8oKF7x5cJ4ykvbwGWPNQU=
-  dependencies:
-    "@types/d3-path" "*"
 
 "@types/d3-time-format@*":
   version "4.0.0"
@@ -3474,9 +3467,9 @@ brfs@^2.0.0, brfs@^2.0.2:
     through2 "^2.0.0"
 
 brotli@^1.2.0:
-  version "1.3.2"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/brotli/-/brotli-1.3.2.tgz#525a9cad4fcba96475d7d388f6aecb13eed52f46"
-  integrity sha1-UlqcrU/LqWR119OI9q7LE+7VL0Y=
+  version "1.3.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/brotli/-/brotli-1.3.3.tgz#7365d8cc00f12cf765d2b2c898716bcf4b604d48"
+  integrity sha1-c2XYzADxLPdl0rLImHFrz0tgTUg=
   dependencies:
     base64-js "^1.1.2"
 
@@ -3545,7 +3538,17 @@ browserslist@^4.17.5:
     node-releases "^2.0.3"
     picocolors "^1.0.0"
 
-browserslist@^4.20.2, browserslist@^4.20.3, browserslist@^4.20.4:
+browserslist@^4.20.2, browserslist@^4.20.4:
+  version "4.21.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/browserslist/-/browserslist-4.21.0.tgz#7ab19572361a140ecd1e023e2c1ed95edda0cefe"
+  integrity sha1-erGVcjYaFA7NHgI+LB7ZXt2gzv4=
+  dependencies:
+    caniuse-lite "^1.0.30001358"
+    electron-to-chromium "^1.4.164"
+    node-releases "^2.0.5"
+    update-browserslist-db "^1.0.0"
+
+browserslist@^4.20.3:
   version "4.20.4"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/browserslist/-/browserslist-4.20.4.tgz#98096c9042af689ee1e0271333dbc564b8ce4477"
   integrity sha1-mAlskEKvaJ7h4CcTM9vFZLjORHc=
@@ -3599,10 +3602,15 @@ caniuse-lite@^1.0.30001317:
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/caniuse-lite/-/caniuse-lite-1.0.30001341.tgz#59590c8ffa8b5939cf4161f00827b8873ad72498"
   integrity sha1-WVkMj/qLWTnPQWHwCCe4hzrXJJg=
 
-caniuse-lite@^1.0.30001332, caniuse-lite@^1.0.30001349:
+caniuse-lite@^1.0.30001332:
   version "1.0.30001355"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/caniuse-lite/-/caniuse-lite-1.0.30001355.tgz#e240b7177443ed0198c737a7f609536976701c77"
   integrity sha1-4kC3F3RD7QGYxzen9glTaXZwHHc=
+
+caniuse-lite@^1.0.30001349, caniuse-lite@^1.0.30001358:
+  version "1.0.30001358"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/caniuse-lite/-/caniuse-lite-1.0.30001358.tgz#473d35dabf5e448b463095cab7924e96ccfb8c00"
+  integrity sha1-Rz012r9eRItGMJXKt5JOlsz7jAA=
 
 capture-stack-trace@^1.0.0:
   version "1.0.1"
@@ -3743,8 +3751,8 @@ confusing-browser-globals@^1.0.10:
 
 convert-source-map@^1.5.1, convert-source-map@^1.7.0:
   version "1.8.0"
-  resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.8.0.tgz#f3373c32d21b4d780dd8004514684fb791ca4369"
-  integrity sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/convert-source-map/-/convert-source-map-1.8.0.tgz#f3373c32d21b4d780dd8004514684fb791ca4369"
+  integrity sha1-8zc8MtIbTXgN2ABFFGhPt5HKQ2k=
   dependencies:
     safe-buffer "~5.1.1"
 
@@ -3757,9 +3765,9 @@ core-js-compat@^3.14.0, core-js-compat@^3.16.0:
     semver "7.0.0"
 
 core-js-compat@^3.18.0:
-  version "3.23.1"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/core-js-compat/-/core-js-compat-3.23.1.tgz#23d44d9f209086e60dabf9130cea7719af6e199b"
-  integrity sha1-I9RNnyCQhuYNq/kTDOp3Ga9uGZs=
+  version "3.23.2"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/core-js-compat/-/core-js-compat-3.23.2.tgz#5cbf8a9c8812d665392845b85ae91b5bcc7b615c"
+  integrity sha1-XL+KnIgS1mU5KEW4WukbW8x7YVw=
   dependencies:
     browserslist "^4.20.4"
     semver "7.0.0"
@@ -4719,10 +4727,15 @@ electron-to-chromium@^1.3.793, electron-to-chromium@^1.4.17:
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/electron-to-chromium/-/electron-to-chromium-1.4.113.tgz#b3425c086e2f4fc31e9e53a724c6f239e3adb8b9"
   integrity sha1-s0JcCG4vT8MenlOnJMbyOeOtuLk=
 
-electron-to-chromium@^1.4.118, electron-to-chromium@^1.4.147:
+electron-to-chromium@^1.4.118:
   version "1.4.160"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/electron-to-chromium/-/electron-to-chromium-1.4.160.tgz#da54e24fddeaca52f37965c7bec1bd964c97d487"
   integrity sha1-2lTiT93qylLzeWXHvsG9lkyX1Ic=
+
+electron-to-chromium@^1.4.147, electron-to-chromium@^1.4.164:
+  version "1.4.164"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/electron-to-chromium/-/electron-to-chromium-1.4.164.tgz#3d0f5c83557d8ec8a7faa531e498f198c3bd974a"
+  integrity sha1-PQ9cg1V9jsin+qUx5JjxmMO9l0o=
 
 electron-to-chromium@^1.4.84:
   version "1.4.137"
@@ -5202,8 +5215,8 @@ esrecurse@^4.3.0:
 
 estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.3.0"
-  resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
-  integrity sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/estraverse/-/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
+  integrity sha1-OYrT88WiSUi+dyXoPRGn3ijNvR0=
 
 estraverse@^5.1.0, estraverse@^5.3.0:
   version "5.3.0"
@@ -5923,7 +5936,7 @@ is-callable@^1.1.4, is-callable@^1.2.3, is-callable@^1.2.4:
   resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.2.4.tgz#47301d58dd0259407865547853df6d61fe471945"
   integrity sha512-nsuwtxZfMX67Oryl9LCQ+upnC0Z0BgpwntpS89m1H/TLF0zNfzfLMV/9Wa/6MZsj0acpEjAO0KF1xT6ZdLl95w==
 
-is-core-module@^2.2.0, is-core-module@^2.8.1:
+is-core-module@^2.2.0, is-core-module@^2.8.1, is-core-module@^2.9.0:
   version "2.9.0"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/is-core-module/-/is-core-module-2.9.0.tgz#e1c34429cd51c6dd9e09e0799e396e27b19a9c69"
   integrity sha1-4cNEKc1Rxt2eCeB5njluJ7GanGk=
@@ -6016,8 +6029,8 @@ is-plain-object@^2.0.4:
 
 is-regex@^1.0.4, is-regex@^1.1.3, is-regex@^1.1.4:
   version "1.1.4"
-  resolved "https://registry.yarnpkg.com/is-regex/-/is-regex-1.1.4.tgz#eef5663cd59fa4c0ae339505323df6854bb15958"
-  integrity sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/is-regex/-/is-regex-1.1.4.tgz#eef5663cd59fa4c0ae339505323df6854bb15958"
+  integrity sha1-7vVmPNWfpMCuM5UFMj32hUuxWVg=
   dependencies:
     call-bind "^1.0.2"
     has-tostringtag "^1.0.0"
@@ -7281,12 +7294,12 @@ resolve@1.1.7:
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
   integrity sha1-IDEU2CrSxe2ejgQRs5ModeiJ6Xs=
 
-resolve@^1.1.5, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.22.0:
-  version "1.22.0"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/resolve/-/resolve-1.22.0.tgz#5e0b8c67c15df57a89bdbabe603a002f21731198"
-  integrity sha1-XguMZ8Fd9XqJvbq+YDoALyFzEZg=
+resolve@^1.1.5, resolve@^1.13.1, resolve@^1.14.2:
+  version "1.22.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/resolve/-/resolve-1.22.1.tgz#27cb2ebb53f91abb49470a928bba7558066ac177"
+  integrity sha1-J8suu1P5GrtJRwqSi7p1WAZqwXc=
   dependencies:
-    is-core-module "^2.8.1"
+    is-core-module "^2.9.0"
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
@@ -7297,6 +7310,15 @@ resolve@^1.19.0, resolve@^1.20.0:
   dependencies:
     is-core-module "^2.2.0"
     path-parse "^1.0.6"
+
+resolve@^1.22.0:
+  version "1.22.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/resolve/-/resolve-1.22.0.tgz#5e0b8c67c15df57a89bdbabe603a002f21731198"
+  integrity sha1-XguMZ8Fd9XqJvbq+YDoALyFzEZg=
+  dependencies:
+    is-core-module "^2.8.1"
+    path-parse "^1.0.7"
+    supports-preserve-symlinks-flag "^1.0.0"
 
 resolve@^2.0.0-next.3:
   version "2.0.0-next.3"
@@ -7408,7 +7430,7 @@ sanity@^2.29.3:
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/sanity/-/sanity-2.29.3.tgz#02b401f477b5d2af766f4cbc080e09f903c4d6c5"
   integrity sha1-ArQB9He10q92b0y8CA4J+QPE1sU=
 
-sax@^1.2.1:
+sax@^1.2.4:
   version "1.2.4"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha1-KBYjTiN4vdxOU1T6tcqold9xANk=
@@ -7606,8 +7628,8 @@ source-map@~0.7.2:
 
 sourcemap-codec@^1.4.1, sourcemap-codec@^1.4.4:
   version "1.4.8"
-  resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
-  integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
+  integrity sha1-6oBL2UhXQC5pktBaOO8a41qatMQ=
 
 speedometer@~1.0.0:
   version "1.0.0"
@@ -8061,9 +8083,9 @@ unicode-match-property-value-ecmascript@^2.0.0:
   integrity sha1-GgGqVyR8FMVouJd1pUk4eIGJpxQ=
 
 unicode-properties@^1.2.2:
-  version "1.3.1"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/unicode-properties/-/unicode-properties-1.3.1.tgz#cc642b6314bde2c691d65dd94cece09ed84f1282"
-  integrity sha1-zGQrYxS94saR1l3ZTOzgnthPEoI=
+  version "1.4.1"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/unicode-properties/-/unicode-properties-1.4.1.tgz#96a9cffb7e619a0dc7368c28da27e05fc8f9be5f"
+  integrity sha1-lqnP+35hmg3HNowo2ifgX8j5vl8=
   dependencies:
     base64-js "^1.3.0"
     unicode-trie "^2.0.0"
@@ -8102,6 +8124,14 @@ upath@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.2.0.tgz#8f66dbcd55a883acdae4408af8b035a5044c1894"
   integrity sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==
+
+update-browserslist-db@^1.0.0:
+  version "1.0.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/update-browserslist-db/-/update-browserslist-db-1.0.3.tgz#6c47cb996f34afb363e924748e2f6e4d983c6fc1"
+  integrity sha1-bEfLmW80r7Nj6SR0ji9uTZg8b8E=
+  dependencies:
+    escalade "^3.1.1"
+    picocolors "^1.0.0"
 
 uri-js@^4.2.2:
   version "4.4.1"
@@ -8422,11 +8452,11 @@ xlsx@^0.18.0:
     word "~0.3.0"
 
 xmldoc@^1.1.2:
-  version "1.1.2"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/xmldoc/-/xmldoc-1.1.2.tgz#6666e029fe25470d599cd30e23ff0d1ed50466d7"
-  integrity sha1-ZmbgKf4lRw1ZnNMOI/8NHtUEZtc=
+  version "1.1.3"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/xmldoc/-/xmldoc-1.1.3.tgz#1a4f0fd4e7fe1567e6660cea9cadf991df5bb312"
+  integrity sha1-Gk8P1Of+FWfmZgzqnK35kd9bsxI=
   dependencies:
-    sax "^1.2.1"
+    sax "^1.2.4"
 
 xmlhttprequest@1:
   version "1.8.0"

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ThemeProps } from '../../types/theme';
 
 interface Prop {
-	pdfUrl: string | null;
+	pdfUrl: string;
 }
 
 const PdfContainer = styled.div`

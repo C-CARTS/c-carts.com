@@ -1,17 +1,16 @@
-import { MapsSection, Maps } from '@c-carts/cms';
+import { EagleExpressSection, Maps } from '@c-carts/cms';
 import useSchedule from '../../data-hooks/useSchedules';
-import SubTab from '../tabs/subTab';
-import Tab from '../tabs/tab';
-import Tabs from '../tabs/tabs';
+import SubTab from './subTab';
+import Tab from './tab';
+import Tabs from './tabs';
 
-interface Props {
-	block: MapsSection;
+interface Prop {
+	block: EagleExpressSection;
 }
 
-export default function ScheduleComponent({ block }: Props) {
+export default function EagleExpress({ block: { label } }: Prop) {
 	const mps = useSchedule();
-
-	if (mps.length === 0 && block.label.length < 0) {
+	if (mps.length === 0 && label.length < 0) {
 		return (
 			<p className="news unavailable">
 				<strong>There are currently no schedules available</strong>
@@ -19,9 +18,10 @@ export default function ScheduleComponent({ block }: Props) {
 		);
 	}
 
+	const eagle = mps.filter((val: Maps) => val.routeType.route[0] === label);
 	return (
 		<Tabs activeIndex={0}>
-			{mps.map((j: Maps) => (
+			{eagle.map((j: Maps) => (
 				<Tab key={j._id} label={j.slug.current}>
 					<SubTab content={j.content} pdf={j.routePdfs} map={j.images} key={j._id} />
 				</Tab>
@@ -29,5 +29,3 @@ export default function ScheduleComponent({ block }: Props) {
 		</Tabs>
 	);
 }
-
-ScheduleComponent.datahooks = [useSchedule];

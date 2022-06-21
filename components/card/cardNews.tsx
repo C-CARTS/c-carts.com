@@ -1,5 +1,4 @@
 import { News } from '@c-carts/cms';
-import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import PortableTxt from '../../sanity/portableText';

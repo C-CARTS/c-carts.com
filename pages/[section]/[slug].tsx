@@ -17,6 +17,7 @@ export default function Slug() {
 	const mainNav = useMainNav();
 	const page = usePage();
 	const { title } = page;
+
 	return (
 		<PageContent title={title ?? ''} siteConfig={siteConfig} mainNav={mainNav}>
 			<PageComponent page={page} />
