@@ -19,7 +19,8 @@ const TableContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-
+	overflow-x: auto;
+	padding: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingTop} 0px;
 	table {
 		flex: 1 1 auto;
 		//width: ${({ theme }: ThemeProps) => theme.widths.eightByTwelve}%;
@@ -30,7 +31,7 @@ const TableContainer = styled.div`
 
 		tr:nth-child(even),
 		th {
-			background-color: #f2f2f2;
+			background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		}
 		/* @media (max-width: 650px) {
 			width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
@@ -50,43 +51,41 @@ export default function SystemOperations({ system }: Ops) {
 	});
 
 	return (
-		<TableMobileWrap>
-			<TableContainer>
-				<table
-					role="table"
-					summary="Table to display hours and miles driveb by 6,12 and 14 passenger van and their cumulative total and cumulative hours and miles driven"
-				>
-					<caption>System Operations</caption>
-					<thead>
-						<tr>
-							<th scope="col">Month</th>
-							<th scope="col">6 Passenger Van</th>
-							<th scope="col">12 Passenger Van</th>
-							<th scope="col">14 Passenger Van</th>
-							<th scope="col">Miles</th>
-							<th scope="col">Hours</th>
+		<TableContainer>
+			<table
+				role="table"
+				summary="Table to display hours and miles driveb by 6,12 and 14 passenger van and their cumulative total and cumulative hours and miles driven"
+			>
+				<caption>System Operations</caption>
+				<thead>
+					<tr>
+						<th scope="col">Month</th>
+						<th scope="col">6 Passenger Van</th>
+						<th scope="col">12 Passenger Van</th>
+						<th scope="col">14 Passenger Van</th>
+						<th scope="col">Miles</th>
+						<th scope="col">Hours</th>
+					</tr>
+				</thead>
+				<tbody>
+					{mnths.map(({ fourteenPassVan, hours, miles, months, sixPassVan, twelvePassVan }: OperationType) => (
+						<tr key={months}>
+							<td>{months}</td>
+							<td>{sixPassVan}</td>
+							<td>{twelvePassVan}</td>
+							<td>{fourteenPassVan}</td>
+							<td>{miles}</td>
+							<td>{hours}</td>
 						</tr>
-					</thead>
-					<tbody>
-						{mnths.map(({ fourteenPassVan, hours, miles, months, sixPassVan, twelvePassVan }: OperationType) => (
-							<tr key={months}>
-								<td>{months}</td>
-								<td>{sixPassVan}</td>
-								<td>{twelvePassVan}</td>
-								<td>{fourteenPassVan}</td>
-								<td>{miles}</td>
-								<td>{hours}</td>
-							</tr>
-						))}
+					))}
 
-						<tr style={{ marginTop: '20rem' }}>
-							<td colSpan={4}>Total</td>
-							<td>{totalMiles}</td>
-							<td>{totalHours}</td>
-						</tr>
-					</tbody>
-				</table>
-			</TableContainer>
-		</TableMobileWrap>
+					<tr style={{ marginTop: '20rem' }}>
+						<td colSpan={4}>Total</td>
+						<td>{totalMiles}</td>
+						<td>{totalHours}</td>
+					</tr>
+				</tbody>
+			</table>
+		</TableContainer>
 	);
 }

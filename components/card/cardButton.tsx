@@ -42,8 +42,8 @@ export default function CardButton({ news }: Prop) {
 	);
 
 	return (
-		<ReadMoreLink href={`${asPath}/story/${news}`} onClick={(event) => clickEvent(event)}>
-			ReadMore
+		<ReadMoreLink id="readlink" aria-labelledby=" readlink cardHeading" href={`${asPath}/story/${news}`} onClick={(event) => clickEvent(event)}>
+			Read More
 		</ReadMoreLink>
 	);
 }

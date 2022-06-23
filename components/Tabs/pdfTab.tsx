@@ -26,7 +26,7 @@ const PdfContainer = styled.div`
 export default function PdfTab({ pdfUrl }: Prop) {
 	const donwload = `${pdfUrl}`;
 	return (
-		<PdfContainer aria-labelledby="file">
+		<PdfContainer aria-labelledby="file" role="tabpanel">
 			<Link href={donwload} passHref>
 				<a>Open Pdf</a>
 			</Link>

@@ -5,7 +5,7 @@ import GenericPage from '../../../components/generic/genericPage';
 import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
-import EagleExpress from '../../../components/tabs/eagleExpressTab';
+import EagleExpress from '../../../components/tabs/eagleExpress';
 
 const eagle = 'eagle-express';
 

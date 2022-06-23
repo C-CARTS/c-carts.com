@@ -13,13 +13,14 @@ interface Props {
 const ChartsContainer = styled.div`
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(1, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: minmax(450px, auto);
 	align-items: center;
 	justify-content: center;
-	grid-row-gap: 2.35rem;
+	grid-row-gap: 4rem;
+	grid-column-gap: 2rem;
 	@media (max-width: 1100px) {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(1, 100%);
 	}
 `;
 

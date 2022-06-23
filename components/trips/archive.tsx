@@ -1,9 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FinancialData } from '@c-carts/cms';
-import { ChangeEvent, ChangeEventHandler, useCallback, useMemo } from 'react';
+import { MouseEvent } from 'react';
+import { ChangeEvent, ChangeEventHandler, EventHandler, MouseEventHandler, useCallback, useMemo, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { ClickEvent } from '../../hooks/useOnClickOutside';
 import { fiscalDataSelector, fiscalDataState, fiscalYearState, selectedOptionState } from '../../state/archiveState';
 import { ThemeProps } from '../../types/theme';
 import { formatDate, getYear } from '../../utils/dateTime';
@@ -60,6 +62,7 @@ export default function Archive({ data }: Prop) {
 		},
 		[setCurrentOption, setFiscalYear]
 	);
+
 	useMemo(() => {
 		if (data !== undefined) {
 			setFiscalData(data);
@@ -72,8 +75,10 @@ export default function Archive({ data }: Prop) {
 
 	return (
 		<div>
-			<Label htmlFor="financeData">Select Fiscal year</Label>
-			<Selector name="financeData" id="financeData" onChange={onChange}>
+			<Label htmlFor="financeData" id="combolabel">
+				Select Fiscal year
+			</Label>
+			<Selector name="financeData" id="financeData" aria-labelledby="combolabel financeData" onChange={onChange}>
 				{data.map((dat: FinancialData) => (
 					<option key={dat.slug.current} value={getYear(dat.fiscalYear)}>
 						{getYear(dat.fiscalYear)}

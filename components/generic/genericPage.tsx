@@ -43,7 +43,8 @@ const changeValues = (val: string) => {
 			}
 		`;
 		default:
-			return `background-image: none;`;
+			return `background: none;
+			`;
 	}
 };
 
@@ -59,6 +60,7 @@ const Wrapper = styled.div.attrs((home) => ({
 	padding-right: clamp(1rem, 5vw, 3rem);
 	padding-bottom: clamp(2rem, 5vh, 5rem);
 	padding-left: clamp(1rem, 5vw, 3rem);
+
 	${({ home }: Prop) => changeValues(home)}
 
 	@media (max-width: 700px) {
@@ -126,14 +128,6 @@ const Main = styled.main`
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: flex-start;
-	h1 {
-		width: 100%;
-	}
-	@media (max-width: 1200px) {
-		h1 {
-			text-indent: 0;
-		}
-	}
 `;
 
 const MenuWrapper = styled.div`

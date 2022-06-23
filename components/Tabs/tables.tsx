@@ -4,13 +4,6 @@ import { ThemeProps } from '../../types/theme';
 
 /* eslint-disable react/no-danger */
 
-const TableMobileWrap = styled.div`
-	width: 100%;
-	max-width: 100%;
-	overflow-x: scroll;
-	overflow-y: hidden;
-`;
-
 const TableContainer = styled.div`
 	width: 100%;
 	display: flex;
@@ -19,6 +12,7 @@ const TableContainer = styled.div`
 	align-items: flex-start;
 	justify-content: center;
 	margin-top: 1rem;
+	margin-bottom: 1rem;
 
 	.westbound table {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
@@ -28,10 +22,23 @@ const TableContainer = styled.div`
 	}
 
 	#directW {
-		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
+		width: 100%;
+	}
+
+	#directE {
+		width: 100%;
 	}
 	#directE table > th > td {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
+	}
+
+	@media (max-width: 820px) {
+		#directW {
+			width: 100%;
+		}
+		#directE table {
+			width: 100%;
+		}
 	}
 
 	#rantoulW {
@@ -48,11 +55,20 @@ const TableContainer = styled.div`
 		width: ${({ theme }: ThemeProps) => theme.widths.sixByTwelve}%;
 	}
 
-	@media (max-width: 898px) {
+	@media (max-width: 1200px) {
+		width: 100%;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: center;
+		.westbound table {
+			width: 100%;
+		}
+		.eastbound table {
+			width: 100%;
+		}
+
 		#rantoulW,
-		#rantoulE,
-		#directW,
-		#directE {
+		#rantoulE {
 			width: 100%;
 		}
 	}
@@ -277,27 +293,6 @@ const TableContainer = styled.div`
 	.z {
 		background-color: #c3ce5c;
 	}
-	@media (max-width: 900px) {
-		width: 100%;
-		flex-direction: column;
-		flex-wrap: nowrap;
-		align-items: center;
-		.westbound table {
-			width: 100%;
-		}
-		.eastbound table {
-			width: 100%;
-		}
-	}
-
-	@media (max-width: 820px) {
-		#directW {
-			width: ${({ theme }: ThemeProps) => theme.widths.elevelByTwelve}%;
-		}
-		#directE table {
-			width: ${({ theme }: ThemeProps) => theme.widths.elevelByTwelve}%;
-		}
-	}
 `;
 
 const InnerContainer = styled(TableContainer)`
@@ -310,11 +305,9 @@ interface Prop {
 
 export default function Tables({ code }: Prop) {
 	return (
-		<TableMobileWrap>
-			<TableContainer aria-labelledby="code" tabIndex={0}>
-				<InnerContainer dangerouslySetInnerHTML={{ __html: code }} />
-			</TableContainer>
-		</TableMobileWrap>
+		<TableContainer aria-labelledby="code" tabIndex={0} role="tabpanel">
+			<InnerContainer dangerouslySetInnerHTML={{ __html: code }} />
+		</TableContainer>
 	);
 }
 /// TO-DO Fix issue with layout of table for reduced Service

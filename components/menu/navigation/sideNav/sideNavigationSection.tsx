@@ -70,9 +70,9 @@ export default function SideNavigationSection({ item: { title, slug, subPages } 
 		<SideNavContainer>
 			<h2>{title}</h2>
 			{title && (
-				<List role="menubar" aria-label={`${title} Section`}>
+				<List aria-label={`${title} Section`}>
 					{subPages.map((sp, i) => (
-						<li key={sp._id} role="none">
+						<li key={sp._id}>
 							<SubPage page={sp} parentSlug={slug} last={i === subPages.length - 1} />
 						</li>
 					))}

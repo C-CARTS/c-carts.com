@@ -58,6 +58,7 @@ const ActiveButton = styled.button`
 
 	@media (max-width: 580px) {
 		width: 100%;
+		margin-bottom: 0.65rem;
 	}
 `;
 

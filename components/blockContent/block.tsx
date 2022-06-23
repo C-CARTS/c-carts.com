@@ -1,13 +1,13 @@
 import {
 	ImageSection,
 	JobsSection,
-	MapsSection,
 	NewsSection,
 	PerformanceSection,
 	TextSection,
 	RantoulSection,
 	EagleExpressSection,
-	DemandResponseSection
+	DemandResponseSection,
+	CodeSection
 } from '@c-carts/cms';
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
@@ -16,9 +16,10 @@ import JobsComponent from './jobs';
 import NewsComponent from './newz';
 import TextComponent from './text';
 import PerformanceOperations from './performance';
-import RantoulConnect from '../tabs/rantoulTab';
-import DemandResponse from '../tabs/demandResponseTab';
-import EagleExpress from '../tabs/eagleExpressTab';
+import RantoulConnect from '../tabs/rantoul';
+import DemandResponse from '../tabs/demandResponse';
+import EagleExpress from '../tabs/eagleExpress';
+import DisplayHtmlTable from './table';
 
 interface Props {
 	block:
@@ -29,7 +30,8 @@ interface Props {
 		| SanityKeyed<PerformanceSection>
 		| SanityKeyed<RantoulSection>
 		| SanityKeyed<DemandResponseSection>
-		| SanityKeyed<EagleExpressSection>;
+		| SanityKeyed<EagleExpressSection>
+		| SanityKeyed<CodeSection>;
 }
 
 export default function Block({ block }: Props) {
@@ -51,6 +53,8 @@ export default function Block({ block }: Props) {
 			return <DemandResponse block={block as DemandResponseSection} />;
 		case 'eagleExpressSection':
 			return <EagleExpress block={block as EagleExpressSection} />;
+		case 'codeSection':
+			return <DisplayHtmlTable block={block as CodeSection} />;
 		default:
 			assertUnreachable(_type);
 	}

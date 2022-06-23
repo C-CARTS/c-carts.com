@@ -33,6 +33,7 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: center;
+
 	padding-top: ${(props) => (props.ops === 0.75 ? 'clamp(1rem,1vh,1rem)' : '')};
 	padding-bottom: ${(props) => (props.ops === 0.75 ? 'clamp(1rem,1vh,1rem)' : '')};
 `;

@@ -48,7 +48,7 @@ export interface Props {
 
 export default function SideSection({ nav }: Props) {
 	return (
-		<SideSectionNav id="sideSection" role="menubar">
+		<SideSectionNav id="sideSection">
 			<Link href="/" passHref>
 				<LogoLink role="link">C-CARTS</LogoLink>
 			</Link>

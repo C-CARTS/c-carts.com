@@ -6,7 +6,7 @@ import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
 
-import RantoulConnect from '../../../components/tabs/rantoulTab';
+import RantoulConnect from '../../../components/tabs/rantoul';
 
 const rantoul = 'rantoul-connector';
 

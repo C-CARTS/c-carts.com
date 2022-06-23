@@ -10,7 +10,7 @@ const getPdfUrl = (input: Maps['routePdfs']) => {
 	if (url) {
 		return url;
 	}
-	return null;
+	return '';
 };
 
 export default getPdfUrl;

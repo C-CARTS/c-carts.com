@@ -35,7 +35,7 @@ interface Props {
 export default function CardHeader({ headline, date }: Props) {
 	return (
 		<Header>
-			<Heading>{headline}</Heading>
+			<Heading id="cardHeading">{headline}</Heading>
 			<Date>{getDate(date)}</Date>
 		</Header>
 	);
