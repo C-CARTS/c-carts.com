@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FinancialData } from '@c-carts/cms';
-import { ChangeEvent, ChangeEventHandler, useCallback, useMemo, useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, useCallback, useMemo } from 'react';
 
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';

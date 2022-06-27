@@ -1,5 +1,5 @@
 import { News } from '@c-carts/cms';
-import { GetStaticPathsResult, GetStaticPropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
 import React from 'react';
 import CardNews from '../../../../components/card/cardNews';
@@ -45,21 +45,30 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-	const {
-		params: { slug }
-	} = context;
-	const newz = await sanityClient.getAll('news');
-	const currentNews = newz.find((nz) => nz.slug.current === slug);
 	const dataHookProps = await getDataHooksProps({
 		context,
 		dataHooks: CardNewsDisplay.dataHooks
 	});
+	if (context.params !== undefined) {
+		const {
+			params: { slug }
+		} = context;
+
+		const newz = await sanityClient.getAll('news');
+		const currentNews = newz.find((nz) => nz.slug.current === slug);
+
+		return {
+			props: {
+				...dataHookProps,
+				currentNews
+			}
+		};
+	}
 	return {
 		props: {
-			...dataHookProps,
-			currentNews
+			...dataHookProps
 		}
 	};
 }
 
-///TO-DO discuss with Ryan about this Prop Validation Issue
+/// TO-DO discuss with Ryan about this Prop Validation Issue
