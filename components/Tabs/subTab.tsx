@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { MouseEventHandler, useCallback } from 'react';
+import { MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { Maps } from '@c-carts/cms';
@@ -73,17 +73,22 @@ function SubTab({ content, map, pdf }: Prop) {
 	const { code } = content;
 	const imageUrl = urlFor(map.asset._ref);
 	const url = getPdfUrl(pdf);
+	const buttonRef = useRef<HTMLDivElement | null>(null);
+	const [currentId, setId] = useState<string | null>('content');
+
 	const onSubTabClick = useCallback<MouseEventHandler<HTMLButtonElement>>(
 		(event: React.MouseEvent<HTMLButtonElement>) => {
 			if (event.currentTarget !== null) {
 				const attribute = event.currentTarget.getAttribute('id');
+				setId(attribute);
 				if (typeof attribute === 'string') {
 					setSubTabAttribute(attribute);
 				}
 			}
 		},
-		[setSubTabAttribute]
+		[setSubTabAttribute, setId]
 	);
+
 	const display = (val: string) => {
 		switch (val) {
 			case 'file':
@@ -98,14 +103,14 @@ function SubTab({ content, map, pdf }: Prop) {
 	const Button = subTabAttribute === 'code' || subTabAttribute === '' ? FirstButton : ActiveButton;
 	return (
 		<>
-			<ButtonContainer role="tablist" aria-label="subtab panel">
-				<Button role="tab" aria-controls={content._type} aria-selected={content._type === subTabAttribute} id={content._type} onClick={(e) => onSubTabClick(e)}>
+			<ButtonContainer role="tablist" aria-label="subtab panel" ref={buttonRef}>
+				<Button role="tab" aria-controls={content._type} aria-selected={currentId === 'content'} id="content" onClick={onSubTabClick}>
 					ScheduleTab
 				</Button>
-				<Button role="tab" aria-controls={map._type} aria-selected={map._type === subTabAttribute} id={map._type} onClick={(e) => onSubTabClick(e)}>
+				<Button role="tab" aria-controls={map._type} aria-selected={currentId === 'image'} id="image" onClick={onSubTabClick}>
 					MapTab
 				</Button>
-				<Button role="tab" aria-controls={pdf._type} aria-selected={pdf._type === subTabAttribute} id={pdf._type} onClick={(e) => onSubTabClick(e)}>
+				<Button role="tab" aria-controls={pdf._type} aria-selected={currentId === 'file'} id="file" onClick={onSubTabClick}>
 					PdfTab
 				</Button>
 			</ButtonContainer>

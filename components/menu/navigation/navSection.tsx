@@ -165,7 +165,7 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 				{title}
 			</NavButton>
 			{isOpen && (
-				<ul role="menubar">
+				<ul>
 					{subPages.map((sp, i) => (
 						<li key={sp._id} role="none">
 							<SubPage page={sp} parentSlug={slug} last={i === subPages.length - 1} />

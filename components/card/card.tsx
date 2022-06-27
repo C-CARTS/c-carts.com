@@ -14,7 +14,7 @@ const CardContainer = styled.article`
 	align-items: stretch;
 	justify-content: stretch;
 	padding: 0.625rem 0.625rem;
-	border-radius: 5px;
+	border-radius: 15px;
 
 	&:hover {
 		box-shadow: 0 5px 10px rgba(56, 56, 56, 0.171), 0 15px 40px rgba(50, 50, 50, 0.171);
@@ -49,7 +49,7 @@ interface Props {
 
 export default function Card({ news: { slug, headline, dateTime, content } }: Props) {
 	return (
-		<CardContainer>
+		<CardContainer className="card">
 			<CardHeader headline={headline} date={dateTime} />
 			<CardBody content={content} slug={slug.current} />
 		</CardContainer>

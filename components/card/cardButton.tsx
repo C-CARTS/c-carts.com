@@ -25,6 +25,14 @@ const ReadMoreLink = styled.a`
 		border-bottom: 4px solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
 	}
 `;
+const LinkDescription = styled.span`
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+`;
 
 interface Prop {
 	news: string;
@@ -34,16 +42,16 @@ export default function CardButton({ news }: Prop) {
 	const { asPath, push } = useRouter();
 
 	const clickEvent = useCallback(
-		(event: MouseEvent<HTMLAnchorElement> | undefined) => {
-			event?.preventDefault();
+		(event: MouseEvent<HTMLAnchorElement>) => {
+			event.preventDefault();
 			push(`${event?.currentTarget.baseURI}/story/${news}`);
 		},
 		[push, news]
 	);
 
 	return (
-		<ReadMoreLink id="readlink" aria-labelledby=" readlink cardHeading" href={`${asPath}/story/${news}`} onClick={(event) => clickEvent(event)}>
-			Read More
+		<ReadMoreLink id="readlink" href={`${asPath}/story/${news}`} onClick={(event) => clickEvent(event)}>
+			Read More <LinkDescription>{news}</LinkDescription>
 		</ReadMoreLink>
 	);
 }

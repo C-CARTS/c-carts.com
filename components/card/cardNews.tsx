@@ -16,7 +16,7 @@ const NewsCard = styled.div`
 	box-shadow: 2px 4px 12px hsl(0deg 0% 80%);
 	box-shadow: 2px 4px 12px hsl(360deg 0% 80%);
 	box-shadow: 2px 4px 12px hsl(180deg 0% 80%);
-	border-radius: 5px;
+	border-radius: 15px;
 `;
 
 interface Props {

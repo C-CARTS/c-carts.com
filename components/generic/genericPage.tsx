@@ -33,14 +33,8 @@ const changeValues = (val: string) => {
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
-			width:100vw;
+			width:100%;
 			padding:0px;
-			.menuWrapper{
-				#logoLink{
-					padding-left: clamp(1rem, 5vw, 3rem);
-				}
-
-			}
 		`;
 		default:
 			return `background: none;
@@ -52,16 +46,14 @@ interface Prop {
 	home: string;
 }
 
-const Wrapper = styled.div.attrs((home) => ({
-	value: home
-}))`
+const Wrapper = styled.div<Prop>`
 	width: 100%;
 	padding-top: clamp(1rem, 3vh, 2rem);
 	padding-right: clamp(1rem, 5vw, 3rem);
 	padding-bottom: clamp(2rem, 5vh, 5rem);
 	padding-left: clamp(1rem, 5vw, 3rem);
-
-	${({ home }: Prop) => changeValues(home)}
+	margin-left: 0;
+	${({ home }) => changeValues(home)}
 
 	@media (max-width: 700px) {
 		height: 100%;

@@ -11,6 +11,7 @@ const Nav = styled.nav`
 	justify-content: center;
 	align-items: center;
 	z-index: 1000;
+	margin-left: auto;
 `;
 interface Props {
 	nav: MainNavItem[];

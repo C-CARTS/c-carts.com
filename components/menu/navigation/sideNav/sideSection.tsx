@@ -48,9 +48,11 @@ export interface Props {
 
 export default function SideSection({ nav }: Props) {
 	return (
-		<SideSectionNav id="sideSection">
+		<SideSectionNav id="sideSection" aria-controls="sideNavButton">
 			<Link href="/" passHref>
-				<LogoLink role="link">C-CARTS</LogoLink>
+				<LogoLink role="link" aria-label="Link to C-Carts Homepage">
+					C-CARTS
+				</LogoLink>
 			</Link>
 			{nav && nav.map((item) => <SideNavigationSection key={item._id} item={item} />)}
 		</SideSectionNav>

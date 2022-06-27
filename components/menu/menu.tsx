@@ -18,15 +18,12 @@ interface HeaderProps {
 	ops: number;
 	UiBreakPoint: boolean;
 }
-const Header = styled.header.attrs((props: HeaderProps) => ({
-	ops: props.ops,
-	UiBreakPoint: props.UiBreakPoint
-}))`
+const Header = styled.header<HeaderProps>`
 	//padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides}px;
 	//padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
 	background-color: ${({ UiBreakPoint }: HeaderProps) => (UiBreakPoint ? 'none' : (theme: ThemeProps) => theme.theme.colors.primary.background)};
-	opacity: ${(props) => props.ops};
-	width: 100vw;
+	opacity: ${({ ops }) => ops};
+	width: 100%;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: row;
@@ -34,8 +31,8 @@ const Header = styled.header.attrs((props: HeaderProps) => ({
 	justify-content: flex-start;
 	align-items: center;
 
-	padding-top: ${(props) => (props.ops === 0.75 ? 'clamp(1rem,1vh,1rem)' : '')};
-	padding-bottom: ${(props) => (props.ops === 0.75 ? 'clamp(1rem,1vh,1rem)' : '')};
+	padding-top: ${({ ops }) => (ops === 0.75 ? 'clamp(1rem,1vh,1rem)' : '')};
+	padding-bottom: ${({ ops }) => (ops === 0.75 ? 'clamp(1rem,1vh,1rem)' : '')};
 `;
 
 const InnerHeaderWrapper = styled.div`

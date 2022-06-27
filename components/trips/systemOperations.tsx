@@ -7,13 +7,6 @@ interface Ops {
 	system: Operations;
 }
 
-const TableMobileWrap = styled.div`
-	width: 100%;
-	max-width: 100%;
-	overflow-x: auto;
-	overflow-y: hidden;
-`;
-
 const TableContainer = styled.div`
 	width: 100%;
 	display: flex;

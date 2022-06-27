@@ -80,6 +80,7 @@ export default function SideNav({ nav }: Props) {
 			<SideNavButton
 				role="button"
 				aria-haspopup="true"
+				id="sideNavButton"
 				aria-expanded={keyPressState}
 				type="button"
 				aria-label="Side Navigation Menu"

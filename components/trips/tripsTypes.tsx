@@ -2,11 +2,10 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-restricted-syntax */
-import { TripTypeRow, TripTypes } from '@c-carts/cms';
+import { TripTypes } from '@c-carts/cms';
 import { BarDatum } from '@nivo/bar';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
-import { ThemeProps } from '../../types/theme';
 
 const BarChart = dynamic(() => import('./responsiveBarChart'), {
 	ssr: false

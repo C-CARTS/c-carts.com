@@ -46,19 +46,19 @@ const Spinner = styled.div`
 `;
 
 function App({ Component, pageProps }: AppProps) {
-	const [display, setDisplay] = useState(false);
+	//const [display, setDisplay] = useState(false);
 	const { children, ...rest } = pageProps;
-	useEffect(() => {
-		setDisplay(true);
-	}, []);
+	// useEffect(() => {
+	// 	setDisplay(true);
+	// }, []);
 
-	if (!display || typeof window === undefined) {
-		return (
-			<Spinner className="spinner">
-				<AiOutlineLoading3Quarters className="animate" />
-			</Spinner>
-		);
-	}
+	// if (!display || typeof window === undefined) {
+	// 	return (
+	// 		<Spinner className="spinner">
+	// 			<AiOutlineLoading3Quarters className="animate" />
+	// 		</Spinner>
+	// 	);
+	// }
 
 	return (
 		<ThemeProvider theme={Theme}>

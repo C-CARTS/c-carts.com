@@ -1,11 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FinancialData } from '@c-carts/cms';
-import { MouseEvent } from 'react';
-import { ChangeEvent, ChangeEventHandler, EventHandler, MouseEventHandler, useCallback, useMemo, useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, useCallback, useMemo, useState } from 'react';
+
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { ClickEvent } from '../../hooks/useOnClickOutside';
 import { fiscalDataSelector, fiscalDataState, fiscalYearState, selectedOptionState } from '../../state/archiveState';
 import { ThemeProps } from '../../types/theme';
 import { formatDate, getYear } from '../../utils/dateTime';

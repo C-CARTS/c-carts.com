@@ -15,11 +15,12 @@ const Header = styled.header`
 	color: ${({ theme }: ThemeProps) => theme.colors.primary.contrastColor};
 `;
 
-const Heading = styled.h3`
+const Heading = styled.h2`
 	text-transform: uppercase;
 	margin: 0px;
 	padding: 0px;
 	font-size: 1.315rem;
+	line-height: 1.8rem;
 `;
 
 const Date = styled.span`
@@ -35,7 +36,7 @@ interface Props {
 export default function CardHeader({ headline, date }: Props) {
 	return (
 		<Header>
-			<Heading id="cardHeading">{headline}</Heading>
+			<Heading>{headline}</Heading>
 			<Date>{getDate(date)}</Date>
 		</Header>
 	);

@@ -1,6 +1,7 @@
 import { News } from '@c-carts/cms';
-import { GetStaticPropsContext } from 'next';
+import { GetStaticPathsResult, GetStaticPropsContext } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
+import React from 'react';
 import CardNews from '../../../../components/card/cardNews';
 
 import GenericPage from '../../../../components/generic/genericPage';
@@ -9,18 +10,14 @@ import useMainNav from '../../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../../sanity/sanityClient';
 
-interface Props {
-	props: {
-		currentNews: News;
-	};
-}
-
-export default function CardNewsDisplay({ props: { currentNews } }: Props) {
+export default function CardNewsDisplay(props: any) {
+	const { currentNews } = props;
+	const cnwz: News = currentNews;
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	return (
 		<GenericPage title="News" siteConfig={siteConfig} mainNav={mainNav}>
-			<CardNews currentNews={currentNews} />
+			<CardNews currentNews={cnwz} />
 		</GenericPage>
 	);
 }
@@ -64,3 +61,5 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 		}
 	};
 }
+
+///TO-DO discuss with Ryan about this Prop Validation Issue
