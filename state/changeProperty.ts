@@ -1,7 +1,8 @@
-import { atom, selector } from 'recoil';
-import useMediaQuery from '../hooks/useMediaQueryHook';
+import { atom } from 'recoil';
 
-export const titleState = atom<string>({
+const titleState = atom<string>({
 	key: 'titleStateKey',
 	default: ''
 });
+
+export default titleState;

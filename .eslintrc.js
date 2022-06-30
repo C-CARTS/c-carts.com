@@ -13,7 +13,7 @@ module.exports = {
 		'plugin:jsx-a11y/recommended',
 		'plugin:prettier/recommended'
 	],
-	parser: ['@typescript-eslint/parser', './tsconfig.json'],
+	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true

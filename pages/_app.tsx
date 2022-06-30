@@ -3,7 +3,7 @@ import { NextDataHooksProvider } from 'next-data-hooks';
 import { AppProps } from 'next/app';
 
 import Head from 'next/head';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/globalStyles';
@@ -13,19 +13,17 @@ function App({ Component, pageProps }: AppProps) {
 	const { children, ...rest } = pageProps;
 
 	return (
-		<>
-			<ThemeProvider theme={Theme}>
-				<GlobalStyle />
-				<NextDataHooksProvider {...rest}>
-					<RecoilRoot>
-						<Head>
-							<link rel="icon" href="/favicon.ico" />
-						</Head>
-						<Component {...rest}>{children}</Component>
-					</RecoilRoot>
-				</NextDataHooksProvider>
-			</ThemeProvider>
-		</>
+		<ThemeProvider theme={Theme}>
+			<GlobalStyle />
+			<NextDataHooksProvider {...rest}>
+				<RecoilRoot>
+					<Head>
+						<link rel="icon" href="/favicon.ico" />
+					</Head>
+					<Component {...rest}>{children}</Component>
+				</RecoilRoot>
+			</NextDataHooksProvider>
+		</ThemeProvider>
 	);
 }
 export default App;

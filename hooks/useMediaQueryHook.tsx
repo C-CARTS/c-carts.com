@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useEffect, useState } from 'react';
 import isServer from '../helpers/isServer';
 
 interface Prop {
@@ -15,7 +14,7 @@ export default function useMediaQuery({ query }: Prop) {
 	const onServerSide = isServer();
 	const mediaMatch = onServerSide ? { matches: false, addEventListener: () => {}, removeEventListener: () => {} } : window.matchMedia(query); // return a MediaQueryList object
 	const [breakPoints, setBreakpoints] = useState(mediaMatch.matches); // save returned state from above line
-	console.log({ mediaMatch });
+
 	const [render, setRender] = useState(false);
 
 	useEffect(() => {

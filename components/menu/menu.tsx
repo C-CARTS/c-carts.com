@@ -4,15 +4,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
-import isServer from '../../helpers/isServer';
 import useMediaQuery from '../../hooks/useMediaQueryHook';
-
-import { titleState } from '../../state/changeProperty';
-
+import titleState from '../../state/changeProperty';
 import { ThemeProps } from '../../types/theme';
 import MainNav from './navigation/mainNav';
 import SideNav from './navigation/sideNav/sideNav';
