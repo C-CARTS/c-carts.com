@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
-import titleState from '../../state/changeProperty';
+import titleState, { breakPointState } from '../../state/changeProperty';
 import { ThemeProps } from '../../types/theme';
 import Footer from '../footer/footer';
 import Menu from '../menu/menu';
@@ -43,6 +43,7 @@ const changeValues = (val: string) => {
 
 interface Prop {
 	home: string;
+	breakpt: boolean;
 }
 
 const Wrapper = styled.div<Prop>`
@@ -50,10 +51,11 @@ const Wrapper = styled.div<Prop>`
 	/* A CSS function that is not supported by all browsers. It is a way to set a minimum and maximum
 	value for padding. */
 	padding-top: clamp(1rem, 3vh, 2rem);
-	padding-right: clamp(1rem, 5vw, 3rem);
+	padding-right: ${({ breakpt }) => (breakpt ? '0px' : `clamp(1rem, 5vw, 3rem)`)};
 	padding-bottom: clamp(2rem, 5vh, 5rem);
-	padding-left: clamp(1rem, 5vw, 3rem);
+	padding-left: ${({ breakpt }) => (breakpt ? '0px' : `clamp(1rem, 5vw, 3rem)`)};
 	margin-left: 0;
+
 	${({ home }) => changeValues(home)}
 
 	@media (max-width: 700px) {
@@ -129,13 +131,13 @@ const MenuWrapper = styled.div`
 
 export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo } }: Props) {
 	const pageTitle = useRecoilValue(titleState);
-
+	const breakpoint = useRecoilValue(breakPointState);
 	return (
 		<>
 			<SkipLink />
 			<ContentWrap>
 				<HeadContent title={title} description={description} />
-				<Wrapper home={pageTitle}>
+				<Wrapper breakpt={breakpoint} home={pageTitle}>
 					<MenuWrapper className="menuWrapper">
 						<Menu nav={mainNav} shortTitle={shortTitle} />
 					</MenuWrapper>

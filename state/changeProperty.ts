@@ -6,3 +6,8 @@ const titleState = atom<string>({
 });
 
 export default titleState;
+
+export const breakPointState = atom<boolean>({
+	key: 'breakPointState',
+	default: false
+});

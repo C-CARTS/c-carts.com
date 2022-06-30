@@ -15,6 +15,11 @@ const List = styled.ul`
 	li > a {
 		color: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
 	}
+
+	li > a:focus-visible {
+		background: none;
+		border: 1px solid blue;
+	}
 `;
 
 interface Props {

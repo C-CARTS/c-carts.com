@@ -4,11 +4,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
 import useMediaQuery from '../../hooks/useMediaQueryHook';
-import titleState from '../../state/changeProperty';
+import titleState, { breakPointState } from '../../state/changeProperty';
 import { ThemeProps } from '../../types/theme';
 import MainNav from './navigation/mainNav';
 import SideNav from './navigation/sideNav/sideNav';
@@ -92,8 +93,12 @@ interface Props {
 export default function Menu({ shortTitle, nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	const query = '(max-width:700px)';
-
 	const breakpoint = useMediaQuery({ query });
+	const setBreakPoint = useSetRecoilState(breakPointState);
+
+	useEffect(() => {
+		setBreakPoint(breakpoint);
+	}, [setBreakPoint, breakpoint]);
 
 	return (
 		// eslint-disable-next-line react/no-unstable-nested-components

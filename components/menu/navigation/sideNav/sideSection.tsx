@@ -14,6 +14,7 @@ const SideSectionNav = styled.nav`
 	transition: all 0.2s ease-out;
 	padding-top: 0.45rem;
 	padding-left: 0.45rem;
+
 	h2 {
 		font-weight: 800;
 	}

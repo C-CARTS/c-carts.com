@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { KeyboardEvent, useCallback, useState } from 'react';
 import Link from 'next/link';
+
+import { useRecoilValue } from 'recoil';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
 // eslint-disable-next-line import/no-cycle
 import SideSection from './sideSection';
 import { ThemeProps } from '../../../../types/theme';
+import titleState from '../../../../state/changeProperty';
 
 const navButtonHeight = '2rem';
 
@@ -45,13 +48,17 @@ const SideNavButton = styled.button`
 	justify-content: center;
 
 	&:focus-visible {
-		border-color: #fff;
+		border-color: #e1dcdc;
 		border-width: 0.15rem;
 		border-style: solid;
 	}
 `;
 
-const LogoLink = styled.a`
+interface TitleProp {
+	pgTitle: string;
+}
+
+const LogoLink = styled.a<TitleProp>`
 	font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.086rem);
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
@@ -59,12 +66,9 @@ const LogoLink = styled.a`
 	transition: all 0.2s ease-out;
 	outline-color: transparent;
 	padding-left: 0.45rem;
-
-	&,
-	&:visited {
-		color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+	span {
+		color: ${({ pgTitle }) => (pgTitle === 'Homepage' ? `#fff` : `#000`)};
 	}
-
 	&:hover,
 	&:focus-visible {
 		transition: all 0.2s ease-in;
@@ -84,6 +88,8 @@ export interface Props {
 export default function SideNav({ nav }: Props) {
 	const [buttonState, setButtonState] = useState(false);
 	const [keyPressState, setKeypresed] = useState(false);
+	const pageTitle = useRecoilValue(titleState);
+
 	const buttonClick = useCallback(() => {
 		if (buttonState) {
 			setButtonState(false);
@@ -121,8 +127,8 @@ export default function SideNav({ nav }: Props) {
 				</SideNavButton>
 
 				<Link href="/" passHref>
-					<LogoLink role="link" aria-label="Link to C-Carts Homepage">
-						C-CARTS
+					<LogoLink pgTitle={pageTitle} role="link" aria-label="Link to C-Carts Homepage">
+						<span>C-CARTS</span>
 					</LogoLink>
 				</Link>
 			</ListContainer>
