@@ -1,44 +1,28 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
 import { ThemeProps } from '../../../../types/theme';
 import SideNavigationSection from './sideNavigationSection';
 
 const SideSectionNav = styled.nav`
-	display: flex;
-	width: 100%;
-	height: max-content;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
-	opacity: 0.55;
-`;
-
-const LogoLink = styled.a`
-	font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.086rem);
+	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.contrastColor};
+	opacity: 0.9;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.95}px;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
-	text-decoration-color: transparent;
-	text-decoration-thickness: 0.22rem;
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
+	margin-bottom: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.21);
+	border-bottom: 0.25rem solid transparent;
 	transition: all 0.2s ease-out;
-	outline-color: transparent;
-	padding: 0.5rem 1rem;
-
-	&,
-	&:visited {
-		color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
+	padding-top: 0.45rem;
+	padding-left: 0.45rem;
+	h2 {
+		font-weight: 800;
 	}
 
-	&:hover,
 	&:focus-visible {
+		outline: transparent;
+		border-bottom-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 		transition: all 0.2s ease-in;
-		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-		outline-color: transparent;
-	}
-	&:focus-visible {
 		background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
-		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 	}
 `;
 
@@ -49,11 +33,6 @@ export interface Props {
 export default function SideSection({ nav }: Props) {
 	return (
 		<SideSectionNav id="sideSection" aria-controls="sideNavButton">
-			<Link href="/" passHref>
-				<LogoLink role="link" aria-label="Link to C-Carts Homepage">
-					C-CARTS
-				</LogoLink>
-			</Link>
 			{nav && nav.map((item) => <SideNavigationSection key={item._id} item={item} />)}
 		</SideSectionNav>
 	);

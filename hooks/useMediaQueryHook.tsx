@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import isServer from '../helpers/isServer';
 
 interface Prop {
@@ -14,6 +15,12 @@ export default function useMediaQuery({ query }: Prop) {
 	const onServerSide = isServer();
 	const mediaMatch = onServerSide ? { matches: false, addEventListener: () => {}, removeEventListener: () => {} } : window.matchMedia(query); // return a MediaQueryList object
 	const [breakPoints, setBreakpoints] = useState(mediaMatch.matches); // save returned state from above line
+	console.log({ mediaMatch });
+	const [render, setRender] = useState(false);
+
+	useEffect(() => {
+		setRender(true);
+	}, []);
 
 	useEffect(() => {
 		/**
@@ -25,7 +32,14 @@ export default function useMediaQuery({ query }: Prop) {
 		 */
 		const handler: EventListenerOrEventListenerObject = (e: any) => setBreakpoints(e.matches);
 		mediaMatch.addEventListener('change', handler);
+
 		return () => mediaMatch.removeEventListener('change', handler);
 	});
-	return breakPoints;
+
+	if (render) {
+		return breakPoints;
+	}
+	return false;
 }
+
+/// TO-DO consult Ryan if this is optimal way to resolve hydration error

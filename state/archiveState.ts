@@ -7,8 +7,8 @@ function urlSelector(data: FinancialData['fiscalData']) {
 	const urls = [];
 	if (data !== undefined) {
 		for (let i = 0; i < data.length; i++) {
-			const ref = data[i].asset._ref;
-			const url = getPdfUrl(ref);
+			const keys: any = data[i].asset._ref;
+			const url = getPdfUrl(keys);
 			urls.push(url);
 		}
 	}

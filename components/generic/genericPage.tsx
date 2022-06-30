@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
-import titleState from '../../state/changeProperty';
+import { titleState } from '../../state/changeProperty';
 import { ThemeProps } from '../../types/theme';
 import Footer from '../footer/footer';
 import Menu from '../menu/menu';
@@ -23,7 +23,6 @@ const ContentWrap = styled.div`
 	flex-flow: column nowrap;
 	margin: 0 auto;
 	height: 100%;
-	min-height: 100vh;
 `;
 
 const changeValues = (val: string) => {
@@ -37,7 +36,7 @@ const changeValues = (val: string) => {
 			padding:0px;
 		`;
 		default:
-			return `background: none;
+			return `background-color: none;
 			`;
 	}
 };
@@ -48,6 +47,8 @@ interface Prop {
 
 const Wrapper = styled.div<Prop>`
 	width: 100%;
+	/* A CSS function that is not supported by all browsers. It is a way to set a minimum and maximum
+	value for padding. */
 	padding-top: clamp(1rem, 3vh, 2rem);
 	padding-right: clamp(1rem, 5vw, 3rem);
 	padding-bottom: clamp(2rem, 5vh, 5rem);
@@ -123,7 +124,6 @@ const Main = styled.main`
 `;
 
 const MenuWrapper = styled.div`
-	max-width: 1200px;
 	width: 100%;
 `;
 

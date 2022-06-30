@@ -1,14 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { GoDesktopDownload } from 'react-icons/go';
 import { MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { Maps } from '@c-carts/cms';
+import { useRouter } from 'next/router';
 import urlFor from '../../sanity/urlFor';
 import subTabAtom from '../../state/subTabState';
 import { ThemeProps } from '../../types/theme';
 import MapsTab from './mapTab';
 import Tables from './tables';
-import PdfTab from './pdfTab';
 import getPdfUrl from '../../utils/getPdfUrl';
 
 interface Prop {
@@ -30,6 +31,13 @@ const ButtonContainer = styled.div`
 	@media (max-width: 580px) {
 		flex-direction: column;
 		flex-wrap: nowrap;
+	}
+	#file {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: none;
+		align-items: center;
+		justify-content: center;
 	}
 `;
 
@@ -62,6 +70,11 @@ const ActiveButton = styled.button`
 	}
 `;
 
+const Span = styled.span`
+	margin-left: 10px;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.0419}rem;
+`;
+
 const FirstButton = styled(ActiveButton)`
 	&:first-child {
 		border-bottom: 0.2rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
@@ -75,6 +88,14 @@ function SubTab({ content, map, pdf }: Prop) {
 	const url = getPdfUrl(pdf);
 	const buttonRef = useRef<HTMLDivElement | null>(null);
 	const [currentId, setId] = useState<string | null>('content');
+	const { push } = useRouter();
+
+	const pushUrl = useCallback(
+		(link: string) => {
+			push(`${link}`);
+		},
+		[push]
+	);
 
 	const onSubTabClick = useCallback<MouseEventHandler<HTMLButtonElement>>(
 		(event: React.MouseEvent<HTMLButtonElement>) => {
@@ -84,15 +105,16 @@ function SubTab({ content, map, pdf }: Prop) {
 				if (typeof attribute === 'string') {
 					setSubTabAttribute(attribute);
 				}
+				if (attribute === 'file') {
+					pushUrl(url);
+				}
 			}
 		},
-		[setSubTabAttribute, setId]
+		[setSubTabAttribute, setId, url, pushUrl]
 	);
 
 	const display = (val: string) => {
 		switch (val) {
-			case 'file':
-				return <PdfTab pdfUrl={url} />;
 			case 'image':
 				return <MapsTab mapUrl={imageUrl} />;
 			default:
@@ -105,13 +127,14 @@ function SubTab({ content, map, pdf }: Prop) {
 		<>
 			<ButtonContainer role="tablist" aria-label="subtab panel" ref={buttonRef}>
 				<Button role="tab" aria-controls={content._type} aria-selected={currentId === 'content'} id="content" onClick={onSubTabClick}>
-					ScheduleTab
+					Schedule
 				</Button>
 				<Button role="tab" aria-controls={map._type} aria-selected={currentId === 'image'} id="image" onClick={onSubTabClick}>
-					MapTab
+					Map
 				</Button>
 				<Button role="tab" aria-controls={pdf._type} aria-selected={currentId === 'file'} id="file" onClick={onSubTabClick}>
-					PdfTab
+					<GoDesktopDownload aria-hidden />
+					<Span aria-label="Download Pdf">Pdf</Span>
 				</Button>
 			</ButtonContainer>
 			{display(subTabAttribute)}

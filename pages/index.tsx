@@ -7,7 +7,7 @@ import PageComponent from '../components/generic/page';
 import useHomepage from '../data-hooks/useHomepage';
 import useMainNav from '../data-hooks/useMainNav';
 import useSiteConfig from '../data-hooks/useSiteConfig';
-import titleState from '../state/changeProperty';
+import { titleState } from '../state/changeProperty';
 
 export default function Home() {
 	const siteConfig = useSiteConfig();
