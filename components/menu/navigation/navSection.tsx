@@ -153,6 +153,7 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 	return (
 		<SectionWrap ref={menuRef}>
 			<NavButton
+				aria-controls="main-nav"
 				type="button"
 				onClick={buttonClick}
 				ref={buttonRef}
@@ -165,7 +166,7 @@ export default function NavSection({ item: { title, slug, subPages }, index }: P
 				{title}
 			</NavButton>
 			{isOpen && (
-				<ul>
+				<ul id="main-nav" aria-label="Site Navigation">
 					{subPages.map((sp, i) => (
 						<li key={sp._id} role="none">
 							<SubPage page={sp} parentSlug={slug} last={i === subPages.length - 1} />

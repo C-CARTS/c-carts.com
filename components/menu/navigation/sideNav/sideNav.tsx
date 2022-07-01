@@ -114,12 +114,12 @@ export default function SideNav({ nav }: Props) {
 		<Container role="navigation" aria-label="Hamburger Menu">
 			<ListContainer>
 				<SideNavButton
-					role="button"
+					aria-controls="side-navigation"
 					aria-haspopup="true"
 					id="sideNavButton"
 					aria-expanded={keyPressState}
 					type="button"
-					aria-label="Side Navigation Menu"
+					aria-label="Button to open or close side navigation menu"
 					onClick={buttonClick}
 					onKeyPress={keyPress}
 				>

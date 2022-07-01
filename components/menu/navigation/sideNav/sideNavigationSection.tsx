@@ -1,3 +1,4 @@
+import { KeyboardEventHandler, useCallback } from 'react';
 import styled from 'styled-components';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
 import { ThemeProps } from '../../../../types/theme';
@@ -27,13 +28,25 @@ interface Props {
 }
 
 export default function SideNavigationSection({ item: { title, slug, subPages } }: Props) {
+	const keyPressEvent = useCallback<KeyboardEventHandler<HTMLLIElement>>((event) => {
+		const escKey = event.key === 'Escape';
+		if (escKey) {
+			document.getElementById('sideNavButton')?.focus();
+			const btn = document.getElementById('sideNavButton');
+			if (btn !== null) {
+				btn.ariaExpanded = 'false';
+				btn?.click();
+			}
+		}
+	}, []);
 	return (
 		<>
 			<h2 id="menuTitle">{title}</h2>
 			{title && (
-				<List aria-labelledby="menuTitle">
+				<List>
 					{subPages.map((sp, i) => (
-						<li key={sp._id}>
+						// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+						<li key={sp._id} onKeyDown={keyPressEvent}>
 							<SubPage page={sp} parentSlug={slug} last={i === subPages.length - 1} />
 						</li>
 					))}

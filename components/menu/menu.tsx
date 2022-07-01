@@ -109,7 +109,7 @@ export default function Menu({ shortTitle, nav }: Props) {
 			) : (
 				<InnerHeaderWrapper>
 					<Link href="/" passHref>
-						<LogoLink id="logoLink" role="link" aria-label={`Return to ${shortTitle} homepage`}>
+						<LogoLink id="logoLink" role="link" title="home" aria-label={`Return to ${shortTitle} homepage`}>
 							{shortTitle}
 						</LogoLink>
 					</Link>

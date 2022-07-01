@@ -33,7 +33,7 @@ export interface Props {
 
 export default function SideSection({ nav }: Props) {
 	return (
-		<SideSectionNav id="sideSection" aria-controls="sideNavButton">
+		<SideSectionNav id="side-navigation" role="menu">
 			{nav && nav.map((item) => <SideNavigationSection key={item._id} item={item} />)}
 		</SideSectionNav>
 	);

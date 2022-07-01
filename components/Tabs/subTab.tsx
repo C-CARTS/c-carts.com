@@ -1,7 +1,8 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { GoDesktopDownload } from 'react-icons/go';
-import { MouseEventHandler, useCallback, useRef, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { KeyboardEventHandler, MouseEventHandler, useCallback, useRef, useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { Maps } from '@c-carts/cms';
 import { useRouter } from 'next/router';
@@ -11,6 +12,7 @@ import { ThemeProps } from '../../types/theme';
 import MapsTab from './mapTab';
 import Tables from './tables';
 import getPdfUrl from '../../utils/getPdfUrl';
+import { breakPointState } from '../../state/changeProperty';
 
 interface Prop {
 	content: Maps['content'];
@@ -83,6 +85,7 @@ const FirstButton = styled(ActiveButton)`
 
 function SubTab({ content, map, pdf }: Prop) {
 	const [subTabAttribute, setSubTabAttribute] = useRecoilState(subTabAtom);
+	const breakpoint = useRecoilValue(breakPointState);
 	const { code } = content;
 	const imageUrl = urlFor(map.asset._ref);
 	const url = getPdfUrl(pdf);
@@ -96,6 +99,66 @@ function SubTab({ content, map, pdf }: Prop) {
 		},
 		[push]
 	);
+
+	const keyPress = useCallback<KeyboardEventHandler<HTMLButtonElement>>((event) => {
+		const tabPanel = document.getElementsByClassName('tabs-btn');
+		const currentContent = event.target.textContent;
+		const { key } = event;
+		if (key === 'ArrowLeft') {
+			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
+			switch (currentContent) {
+				case 'Schedule':
+					const schd = tabPanel[0].textContent;
+					if (schd === currentContent) {
+						document.getElementById(tabPanel[2].id)?.focus();
+					}
+					break;
+				case 'Map':
+					const mapTxt = tabPanel[1].textContent;
+					if (mapTxt === currentContent) {
+						document.getElementById(tabPanel[0].id)?.focus();
+					}
+					break;
+				case 'Pdf':
+					const pdfTxt = tabPanel[2].textContent;
+					if (pdfTxt === currentContent) {
+						document.getElementById(tabPanel[1].id)?.focus();
+					}
+					break;
+
+				default:
+					break;
+			}
+		}
+		if (key === 'ArrowRight') {
+			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
+			switch (currentContent) {
+				case 'Schedule':
+					const schd = tabPanel[0].textContent;
+					if (schd === currentContent) {
+						document.getElementById(tabPanel[1].id)?.focus();
+					}
+					break;
+				case 'Map':
+					const mapTxt = tabPanel[1].textContent;
+					if (mapTxt === currentContent) {
+						document.getElementById(tabPanel[2].id)?.focus();
+					}
+					break;
+				case 'Pdf':
+					const pdfTxt = tabPanel[2].textContent;
+					if (pdfTxt === currentContent) {
+						document.getElementById(tabPanel[0].id)?.focus();
+					}
+					break;
+
+				default:
+					break;
+			}
+		}
+
+		return null;
+	}, []);
 
 	const onSubTabClick = useCallback<MouseEventHandler<HTMLButtonElement>>(
 		(event: React.MouseEvent<HTMLButtonElement>) => {
@@ -125,16 +188,42 @@ function SubTab({ content, map, pdf }: Prop) {
 	const Button = subTabAttribute === 'code' || subTabAttribute === '' ? FirstButton : ActiveButton;
 	return (
 		<>
-			<ButtonContainer role="tablist" aria-label="subtab panel" ref={buttonRef}>
-				<Button role="tab" aria-controls={content._type} aria-selected={currentId === 'content'} id="content" onClick={onSubTabClick}>
+			<ButtonContainer id="tabsContainer" aria-orientation={breakpoint ? 'vertical' : 'horizontal'} role="tablist" aria-label="subtab panel" ref={buttonRef}>
+				<Button
+					className="tabs-btn"
+					onKeyDown={keyPress}
+					role="tab"
+					aria-controls="tablesPanel"
+					aria-selected={currentId === 'content'}
+					id="content"
+					onClick={onSubTabClick}
+				>
 					Schedule
 				</Button>
-				<Button role="tab" aria-controls={map._type} aria-selected={currentId === 'image'} id="image" onClick={onSubTabClick}>
+				<Button
+					className="tabs-btn"
+					onKeyDown={keyPress}
+					role="tab"
+					aria-controls="mapPanel"
+					aria-selected={currentId === 'image'}
+					id="image"
+					onClick={onSubTabClick}
+				>
 					Map
 				</Button>
-				<Button role="tab" aria-controls={pdf._type} aria-selected={currentId === 'file'} id="file" onClick={onSubTabClick}>
+				<Button
+					className="tabs-btn"
+					onKeyDown={keyPress}
+					role="tab"
+					aria-controls="pdfPanel"
+					aria-selected={currentId === 'file'}
+					id="file"
+					onClick={onSubTabClick}
+				>
 					<GoDesktopDownload aria-hidden />
-					<Span aria-label="Download Pdf">Pdf</Span>
+					<Span id="pdfPanel" aria-label="Download Pdf">
+						Pdf
+					</Span>
 				</Button>
 			</ButtonContainer>
 			{display(subTabAttribute)}

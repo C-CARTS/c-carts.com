@@ -7,6 +7,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import ConvertToCapital from '../../helpers/capitalizationUtil';
+import { breakPointState } from '../../state/changeProperty';
 import { activeIndexAtom, labelArrayAtom, activeLabelSelector } from '../../state/tabState';
 import { ThemeProps } from '../../types/theme';
 
@@ -75,6 +76,7 @@ interface TabsProps {
 function Tabs(props: TabsProps) {
 	const [activeIndex, setActiveIndex] = useRecoilState(activeIndexAtom);
 	const setLabelArray = useSetRecoilState(labelArrayAtom);
+	const breakpoint = useRecoilValue(breakPointState);
 	const currentLabel = useRecoilValue(activeLabelSelector);
 	const labelTab = useRecoilValue(labelArrayAtom);
 	const { activeIndex: initialActiveIndex, children } = props;
@@ -91,7 +93,7 @@ function Tabs(props: TabsProps) {
 	const ActiveTab = currentLabel === labelTab[0] ? DefaultTab : IndividualTab;
 	return (
 		<>
-			<TabNames role="tablist" aria-label="Schedules and Maps tab panel">
+			<TabNames aria-orientation={breakpoint ? 'vertical' : 'horizontal'} role="tablist" aria-label="Services tab panel">
 				{childrenArray.map((tab, index) => (
 					<ActiveTab
 						role="tab"
