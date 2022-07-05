@@ -34,6 +34,7 @@ export default function MyResponsivePie({ data }: Props) {
 			<ResponsiveRadialBar
 				aria-label="Radial Pie Chart displaying trips denied, accepted or lift and trips over Sixty Plus for months of October , November and December "
 				role="img"
+				colors={['#178724', '#307F88', '#952e48']}
 				data={data}
 				valueFormat=">-.2f"
 				padding={0.4}
@@ -41,6 +42,7 @@ export default function MyResponsivePie({ data }: Props) {
 				margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
 				radialAxisStart={{ tickSize: 5, tickPadding: 5, tickRotation: 0 }}
 				circularAxisOuter={{ tickSize: 5, tickPadding: 12, tickRotation: 0 }}
+				padAngle={2}
 				legends={[
 					{
 						anchor: 'top',
@@ -52,7 +54,7 @@ export default function MyResponsivePie({ data }: Props) {
 						itemDirection: 'left-to-right',
 						itemWidth: 100,
 						itemHeight: 18,
-						itemTextColor: '#6b6767',
+						itemTextColor: '#474747',
 						symbolSize: 18,
 						symbolShape: 'square',
 						effects: [

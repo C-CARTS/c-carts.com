@@ -33,13 +33,10 @@ export default function ResponsiveBarChart({ data }: Bar) {
 				indexBy="month"
 				margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
 				padding={0.3}
+				innerPadding={1}
 				valueScale={{ type: 'linear' }}
 				indexScale={{ type: 'band', round: true }}
 				colors={{ scheme: 'nivo' }}
-				borderColor={{
-					from: 'color',
-					modifiers: [['darker', 1.6]]
-				}}
 				axisTop={undefined}
 				axisRight={null}
 				axisBottom={{
@@ -62,7 +59,7 @@ export default function ResponsiveBarChart({ data }: Bar) {
 				labelSkipHeight={12}
 				labelTextColor={{
 					from: 'color',
-					modifiers: [['darker', 1.6]]
+					modifiers: [['darker', 30]]
 				}}
 				legends={[
 					{
@@ -72,11 +69,11 @@ export default function ResponsiveBarChart({ data }: Bar) {
 						justify: false,
 						translateX: 120,
 						translateY: 0,
-						itemsSpacing: 2,
+						itemsSpacing: 5,
 						itemWidth: 100,
 						itemHeight: 20,
 						itemDirection: 'left-to-right',
-						itemOpacity: 0.85,
+						itemOpacity: 5,
 						symbolSize: 20,
 						effects: [
 							{
