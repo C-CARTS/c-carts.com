@@ -3,7 +3,6 @@ import { RadialBarSerie } from '@nivo/radial-bar';
 import dynamic from 'next/dynamic';
 
 import styled from 'styled-components';
-import { ThemeProps } from '../../types/theme';
 
 const ChartComponent = dynamic(() => import('./responsivePieChart'), { ssr: false });
 
@@ -12,20 +11,20 @@ interface Trips {
 }
 
 const PieChartContainer = styled.div`
-	height: 25rem;
-	width: 90%;
+	height: 100%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
-	span {
+	p {
 		font-size: 1rem;
 		width: 100%;
-		//width: ${({ theme }: ThemeProps) => theme.widths.eightByTwelve}%;
 		font-style: italic;
 		font-weight: 500;
 	}
+	padding: 2rem 0px;
 `;
 
 export default function TripsTaken({ trips }: Trips) {
@@ -47,12 +46,9 @@ export default function TripsTaken({ trips }: Trips) {
 		// eslint-disable-next-line jsx-a11y/aria-role
 		<PieChartContainer role="graphics-document">
 			<ChartComponent data={data} />
-			<span aria-hidden>
-				Below is a Clustered Bar chart for trips which were denied,Lyft provided or over sixty plus by C-Carts vehicles for month of october,november and
-				december
-			</span>
+			<p aria-hidden>
+				Radial Bar chart for trips which were denied,Lyft provided or over sixty plus by C-Carts vehicles for october, november and december month.
+			</p>
 		</PieChartContainer>
 	);
 }
-
-/// TO-DO span goes into other sections prevent that from happening

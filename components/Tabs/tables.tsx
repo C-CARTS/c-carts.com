@@ -310,4 +310,3 @@ export default function Tables({ code }: Prop) {
 		</TableContainer>
 	);
 }
-/// TO-DO Fix issue with layout of table for reduced Service

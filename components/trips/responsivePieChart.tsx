@@ -16,7 +16,7 @@ interface Props {
 
 const FigureContainer = styled.figure`
 	width: 100%;
-	height: 100%;
+	height: 25rem;
 `;
 
 const FigureCaption = styled.figure`
@@ -46,8 +46,8 @@ export default function MyResponsivePie({ data }: Props) {
 						anchor: 'top',
 						direction: 'column',
 						justify: false,
-						translateX: -90,
-						translateY: 100,
+						translateX: -80,
+						translateY: 75,
 						itemsSpacing: 6,
 						itemDirection: 'left-to-right',
 						itemWidth: 100,
@@ -71,7 +71,7 @@ export default function MyResponsivePie({ data }: Props) {
 				<p>Radial Pie Chart with trips lifted, denied or over Sixty Plus</p>
 				<h2>Values</h2>
 				<table>
-					<caption>C-Carts vehicle trips for october,november and december month</caption>
+					<caption>C-Carts vehicle trips for october, november and december month</caption>
 					<thead>
 						<tr>
 							<th>&nbsp;</th>

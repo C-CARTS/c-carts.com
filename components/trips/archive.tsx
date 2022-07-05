@@ -77,7 +77,18 @@ export default function Archive({ data }: Prop) {
 			<Label htmlFor="financeData" id="combolabel">
 				Select Fiscal year
 			</Label>
-			<Selector name="financeData" id="financeData" aria-labelledby="combolabel financeData" onChange={onChange}>
+			<Selector
+				role="combobox"
+				aria-autocomplete="list"
+				aria-haspopup="true"
+				aria-controls={selectedYearData[0]}
+				aria-expanded={selected}
+				aria-activedescendant={selectedYearData[0].start}
+				name="financeData"
+				id="financeData"
+				aria-labelledby="combolabel financeData"
+				onChange={onChange}
+			>
 				{data.map((dat: FinancialData) => (
 					<option key={dat.slug.current} value={getYear(dat.fiscalYear)}>
 						{getYear(dat.fiscalYear)}

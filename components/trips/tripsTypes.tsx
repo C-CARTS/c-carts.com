@@ -16,20 +16,22 @@ interface TTypes {
 }
 
 const BarChartContainer = styled.div`
-	height: 25rem;
-	width: 90%;
+	height: 100%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
-	z-index: 10;
+
 	span {
 		width: 100%;
 		font-size: 1rem;
 		font-style: italic;
 		font-weight: 500;
 	}
+
+	padding: 2rem 0px;
 `;
 
 export default function TripsTypes({ ttypes }: TTypes) {

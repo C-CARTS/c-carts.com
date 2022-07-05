@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 		const newsNavItem = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === newsSlug).length > 0)[0];
 		const section = newsNavItem.slug?.current ?? '';
-		// TODO change the path to news
+
 		const newz = await sanityClient.getAll('news');
 
 		const paths = newz.map((n) => ({ params: { section, slug: n.slug?.current } }));

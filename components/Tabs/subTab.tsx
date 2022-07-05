@@ -102,7 +102,7 @@ function SubTab({ content, map, pdf }: Prop) {
 
 	const keyPress = useCallback<KeyboardEventHandler<HTMLButtonElement>>((event) => {
 		const tabPanel = document.getElementsByClassName('tabs-btn');
-		const currentContent = event.target.textContent;
+		const currentContent = event.currentTarget.textContent;
 		const { key } = event;
 		if (key === 'ArrowLeft') {
 			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);

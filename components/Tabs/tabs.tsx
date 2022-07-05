@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useEffect, useMemo } from 'react';
+import { KeyboardEventHandler, useCallback, useEffect, useMemo } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -90,6 +90,46 @@ function Tabs(props: TabsProps) {
 		}
 	}, [childrenArray, initialActiveIndex, setActiveIndex, setLabelArray]);
 
+	const keyPress = useCallback<KeyboardEventHandler<HTMLButtonElement>>((event) => {
+		const tabPanel = document.getElementsByClassName('tabs-buttons');
+		const currentContent = event.currentTarget.textContent;
+		const { key } = event;
+		if (key === 'ArrowLeft') {
+			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
+			switch (currentContent) {
+				case 'eagle  express  direct':
+					document.getElementById(tabPanel[2].id)?.focus();
+					break;
+				case 'eagle  express  south':
+					document.getElementById(tabPanel[1].id)?.focus();
+					break;
+				case 'eagle  express  north':
+					document.getElementById(tabPanel[0].id)?.focus();
+					break;
+				default:
+					break;
+			}
+		}
+		if (key === 'ArrowRight') {
+			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
+			switch (currentContent) {
+				case 'eagle  express  direct':
+					document.getElementById(tabPanel[1].id)?.focus();
+					break;
+				case 'eagle  express  south':
+					document.getElementById(tabPanel[0].id)?.focus();
+					break;
+				case 'eagle  express  north':
+					document.getElementById(tabPanel[2].id)?.focus();
+					break;
+				default:
+					break;
+			}
+		}
+
+		return null;
+	}, []);
+
 	const ActiveTab = currentLabel === labelTab[0] ? DefaultTab : IndividualTab;
 	return (
 		<>
@@ -97,8 +137,11 @@ function Tabs(props: TabsProps) {
 				{childrenArray.map((tab, index) => (
 					<ActiveTab
 						role="tab"
+						className="tabs-buttons"
+						onKeyDown={keyPress}
 						aria-controls={tab.props.label}
 						aria-selected={currentLabel === tab.props.label}
+						id={tab.props.label}
 						key={tab.props.label}
 						onClick={() => setActiveIndex(index)}
 					>

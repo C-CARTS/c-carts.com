@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 	const { mainNavigation } = config;
 	if (mainNavigation) {
 		const section = 'about-us';
-		// TODO change the path to news
+
 		const newz = await sanityClient.getAll('news');
 
 		const paths = newz.map((n) => ({ params: { section, slug: n.slug?.current } }));
