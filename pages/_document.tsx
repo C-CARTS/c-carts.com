@@ -18,12 +18,12 @@ export default class MyDocument extends Document {
 
 			return {
 				...initialProps,
-				styles: (
+				styles: [
 					<>
 						{initialProps.styles}
 						{sheet.getStyleElement()}
 					</>
-				)
+				]
 			};
 		} finally {
 			sheet.seal();

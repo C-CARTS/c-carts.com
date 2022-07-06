@@ -22,7 +22,7 @@ const Header = styled.header<HeaderProps>`
 	//padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides}px;
 	//padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
 	background-color: ${({ UiBreakPoint }: HeaderProps) => (UiBreakPoint ? 'none' : (theme: ThemeProps) => theme.theme.colors.primary.background)};
-	opacity: ${({ ops }) => ops};
+	opacity: ${({ ops, UiBreakPoint }) => (UiBreakPoint ? 1 : ops)};
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -31,8 +31,8 @@ const Header = styled.header<HeaderProps>`
 	justify-content: flex-start;
 	align-items: center;
 
-	padding-top: ${({ ops }) => (ops === 0.75 ? 'clamp(1rem,1vh,1rem)' : '')};
-	padding-bottom: ${({ ops }) => (ops === 0.75 ? 'clamp(1rem,1vh,1rem)' : '')};
+	padding-top: ${({ ops }) => (ops === 0.85 ? 'clamp(1rem,3vh,2rem)' : '')};
+	padding-bottom: ${({ ops }) => (ops === 0.85 ? 'clamp(1rem,1vh,1rem)' : '')};
 `;
 
 const InnerHeaderWrapper = styled.div`
@@ -93,17 +93,17 @@ interface Props {
 export default function Menu({ shortTitle, nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	const query = '(max-width:700px)';
-	const breakpoint = useMediaQuery({ query });
 	const setBreakPoint = useSetRecoilState(breakPointState);
+	const breakpoint = useMediaQuery({ query });
 
 	useEffect(() => {
 		setBreakPoint(breakpoint);
-	}, [setBreakPoint, breakpoint]);
+	}, [breakpoint, setBreakPoint]);
 
 	return (
 		// eslint-disable-next-line react/no-unstable-nested-components
 
-		<Header ops={pageTitle === 'Homepage' ? 0.75 : 1} UiBreakPoint={breakpoint} className="header-content">
+		<Header ops={pageTitle === 'Homepage' ? 0.85 : 1} UiBreakPoint={breakpoint} className="header-content">
 			{breakpoint ? (
 				<SideNav nav={nav} />
 			) : (

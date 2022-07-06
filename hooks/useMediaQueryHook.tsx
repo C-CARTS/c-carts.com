@@ -29,6 +29,7 @@ export default function useMediaQuery({ query }: Prop) {
 		 * updates the breakpoints state
 		 * @param {any} e - any - The event object.
 		 */
+
 		const handler: EventListenerOrEventListenerObject = (e: any) => setBreakpoints(e.matches);
 		mediaMatch.addEventListener('change', handler);
 

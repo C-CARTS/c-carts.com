@@ -80,7 +80,6 @@ export default function Archive({ data }: Prop) {
 			<Selector
 				role="combobox"
 				aria-autocomplete="list"
-				aria-haspopup="true"
 				aria-controls={selectedYearData[0]}
 				aria-expanded={selected}
 				aria-activedescendant={selectedYearData[0].start}

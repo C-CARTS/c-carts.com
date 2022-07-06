@@ -84,7 +84,7 @@ export default function Footer({ address, phone, logo }: Props) {
 				</Contact>
 				{logo && (
 					<Logo>
-						<BasicSanityImage src={logo} alt="C-CARTS LOGO" width={400} aspectratio="384/151" layout="responsive" />
+						<BasicSanityImage src={logo} alt="C-CARTS LOGO" width={400} unoptimized aspectratio="384/151" layout="responsive" />
 					</Logo>
 				)}
 			</FooterContent>

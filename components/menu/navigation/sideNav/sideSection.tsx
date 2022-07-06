@@ -5,7 +5,7 @@ import SideNavigationSection from './sideNavigationSection';
 
 const SideSectionNav = styled.nav`
 	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.contrastColor};
-	opacity: 0.9;
+	opacity: 0.85;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.95}px;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	color: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
