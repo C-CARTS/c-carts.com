@@ -14,6 +14,9 @@ import { ThemeProps } from '../../types/theme';
 import MainNav from './navigation/mainNav';
 import SideNav from './navigation/sideNav/sideNav';
 
+const reducedOpacity = 0.85;
+const fullOpacity = 1;
+
 interface HeaderProps {
 	ops: number;
 	UiBreakPoint: boolean;
@@ -31,8 +34,8 @@ const Header = styled.header<HeaderProps>`
 	justify-content: flex-start;
 	align-items: center;
 
-	padding-top: ${({ ops }) => (ops === 0.85 ? 'clamp(1rem,3vh,2rem)' : '')};
-	padding-bottom: ${({ ops }) => (ops === 0.85 ? 'clamp(1rem,1vh,1rem)' : '')};
+	padding-top: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,3vh,2rem)' : '')};
+	padding-bottom: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,1vh,1rem)' : '')};
 `;
 
 const InnerHeaderWrapper = styled.div`
@@ -103,7 +106,7 @@ export default function Menu({ shortTitle, nav }: Props) {
 	return (
 		// eslint-disable-next-line react/no-unstable-nested-components
 
-		<Header ops={pageTitle === 'Homepage' ? 0.85 : 1} UiBreakPoint={breakpoint} className="header-content">
+		<Header ops={pageTitle === 'Homepage' ? reducedOpacity : fullOpacity} UiBreakPoint={breakpoint} className="header-content">
 			{breakpoint ? (
 				<SideNav nav={nav} />
 			) : (
