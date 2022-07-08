@@ -10,14 +10,18 @@ import useMainNav from '../../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../../sanity/sanityClient';
 
-export default function CardNewsDisplay(props: any) {
-	const { currentNews } = props;
-	const cnwz: News = currentNews;
+interface Props {
+	currentNews: News;
+	// eslint-disable-next-line react/no-unused-prop-types
+	children: any;
+}
+
+export default function CardNewsDisplay({ currentNews }: Props) {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
 	return (
 		<GenericPage title="News" siteConfig={siteConfig} mainNav={mainNav}>
-			<CardNews currentNews={cnwz} />
+			<CardNews currentNews={currentNews} />
 		</GenericPage>
 	);
 }

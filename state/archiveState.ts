@@ -7,7 +7,7 @@ function urlSelector(data: FinancialData['fiscalData']) {
 	const urls = [];
 	if (data !== undefined) {
 		for (let i = 0; i < data.length; i++) {
-			const keys: any = data[i].asset._ref;
+			const keys = data[i];
 			const url = getPdfUrl(keys);
 			urls.push(url);
 		}
