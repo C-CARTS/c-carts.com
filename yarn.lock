@@ -1118,10 +1118,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@c-carts/cms@^1.0.68":
-  version "1.0.68"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@c-carts/cms/-/cms-1.0.68.tgz#6ccf909a0aeb2d4b9a45680e08e238714f4c239e"
-  integrity sha1-bM+QmgrrLUuaRWgOCOI4cU9MI54=
+"@c-carts/cms@^1.0.70":
+  version "1.0.70"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@c-carts/cms/-/cms-1.0.70.tgz#a52ecc6f3245daba4750a115fb5d4aeb83682d95"
+  integrity sha1-pS7MbzJF2rpHUKEV+11K64NoLZU=
   dependencies:
     sanity-codegen "^0.9"
 

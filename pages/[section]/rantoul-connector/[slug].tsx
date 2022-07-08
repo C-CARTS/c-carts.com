@@ -7,6 +7,7 @@ import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
 
 import RantoulConnect from '../../../components/tabs/rantoul';
+import useSchedule from '../../../data-hooks/useSchedules';
 
 const rantoul = 'rantoul-connector';
 
@@ -31,7 +32,7 @@ function Rantoul() {
 	);
 }
 export default Rantoul;
-Rantoul.dataHooks = [useSiteConfig, useMainNav];
+Rantoul.dataHooks = [useSiteConfig, useMainNav, useSchedule];
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const config = await sanityClient.get('siteConfig', process.env.NEXT_PUBLIC_SANITY_SITE_CONFIG_ID ?? 'No Config');

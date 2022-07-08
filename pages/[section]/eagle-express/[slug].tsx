@@ -6,6 +6,7 @@ import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
 import EagleExpress from '../../../components/tabs/eagleExpress';
+import useSchedule from '../../../data-hooks/useSchedules';
 
 const eagle = 'eagle-express';
 
@@ -29,7 +30,7 @@ function Eagle() {
 	);
 }
 export default Eagle;
-Eagle.dataHooks = [useSiteConfig, useMainNav];
+Eagle.dataHooks = [useSiteConfig, useMainNav, useSchedule];
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const config = await sanityClient.get('siteConfig', process.env.NEXT_PUBLIC_SANITY_SITE_CONFIG_ID ?? 'No Config');
