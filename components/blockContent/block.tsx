@@ -11,9 +11,9 @@ import {
 } from '@c-carts/cms';
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
-import DemandResponse from '../_tabs/demandResponse';
-import EagleExpress from '../_tabs/eagleExpress';
-import RantoulConnect from '../_tabs/rantoul';
+import DemandResponse from '../tabs/demandResponse';
+import EagleExpress from '../tabs/eagleExpress';
+import RantoulConnect from '../tabs/rantoul';
 import ImageComponent from './image';
 import JobsComponent from './jobs';
 import NewsComponent from './newz';

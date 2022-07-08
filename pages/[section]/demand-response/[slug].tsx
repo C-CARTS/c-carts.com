@@ -6,7 +6,7 @@ import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
 
-import DemandResponse from '../../../components/_tabs/demandResponse';
+import DemandResponse from '../../../components/tabs/demandResponse';
 import useSchedule from '../../../data-hooks/useSchedules';
 
 const demand = 'demand-response';

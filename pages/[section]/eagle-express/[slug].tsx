@@ -2,7 +2,7 @@
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
 import GenericPage from '../../../components/generic/genericPage';
-import EagleExpress from '../../../components/_tabs/eagleExpress';
+import EagleExpress from '../../../components/tabs/eagleExpress';
 import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useSchedule from '../../../data-hooks/useSchedules';
 import useSiteConfig from '../../../data-hooks/useSiteConfig';
