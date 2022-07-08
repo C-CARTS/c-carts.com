@@ -1,8 +1,8 @@
 import { EagleExpressSection, Maps } from '@c-carts/cms';
 import useSchedule from '../../data-hooks/useSchedules';
 import SubTab from './subTab';
-import Tab from './tab';
-import Tabs from './tabs';
+import Tab from './_tab';
+import Tabs from './_tabs';
 
 interface Prop {
 	block: EagleExpressSection;

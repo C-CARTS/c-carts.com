@@ -1,18 +1,18 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { GoDesktopDownload } from 'react-icons/go';
-import { KeyboardEventHandler, MouseEventHandler, useCallback, useRef, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import styled from 'styled-components';
 import { Maps } from '@c-carts/cms';
 import { useRouter } from 'next/router';
+import { KeyboardEventHandler, MouseEventHandler, useCallback, useRef, useState } from 'react';
+import { GoDesktopDownload } from 'react-icons/go';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import styled from 'styled-components';
 import urlFor from '../../sanity/urlFor';
+import { breakPointState } from '../../state/changeProperty';
 import subTabAtom from '../../state/subTabState';
 import { ThemeProps } from '../../types/theme';
+import getPdfUrl from '../../utils/getPdfUrl';
 import MapsTab from './mapTab';
 import Tables from './tables';
-import getPdfUrl from '../../utils/getPdfUrl';
-import { breakPointState } from '../../state/changeProperty';
 
 interface Prop {
 	content: Maps['content'];
