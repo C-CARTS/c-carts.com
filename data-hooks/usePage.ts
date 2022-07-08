@@ -7,7 +7,6 @@ const usePage = createDataHook<Page>('page', async (context: GetStaticPropsConte
 	const { params } = context;
 	if (params) {
 		const { slug } = params;
-
 		if (typeof slug === 'string') {
 			const data = await sanityClient.getAll('page', `slug.current == "${slug}"`);
 			return data[0];

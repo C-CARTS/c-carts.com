@@ -13,9 +13,6 @@ const eagle = 'eagle-express';
 function Eagle() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
-	const navItems = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === eagle).length > 0)[0];
-	const { slug: navSlug } = navItems;
-	const { title: headline, slug: mpsSlug } = navItems.subPages.filter((pg) => pg.slug.current === eagle)[0];
 
 	return (
 		<GenericPage title="" siteConfig={siteConfig} mainNav={mainNav}>
@@ -25,7 +22,6 @@ function Eagle() {
 					label: 'string'
 				}}
 			/>
-			<a href={`/${navSlug?.current}/${mpsSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);
 }

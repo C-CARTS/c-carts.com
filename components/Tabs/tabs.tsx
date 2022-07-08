@@ -149,7 +149,7 @@ function Tabs(props: TabsProps) {
 					</ActiveTab>
 				))}
 			</TabNames>
-			<TabContent className="tabbed-content" role="tabpanel" aria-label="Tabpanel containing subtabs">
+			<TabContent className="tabbed-content" role="presentation">
 				{childrenArray[activeIndex] && childrenArray[activeIndex].props.children}
 			</TabContent>
 		</>

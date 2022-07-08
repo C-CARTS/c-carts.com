@@ -14,10 +14,6 @@ const rantoul = 'rantoul-connector';
 function Rantoul() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
-	const navItems = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === rantoul).length > 0)[0];
-	const { slug: navSlug } = navItems;
-	const { title: headline, slug: mpsSlug } = navItems.subPages.filter((pg) => pg.slug.current === rantoul)[0];
-
 	return (
 		<GenericPage title="" siteConfig={siteConfig} mainNav={mainNav}>
 			<RantoulConnect
@@ -26,8 +22,6 @@ function Rantoul() {
 					label: 'string'
 				}}
 			/>
-
-			<a href={`/${navSlug?.current}/${mpsSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);
 }
@@ -45,9 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		const newsNavItem = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === rantoul).length > 0)[0];
 		const section = newsNavItem.slug?.current ?? '';
 
-		const mapz = await sanityClient.getAll('page');
-
-		const paths = mapz.map((n) => ({ params: { section, slug: n.slug?.current } }));
+		const paths = pages.map((n) => ({ params: { section, slug: n.slug?.current } }));
 
 		return {
 			paths,

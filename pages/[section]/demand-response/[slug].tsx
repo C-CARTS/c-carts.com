@@ -14,10 +14,6 @@ const demand = 'demand-response';
 function Demand() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
-	const navItems = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === demand).length > 0)[0];
-	const { slug: navSlug } = navItems;
-	const { title: headline, slug: mpsSlug } = navItems.subPages.filter((pg) => pg.slug.current === demand)[0];
-
 	return (
 		<GenericPage title="" siteConfig={siteConfig} mainNav={mainNav}>
 			<DemandResponse
@@ -26,8 +22,6 @@ function Demand() {
 					label: 'string'
 				}}
 			/>
-
-			<a href={`/${navSlug?.current}/${mpsSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);
 }
