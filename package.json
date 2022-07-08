@@ -9,7 +9,7 @@
 	},
 	"dependencies": {
 		"@amcharts/amcharts5": "^5.2.6",
-		"@c-carts/cms": "^1.0.67",
+		"@c-carts/cms": "^1.0.68",
 		"@nivo/bar": "^0.79.1",
 		"@nivo/core": "0.79.0",
 		"@nivo/radial-bar": "^0.79.1",

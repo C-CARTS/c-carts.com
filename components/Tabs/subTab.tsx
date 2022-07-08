@@ -221,7 +221,7 @@ function SubTab({ content, map, pdf }: Prop) {
 					onClick={onSubTabClick}
 				>
 					<GoDesktopDownload aria-hidden />
-					<Span id="pdfPanel" aria-label="Download Pdf">
+					<Span id="pdfPanel" aria-label="Download Pdf" role="link">
 						Pdf
 					</Span>
 				</Button>

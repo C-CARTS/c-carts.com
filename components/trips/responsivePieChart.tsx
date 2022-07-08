@@ -29,12 +29,14 @@ const FigureCaption = styled.figure`
 `;
 
 export default function MyResponsivePie({ data }: Props) {
+	const colorScheme = ['#1718e2', '#904200', '#ae0063'];
+
 	return (
 		<FigureContainer role="group">
 			<ResponsiveRadialBar
 				aria-label="Radial Pie Chart displaying trips denied, accepted or lift and trips over Sixty Plus for months of October , November and December "
-				role="img"
-				colors={{ scheme: 'category10' }}
+				role="figure"
+				colors={colorScheme}
 				labelsTextColor={{
 					from: 'color',
 					modifiers: [['darker', 50]]
@@ -80,7 +82,9 @@ export default function MyResponsivePie({ data }: Props) {
 					<caption>C-Carts vehicle trips for october, november and december month</caption>
 					<thead>
 						<tr>
-							<th>&nbsp;</th>
+							<th id="blankPie" aria-hidden="true">
+								&nbsp;
+							</th>
 							<th scope="col">Denied</th>
 							<th scope="col">Lift</th>
 							<th scope="col">Sixty Plus</th>

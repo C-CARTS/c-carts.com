@@ -305,7 +305,7 @@ interface Prop {
 
 export default function Tables({ code }: Prop) {
 	return (
-		<TableContainer id="tablesPanel" aria-labelledby="code" tabIndex={0} role="tabpanel">
+		<TableContainer id="tablesPanel" aria-labelledby="content" tabIndex={0} role="tabpanel">
 			<InnerContainer dangerouslySetInnerHTML={{ __html: code }} />
 		</TableContainer>
 	);

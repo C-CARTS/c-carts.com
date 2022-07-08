@@ -50,7 +50,7 @@ export default function CardButton({ news }: Prop) {
 	);
 
 	return (
-		<ReadMoreLink id="readlink" href={`${asPath}/story/${news}`} onClick={(event) => clickEvent(event)}>
+		<ReadMoreLink className="readlink" href={`${asPath}/story/${news}`} onClick={(event) => clickEvent(event)}>
 			Read More <LinkDescription>{news}</LinkDescription>
 		</ReadMoreLink>
 	);

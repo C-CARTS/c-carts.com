@@ -23,12 +23,14 @@ const FigureCaption = styled.figure`
 `;
 
 export default function ResponsiveBarChart({ data }: Bar) {
+	const barChartColorScheme = ['#9a3800', '#585c00', '#295e70', '#006800', '#0b50c3', '#9b00aa', '#b4002c'];
+	const textColor = '#fff';
 	return (
 		<FigureContainer role="group">
 			<ResponsiveBar
-				role="img"
-				ariaLabel="Bar chart for displaying different trip types"
+				role="figure"
 				data={data}
+				ariaLabel="Bar chart for displaying different trip types"
 				keys={['education', 'employment', 'medical', 'misc', 'personal', 'shopping', 'social']}
 				indexBy="month"
 				margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
@@ -36,7 +38,7 @@ export default function ResponsiveBarChart({ data }: Bar) {
 				innerPadding={1}
 				valueScale={{ type: 'linear' }}
 				indexScale={{ type: 'band', round: true }}
-				colors={{ scheme: 'nivo' }}
+				colors={barChartColorScheme}
 				axisTop={undefined}
 				axisRight={null}
 				axisBottom={{
@@ -57,10 +59,7 @@ export default function ResponsiveBarChart({ data }: Bar) {
 				}}
 				labelSkipWidth={12}
 				labelSkipHeight={12}
-				labelTextColor={{
-					from: 'color',
-					modifiers: [['darker', 30]]
-				}}
+				labelTextColor={textColor}
 				legends={[
 					{
 						dataFrom: 'keys',
@@ -94,7 +93,9 @@ export default function ResponsiveBarChart({ data }: Bar) {
 					<caption>C-Carts vehicle different trip types for month of october,november and december</caption>
 					<thead>
 						<tr>
-							<th>&nbsp;</th>
+							<th id="blank" aria-hidden="true">
+								&nbsp;
+							</th>
 							<th scope="col">October</th>
 							<th scope="col">November</th>
 							<th scope="col">December</th>

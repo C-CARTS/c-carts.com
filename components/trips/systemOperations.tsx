@@ -1,7 +1,9 @@
 /* eslint-disable no-return-assign */
 import { Operations, OperationType } from '@c-carts/cms';
+import { KeyboardEventHandler, useCallback } from 'react';
 import styled from 'styled-components';
 import { ThemeProps } from '../../types/theme';
+import useThrottle from '../../hooks/useThrottle';
 
 interface Ops {
 	system: Operations;
@@ -43,8 +45,31 @@ export default function SystemOperations({ system }: Ops) {
 		totalMiles += miles;
 	});
 
+	const focusHandler = useCallback<KeyboardEventHandler<HTMLDivElement>>((event) => {
+		const eventExist = event !== undefined;
+
+		if (eventExist) {
+			const { key } = event;
+
+			const screenSize = window.innerWidth;
+			if (screenSize <= 540) {
+				switch (key) {
+					case 'ArrowLeft':
+						window.scrollY = -1;
+						break;
+					case 'ArrowRight':
+						window.scrollY = -1;
+						break;
+					default:
+						break;
+				}
+			}
+		}
+	}, []);
+	const throttledHandler = useThrottle(focusHandler, 100);
+
 	return (
-		<TableContainer>
+		<TableContainer tabIndex={0} onKeyDown={throttledHandler} id="operationsTableContainer">
 			<table
 				role="table"
 				summary="Table to display hours and miles driveb by 6,12 and 14 passenger van and their cumulative total and cumulative hours and miles driven"
@@ -61,9 +86,9 @@ export default function SystemOperations({ system }: Ops) {
 					</tr>
 				</thead>
 				<tbody>
-					{mnths.map(({ fourteenPassVan, hours, miles, months, sixPassVan, twelvePassVan }: OperationType) => (
-						<tr key={months}>
-							<td>{months}</td>
+					{mnths.map(({ fourteenPassVan, hours, miles, month, sixPassVan, twelvePassVan }: OperationType) => (
+						<tr key={month}>
+							<td>{month}</td>
 							<td>{sixPassVan}</td>
 							<td>{twelvePassVan}</td>
 							<td>{fourteenPassVan}</td>
