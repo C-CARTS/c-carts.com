@@ -3,6 +3,7 @@
 
 import { BarDatum, ResponsiveBar } from '@nivo/bar';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 
 interface Bar {
 	data: Array<BarDatum>;
@@ -23,7 +24,9 @@ const FigureCaption = styled.figure`
 `;
 
 export default function ResponsiveBarChart({ data }: Bar) {
-	const barChartColorScheme = ['#9a3800', '#585c00', '#295e70', '#006800', '#0b50c3', '#9b00aa', '#b4002c'];
+	const {
+		colors: { chartTheme }
+	} = theme;
 	const textColor = '#fff';
 	return (
 		<FigureContainer role="group">
@@ -38,7 +41,7 @@ export default function ResponsiveBarChart({ data }: Bar) {
 				innerPadding={1}
 				valueScale={{ type: 'linear' }}
 				indexScale={{ type: 'band', round: true }}
-				colors={barChartColorScheme}
+				colors={chartTheme}
 				axisTop={undefined}
 				axisRight={null}
 				axisBottom={{

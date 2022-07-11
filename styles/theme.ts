@@ -23,7 +23,8 @@ const Theme: ThemeType = {
 			color: '#3D6E6B',
 			subtle: '#DFF2F1',
 			underline: '#3feee6'
-		}
+		},
+		chartTheme: ['#9a3800', '#585c00', '#295e70', '#006800', '#0b50c3', '#9b00aa', '#b4002c']
 	},
 	typography: {
 		baseFontSize: 20,

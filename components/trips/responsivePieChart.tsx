@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { RadialBarSerie, ResponsiveRadialBar } from '@nivo/radial-bar';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 
 // const extraProps = {
 // 	title: 'Radial Pie Chart denoting total trips by C-Carts Vehicle',
@@ -29,14 +30,16 @@ const FigureCaption = styled.figure`
 `;
 
 export default function MyResponsivePie({ data }: Props) {
-	const colorScheme = ['#1718e2', '#904200', '#ae0063'];
+	const {
+		colors: { chartTheme }
+	} = theme;
 
 	return (
 		<FigureContainer role="group">
 			<ResponsiveRadialBar
 				aria-label="Radial Pie Chart displaying trips denied, accepted or lift and trips over Sixty Plus for months of October , November and December "
 				role="figure"
-				colors={colorScheme}
+				colors={chartTheme}
 				labelsTextColor={{
 					from: 'color',
 					modifiers: [['darker', 50]]

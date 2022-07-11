@@ -17,6 +17,7 @@ export interface Colors {
 	link: Pick<ThemePalette, 'color' | 'subtle'> & {
 		underline: string;
 	};
+	chartTheme: string[];
 }
 
 export interface Typography {
