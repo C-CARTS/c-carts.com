@@ -44,13 +44,13 @@ export default function CardButton({ news }: Prop) {
 	const clickEvent = useCallback(
 		(event: MouseEvent<HTMLAnchorElement>) => {
 			event.preventDefault();
-			push(`${event?.currentTarget.baseURI}/story/${news}`);
+			push(`${event?.currentTarget.baseURI}/${news}`);
 		},
 		[push, news]
 	);
 
 	return (
-		<ReadMoreLink className="readlink" href={`${asPath}/story/${news}`} onClick={(event) => clickEvent(event)}>
+		<ReadMoreLink className="readlink" href={`${asPath}/${news}`} onClick={(event) => clickEvent(event)}>
 			Read More <LinkDescription>{news}</LinkDescription>
 		</ReadMoreLink>
 	);

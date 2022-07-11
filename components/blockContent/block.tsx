@@ -1,25 +1,25 @@
 import {
+	CodeSection,
+	DemandResponseSection,
+	EagleExpressSection,
 	ImageSection,
 	JobsSection,
 	NewsSection,
 	PerformanceSection,
-	TextSection,
 	RantoulSection,
-	EagleExpressSection,
-	DemandResponseSection,
-	CodeSection
+	TextSection
 } from '@c-carts/cms';
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
+import DemandResponse from '../tabs/demandResponse';
+import EagleExpress from '../tabs/eagleExpress';
+import RantoulConnect from '../tabs/rantoul';
 import ImageComponent from './image';
 import JobsComponent from './jobs';
 import NewsComponent from './newz';
-import TextComponent from './text';
 import PerformanceOperations from './performance';
-import RantoulConnect from '../tabs/rantoul';
-import DemandResponse from '../tabs/demandResponse';
-import EagleExpress from '../tabs/eagleExpress';
 import DisplayHtmlTable from './table';
+import TextComponent from './text';
 
 interface Props {
 	block:
