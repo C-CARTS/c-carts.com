@@ -5,4 +5,9 @@ const subTabAtom = atom<string>({
 	default: ''
 });
 
+export const focusTabState = atom<number | null>({
+	key: 'focusTabState',
+	default: null
+});
+
 export default subTabAtom;

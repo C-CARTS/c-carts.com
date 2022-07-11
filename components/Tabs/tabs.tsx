@@ -91,20 +91,23 @@ function Tabs(props: TabsProps) {
 	}, [childrenArray, initialActiveIndex, setActiveIndex, setLabelArray]);
 
 	const keyPress = useCallback<KeyboardEventHandler<HTMLButtonElement>>((event) => {
-		const tabPanel = document.getElementsByClassName('tabs-buttons');
+		// const tabPanel = document.getElementsByClassName('tabs-buttons');
 		const currentContent = event.currentTarget.textContent;
 		const { key } = event;
 		if (key === 'ArrowLeft') {
 			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
 			switch (currentContent) {
 				case 'eagle  express  direct':
-					document.getElementById(tabPanel[2].id)?.focus();
+					// document.getElementById(tabPanel[2].id)?.focus();
+					setActiveIndex(2);
 					break;
 				case 'eagle  express  south':
-					document.getElementById(tabPanel[1].id)?.focus();
+					// document.getElementById(tabPanel[1].id)?.focus();
+					setActiveIndex(1);
 					break;
 				case 'eagle  express  north':
-					document.getElementById(tabPanel[0].id)?.focus();
+					setActiveIndex(0);
+					// document.getElementById(tabPanel[0].id)?.focus();
 					break;
 				default:
 					break;
@@ -114,13 +117,16 @@ function Tabs(props: TabsProps) {
 			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
 			switch (currentContent) {
 				case 'eagle  express  direct':
-					document.getElementById(tabPanel[1].id)?.focus();
+					setActiveIndex(1);
+					// document.getElementById(tabPanel[1].id)?.focus();
 					break;
 				case 'eagle  express  south':
-					document.getElementById(tabPanel[0].id)?.focus();
+					// document.getElementById(tabPanel[0].id)?.focus();
+					setActiveIndex(0);
 					break;
 				case 'eagle  express  north':
-					document.getElementById(tabPanel[2].id)?.focus();
+					// document.getElementById(tabPanel[2].id)?.focus();
+					setActiveIndex(2);
 					break;
 				default:
 					break;
