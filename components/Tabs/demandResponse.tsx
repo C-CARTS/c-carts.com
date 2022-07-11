@@ -16,7 +16,6 @@ export default function DemandResponse({ block: { label } }: Prop) {
 			</p>
 		);
 	}
-
 	const demand = mps.filter((mp: Maps) => mp.routeType.route[0] === label);
 
 	return (
