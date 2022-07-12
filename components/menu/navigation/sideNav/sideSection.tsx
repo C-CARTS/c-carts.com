@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
 import { ThemeProps } from '../../../../types/theme';

@@ -1,6 +1,8 @@
 import { KeyboardEventHandler, useCallback } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
+import { sideButtonState } from '../../../../state/changeProperty';
 import { ThemeProps } from '../../../../types/theme';
 import SubPage from '../subPage';
 
@@ -28,17 +30,20 @@ interface Props {
 }
 
 export default function SideNavigationSection({ item: { title, slug, subPages } }: Props) {
-	const keyPressEvent = useCallback<KeyboardEventHandler<HTMLLIElement>>((event) => {
-		const escKey = event.key === 'Escape';
-		if (escKey) {
-			document.getElementById('sideNavButton')?.focus();
-			const btn = document.getElementById('sideNavButton');
-			if (btn !== null) {
-				btn.ariaExpanded = 'false';
-				btn?.click();
+	const sideNavButton = useRecoilValue(sideButtonState);
+	const keyPressEvent = useCallback<KeyboardEventHandler<HTMLLIElement>>(
+		(event) => {
+			const escKey = event.key === 'Escape';
+			if (escKey) {
+				sideNavButton?.focus();
+				if (sideNavButton !== null) {
+					sideNavButton.ariaExpanded = 'false';
+					sideNavButton?.click();
+				}
 			}
-		}
-	}, []);
+		},
+		[sideNavButton]
+	);
 	return (
 		<>
 			<h2 id="menuTitle">{title}</h2>

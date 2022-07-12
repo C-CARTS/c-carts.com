@@ -1,5 +1,10 @@
 import { atom, selector } from 'recoil';
 
+export const tabIndexState = atom<number | null>({
+	key: 'tabIndexState',
+	default: null
+});
+
 /**
  * It is the atom to track active index of Tabs, and the default value is 0.
  */
