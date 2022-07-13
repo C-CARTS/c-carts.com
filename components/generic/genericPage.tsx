@@ -28,7 +28,7 @@ const ContentWrap = styled.div`
 const changeValues = (val: string) => {
 	switch (val) {
 		case 'Homepage':
-			return `height: 400px; background-image:url("http://placeimg.com/1200/420/any");
+			return `height: 400px; background-image:url("https://placeimg.com/1200/420/any");
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
@@ -48,8 +48,6 @@ interface Prop {
 
 const Wrapper = styled.div<Prop>`
 	width: 100%;
-	/* A CSS function that is not supported by all browsers. It is a way to set a minimum and maximum
-	value for padding. */
 	padding-top: clamp(1rem, 3vh, 2rem);
 	padding-right: ${({ breakpt }) => (breakpt ? '0px' : `clamp(1rem, 5vw, 3rem)`)};
 	padding-bottom: clamp(2rem, 5vh, 5rem);

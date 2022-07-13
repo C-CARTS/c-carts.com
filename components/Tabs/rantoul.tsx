@@ -10,7 +10,7 @@ export default function RantoulConnect({ block: { label } }: Props) {
 	const mps = useSchedule();
 	if (mps.length === 0 && label.length < 0) {
 		return (
-			<p className="news unavailable">
+			<p className="Schedule unavailable">
 				<strong>There are currently no schedules available</strong>
 			</p>
 		);

@@ -53,6 +53,10 @@ export default function Archive({ data }: Prop) {
 	const fiscalYear = useRecoilValue(fiscalYearState);
 	const selectedYearData = useRecoilValue(fiscalDataSelector);
 
+	const dates = selectedYearData.slice(0, 1);
+	const urls = selectedYearData.slice(1);
+	const Quarters = ['First', 'Second', 'Third', 'Fourth'];
+
 	const onChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
 		(event: ChangeEvent<HTMLSelectElement>) => {
 			const val = event.currentTarget.value;
@@ -67,10 +71,6 @@ export default function Archive({ data }: Prop) {
 			setFiscalData(data);
 		}
 	}, [setFiscalData, data]);
-
-	const dates = selectedYearData.slice(0, 1);
-	const urls = selectedYearData.slice(1);
-	const Quarters = ['First', 'Second', 'Third', 'Fourth'];
 
 	return (
 		<div>

@@ -47,7 +47,6 @@ export default function SystemOperations({ system }: Ops) {
 
 	const focusHandler = useCallback<KeyboardEventHandler<HTMLDivElement>>((event) => {
 		const eventExist = event !== undefined;
-
 		if (eventExist) {
 			const { key } = event;
 

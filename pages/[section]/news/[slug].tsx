@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
-import NewsComponent from '../../../components/blockContent/news';
+import CardNews from '../../../components/card/cardNews';
+
 import GenericPage from '../../../components/generic/genericPage';
 import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import useNews from '../../../data-hooks/useNews';
@@ -17,19 +18,11 @@ const newsSlug = 'news';
 export default function NewsUpdates() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
-
-	const navItems = mainNav.filter(({ subPages }) => subPages.filter((item) => item.slug?.current === newsSlug).length > 0)[0];
-	const { slug: navSlug } = navItems;
-	const { title: headline, slug: newzSlug } = navItems.subPages.filter((pg) => pg.slug.current === newsSlug)[0];
-
 	const news = useNews();
 
 	return (
 		<GenericPage title="" siteConfig={siteConfig} mainNav={mainNav}>
-			<NewsComponent news={news} />
-			<a style={{ padding: '0.325rem 0px', borderBottomWidth: '0.45rem' }} href={`/${navSlug?.current}/${newzSlug?.current}`}>
-				{headline}
-			</a>
+			<CardNews currentNews={news} />
 		</GenericPage>
 	);
 }
