@@ -22,13 +22,11 @@ const TableContainer = styled.div`
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
 
-	#directW {
-		width: 100%;
-	}
-
+	#directW,
 	#directE {
 		width: 100%;
 	}
+
 	#directE table > th > td {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
@@ -88,7 +86,7 @@ const TableContainer = styled.div`
 		padding: 8px;
 	}
 	tr:nth-child(even) {
-		background-color: #f2f2f2;
+		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}75;
 	}
 	tr:hover {
 		background-color: #ddd;

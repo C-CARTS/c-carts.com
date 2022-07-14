@@ -73,7 +73,6 @@ function SubTab({ content, map, pdf }: Prop) {
 			const currentContent = event.currentTarget.textContent;
 			const { key } = event;
 			if (key === 'ArrowLeft') {
-				// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
 				switch (currentContent) {
 					case 'Schedule':
 						setFocusTab(2);
@@ -90,7 +89,6 @@ function SubTab({ content, map, pdf }: Prop) {
 				}
 			}
 			if (key === 'ArrowRight') {
-				// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
 				switch (currentContent) {
 					case 'Schedule':
 						setFocusTab(1);

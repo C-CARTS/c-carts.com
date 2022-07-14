@@ -65,7 +65,7 @@ const Wrapper = styled.div<Prop>`
 const MainWrap = styled.div`
 	padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} ${theme.sizes.contentPaddingSides} ${theme.sizes.contentPaddingBottom}`};
 	//width: min(100%, ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px);
-	max-width: 1200px;
+	max-width: ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px;
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -115,7 +115,7 @@ const MainWrap = styled.div`
 `;
 
 const Main = styled.main`
-	max-width: 1200px;
+	max-width: ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px;
 	width: 100%;
 	display: flex;
 	flex-direction: column;

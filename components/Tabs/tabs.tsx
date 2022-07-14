@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import ConvertToCapital from '../../helpers/capitalizationUtil';
 import { breakPointState } from '../../state/changeProperty';
 import { activeIndexAtom, labelArrayAtom, activeLabelSelector, tabIndexState } from '../../state/tabState';
-import { mediaQueryMaxWidths } from '../../styles/theme';
+
 import { ThemeProps } from '../../types/theme';
 import TabButton from './tabsButton';
 
@@ -20,17 +20,14 @@ const TabNames = styled.div`
 	justify-content: space-between;
 
 	align-content: center;
-	background: #29af1d;
+	background: ${({ theme }: ThemeProps) => theme.colors.primary.tabsBackground};
 	width: 100%;
-
 	padding: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.15);
 
 	& :hover {
 		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.color};
-		background-color: #fff;
-		color: #000;
-	}
-	@media (max-width: ${mediaQueryMaxWidths.newscontainerOneCol}px) {
+		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+		color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 		flex-direction: column;
 		flex-wrap: wrap;
 	}
@@ -68,7 +65,6 @@ function Tabs(props: TabsProps) {
 		const currentContent = event.currentTarget.textContent;
 		const { key } = event;
 		if (key === 'ArrowLeft') {
-			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
 			switch (currentContent) {
 				case 'eagle  express  direct':
 					setTabFocus(2);
@@ -84,7 +80,6 @@ function Tabs(props: TabsProps) {
 			}
 		}
 		if (key === 'ArrowRight') {
-			// const changeTab = tabPanel.namedItem(currentFocus?.previousSibling);
 			switch (currentContent) {
 				case 'eagle  express  direct':
 					setTabFocus(1);

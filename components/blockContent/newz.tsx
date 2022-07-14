@@ -13,7 +13,7 @@ interface Props {
 
 const Container = styled.div`
 	font-family: ${({ theme }: ThemeProps) => theme.typography.fontFamily};
-	max-width: 1200px;
+	max-width: ${({ theme }: ThemeProps) => theme.typography.maxCharacterWidth}px;
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -45,7 +45,7 @@ export default function NewsComponent({ block: { count } }: Props) {
 	const filtered = count === 0 ? newsUpdates : newsUpdates.slice(0, count);
 
 	return (
-		<Container className="Container">
+		<Container className="NewsContainer">
 			{filtered.map((j: NewsType) => (
 				<News news={j} key={j._id} />
 			))}

@@ -20,8 +20,8 @@ const IndividualTab = styled.button`
 	text-transform: capitalize;
 	background: none;
 	border: none;
-	color: #000000;
-	width: 30%;
+	color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
+	width: ${({ theme }: ThemeProps) => theme.widths.threeByTwelve}%;
 	cursor: pointer;
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
 
@@ -29,8 +29,8 @@ const IndividualTab = styled.button`
 	&:active,
 	&:focus-visible {
 		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
-		background-color: #fff;
-		color: #000;
+		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+		color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 	}
 	@media (max-width: ${mediaQueryMaxWidths.tablesSm}px) {
 		width: ${({ theme }: ThemeProps) => theme.widths.sixByTwelve}%;
@@ -40,8 +40,8 @@ const IndividualTab = styled.button`
 const DefaultTab = styled(IndividualTab)`
 	&:first-child {
 		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
-		background-color: #fff;
-		color: #000;
+		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+		color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 	}
 `;
 
@@ -49,7 +49,6 @@ export default function TabButton({ index, subAttribute, onKeyDown, id, currentI
 	const ButtonElement = subAttribute ? DefaultTab : IndividualTab;
 
 	const button = useRef<HTMLButtonElement | null>(null);
-
 	const [tabIndex, setTabIndex] = useRecoilState(tabIndexState);
 
 	useEffect(() => {

@@ -18,7 +18,6 @@ const TableContainer = styled.div`
 	padding: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingTop} 0px;
 	table {
 		flex: 1 1 auto;
-		//width: ${({ theme }: ThemeProps) => theme.widths.eightByTwelve}%;
 		text-align: center;
 		caption {
 			font-weight: bold;

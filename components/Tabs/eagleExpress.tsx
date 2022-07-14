@@ -12,7 +12,7 @@ export default function EagleExpress({ block: { label } }: Prop) {
 	const mps = useSchedule();
 	if (mps.length === 0 && label.length < 0) {
 		return (
-			<p className="news unavailable">
+			<p className="eagleExpress unavailable">
 				<strong>There are currently no schedules available</strong>
 			</p>
 		);

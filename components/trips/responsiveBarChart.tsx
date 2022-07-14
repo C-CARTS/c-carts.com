@@ -27,7 +27,7 @@ export default function ResponsiveBarChart({ data }: Bar) {
 	const {
 		colors: { chartTheme }
 	} = theme;
-	const textColor = '#fff';
+	const textColor = theme.colors.primary.background;
 	return (
 		<FigureContainer role="group">
 			<ResponsiveBar

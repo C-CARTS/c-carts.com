@@ -11,7 +11,7 @@ export default function DemandResponse({ block: { label } }: Prop) {
 
 	if (mps.length === 0 && label.length < 0) {
 		return (
-			<p className="news unavailable">
+			<p className="demandResponse schedule">
 				<strong>There are currently no schedules available</strong>
 			</p>
 		);

@@ -8,7 +8,8 @@ const Theme: ThemeType = {
 			contrastColor: '#0a0000',
 			background: '#ffffff',
 			text: '#0a0000',
-			layoutBorder: '#cccccc'
+			layoutBorder: '#cccccc',
+			tabsBackground: '#29af1d'
 		},
 		secondary: {
 			color: '#3feee6',
@@ -91,5 +92,6 @@ export const mediaQueryMaxWidths = {
 	tablesDirect: 820,
 	tablesRantoulWest: 988,
 	tablesLg: 1200,
-	tablesSm: 580
+	tablesSm: 580,
+	maxWidth: 768
 };

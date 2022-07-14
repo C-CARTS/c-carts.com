@@ -15,7 +15,7 @@ const navButtonHeight = '2rem';
 const Container = styled.div`
 	width: 100%;
 	height: 100px;
-	z-index: 1;
+	z-index: 10;
 `;
 
 const ListContainer = styled.div`
@@ -48,7 +48,7 @@ const SideNavButton = styled.button`
 	justify-content: center;
 
 	&:focus-visible {
-		border-color: #e1dcdc;
+		border-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		border-width: 0.15rem;
 		border-style: solid;
 	}
@@ -67,7 +67,10 @@ const LogoLink = styled.a<TitleProp>`
 	outline-color: transparent;
 	padding-left: 0.45rem;
 	span {
-		color: ${({ pgTitle }) => (pgTitle === 'Homepage' ? `#fff` : `#000`)};
+		color: ${({ pgTitle }) =>
+			pgTitle === 'Homepage'
+				? `${({ theme }: ThemeProps) => theme.colors.primary.background}`
+				: `${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor}`};
 	}
 	&:hover,
 	&:focus-visible {

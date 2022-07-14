@@ -25,7 +25,7 @@ interface Props {
 
 export default function CardNews({ currentNews }: Props) {
 	if (currentNews === undefined) {
-		return <ErrorMessage>The selected item does not exist</ErrorMessage>;
+		return <ErrorMessage>The selected News Card item does not exist</ErrorMessage>;
 	}
 
 	const { headline, content, dateTime } = currentNews;
