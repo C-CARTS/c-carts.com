@@ -1,6 +1,7 @@
 import { PerformanceSection, Performance } from '@c-carts/cms';
 import styled from 'styled-components';
 import usePerformance from '../../data-hooks/usePerformance';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import Archive from '../trips/archive';
 import SystemOperations from '../trips/systemOperations';
 import TripsTaken from '../trips/tripsTaken';
@@ -19,7 +20,7 @@ const ChartsContainer = styled.div`
 	justify-content: center;
 	grid-row-gap: 4rem;
 	grid-column-gap: 2rem;
-	@media (max-width: 1100px) {
+	@media (max-width: ${mediaQueryMaxWidths.performance}px) {
 		grid-template-columns: repeat(1, 100%);
 	}
 `;

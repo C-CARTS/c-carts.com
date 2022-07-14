@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import ConvertToCapital from '../../helpers/capitalizationUtil';
 import { breakPointState } from '../../state/changeProperty';
 import { activeIndexAtom, labelArrayAtom, activeLabelSelector, tabIndexState } from '../../state/tabState';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 import TabButton from './tabsButton';
 
@@ -29,7 +30,7 @@ const TabNames = styled.div`
 		background-color: #fff;
 		color: #000;
 	}
-	@media (max-width: 720px) {
+	@media (max-width: ${mediaQueryMaxWidths.newscontainerOneCol}px) {
 		flex-direction: column;
 		flex-wrap: wrap;
 	}

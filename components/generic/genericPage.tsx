@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
 import titleState, { breakPointState } from '../../state/changeProperty';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 import Footer from '../footer/footer';
 import Menu from '../menu/menu';
@@ -56,7 +57,7 @@ const Wrapper = styled.div<Prop>`
 
 	${({ home }) => changeValues(home)}
 
-	@media (max-width: 700px) {
+	@media (max-width:${mediaQueryMaxWidths.genericpage}px) {
 		height: 100%;
 	}
 `;

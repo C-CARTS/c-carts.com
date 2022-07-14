@@ -28,9 +28,6 @@ const TableContainer = styled.div`
 		th {
 			background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		}
-		/* @media (max-width: 650px) {
-			width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
-		} */
 	}
 `;
 

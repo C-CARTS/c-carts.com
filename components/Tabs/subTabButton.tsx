@@ -2,6 +2,7 @@ import { KeyboardEventHandler, MouseEventHandler, ReactNode, useEffect, useRef }
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { focusTabState } from '../../state/subTabState';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 
 interface Props extends Pick<HTMLButtonElement, 'id'> {
@@ -37,7 +38,7 @@ const ActiveButton = styled.button`
 		border-bottom: 0.2rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
 	}
 
-	@media (max-width: 580px) {
+	@media (max-width: ${mediaQueryMaxWidths.subtab}px) {
 		width: 100%;
 		margin-bottom: 0.65rem;
 	}

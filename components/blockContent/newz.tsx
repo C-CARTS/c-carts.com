@@ -2,6 +2,7 @@ import { NewsSection, News as NewsType } from '@c-carts/cms';
 
 import styled from 'styled-components';
 import useNewz from '../../data-hooks/useNewz';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 
 import { ThemeProps } from '../../types/theme';
 import News from './news';
@@ -22,10 +23,10 @@ const Container = styled.div`
 	grid-row-gap: 1.25rem;
 	grid-column-gap: 1rem;
 
-	@media (max-width: 900px) {
+	@media (max-width: ${mediaQueryMaxWidths.newscontainerTwoCol}px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	@media (max-width: 720px) {
+	@media (max-width: ${mediaQueryMaxWidths.newscontainerOneCol}px) {
 		grid-template-columns: 1fr;
 	}
 `;

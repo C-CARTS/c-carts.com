@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import urlFor from '../../sanity/urlFor';
 import { breakPointState } from '../../state/changeProperty';
 import subTabAtom, { focusTabState } from '../../state/subTabState';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 import getPdfUrl from '../../utils/getPdfUrl';
 import MapsTab from './mapTab';
@@ -31,7 +32,7 @@ const ButtonContainer = styled.div`
 	margin: 0.5rem 0px 0px 0px;
 	padding: 0px;
 
-	@media (max-width: 580px) {
+	@media (max-width: ${mediaQueryMaxWidths.subtab}px) {
 		flex-direction: column;
 		flex-wrap: nowrap;
 	}

@@ -2,6 +2,7 @@ import { KeyboardEventHandler, MouseEventHandler, ReactNode, useEffect, useRef }
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { tabIndexState } from '../../state/tabState';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 
 interface Props extends Pick<HTMLButtonElement, 'id'> {
@@ -31,7 +32,7 @@ const IndividualTab = styled.button`
 		background-color: #fff;
 		color: #000;
 	}
-	@media (max-width: 580px) {
+	@media (max-width: ${mediaQueryMaxWidths.tablesSm}px) {
 		width: ${({ theme }: ThemeProps) => theme.widths.sixByTwelve}%;
 	}
 `;

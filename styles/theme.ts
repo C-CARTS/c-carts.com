@@ -80,3 +80,16 @@ const Theme: ThemeType = {
 };
 
 export default Theme;
+
+export const mediaQueryMaxWidths = {
+	card: 820,
+	genericpage: 700,
+	newscontainerTwoCol: 900,
+	newscontainerOneCol: 720,
+	performance: 1100,
+	subtab: 580,
+	tablesDirect: 820,
+	tablesRantoulWest: 988,
+	tablesLg: 1200,
+	tablesSm: 580
+};
