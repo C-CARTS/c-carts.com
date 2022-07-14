@@ -29,11 +29,11 @@ const ContentWrap = styled.div`
 const changeValues = (val: string) => {
 	switch (val) {
 		case 'Homepage':
-			return `height: 400px; background-image:url("https://placeimg.com/1200/420/any");
+			return `height: 400px;
+			background-image:url("https://placeimg.com/1200/420/any");
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
-			width:100%;
 			padding:0px;
 		`;
 		default:
@@ -64,7 +64,6 @@ const Wrapper = styled.div<Prop>`
 
 const MainWrap = styled.div`
 	padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} ${theme.sizes.contentPaddingSides} ${theme.sizes.contentPaddingBottom}`};
-	//width: min(100%, ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px);
 	max-width: ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px;
 	width: 100%;
 	margin: 0 auto;
