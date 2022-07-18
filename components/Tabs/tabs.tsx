@@ -23,14 +23,6 @@ const TabNames = styled.div`
 	background: ${({ theme }: ThemeProps) => theme.colors.primary.tabsBackground};
 	width: 100%;
 	padding: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.15);
-
-	& :hover {
-		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.color};
-		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
-		color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
-		flex-direction: column;
-		flex-wrap: wrap;
-	}
 `;
 
 const TabContent = styled.div`

@@ -1,19 +1,8 @@
-import {
-	CodeSection,
-	DemandResponseSection,
-	EagleExpressSection,
-	ImageSection,
-	JobsSection,
-	NewsSection,
-	PerformanceSection,
-	RantoulSection,
-	TextSection
-} from '@c-carts/cms';
+import { CodeSection, ImageSection, JobsSection, NewsSection, PerformanceSection, RoutesReferences, TextSection } from '@c-carts/cms';
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
-import DemandResponse from '../tabs/demandResponse';
-import EagleExpress from '../tabs/eagleExpress';
-import RantoulConnect from '../tabs/rantoul';
+import Schedules from '../tabs/schedules';
+import DemandResponse from '../tabs/schedules';
 import ImageComponent from './image';
 import JobsComponent from './jobs';
 import NewsComponent from './newz';
@@ -28,10 +17,8 @@ interface Props {
 		| SanityKeyed<JobsSection>
 		| SanityKeyed<NewsSection>
 		| SanityKeyed<PerformanceSection>
-		| SanityKeyed<RantoulSection>
-		| SanityKeyed<DemandResponseSection>
-		| SanityKeyed<EagleExpressSection>
-		| SanityKeyed<CodeSection>;
+		| SanityKeyed<CodeSection>
+		| SanityKeyed<RoutesReferences>;
 }
 
 export default function Block({ block }: Props) {
@@ -47,14 +34,10 @@ export default function Block({ block }: Props) {
 			return <NewsComponent block={block as NewsSection} />;
 		case 'performanceSection':
 			return <PerformanceOperations block={block as PerformanceSection} />;
-		case 'rantoulSection':
-			return <RantoulConnect block={block as RantoulSection} />;
-		case 'demandResponseSection':
-			return <DemandResponse block={block as DemandResponseSection} />;
-		case 'eagleExpressSection':
-			return <EagleExpress block={block as EagleExpressSection} />;
 		case 'codeSection':
 			return <DisplayHtmlTable block={block as CodeSection} />;
+		case 'routesReferences':
+			return <Schedules block={block as RoutesReferences} />;
 		default:
 			assertUnreachable(_type);
 	}

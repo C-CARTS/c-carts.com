@@ -51,7 +51,7 @@ const FirstButton = styled(ActiveButton)`
 `;
 
 export default function SubTabButton({ index, subAttribute, onKeyDown, id, currentId, onClick, children, ariaControls }: Props) {
-	const ButtonElement = subAttribute ? ActiveButton : FirstButton;
+	const ButtonElement = subAttribute ? FirstButton : ActiveButton;
 
 	const button = useRef<HTMLButtonElement | null>(null);
 

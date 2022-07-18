@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Maps } from '@c-carts/cms';
+import { Routes } from '@c-carts/cms';
 import { useRouter } from 'next/router';
 import { KeyboardEventHandler, MouseEventHandler, useCallback, useRef, useState } from 'react';
 import { GoDesktopDownload } from 'react-icons/go';
@@ -17,9 +17,9 @@ import SubTabButton from './subTabButton';
 import Tables from './tables';
 
 interface Prop {
-	content: Maps['content'];
-	map: Maps['images'];
-	pdf: Maps['routePdfs'];
+	content: Routes['content'];
+	map: Routes['images'];
+	pdf: Routes['routePdfs'];
 }
 
 const ButtonContainer = styled.div`
@@ -135,7 +135,7 @@ function SubTab({ content, map, pdf }: Prop) {
 		}
 	};
 
-	const subAttribute = subTabAttribute === 'code' || subTabAttribute === null;
+	const subAttribute = subTabAttribute === 'content' || subTabAttribute === '';
 
 	return (
 		<>
