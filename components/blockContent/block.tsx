@@ -2,7 +2,6 @@ import { CodeSection, ImageSection, JobsSection, NewsSection, PerformanceSection
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
 import Schedules from '../tabs/schedules';
-import DemandResponse from '../tabs/schedules';
 import ImageComponent from './image';
 import JobsComponent from './jobs';
 import NewsComponent from './newz';
