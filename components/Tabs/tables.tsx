@@ -1,4 +1,4 @@
-import { Maps } from '@c-carts/cms';
+import { Routes } from '@c-carts/cms';
 import styled from 'styled-components';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
@@ -299,7 +299,7 @@ const InnerContainer = styled(TableContainer)`
 `;
 
 interface Prop {
-	code: Maps['content'];
+	code: Routes['content'];
 }
 
 export default function Tables({ code }: Prop) {
