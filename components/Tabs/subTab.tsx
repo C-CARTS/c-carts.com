@@ -113,11 +113,9 @@ function SubTab({ content, map, pdf }: Prop) {
 	const onSubTabClick = useCallback<MouseEventHandler<HTMLButtonElement>>(
 		(event: React.MouseEvent<HTMLButtonElement>) => {
 			if (event.currentTarget !== null) {
-				const attribute = event.currentTarget.getAttribute('id');
+				const attribute = event.currentTarget.getAttribute('id') as string;
 				setId(attribute);
-				if (typeof attribute === 'string') {
-					setSubTabAttribute(attribute);
-				}
+				setSubTabAttribute(attribute);
 				if (attribute === 'file') {
 					pushUrl(url);
 				}

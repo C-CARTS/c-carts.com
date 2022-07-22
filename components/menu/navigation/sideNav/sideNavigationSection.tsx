@@ -30,16 +30,15 @@ interface Props {
 }
 
 export default function SideNavigationSection({ item: { title, slug, subPages } }: Props) {
-	const sideNavButton = useRecoilValue(sideButtonState);
+	const sideNavButton = useRecoilValue(sideButtonState) as HTMLButtonElement;
 	const keyPressEvent = useCallback<KeyboardEventHandler<HTMLLIElement>>(
 		(event) => {
 			const escKey = event.key === 'Escape';
 			if (escKey) {
 				sideNavButton?.focus();
-				if (sideNavButton !== null) {
-					sideNavButton.ariaExpanded = 'false';
-					sideNavButton?.click();
-				}
+
+				sideNavButton.ariaExpanded = 'false';
+				sideNavButton?.click();
 			}
 		},
 		[sideNavButton]

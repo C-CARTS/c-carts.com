@@ -19,7 +19,7 @@ const DisplayMap = styled.div`
 
 export default function MapsTab({ mapUrl }: Prop) {
 	const url: string | null = mapUrl.toString();
-	if (url === null) {
+	if (url === null || url === '') {
 		return <div>Unable to load image, image url null or incorrect</div>;
 	}
 	return (
