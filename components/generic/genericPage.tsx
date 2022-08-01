@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
 import titleState, { breakPointState } from '../../state/changeProperty';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 import Footer from '../footer/footer';
 import Menu from '../menu/menu';
@@ -28,11 +29,11 @@ const ContentWrap = styled.div`
 const changeValues = (val: string) => {
 	switch (val) {
 		case 'Homepage':
-			return `height: 400px; background-image:url("http://placeimg.com/1200/420/any");
+			return `height: 400px;
+			background-image:url("https://placeimg.com/1200/420/any");
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
-			width:100%;
 			padding:0px;
 		`;
 		default:
@@ -48,8 +49,6 @@ interface Prop {
 
 const Wrapper = styled.div<Prop>`
 	width: 100%;
-	/* A CSS function that is not supported by all browsers. It is a way to set a minimum and maximum
-	value for padding. */
 	padding-top: clamp(1rem, 3vh, 2rem);
 	padding-right: ${({ breakpt }) => (breakpt ? '0px' : `clamp(1rem, 5vw, 3rem)`)};
 	padding-bottom: clamp(2rem, 5vh, 5rem);
@@ -58,15 +57,14 @@ const Wrapper = styled.div<Prop>`
 
 	${({ home }) => changeValues(home)}
 
-	@media (max-width: 700px) {
+	@media (max-width:${mediaQueryMaxWidths.genericpage}px) {
 		height: 100%;
 	}
 `;
 
 const MainWrap = styled.div`
 	padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} ${theme.sizes.contentPaddingSides} ${theme.sizes.contentPaddingBottom}`};
-	//width: min(100%, ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px);
-	max-width: 1200px;
+	max-width: ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px;
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -116,7 +114,7 @@ const MainWrap = styled.div`
 `;
 
 const Main = styled.main`
-	max-width: 1200px;
+	max-width: ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px;
 	width: 100%;
 	display: flex;
 	flex-direction: column;

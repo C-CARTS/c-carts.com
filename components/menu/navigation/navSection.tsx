@@ -29,7 +29,6 @@ const SectionWrap = styled.div`
 		min-width: min(90vw, 12rem);
 		background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 		border: 0.05rem solid ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-		//border-top: 0;
 		list-style: none;
 
 		box-shadow: 0.2rem 0.2rem 0 0.025rem ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}px;

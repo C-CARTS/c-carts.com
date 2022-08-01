@@ -21,6 +21,7 @@ const PieChartContainer = styled.div`
 	p {
 		font-size: 1rem;
 		width: 100%;
+
 		font-style: italic;
 		font-weight: 500;
 	}

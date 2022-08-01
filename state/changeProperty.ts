@@ -11,3 +11,8 @@ export const breakPointState = atom<boolean>({
 	key: 'breakPointState',
 	default: false
 });
+
+export const sideButtonState = atom<HTMLButtonElement | null>({
+	key: 'sideButtonState',
+	default: null
+});

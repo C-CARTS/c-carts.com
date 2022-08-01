@@ -2,6 +2,7 @@ import { NewsSection, News as NewsType } from '@c-carts/cms';
 
 import styled from 'styled-components';
 import useNewz from '../../data-hooks/useNewz';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 
 import { ThemeProps } from '../../types/theme';
 import News from './news';
@@ -12,7 +13,7 @@ interface Props {
 
 const Container = styled.div`
 	font-family: ${({ theme }: ThemeProps) => theme.typography.fontFamily};
-	max-width: 1200px;
+	max-width: ${({ theme }: ThemeProps) => theme.typography.maxCharacterWidth}px;
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -22,10 +23,10 @@ const Container = styled.div`
 	grid-row-gap: 1.25rem;
 	grid-column-gap: 1rem;
 
-	@media (max-width: 900px) {
+	@media (max-width: ${mediaQueryMaxWidths.newscontainerTwoCol}px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	@media (max-width: 720px) {
+	@media (max-width: ${mediaQueryMaxWidths.newscontainerOneCol}px) {
 		grid-template-columns: 1fr;
 	}
 `;
@@ -44,7 +45,7 @@ export default function NewsComponent({ block: { count } }: Props) {
 	const filtered = count === 0 ? newsUpdates : newsUpdates.slice(0, count);
 
 	return (
-		<Container className="Container">
+		<Container className="NewsContainer">
 			{filtered.map((j: NewsType) => (
 				<News news={j} key={j._id} />
 			))}

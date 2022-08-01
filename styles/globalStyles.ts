@@ -10,6 +10,8 @@ const GlobalStyles = createGlobalStyle`
 html {
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
 	scroll-behavior: smooth;
+
+
 }
 
 body{

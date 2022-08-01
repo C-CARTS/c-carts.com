@@ -1,5 +1,6 @@
-import { Maps } from '@c-carts/cms';
+import { Routes } from '@c-carts/cms';
 import styled from 'styled-components';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 
 /* eslint-disable react/no-danger */
@@ -21,18 +22,16 @@ const TableContainer = styled.div`
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
 
-	#directW {
-		width: 100%;
-	}
-
+	#directW,
 	#directE {
 		width: 100%;
 	}
+
 	#directE table > th > td {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
 
-	@media (max-width: 820px) {
+	@media (max-width: ${mediaQueryMaxWidths.tablesDirect}px) {
 		#directW {
 			width: 100%;
 		}
@@ -45,7 +44,7 @@ const TableContainer = styled.div`
 		width: ${({ theme }: ThemeProps) => theme.widths.fourByTwelve}%;
 	}
 
-	@media (max-width: 988px) {
+	@media (max-width: ${mediaQueryMaxWidths.tablesRantoulWest}px) {
 		#rantoulW {
 			width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 		}
@@ -55,7 +54,7 @@ const TableContainer = styled.div`
 		width: ${({ theme }: ThemeProps) => theme.widths.sixByTwelve}%;
 	}
 
-	@media (max-width: 1200px) {
+	@media (max-width: ${mediaQueryMaxWidths.tablesLg}px) {
 		width: 100%;
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -87,7 +86,7 @@ const TableContainer = styled.div`
 		padding: 8px;
 	}
 	tr:nth-child(even) {
-		background-color: #f2f2f2;
+		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}75;
 	}
 	tr:hover {
 		background-color: #ddd;
@@ -100,7 +99,7 @@ const TableContainer = styled.div`
 		font-weight: 600;
 	}
 
-	@media (max-width: 580px) {
+	@media (max-width: ${mediaQueryMaxWidths.tablesSm}px) {
 		min-width: fit-content;
 		flex-direction: column;
 		flex-wrap: wrap;
@@ -300,7 +299,7 @@ const InnerContainer = styled(TableContainer)`
 `;
 
 interface Prop {
-	code: Maps['content'];
+	code: Routes['content'];
 }
 
 export default function Tables({ code }: Prop) {

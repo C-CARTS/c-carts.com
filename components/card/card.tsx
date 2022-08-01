@@ -1,5 +1,6 @@
 import { News } from '@c-carts/cms';
 import styled from 'styled-components';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 import CardBody from './cardBody';
 import CardHeader from './cardHeader';
@@ -38,7 +39,7 @@ const CardContainer = styled.article`
 		transform-origin: center;
 	}
 
-	@media (max-width: 820px) {
+	@media (max-width: ${mediaQueryMaxWidths.card}px) {
 		margin: 1.125rem 0px;
 	}
 `;

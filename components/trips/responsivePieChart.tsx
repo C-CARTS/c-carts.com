@@ -63,14 +63,14 @@ export default function MyResponsivePie({ data }: Props) {
 						itemDirection: 'left-to-right',
 						itemWidth: 100,
 						itemHeight: 18,
-						itemTextColor: '#474747',
+						itemTextColor: theme.colors.primary.text,
 						symbolSize: 18,
 						symbolShape: 'square',
 						effects: [
 							{
 								on: 'hover',
 								style: {
-									itemTextColor: '#0a0a0a'
+									itemTextColor: theme.colors.primary.contrastColor
 								}
 							}
 						]

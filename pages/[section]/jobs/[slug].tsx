@@ -13,17 +13,12 @@ const jobsSlug = 'jobs';
 export default function Job() {
 	const siteConfig = useSiteConfig();
 	const mainNav = useMainNav();
-	const navItem = mainNav.filter((mn) => mn.subPages.filter((sp) => sp.slug?.current === jobsSlug).length > 0)[0];
-	const { slug: navSlug } = navItem;
-	const { title: jobTitle, slug: jobSlug } = navItem.subPages.filter((sp) => sp.slug?.current === jobsSlug)[0];
-
 	const job = useJob();
 	const { name } = job;
 
 	return (
 		<GenericPage title={name ?? 'Job'} siteConfig={siteConfig} mainNav={mainNav}>
 			<JobsComponent job={job} hideHeading />
-			<a href={`/${navSlug?.current}/${jobSlug?.current}`}>Back to {jobTitle}</a>
 		</GenericPage>
 	);
 }

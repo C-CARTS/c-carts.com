@@ -18,7 +18,6 @@ const TableContainer = styled.div`
 	padding: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingTop} 0px;
 	table {
 		flex: 1 1 auto;
-		//width: ${({ theme }: ThemeProps) => theme.widths.eightByTwelve}%;
 		text-align: center;
 		caption {
 			font-weight: bold;
@@ -28,9 +27,6 @@ const TableContainer = styled.div`
 		th {
 			background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		}
-		/* @media (max-width: 650px) {
-			width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
-		} */
 	}
 `;
 
@@ -47,7 +43,6 @@ export default function SystemOperations({ system }: Ops) {
 
 	const focusHandler = useCallback<KeyboardEventHandler<HTMLDivElement>>((event) => {
 		const eventExist = event !== undefined;
-
 		if (eventExist) {
 			const { key } = event;
 

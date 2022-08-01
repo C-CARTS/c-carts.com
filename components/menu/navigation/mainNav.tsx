@@ -47,7 +47,7 @@ export default function MainNav({ nav }: Props) {
 	}, [openIndex, setOpenIndex, setFocusIndex]);
 
 	if (nav === undefined) {
-		throw new Error('Nav is undefined');
+		throw new Error('Navigation is undefined');
 	}
 
 	return (

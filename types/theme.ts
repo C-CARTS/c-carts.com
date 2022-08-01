@@ -8,6 +8,7 @@ export interface PrimaryThemePalette extends ThemePalette {
 	background: string;
 	text: string;
 	layoutBorder: string;
+	tabsBackground: string;
 }
 
 export interface Colors {

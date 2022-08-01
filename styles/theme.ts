@@ -8,7 +8,8 @@ const Theme: ThemeType = {
 			contrastColor: '#0a0000',
 			background: '#ffffff',
 			text: '#0a0000',
-			layoutBorder: '#cccccc'
+			layoutBorder: '#cccccc',
+			tabsBackground: '#29af1d'
 		},
 		secondary: {
 			color: '#3feee6',
@@ -80,3 +81,17 @@ const Theme: ThemeType = {
 };
 
 export default Theme;
+
+export const mediaQueryMaxWidths = {
+	card: 820,
+	genericpage: 700,
+	newscontainerTwoCol: 900,
+	newscontainerOneCol: 720,
+	performance: 1100,
+	subtab: 580,
+	tablesDirect: 820,
+	tablesRantoulWest: 988,
+	tablesLg: 1200,
+	tablesSm: 580,
+	maxWidth: 768
+};

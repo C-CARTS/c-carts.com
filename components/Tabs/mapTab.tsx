@@ -19,8 +19,8 @@ const DisplayMap = styled.div`
 
 export default function MapsTab({ mapUrl }: Prop) {
 	const url: string | null = mapUrl.toString();
-	if (url === null) {
-		return <div>Image is either incorrect or null</div>;
+	if (url === null || url === '') {
+		return <div>Unable to load image, image url null or incorrect</div>;
 	}
 	return (
 		<DisplayMap id="mapPanel" aria-labelledby="image" tabIndex={0} role="tabpanel">

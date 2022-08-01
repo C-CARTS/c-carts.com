@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { KeyboardEvent, useCallback, useState } from 'react';
+import { KeyboardEvent, useCallback, useRef, useState } from 'react';
 import Link from 'next/link';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
 // eslint-disable-next-line import/no-cycle
 import SideSection from './sideSection';
 import { ThemeProps } from '../../../../types/theme';
-import titleState from '../../../../state/changeProperty';
+import titleState, { sideButtonState } from '../../../../state/changeProperty';
 
 const navButtonHeight = '2rem';
 
 const Container = styled.div`
 	width: 100%;
 	height: 100px;
-	z-index: 1;
+	z-index: 10;
 `;
 
 const ListContainer = styled.div`
@@ -48,7 +48,7 @@ const SideNavButton = styled.button`
 	justify-content: center;
 
 	&:focus-visible {
-		border-color: #e1dcdc;
+		border-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		border-width: 0.15rem;
 		border-style: solid;
 	}
@@ -67,7 +67,10 @@ const LogoLink = styled.a<TitleProp>`
 	outline-color: transparent;
 	padding-left: 0.45rem;
 	span {
-		color: ${({ pgTitle }) => (pgTitle === 'Homepage' ? `#fff` : `#000`)};
+		color: ${({ pgTitle }) =>
+			pgTitle === 'Homepage'
+				? `${({ theme }: ThemeProps) => theme.colors.primary.background}`
+				: `${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor}`};
 	}
 	&:hover,
 	&:focus-visible {
@@ -89,6 +92,8 @@ export default function SideNav({ nav }: Props) {
 	const [buttonState, setButtonState] = useState(false);
 	const [keyPressState, setKeypresed] = useState(false);
 	const pageTitle = useRecoilValue(titleState);
+	const btnRef = useRef<HTMLButtonElement | null>(null);
+	const setSideNavButton = useSetRecoilState(sideButtonState);
 
 	const buttonClick = useCallback(() => {
 		if (buttonState) {
@@ -101,12 +106,13 @@ export default function SideNav({ nav }: Props) {
 	const keyPress = useCallback(
 		(event: KeyboardEvent<HTMLButtonElement>) => {
 			if (event.key === 'Enter' || event.key === 'Tab' || event.key === 'Space') {
+				setSideNavButton(btnRef.current);
 				setKeypresed(true);
 			} else {
 				setKeypresed(false);
 			}
 		},
-		[setKeypresed]
+		[setKeypresed, setSideNavButton]
 	);
 
 	return (
@@ -114,6 +120,7 @@ export default function SideNav({ nav }: Props) {
 		<Container role="navigation" aria-label="Hamburger Menu">
 			<ListContainer>
 				<SideNavButton
+					ref={btnRef}
 					aria-controls="side-navigation"
 					aria-haspopup="true"
 					id="sideNavButton"

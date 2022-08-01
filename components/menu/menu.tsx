@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
 import useMediaQuery from '../../hooks/useMediaQueryHook';
 import titleState, { breakPointState } from '../../state/changeProperty';
+import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 import MainNav from './navigation/mainNav';
 import SideNav from './navigation/sideNav/sideNav';
@@ -22,10 +23,8 @@ interface HeaderProps {
 	UiBreakPoint: boolean;
 }
 const Header = styled.header<HeaderProps>`
-	//padding: 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides}px;
-	//padding-bottom: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom}px;
 	background-color: ${({ UiBreakPoint }: HeaderProps) => (UiBreakPoint ? 'none' : (theme: ThemeProps) => theme.theme.colors.primary.background)};
-	opacity: ${({ ops, UiBreakPoint }) => (UiBreakPoint ? 1 : ops)};
+	opacity: ${({ ops, UiBreakPoint }) => (UiBreakPoint ? fullOpacity : ops)};
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -42,7 +41,7 @@ const InnerHeaderWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	max-width: 1200px;
+	max-width: ${({ theme }: ThemeProps) => theme.typography.maxCharacterWidth}px;
 	width: 100%;
 	margin: 0 auto;
 
@@ -64,7 +63,6 @@ const LogoLink = styled.a`
 	text-decoration-thickness: 0.22rem;
 	transition: all 0.2s ease-out;
 	outline-color: transparent;
-	//padding: 0.5rem 0.5rem;
 
 	&,
 	&:visited {
@@ -95,7 +93,7 @@ interface Props {
  */
 export default function Menu({ shortTitle, nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
-	const query = '(max-width:700px)';
+	const query = `(max-width:${mediaQueryMaxWidths.maxWidth}px)`;
 	const setBreakPoint = useSetRecoilState(breakPointState);
 	const breakpoint = useMediaQuery({ query });
 
