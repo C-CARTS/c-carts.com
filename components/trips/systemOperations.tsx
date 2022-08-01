@@ -2,32 +2,22 @@
 import { Operations, OperationType } from '@c-carts/cms';
 import { KeyboardEventHandler, useCallback } from 'react';
 import styled from 'styled-components';
-import { ThemeProps } from '../../types/theme';
 import useThrottle from '../../hooks/useThrottle';
+import { ThemeProps } from '../../types/theme';
 
 interface Ops {
 	system: Operations;
 }
 
-const TableContainer = styled.div`
+const Table = styled.div`
+	margin: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingTop} 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom};
+	padding: 0;
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	overflow-x: auto;
-	padding: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingTop} 0px;
-	table {
-		flex: 1 1 auto;
-		text-align: center;
-		caption {
-			font-weight: bold;
-		}
+	grid-area: table;
+`;
 
-		tr:nth-child(even),
-		th {
-			background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-		}
-	}
+const TotalRow = styled.tr`
+	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 `;
 
 export default function SystemOperations({ system }: Ops) {
@@ -64,10 +54,10 @@ export default function SystemOperations({ system }: Ops) {
 	const throttledHandler = useThrottle(focusHandler, 100);
 
 	return (
-		<TableContainer tabIndex={0} onKeyDown={throttledHandler} id="operationsTableContainer">
+		<Table tabIndex={0} onKeyDown={throttledHandler} id="operationsTableContainer">
 			<table
 				role="table"
-				summary="Table to display hours and miles driveb by 6,12 and 14 passenger van and their cumulative total and cumulative hours and miles driven"
+				summary="Table to display hours and miles driven by 6,12 and 14 passenger van and their cumulative total and cumulative hours and miles driven"
 			>
 				<caption>System Operations</caption>
 				<thead>
@@ -92,13 +82,13 @@ export default function SystemOperations({ system }: Ops) {
 						</tr>
 					))}
 
-					<tr style={{ marginTop: '20rem' }}>
+					<TotalRow>
 						<td colSpan={4}>Total</td>
 						<td>{totalMiles}</td>
 						<td>{totalHours}</td>
-					</tr>
+					</TotalRow>
 				</tbody>
 			</table>
-		</TableContainer>
+		</Table>
 	);
 }

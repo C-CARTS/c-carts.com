@@ -1,4 +1,4 @@
-import { PerformanceSection, Performance } from '@c-carts/cms';
+import { Performance, PerformanceSection } from '@c-carts/cms';
 import styled from 'styled-components';
 import usePerformance from '../../data-hooks/usePerformance';
 import { mediaQueryMaxWidths } from '../../styles/theme';
@@ -15,13 +15,15 @@ const ChartsContainer = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: minmax(450px, auto);
+	grid-template-rows: auto;
 	align-items: center;
 	justify-content: center;
-	grid-row-gap: 4rem;
-	grid-column-gap: 2rem;
+	grid-gap: 2rem;
+	grid-template-areas: 'radial stacked' 'table table' 'selector selector';
+
 	@media (max-width: ${mediaQueryMaxWidths.performance}px) {
 		grid-template-columns: repeat(1, 100%);
+		grid-template-areas: 'selector' 'radial' 'stacked' 'table';
 	}
 `;
 

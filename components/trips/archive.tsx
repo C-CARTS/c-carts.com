@@ -13,27 +13,23 @@ interface Prop {
 	data: FinancialData[];
 }
 
+const SelectorWrap = styled.div`
+	grid-area: selector;
+`;
+
 const Label = styled.label`
-	font-weight: 600;
+	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	font-size: 1.1rem;
-	background-image: linear-gradient(
-		to right,
-		${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}35,
-		${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}39
-	);
-	padding: 0px calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides} * 0.2);
+	display: block;
+	margin: 0 0 0.25rem 0;
 `;
 
 const Selector = styled.select`
-	background: none;
-	border: none;
+	display: block;
+	width: 100%;
+	max-width: 400px;
+	padding: 0.25rem 0.5rem;
 	font-size: 1.1rem;
-	margin-left: 10px;
-	background-image: linear-gradient(
-		to right,
-		${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}45,
-		${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}49
-	);
 `;
 
 const DatesContainer = styled.span`
@@ -42,8 +38,8 @@ const DatesContainer = styled.span`
 `;
 
 const Message = styled.div`
-	padding: 0px calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides} * 0.2);
-	font-weight: 600;
+	font-size: 0.9em;
+	font-style: italic;
 `;
 
 export default function Archive({ data }: Prop) {
@@ -73,11 +69,12 @@ export default function Archive({ data }: Prop) {
 	}, [setFiscalData, data]);
 
 	return (
-		<div>
+		<SelectorWrap>
 			<Label htmlFor="financeData" id="combolabel">
 				Select Fiscal year
 			</Label>
 			<Selector
+				aria-describedby="archive-message"
 				role="combobox"
 				aria-autocomplete="list"
 				aria-controls={selectedYearData[0]}
@@ -100,7 +97,7 @@ export default function Archive({ data }: Prop) {
 						<DatesContainer>
 							{formatDate(dates[0].start)} {formatDate(dates[0].end)}
 						</DatesContainer>
-						<ul aria-label={`list of pdf links to Quartely Earning for fiscal year ${fiscalYear}`}>
+						<ul aria-label={`list of pdf links to Quarterly Earning for fiscal year ${fiscalYear}`}>
 							{urls[0].map((url: string, index: number) => (
 								<li key={url}>
 									<a href={url} target="_blank" rel="noreferrer">
@@ -111,9 +108,9 @@ export default function Archive({ data }: Prop) {
 						</ul>
 					</div>
 				) : (
-					<Message>Select Year to display Fiscal Reports</Message>
+					<Message id="archive-message">Select a year to view archived fiscal reports.</Message>
 				)}
 			</div>
-		</div>
+		</SelectorWrap>
 	);
 }

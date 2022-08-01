@@ -18,6 +18,8 @@ const PieChartContainer = styled.div`
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
+	grid-area: radial;
+
 	p {
 		font-size: 1rem;
 		width: 100%;
