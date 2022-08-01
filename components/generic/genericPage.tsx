@@ -1,5 +1,5 @@
 import { SiteConfig } from '@c-carts/cms';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
@@ -71,46 +71,6 @@ const MainWrap = styled.div`
 	flex-direction: row;
 	flex-wrap: nowrap;
 	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
-
-	h1 {
-		font-family: ${({ theme }: ThemeProps) => theme.typography.headingFont};
-		width: 100%;
-	}
-
-	div > p {
-		padding: ${({ theme }: ThemeProps) => `${theme.sizes.contentPaddingTop} 0px ${theme.sizes.contentPaddingBottom} 0px`};
-		line-height: calc(${({ theme }: ThemeProps) => theme.typography.baseLineHeight} + 0.25);
-		width: ${({ theme }: ThemeProps) => theme.widths.tenByTwelve}%;
-	}
-
-	ul > li {
-		line-height: calc(${({ theme }: ThemeProps) => theme.typography.baseLineHeight} + 0.25);
-		width: ${({ theme }: ThemeProps) => theme.widths.tenByTwelve}%;
-	}
-
-	div > p a {
-		&,
-		&:link {
-			text-decoration: underline;
-			text-decoration-thickness: 0.15rem;
-			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
-		}
-		&:hover {
-			text-decoration: underline;
-			text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-			text-decoration-thickness: 0.15rem;
-		}
-		&:focus,
-		&:focus-visible {
-			outline-color: transparent;
-			> span {
-				text-decoration: underline;
-				text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
-				text-decoration-thickness: 0.15rem;
-				background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
-			}
-		}
-	}
 `;
 
 const Main = styled.main`

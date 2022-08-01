@@ -8,22 +8,41 @@ interface Prop {
 }
 
 const Table = styled.div`
-	caption {
-		font-size: 1.1rem;
-		font-weight: 700;
-		padding: 0.25rem 0px;
-	}
+	margin: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingTop} 0 ${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom};
+	padding: 0;
+	width: 100%;
 
 	table {
-		border: 1px solid ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-		tr:nth-child(even),
+		width: 100%;
+		border-collapse: collapse;
+
+		thead {
+			border-bottom: 2px solid ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+		}
+
 		th {
+			text-align: left;
+			font-size: 1.05em;
+		}
+
+		tr:nth-child(even) {
 			background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
 		}
-		tr > td {
+
+		th,
+		td {
 			padding-left: 0.45rem;
 			padding-right: 0.45rem;
 		}
+	}
+
+	caption {
+		position: absolute;
+		left: -10000px;
+		top: auto;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
 	}
 `;
 
