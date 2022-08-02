@@ -30,9 +30,8 @@ const Header = styled.header<HeaderProps>`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: flex-start;
 	align-items: center;
-
+	align-content: center;
 	padding-top: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,3vh,2rem)' : '')};
 	padding-bottom: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,1vh,1rem)' : '')};
 `;
