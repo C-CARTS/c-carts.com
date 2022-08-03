@@ -36,14 +36,21 @@ const Header = styled.header<HeaderProps>`
 	padding-bottom: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,1vh,1rem)' : '')};
 `;
 
-const InnerHeaderWrapper = styled.div`
+const OuterWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	max-width: ${({ theme }: ThemeProps) => theme.typography.maxCharacterWidth}px;
 	width: 100%;
-	margin: 0 auto;
+`;
 
+const InnerWrapper = styled.div`
+	display: flex;
+	flex: row;
+	max-width: ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px;
+	justify-content: center;
+	width: 100%;
+
+	margin: 0 auto;
 	a {
 		width: 100%;
 		justify-self: flex-start;
@@ -54,7 +61,6 @@ const InnerHeaderWrapper = styled.div`
 		justify-self: flex-end;
 	}
 `;
-
 const LogoLink = styled.a`
 	font-size: 1.5rem;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
@@ -107,14 +113,16 @@ export default function Menu({ shortTitle, nav }: Props) {
 			{breakpoint ? (
 				<SideNav nav={nav} />
 			) : (
-				<InnerHeaderWrapper>
-					<Link href="/" passHref>
-						<LogoLink id="logoLink" role="link" title="home" aria-label={`Return to ${shortTitle} homepage`}>
-							{shortTitle}
-						</LogoLink>
-					</Link>
-					<MainNav nav={nav} />
-				</InnerHeaderWrapper>
+				<OuterWrapper>
+					<InnerWrapper>
+						<Link href="/" passHref>
+							<LogoLink id="logoLink" role="link" title="home" aria-label={`Return to ${shortTitle} homepage`}>
+								{shortTitle}
+							</LogoLink>
+						</Link>
+						<MainNav nav={nav} />
+					</InnerWrapper>
+				</OuterWrapper>
 			)}
 		</Header>
 	);
