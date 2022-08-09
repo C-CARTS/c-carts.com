@@ -7,7 +7,7 @@ import NewsComponent from './newz';
 import PerformanceOperations from './performance';
 import DisplayHtmlTable from './table';
 import TextComponent from './text';
-import SchedulesRoutes from '../tabs/schedules';
+import SchedulesRoutes from '../tabs/schedulesRoutes';
 
 interface Props {
 	block:
