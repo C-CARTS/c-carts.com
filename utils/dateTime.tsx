@@ -6,6 +6,7 @@ export default function getDate(date: string) {
 }
 
 export function getYear(date: string) {
+	if (Number.isNaN(parseInt(date, 10))) return date;
 	const format = dayjs(date).format('YYYY');
 	return format;
 }

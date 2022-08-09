@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FinancialData } from '@c-carts/cms';
@@ -43,7 +44,8 @@ const Message = styled.div`
 `;
 
 export default function Archive({ data }: Prop) {
-	const [selected, setCurrentOption] = useRecoilState(selectedOptionState);
+	const [selectedOption, setCurrentOption] = useRecoilState(selectedOptionState);
+
 	const setFiscalData = useSetRecoilState(fiscalDataState);
 	const setFiscalYear = useSetRecoilState(fiscalYearState);
 	const fiscalYear = useRecoilValue(fiscalYearState);
@@ -56,8 +58,10 @@ export default function Archive({ data }: Prop) {
 	const onChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
 		(event: ChangeEvent<HTMLSelectElement>) => {
 			const val = event.currentTarget.value;
-			setFiscalYear(val);
-			setCurrentOption(val !== null && val.length > 0);
+			if (val !== 'Select an option') {
+				setFiscalYear(val);
+				setCurrentOption(val !== null && val.length > 0);
+			}
 		},
 		[setCurrentOption, setFiscalYear]
 	);
@@ -67,6 +71,10 @@ export default function Archive({ data }: Prop) {
 			setFiscalData(data);
 		}
 	}, [setFiscalData, data]);
+
+	const allOptions = data.flatMap((dat: FinancialData) => dat.fiscalYear);
+	allOptions.push('Select an Option');
+	allOptions.reverse();
 
 	return (
 		<SelectorWrap>
@@ -78,21 +86,22 @@ export default function Archive({ data }: Prop) {
 				role="combobox"
 				aria-autocomplete="list"
 				aria-controls={selectedYearData[0]}
-				aria-expanded={selected}
+				aria-expanded={selectedOption}
 				aria-activedescendant={selectedYearData[0].start}
 				name="financeData"
 				id="financeData"
 				aria-labelledby="combolabel financeData"
+				defaultValue="default"
 				onChange={onChange}
 			>
-				{data.map((dat: FinancialData) => (
-					<option key={dat.slug.current} value={getYear(dat.fiscalYear)}>
-						{getYear(dat.fiscalYear)}
+				{data.map((dat: FinancialData, index) => (
+					<option key={dat.slug.current} value={getYear(allOptions[index])}>
+						{getYear(allOptions[index])}
 					</option>
 				))}
 			</Selector>
 			<div>
-				{selected ? (
+				{selectedOption ? (
 					<div>
 						<DatesContainer>
 							{formatDate(dates[0].start)} {formatDate(dates[0].end)}

@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
+import urlFor from '../../sanity/urlFor';
 import titleState, { breakPointState } from '../../state/changeProperty';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
@@ -26,11 +27,11 @@ const ContentWrap = styled.div`
 	height: 100%;
 `;
 
-const changeValues = (val: string) => {
+const changeValues = (val: string, bannerImg: string | null) => {
 	switch (val) {
 		case 'Homepage':
 			return `height: 400px;
-			background-image:url("https://placeimg.com/1200/420/any");
+			background-image:url(${bannerImg});
 			background-repeat:no-repeat;
 			background-size:cover;
 			background-attachment: fixed;
@@ -45,6 +46,7 @@ const changeValues = (val: string) => {
 interface Prop {
 	home: string;
 	breakpt: boolean;
+	banner: string | null;
 }
 
 const Wrapper = styled.div<Prop>`
@@ -55,7 +57,7 @@ const Wrapper = styled.div<Prop>`
 	padding-left: ${({ breakpt }) => (breakpt ? '0px' : `clamp(1rem, 5vw, 3rem)`)};
 	margin-left: 0;
 
-	${({ home }) => changeValues(home)}
+	${({ home, banner }) => changeValues(home, banner)}
 
 	@media (max-width:${mediaQueryMaxWidths.genericpage}px) {
 		height: 100%;
@@ -87,15 +89,16 @@ const MenuWrapper = styled.div`
 	width: 100%;
 `;
 
-export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo } }: Props) {
+export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo, bannerImage } }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	const breakpoint = useRecoilValue(breakPointState);
+	const bannerImg = urlFor(bannerImage.asset._ref).toString();
 	return (
 		<>
 			<SkipLink />
 			<ContentWrap>
 				<HeadContent title={title} description={description} />
-				<Wrapper breakpt={breakpoint} home={pageTitle}>
+				<Wrapper banner={bannerImg} breakpt={breakpoint} home={pageTitle}>
 					<MenuWrapper className="menuWrapper">
 						<Menu nav={mainNav} shortTitle={shortTitle} />
 					</MenuWrapper>
