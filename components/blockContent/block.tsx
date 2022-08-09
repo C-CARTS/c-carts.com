@@ -1,7 +1,7 @@
 import { CodeSection, ImageSection, JobsSection, NewsSection, PerformanceSection, RoutesReferences, TextSection } from '@c-carts/cms';
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
-import Schedules from '../tabs/sschedules';
+import Schedules from '../tabs/schedules';
 import ImageComponent from './image';
 import JobsComponent from './jobs';
 import NewsComponent from './newz';
