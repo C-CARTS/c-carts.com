@@ -1,13 +1,13 @@
 import { CodeSection, ImageSection, JobsSection, NewsSection, PerformanceSection, RoutesReferences, TextSection } from '@c-carts/cms';
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
-import Schedules from '../tabs/schedules';
 import ImageComponent from './image';
 import JobsComponent from './jobs';
 import NewsComponent from './newz';
 import PerformanceOperations from './performance';
 import DisplayHtmlTable from './table';
 import TextComponent from './text';
+import SchedulesRoutes from '../tabs/schedules';
 
 interface Props {
 	block:
@@ -36,7 +36,7 @@ export default function Block({ block }: Props) {
 		case 'codeSection':
 			return <DisplayHtmlTable block={block as CodeSection} />;
 		case 'routesReferences':
-			return <Schedules block={block as RoutesReferences} />;
+			return <SchedulesRoutes block={block as RoutesReferences} />;
 		default:
 			assertUnreachable(_type);
 	}

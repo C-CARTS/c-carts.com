@@ -10,10 +10,10 @@ interface Props {
 type eagleType = Routes | any;
 
 export default function Scheduler({ ids }: Props) {
-	const schedules = useSchedules();
+	const schdls = useSchedules();
 	let eagle = 0;
 	const eagleExp: eagleType[] = [];
-	schedules.map((sch: Routes) => {
+	schdls.map((sch: Routes) => {
 		if (sch.slug.current.match('eagle')) {
 			eagle += 1;
 			eagleExp.push(sch);

@@ -5,7 +5,7 @@ interface Prop {
 	block: RoutesReferences;
 }
 
-export default function Schedules({ block: { routesList, _type } }: Prop) {
+export default function SchedulesRoutes({ block: { routesList, _type } }: Prop) {
 	const ids = routesList.map(({ _ref }) => _ref);
 	return <Scheduler key={_type} ids={ids} />;
 }

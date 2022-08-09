@@ -6,7 +6,7 @@ export interface MainNavItem extends NavItem {
 	subPages: Page[];
 }
 
-const useSchedules = createDataHook<Routes[]>('schedules', async () => {
+const useSchedules = createDataHook<Routes[]>('schdul', async () => {
 	const routes = await sanityClient.getAll('routes');
 	return routes;
 });
