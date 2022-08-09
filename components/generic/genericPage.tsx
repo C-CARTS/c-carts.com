@@ -25,6 +25,7 @@ const ContentWrap = styled.div`
 	flex-flow: column nowrap;
 	margin: 0 auto;
 	height: 100%;
+	min-height: 100vh;
 `;
 
 const changeValues = (val: string, bannerImg: string | null) => {
@@ -72,6 +73,7 @@ const MainWrap = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	flex: 1 1 auto;
 	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 `;
 
