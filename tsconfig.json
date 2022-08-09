@@ -18,5 +18,5 @@
 		"incremental": true
 	},
 	"exclude": ["node_modules"],
-	"include": ["next-env.d.ts", "pages/**/*", "src/**/*", "**/*.ts", "**/*.tsx", "sw.ts", "**/tabs/schedules.tsx"]
+	"include": ["next-env.d.ts", "pages/**/*", "src/**/*", "**/*.ts", "**/*.tsx", "sw.ts", "**/*/*.tsx"]
 }
