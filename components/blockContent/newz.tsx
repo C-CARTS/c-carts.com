@@ -1,4 +1,4 @@
-import { NewsSection, News as NewsType } from '@c-carts/cms';
+import { News as NewsType, NewsSection } from '@c-carts/cms';
 
 import styled from 'styled-components';
 import useNewz from '../../data-hooks/useNewz';
@@ -53,4 +53,4 @@ export default function NewsComponent({ block: { count } }: Props) {
 	);
 }
 
-NewsComponent.datahooks = [useNewz];
+NewsComponent.dataHooks = [useNewz];
