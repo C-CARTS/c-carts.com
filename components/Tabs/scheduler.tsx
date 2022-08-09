@@ -7,7 +7,7 @@ interface Props {
 	ids: string[];
 }
 
-type eagleType = any | Routes;
+type eagleType = Routes | any;
 
 export default function Scheduler({ ids }: Props) {
 	const schedules = useSchedules();
