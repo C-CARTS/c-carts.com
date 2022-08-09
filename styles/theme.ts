@@ -8,7 +8,7 @@ const Theme: ThemeType = {
 			contrastColor: '#0a0000',
 			background: '#ffffff',
 			text: '#0a0000',
-			layoutBorder: '#cccccc',
+			layoutBorder: '#ddd',
 			tabsBackground: '#29af1d'
 		},
 		secondary: {

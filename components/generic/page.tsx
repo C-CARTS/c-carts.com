@@ -1,5 +1,4 @@
 import { Page } from '@c-carts/cms';
-import React from 'react';
 import Block from '../blockContent/block';
 
 interface Props {

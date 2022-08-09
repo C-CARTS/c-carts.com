@@ -168,6 +168,46 @@ div{
 	margin:0px;
 }
 
+	table {
+		width: 100%;
+		border-collapse: collapse;
+
+		thead {
+			border-bottom: 2px solid ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+		}
+
+		th {
+			text-align: left;
+			font-size: 1.05em;
+			padding-top: 0.25rem;
+			padding-bottom: 0.25rem;
+		}
+
+		tr:nth-child(even) {
+			background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+		}
+
+		th,
+		td {
+			padding-left: 0.45rem;
+			padding-right: 0.45rem;
+		}
+
+		td {
+			padding-top: 0.125rem;
+			padding-bottom: 0.125rem;
+		}
+	}
+
+	caption {
+		position: absolute;
+		left: -10000px;
+		top: auto;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
 `;
 
 export default GlobalStyles;

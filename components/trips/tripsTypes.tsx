@@ -23,6 +23,7 @@ const BarChartContainer = styled.div`
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
+	grid-area: stacked;
 
 	span {
 		width: 100%;
