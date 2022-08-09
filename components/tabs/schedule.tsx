@@ -8,12 +8,12 @@ interface Prop {
 }
 
 export default function Schedule({ id }: Prop) {
-	const schedules = useSchedules();
-	const schedule = schedules.filter((mp: Routes) => mp._id === id);
+	const schdules = useSchedules();
+	const schdule = schdules.filter((mp: Routes) => mp._id === id);
 
 	return (
 		<div style={{ width: '100%' }}>
-			{schedule.map(({ content, routePdfs, images, _id }) => (
+			{schdule.map(({ content, routePdfs, images, _id }) => (
 				<SubTab content={content} pdf={routePdfs} map={images} key={_id} />
 			))}
 		</div>

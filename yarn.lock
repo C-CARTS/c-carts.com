@@ -59,10 +59,10 @@
     json5 "^2.2.1"
     semver "^6.3.0"
 
-"@babel/generator@^7.18.10", "@babel/generator@^7.18.9":
-  version "7.18.10"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/generator/-/generator-7.18.10.tgz#794f328bfabdcbaf0ebf9bf91b5b57b61fa77a2a"
-  integrity sha1-eU8yi/q9y68Ov5v5G1tXth+neio=
+"@babel/generator@^7.18.10":
+  version "7.18.12"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/generator/-/generator-7.18.12.tgz#fa58daa303757bd6f5e4bbca91b342040463d9f4"
+  integrity sha1-+ljaowN1e9b15LvKkbNCBARj2fQ=
   dependencies:
     "@babel/types" "^7.18.10"
     "@jridgewell/gen-mapping" "^0.3.2"
@@ -83,6 +83,15 @@
   integrity sha1-aDN+nqgETW3caQ+ymsrjk1nMoKU=
   dependencies:
     "@babel/types" "^7.18.9"
+    "@jridgewell/gen-mapping" "^0.3.2"
+    jsesc "^2.5.1"
+
+"@babel/generator@^7.18.9":
+  version "7.18.10"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/generator/-/generator-7.18.10.tgz#794f328bfabdcbaf0ebf9bf91b5b57b61fa77a2a"
+  integrity sha1-eU8yi/q9y68Ov5v5G1tXth+neio=
+  dependencies:
+    "@babel/types" "^7.18.10"
     "@jridgewell/gen-mapping" "^0.3.2"
     jsesc "^2.5.1"
 
@@ -403,15 +412,20 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.18.10", "@babel/parser@^7.18.6", "@babel/parser@^7.18.9":
-  version "7.18.10"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/parser/-/parser-7.18.10.tgz#94b5f8522356e69e8277276adf67ed280c90ecc1"
-  integrity sha1-lLX4UiNW5p6Cdydq32ftKAyQ7ME=
+"@babel/parser@^7.18.10", "@babel/parser@^7.18.11":
+  version "7.18.11"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/parser/-/parser-7.18.11.tgz#68bb07ab3d380affa9a3f96728df07969645d2d9"
+  integrity sha1-aLsHqz04Cv+po/lnKN8HlpZF0tk=
 
 "@babel/parser@^7.18.5":
   version "7.18.8"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/parser/-/parser-7.18.8.tgz#822146080ac9c62dac0823bb3489622e0bc1cbdf"
   integrity sha1-giFGCArJxi2sCCO7NIliLgvBy98=
+
+"@babel/parser@^7.18.6", "@babel/parser@^7.18.9":
+  version "7.18.10"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/parser/-/parser-7.18.10.tgz#94b5f8522356e69e8277276adf67ed280c90ecc1"
+  integrity sha1-lLX4UiNW5p6Cdydq32ftKAyQ7ME=
 
 "@babel/parser@^7.18.8":
   version "7.18.9"
@@ -1209,9 +1223,9 @@
     "@babel/types" "^7.18.10"
 
 "@babel/traverse@^7.13.0", "@babel/traverse@^7.18.9":
-  version "7.18.10"
-  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/traverse/-/traverse-7.18.10.tgz#37ad97d1cb00efa869b91dd5d1950f8a6cf0cb08"
-  integrity sha1-N62X0csA76hpuR3V0ZUPimzwywg=
+  version "7.18.11"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/traverse/-/traverse-7.18.11.tgz#3d51f2afbd83ecf9912bcbb5c4d94e3d2ddaa16f"
+  integrity sha1-PVHyr72D7PmRK8u1xNlOPS3aoW8=
   dependencies:
     "@babel/code-frame" "^7.18.6"
     "@babel/generator" "^7.18.10"
@@ -1219,7 +1233,7 @@
     "@babel/helper-function-name" "^7.18.9"
     "@babel/helper-hoist-variables" "^7.18.6"
     "@babel/helper-split-export-declaration" "^7.18.6"
-    "@babel/parser" "^7.18.10"
+    "@babel/parser" "^7.18.11"
     "@babel/types" "^7.18.10"
     debug "^4.1.0"
     globals "^11.1.0"
@@ -2792,10 +2806,15 @@ caniuse-lite@^1.0.30001358:
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/caniuse-lite/-/caniuse-lite-1.0.30001363.tgz#26bec2d606924ba318235944e1193304ea7c4f15"
   integrity sha1-Jr7C1gaSS6MYI1lE4RkzBOp8TxU=
 
-caniuse-lite@^1.0.30001366, caniuse-lite@^1.0.30001370:
+caniuse-lite@^1.0.30001366:
   version "1.0.30001373"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/caniuse-lite/-/caniuse-lite-1.0.30001373.tgz#2dc3bc3bfcb5d5a929bec11300883040d7b4b4be"
   integrity sha1-LcO8O/y11akpvsETAIgwQNe0tL4=
+
+caniuse-lite@^1.0.30001370:
+  version "1.0.30001374"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/caniuse-lite/-/caniuse-lite-1.0.30001374.tgz#3dab138e3f5485ba2e74bd13eca7fe1037ce6f57"
+  integrity sha1-PasTjj9UhboudL0T7Kf+EDfOb1c=
 
 capture-stack-trace@^1.0.0:
   version "1.0.1"
@@ -3543,10 +3562,15 @@ electron-to-chromium@^1.4.164:
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/electron-to-chromium/-/electron-to-chromium-1.4.184.tgz#381d4d111fc82d3376ed690dfb621e675f9078a9"
   integrity sha1-OB1NER/ILTN27WkN+2IeZ1+QeKk=
 
-electron-to-chromium@^1.4.188, electron-to-chromium@^1.4.202:
+electron-to-chromium@^1.4.188:
   version "1.4.208"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/electron-to-chromium/-/electron-to-chromium-1.4.208.tgz#ecb5b47c8cc212a43172ffc5ce50178a638a5d74"
   integrity sha1-7LW0fIzCEqQxcv/FzlAXimOKXXQ=
+
+electron-to-chromium@^1.4.202:
+  version "1.4.212"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/electron-to-chromium/-/electron-to-chromium-1.4.212.tgz#20cd48e88288fd2428138c108804edb1961bf559"
+  integrity sha1-IM1I6IKI/SQoE4wQiATtsZYb9Vk=
 
 element-resize-event@^2.0.4:
   version "2.0.9"
@@ -4472,10 +4496,17 @@ is-callable@^1.1.4, is-callable@^1.2.4:
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/is-callable/-/is-callable-1.2.4.tgz#47301d58dd0259407865547853df6d61fe471945"
   integrity sha1-RzAdWN0CWUB4ZVR4U99tYf5HGUU=
 
-is-core-module@^2.8.1, is-core-module@^2.9.0:
+is-core-module@^2.8.1:
   version "2.9.0"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/is-core-module/-/is-core-module-2.9.0.tgz#e1c34429cd51c6dd9e09e0799e396e27b19a9c69"
   integrity sha1-4cNEKc1Rxt2eCeB5njluJ7GanGk=
+  dependencies:
+    has "^1.0.3"
+
+is-core-module@^2.9.0:
+  version "2.10.0"
+  resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/is-core-module/-/is-core-module-2.10.0.tgz#9012ede0a91c69587e647514e1d5277019e728ed"
+  integrity sha1-kBLt4KkcaVh+ZHUU4dUncBnnKO0=
   dependencies:
     has "^1.0.3"
 
