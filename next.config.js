@@ -22,7 +22,8 @@ module.exports = withPWA({
 		runtimeCaching
 	},
 	images: {
-		domains: ['cdn.sanity.io']
+		domains: ['cdn.sanity.io'],
+		deviceSizes: [768, 1000, 1921, 2000]
 	},
 	compiler: {
 		styledComponents: true

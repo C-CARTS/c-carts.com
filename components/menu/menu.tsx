@@ -61,6 +61,7 @@ const InnerWrapper = styled.div`
 		justify-self: flex-end;
 	}
 `;
+
 const LogoLink = styled.a`
 	font-size: 1.5rem;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
@@ -71,7 +72,7 @@ const LogoLink = styled.a`
 
 	&,
 	&:visited {
-		color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
+		color: ${({ theme }: ThemeProps) => theme.colors.primary.contrastColor};
 	}
 
 	&:hover,

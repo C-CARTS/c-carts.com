@@ -54,11 +54,7 @@ const SideNavButton = styled.button`
 	}
 `;
 
-interface TitleProp {
-	pgTitle: string;
-}
-
-const LogoLink = styled.a<TitleProp>`
+const LogoLink = styled.a`
 	font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.086rem);
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
@@ -66,12 +62,7 @@ const LogoLink = styled.a<TitleProp>`
 	transition: all 0.2s ease-out;
 	outline-color: transparent;
 	padding-left: 0.45rem;
-	span {
-		color: ${({ pgTitle }) =>
-			pgTitle === 'Homepage'
-				? `${({ theme }: ThemeProps) => theme.colors.primary.background}`
-				: `${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor}`};
-	}
+
 	&:hover,
 	&:focus-visible {
 		transition: all 0.2s ease-in;
@@ -94,6 +85,8 @@ export default function SideNav({ nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	const btnRef = useRef<HTMLButtonElement | null>(null);
 	const setSideNavButton = useSetRecoilState(sideButtonState);
+	const whiteText = ` ${({ theme }: ThemeProps) => theme.colors.primary.background}`;
+	const blackText = `${({ theme }: ThemeProps) => theme.colors.primary.text}`;
 
 	const buttonClick = useCallback(() => {
 		if (buttonState) {
@@ -134,8 +127,8 @@ export default function SideNav({ nav }: Props) {
 				</SideNavButton>
 
 				<Link href="/" passHref>
-					<LogoLink pgTitle={pageTitle} role="link" aria-label="Link to C-Carts Homepage">
-						<span>C-CARTS</span>
+					<LogoLink role="link" aria-label="Link to C-Carts Homepage">
+						<span style={{ color: `${pageTitle === 'Homepage' ? whiteText : blackText}` }}>C-CARTS</span>
 					</LogoLink>
 				</Link>
 			</ListContainer>

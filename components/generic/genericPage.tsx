@@ -31,13 +31,13 @@ const ContentWrap = styled.div`
 const changeValues = (val: string, bannerImg: string | null) => {
 	switch (val) {
 		case 'Homepage':
-			return `height: 400px;
-			background-image:url(${bannerImg});
-			background-repeat:no-repeat;
-			background-size:cover;
-			background-attachment: fixed;
-			padding:0px;
-		`;
+			return `
+					height:400px;
+					background-image:url(${bannerImg});
+					background-repeat:no-repeat;
+					background-size:cover;
+					background-attachment: fixed;
+					padding:0px; `;
 		default:
 			return `background-color: none;
 			`;
