@@ -85,7 +85,7 @@ export default function SideNav({ nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	const btnRef = useRef<HTMLButtonElement | null>(null);
 	const setSideNavButton = useSetRecoilState(sideButtonState);
-	const whiteText = ` ${({ theme }: ThemeProps) => theme.colors.primary.background}`;
+	// const whiteText = ` ${({ theme }: ThemeProps) => theme.colors.primary.background}`;
 	const blackText = `${({ theme }: ThemeProps) => theme.colors.primary.text}`;
 
 	const buttonClick = useCallback(() => {
