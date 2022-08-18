@@ -85,7 +85,7 @@ export default function SideNav({ nav }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	const btnRef = useRef<HTMLButtonElement | null>(null);
 	const setSideNavButton = useSetRecoilState(sideButtonState);
-	// const whiteText = ` ${({ theme }: ThemeProps) => theme.colors.primary.background}`;
+	const whiteText = '#fff';
 	const blackText = `${({ theme }: ThemeProps) => theme.colors.primary.text}`;
 
 	const buttonClick = useCallback(() => {
@@ -128,7 +128,7 @@ export default function SideNav({ nav }: Props) {
 
 				<Link href="/" passHref>
 					<LogoLink role="link" aria-label="Link to C-Carts Homepage">
-						<span style={{ color: `${pageTitle === 'Homepage' ? '#fff' : blackText}` }}>C-CARTS</span>
+						<span style={{ color: `${pageTitle === 'Homepage' ? whiteText : blackText}` }}>C-CARTS</span>
 					</LogoLink>
 				</Link>
 			</ListContainer>

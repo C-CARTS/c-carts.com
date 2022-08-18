@@ -3,6 +3,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'No-NEXT-PUBLIC-SANITY
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? 'No-NEXT-PUBLIC-SANITY-API-VERSION';
 const previewMode = process.env.NEXT_PUBLIC_SANITY_PREVIEW === 'true';
 const useCdn = process.env.NEXT_PUBLIC_SANITY_USE_CDN === 'false';
+export const imageConfig = { clientConfig: { projectId, dataset, useCdn } };
 const config = {
 	projectId,
 	dataset,

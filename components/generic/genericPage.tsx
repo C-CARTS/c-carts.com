@@ -7,6 +7,7 @@ import urlFor from '../../sanity/urlFor';
 import titleState, { breakPointState } from '../../state/changeProperty';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
+import ImageOptimized from '../../utils/optimizedImage';
 import Footer from '../footer/footer';
 import Menu from '../menu/menu';
 import HeadContent from './headContent';
@@ -94,7 +95,8 @@ const MenuWrapper = styled.div`
 export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo, bannerImage } }: Props) {
 	const pageTitle = useRecoilValue(titleState);
 	const breakpoint = useRecoilValue(breakPointState);
-	const bannerImg = urlFor(bannerImage.asset._ref).toString();
+	const bannerImg = urlFor(bannerImage).url();
+
 	return (
 		<>
 			<SkipLink />
@@ -111,6 +113,7 @@ export default function GenericPage({ title, description, children, mainNav, sit
 						{children}
 					</Main>
 				</MainWrap>
+				<ImageOptimized />
 				<Footer address={address} phone={phone} logo={logo} />
 			</ContentWrap>
 		</>

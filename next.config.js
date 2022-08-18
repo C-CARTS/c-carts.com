@@ -23,7 +23,8 @@ module.exports = withPWA({
 	},
 	images: {
 		domains: ['cdn.sanity.io'],
-		deviceSizes: [768, 1000, 1921, 2000]
+		imageSizes: [1200, 880, 450, 300],
+		deviceSizes: [768, 1000, 1921]
 	},
 	compiler: {
 		styledComponents: true
