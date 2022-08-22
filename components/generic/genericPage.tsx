@@ -7,10 +7,10 @@ import urlFor from '../../sanity/urlFor';
 import titleState, { breakPointState } from '../../state/changeProperty';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
-import ImageOptimized from '../../utils/optimizedImage';
 import Footer from '../footer/footer';
 import Menu from '../menu/menu';
 import HeadContent from './headContent';
+import ImageOptimized from './optimizedImage';
 import SkipLink from './skipLink';
 
 interface Props {
@@ -114,6 +114,7 @@ export default function GenericPage({ title, description, children, mainNav, sit
 					</Main>
 				</MainWrap>
 				<ImageOptimized />
+
 				<Footer address={address} phone={phone} logo={logo} />
 			</ContentWrap>
 		</>
