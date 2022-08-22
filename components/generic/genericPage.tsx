@@ -58,7 +58,6 @@ const HomepageWrapper = styled(Wrapper)`
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	background-attachment: fixed;
 
 	// Full Width (4k Monitor)
 	background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 1 })}');
