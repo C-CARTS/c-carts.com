@@ -17,9 +17,14 @@ export interface SanityImageUrlParams {
 	deviceScale: number;
 }
 
+function getImageNameFromRef(ref: string): string {
+	const split = ref.split('-');
+	return `${split[1]}-${split[2]}.${split[3]}`;
+}
+
 export function sanityImageUrl({
 	image: {
-		asset: { _ref: imageName },
+		asset: { _ref },
 		hotspot
 	},
 	width,
@@ -43,7 +48,7 @@ export function sanityImageUrl({
 		params.append('crop', 'entropy');
 	}
 
-	return `https://cdn.sanity.io/images/${projectId}/${dataset}/${imageName}?${params.toString()}`;
+	return `https://cdn.sanity.io/images/${projectId}/${dataset}/${getImageNameFromRef(_ref)}?${params.toString()}`;
 }
 
 interface ScaledResults {

@@ -1,16 +1,15 @@
 import { SiteConfig } from '@c-carts/cms';
-import { ReactElement } from 'react';
+import { ReactElement, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
+import { SanityImageAsset, SanityImageCrop, SanityImageHotspot, SanityReference } from 'sanity-codegen';
 import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
-import urlFor from '../../sanity/urlFor';
-import titleState, { breakPointState } from '../../state/changeProperty';
-import { mediaQueryMaxWidths } from '../../styles/theme';
+import { sanityImageUrl } from '../../helpers/sanityImageUrl';
+import titleState from '../../state/changeProperty';
 import { ThemeProps } from '../../types/theme';
 import Footer from '../footer/footer';
 import Menu from '../menu/menu';
 import HeadContent from './headContent';
-import ImageOptimized from './optimizedImage';
 import SkipLink from './skipLink';
 
 interface Props {
@@ -29,40 +28,106 @@ const ContentWrap = styled.div`
 	min-height: 100vh;
 `;
 
-const changeValues = (val: string, bannerImg: string | null) => {
-	switch (val) {
-		case 'Homepage':
-			return `
-					height:400px;
-					background-image:url(${bannerImg});
-					background-repeat:no-repeat;
-					background-size:cover;
-					background-attachment: fixed;
-					padding:0px; `;
-		default:
-			return `background-color: none;
-			`;
-	}
-};
-
-interface Prop {
-	home: string;
-	breakpt: boolean;
-	banner: string | null;
+interface WrapperProps {
+	image: {
+		_type: 'image';
+		asset: SanityReference<SanityImageAsset>;
+		crop?: SanityImageCrop;
+		hotspot?: SanityImageHotspot;
+	};
 }
 
-const Wrapper = styled.div<Prop>`
+const Wrapper = styled.div<WrapperProps>`
 	width: 100%;
 	padding-top: clamp(1rem, 3vh, 2rem);
-	padding-right: ${({ breakpt }) => (breakpt ? '0px' : `clamp(1rem, 5vw, 3rem)`)};
+	padding-right: 0;
 	padding-bottom: clamp(2rem, 5vh, 5rem);
-	padding-left: ${({ breakpt }) => (breakpt ? '0px' : `clamp(1rem, 5vw, 3rem)`)};
-	margin-left: 0;
+	padding-left: 0;
+	margin: 0;
+	background-color: none;
+	height: 100%;
 
-	${({ home, banner }) => changeValues(home, banner)}
+	@media screen and (max-width: 620px) {
+		padding-right: clamp(1rem, 5vw, 3rem);
+		padding-left: clamp(1rem, 5vw, 3rem);
+	}
+`;
 
-	@media (max-width:${mediaQueryMaxWidths.genericpage}px) {
-		height: 100%;
+const HomepageWrapper = styled(Wrapper)`
+	padding: 0px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+
+	// Full Width (4k Monitor)
+	background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 1 })}');
+	height: 450px;
+
+	@media screen and (min-resolution: 1.5dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 1.5 })}');
+	}
+
+	@media screen and (min-resolution: 2dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 2 })}');
+	}
+
+	@media screen and (min-resolution: 3dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 3 })}');
+	}
+
+	// Desktop Width (HD Monitor)
+	@media screen and (max-width: 1920px) {
+		height: 400px;
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: 1 })}');
+	}
+
+	@media screen and (max-width: 1920px) and (min-resolution: 1.5dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: 1.5 })}');
+	}
+
+	@media screen and (max-width: 1920px) and (min-resolution: 2dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: 2 })}');
+	}
+
+	@media screen and (max-width: 1920px) and (min-resolution: 3dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: 3 })}');
+	}
+
+	// Small Screen Width
+	@media screen and (max-width: 900px) {
+		height: 550px;
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: 1 })}');
+	}
+
+	@media screen and (max-width: 900px) and (min-resolution: 1.5dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: 1.5 })}');
+	}
+
+	@media screen and (max-width: 900px) and (min-resolution: 2dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: 2 })}');
+	}
+
+	@media screen and (max-width: 900px) and (min-resolution: 3dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: 3 })}');
+	}
+
+	// Mobile
+	@media screen and (max-width: 768px) {
+		height: 550px;
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: 1 })}');
+	}
+
+	@media screen and (max-width: 768px) and (min-resolution: 1.5dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: 1.5 })}');
+	}
+
+	@media screen and (max-width: 768px) and (min-resolution: 2dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: 2 })}');
+	}
+
+	@media screen and (max-width: 768px) and (min-resolution: 3dppx) {
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: 3 })}');
 	}
 `;
 
@@ -94,27 +159,25 @@ const MenuWrapper = styled.div`
 
 export default function GenericPage({ title, description, children, mainNav, siteConfig: { shortTitle, address, phone, logo, bannerImage } }: Props) {
 	const pageTitle = useRecoilValue(titleState);
-	const breakpoint = useRecoilValue(breakPointState);
-	const bannerImg = urlFor(bannerImage).url();
+	const isHomePage = useMemo(() => pageTitle === 'Homepage', [pageTitle]);
+	const WrapperComponent = isHomePage ? HomepageWrapper : Wrapper;
 
 	return (
 		<>
 			<SkipLink />
 			<ContentWrap>
 				<HeadContent title={title} description={description} />
-				<Wrapper banner={bannerImg} breakpt={breakpoint} home={pageTitle}>
+				<WrapperComponent id="wrap" image={bannerImage}>
 					<MenuWrapper className="menuWrapper">
 						<Menu nav={mainNav} shortTitle={shortTitle} />
 					</MenuWrapper>
-				</Wrapper>
+				</WrapperComponent>
 				<MainWrap id="main-content">
 					<Main>
 						{title && <h1> {title}</h1>}
 						{children}
 					</Main>
 				</MainWrap>
-				<ImageOptimized />
-
 				<Footer address={address} phone={phone} logo={logo} />
 			</ContentWrap>
 		</>

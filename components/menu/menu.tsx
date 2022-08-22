@@ -34,6 +34,13 @@ const Header = styled.header<HeaderProps>`
 	align-content: center;
 	padding-top: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,3vh,2rem)' : '')};
 	padding-bottom: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,1vh,1rem)' : '')};
+	padding-left: clamp(1rem, 5vw, 3rem);
+	padding-right: clamp(1rem, 5vw, 3rem);
+
+	@media screen and (max-width: 768px) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 `;
 
 const OuterWrapper = styled.div`
