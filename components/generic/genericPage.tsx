@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
 import { sanityImageUrl } from '../../helpers/sanityImageUrl';
 import titleState from '../../state/changeProperty';
+import { deviceScale } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 import Footer from '../footer/footer';
 import Menu from '../menu/menu';
@@ -60,73 +61,73 @@ const HomepageWrapper = styled(Wrapper)`
 	background-position: center;
 
 	// Full Width (4k Monitor)
-	background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 1 })}');
+	background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: deviceScale.oneX })}');
 	height: 450px;
 
 	@media screen and (min-resolution: 1.5dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 1.5 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: deviceScale.onePointFiveX })}');
 	}
 
 	@media screen and (min-resolution: 2dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 2 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: deviceScale.twoX })}');
 	}
 
 	@media screen and (min-resolution: 3dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: 3 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 2500, height: 450, deviceScale: deviceScale.threeX })}');
 	}
 
 	// Desktop Width (HD Monitor)
-	@media screen and (max-width: 1920px) {
-		height: 400px;
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: 1 })}');
+	@media screen and (max-width: ${({ theme }: ThemeProps) => theme.screensizes.desktop.maxWidth}px) {
+		height: ${({ theme }: ThemeProps) => theme.screensizes.desktop.height}px;
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: deviceScale.oneX })}');
 	}
 
 	@media screen and (max-width: 1920px) and (min-resolution: 1.5dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: 1.5 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: deviceScale.onePointFiveX })}');
 	}
 
 	@media screen and (max-width: 1920px) and (min-resolution: 2dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: 2 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: deviceScale.twoX })}');
 	}
 
 	@media screen and (max-width: 1920px) and (min-resolution: 3dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: 3 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 1920, height: 400, deviceScale: deviceScale.threeX })}');
 	}
 
 	// Small Screen Width
-	@media screen and (max-width: 900px) {
-		height: 550px;
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: 1 })}');
+	@media screen and (max-width: ${({ theme }: ThemeProps) => theme.screensizes.smallScren.maxWidth}px) {
+		height: ${({ theme }: ThemeProps) => theme.screensizes.smallScren.height}px;
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: deviceScale.oneX })}');
 	}
 
 	@media screen and (max-width: 900px) and (min-resolution: 1.5dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: 1.5 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: deviceScale.onePointFiveX })}');
 	}
 
 	@media screen and (max-width: 900px) and (min-resolution: 2dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: 2 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: deviceScale.twoX })}');
 	}
 
 	@media screen and (max-width: 900px) and (min-resolution: 3dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: 3 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 900, height: 550, deviceScale: deviceScale.threeX })}');
 	}
 
 	// Mobile
-	@media screen and (max-width: 768px) {
-		height: 550px;
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: 1 })}');
+	@media screen and (max-width: ${({ theme }: ThemeProps) => theme.screensizes.mobile.maxWidth}px) {
+		height: ${({ theme }: ThemeProps) => theme.screensizes.mobile.height}px;
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: deviceScale.oneX })}');
 	}
 
 	@media screen and (max-width: 768px) and (min-resolution: 1.5dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: 1.5 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: deviceScale.onePointFiveX })}');
 	}
 
 	@media screen and (max-width: 768px) and (min-resolution: 2dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: 2 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: deviceScale.twoX })}');
 	}
 
 	@media screen and (max-width: 768px) and (min-resolution: 3dppx) {
-		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: 3 })}');
+		background-image: url('${({ image }) => sanityImageUrl({ image, width: 768, height: 550, deviceScale: deviceScale.threeX })}');
 	}
 `;
 

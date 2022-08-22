@@ -1,4 +1,5 @@
 import type ThemeType from '../types/theme';
+import { DeviceScale } from '../types/theme';
 
 const Theme: ThemeType = {
 	colors: {
@@ -77,6 +78,20 @@ const Theme: ThemeType = {
 		nineByTwelve: 75,
 		tenByTwelve: 83.33,
 		elevelByTwelve: 91.66
+	},
+	screensizes: {
+		desktop: {
+			height: 400,
+			maxWidth: 1920
+		},
+		smallScren: {
+			height: 550,
+			maxWidth: 900
+		},
+		mobile: {
+			height: 768,
+			maxWidth: 550
+		}
 	}
 };
 
@@ -94,4 +109,11 @@ export const mediaQueryMaxWidths = {
 	tablesLg: 1200,
 	tablesSm: 580,
 	maxWidth: 768
+};
+
+export const deviceScale: DeviceScale = {
+	oneX: 1,
+	onePointFiveX: 1.5,
+	twoX: 2,
+	threeX: 3
 };

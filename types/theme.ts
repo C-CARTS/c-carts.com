@@ -67,6 +67,27 @@ export interface Widths {
 	elevelByTwelve: number;
 }
 
+export interface ScreenSizes {
+	desktop: {
+		height: number;
+		maxWidth: number;
+	};
+	smallScren: {
+		height: number;
+		maxWidth: number;
+	};
+	mobile: {
+		height: number;
+		maxWidth: number;
+	};
+}
+export interface DeviceScale {
+	oneX: number;
+	onePointFiveX: number;
+	twoX: number;
+	threeX: number;
+}
+
 export default interface Theme {
 	baseSpacing: number;
 	colors: Colors;
@@ -74,6 +95,7 @@ export default interface Theme {
 	breakpoints: BreakPoints;
 	sizes: Sizes;
 	widths: Widths;
+	screensizes: ScreenSizes;
 }
 
 export type ThemeProps = { theme: Theme };
