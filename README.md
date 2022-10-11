@@ -11,7 +11,7 @@ Typescript template for a basic Next.JS project. This template is mostly unchang
 - Sets up VSCode to format on save and lint.
 - Adds Dockerfile.
 
-# NPM
+## NPM
 
 This project uses a custom NPM repo with Azure Dev Ops. Follow these steps to authenticate:
 
