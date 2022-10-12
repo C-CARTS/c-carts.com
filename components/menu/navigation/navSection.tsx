@@ -82,6 +82,7 @@ const NavButton = styled.button`
 	align-items: center;
 	white-space: nowrap;
 	justify-content: center;
+	z-index: 10000;
 
 	&:focus-visible,
 	&.open,

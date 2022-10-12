@@ -1,8 +1,5 @@
-import { KeyboardEventHandler, useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
-import { sideButtonState } from '../../../../state/changeProperty';
 import { ThemeProps } from '../../../../types/theme';
 import SubPage from '../subPage';
 
@@ -30,19 +27,6 @@ interface Props {
 }
 
 export default function SideNavigationSection({ item: { title, slug, subPages } }: Props) {
-	const sideNavButton = useRecoilValue(sideButtonState) as HTMLButtonElement;
-	const keyPressEvent = useCallback<KeyboardEventHandler<HTMLLIElement>>(
-		(event) => {
-			const escKey = event.key === 'Escape';
-			if (escKey) {
-				sideNavButton?.focus();
-
-				sideNavButton.ariaExpanded = 'false';
-				sideNavButton?.click();
-			}
-		},
-		[sideNavButton]
-	);
 	return (
 		<>
 			<h2 id="menuTitle">{title}</h2>
@@ -50,7 +34,7 @@ export default function SideNavigationSection({ item: { title, slug, subPages } 
 				<List>
 					{subPages.map((sp, i) => (
 						// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-						<li key={sp._id} onKeyDown={keyPressEvent}>
+						<li key={sp._id}>
 							<SubPage page={sp} parentSlug={slug} last={i === subPages.length - 1} />
 						</li>
 					))}

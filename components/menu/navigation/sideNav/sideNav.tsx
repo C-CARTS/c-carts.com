@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { KeyboardEvent, useCallback, useRef, useState } from 'react';
+import { KeyboardEvent, useCallback, useRef } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import { useSetRecoilState } from 'recoil';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
+import mobileMenuOpenState from '../../../../state/siteState';
 // eslint-disable-next-line import/no-cycle
-import { sideButtonState } from '../../../../state/changeProperty';
 import { ThemeProps } from '../../../../types/theme';
 import SideSection from './sideSection';
 
@@ -93,48 +93,43 @@ export interface Props {
 }
 
 export default function SideNav({ nav }: Props) {
-	const [buttonState, setButtonState] = useState(false);
-	const [keyPressState, setKeypresed] = useState(false);
+	const [mobileMenuOpen, setMobileMenuOpen] = useRecoilState(mobileMenuOpenState);
 	const btnRef = useRef<HTMLButtonElement | null>(null);
-	const setSideNavButton = useSetRecoilState(sideButtonState);
 
 	const buttonClick = useCallback(() => {
-		if (buttonState) {
-			setButtonState(false);
-		} else {
-			setButtonState(true);
-		}
-	}, [setButtonState, buttonState]);
+		setMobileMenuOpen(!mobileMenuOpen);
+	}, [setMobileMenuOpen, mobileMenuOpen]);
 
 	const keyPress = useCallback(
-		(event: KeyboardEvent<HTMLButtonElement>) => {
+		(event: KeyboardEvent<HTMLElement>) => {
 			if (event.key === 'Enter' || event.key === 'Tab' || event.key === 'Space') {
-				setSideNavButton(btnRef.current);
-				setKeypresed(true);
-			} else {
-				setKeypresed(false);
+				setMobileMenuOpen(!mobileMenuOpen);
+			} else if (event.key === 'Escape') {
+				setMobileMenuOpen(false);
+				if (btnRef.current) {
+					btnRef.current.blur();
+				}
 			}
 		},
-		[setKeypresed, setSideNavButton]
+		[mobileMenuOpen, setMobileMenuOpen]
 	);
 
 	return (
 		// eslint-disable-next-line react/button-has-type
-		<Container role="navigation" aria-label="Hamburger Menu">
+		<Container role="navigation" aria-label="Hamburger Menu" onKeyUp={keyPress}>
 			<ListContainer>
 				<SideNavButton
 					ref={btnRef}
 					aria-controls="side-navigation"
 					aria-haspopup="true"
 					id="sideNavButton"
-					aria-expanded={keyPressState}
+					aria-expanded={mobileMenuOpen}
 					type="button"
 					aria-label="Button to open or close side navigation menu"
 					onClick={buttonClick}
-					onKeyPress={keyPress}
-					className={buttonState ? 'open' : 'closed'}
+					className={mobileMenuOpen ? 'open' : 'closed'}
 				>
-					{buttonState ? <AiOutlineClose aria-hidden="true" /> : <AiOutlineMenu aria-hidden="true" />}
+					{mobileMenuOpen ? <AiOutlineClose aria-hidden="true" /> : <AiOutlineMenu aria-hidden="true" />}
 				</SideNavButton>
 
 				<Link href="/" passHref>
@@ -144,7 +139,7 @@ export default function SideNav({ nav }: Props) {
 				</Link>
 			</ListContainer>
 
-			{buttonState ? <SideSection nav={nav} /> : null}
+			<SideSection nav={nav} />
 		</Container>
 	);
 }

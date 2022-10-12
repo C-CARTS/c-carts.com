@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { MainNavItem } from '../../data-hooks/useMainNav';
 import useMediaQuery from '../../hooks/useMediaQueryHook';
 import titleState, { breakPointState } from '../../state/changeProperty';
+import mobileMenuOpenState from '../../state/siteState';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 import MainNav from './navigation/mainNav';
@@ -36,6 +37,10 @@ const Header = styled.header<HeaderProps>`
 	padding-bottom: clamp(1rem, 1.5vh, 2rem);
 	padding-left: clamp(1rem, 5vw, 3rem);
 	padding-right: clamp(1rem, 5vw, 3rem);
+
+	&.mobile-open {
+		background: ${(theme: ThemeProps) => theme.theme.colors.primary.background};
+	}
 
 	@media screen and (max-width: 768px) {
 		padding-left: 0;
@@ -109,6 +114,7 @@ export default function Menu({ shortTitle, nav }: Props) {
 	const query = `(max-width:${mediaQueryMaxWidths.maxWidth}px)`;
 	const setBreakPoint = useSetRecoilState(breakPointState);
 	const breakpoint = useMediaQuery({ query });
+	const mobileMenuOpen = useRecoilValue(mobileMenuOpenState);
 
 	useEffect(() => {
 		setBreakPoint(breakpoint);
@@ -117,7 +123,11 @@ export default function Menu({ shortTitle, nav }: Props) {
 	return (
 		// eslint-disable-next-line react/no-unstable-nested-components
 
-		<Header ops={pageTitle === 'Homepage' ? reducedOpacity : fullOpacity} UiBreakPoint={breakpoint} className="header-content">
+		<Header
+			ops={pageTitle === 'Homepage' ? reducedOpacity : fullOpacity}
+			UiBreakPoint={breakpoint}
+			className={`header-content ${mobileMenuOpen ? 'mobile-open' : 'mobile-closed'}`}
+		>
 			{breakpoint ? (
 				<SideNav nav={nav} />
 			) : (
