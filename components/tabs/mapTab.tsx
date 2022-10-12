@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import { ImageUrlBuilder } from 'next-sanity-image';
 import styled from 'styled-components';
 
 interface Prop {
-	mapUrl: ImageUrlBuilder;
+	mapUrl: string | null;
 }
 
 const DisplayMap = styled.div`
@@ -18,13 +17,12 @@ const DisplayMap = styled.div`
 `;
 
 export default function MapsTab({ mapUrl }: Prop) {
-	const url: string | null = mapUrl.toString();
-	if (url === null || url === '') {
+	if (!mapUrl || mapUrl.length === 0) {
 		return <div>Unable to load image, image url null or incorrect</div>;
 	}
 	return (
 		<DisplayMap id="mapPanel" aria-labelledby="image" tabIndex={0} role="tabpanel">
-			<img src={url} alt="Display Route Maps" />
+			<img src={mapUrl} alt="Display Route Maps" />
 		</DisplayMap>
 	);
 }

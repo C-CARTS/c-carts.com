@@ -127,7 +127,7 @@ function SubTab({ content, map, pdf }: Prop) {
 	const display = (val: string) => {
 		switch (val) {
 			case 'image':
-				return <MapsTab mapUrl={imageUrl} />;
+				return <MapsTab mapUrl={imageUrl?.url()} />;
 			default:
 				return <Tables code={code} />;
 		}
