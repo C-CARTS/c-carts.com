@@ -16,7 +16,7 @@ const List = styled.ul`
 		font-weight: 600;
 	}
 	li > a {
-		color: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
+		color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
 	}
 
 	li > a:focus-visible {

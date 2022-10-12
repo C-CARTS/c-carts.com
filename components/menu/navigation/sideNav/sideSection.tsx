@@ -4,19 +4,22 @@ import { ThemeProps } from '../../../../types/theme';
 import SideNavigationSection from './sideNavigationSection';
 
 const SideSectionNav = styled.nav`
-	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.contrastColor};
-	opacity: 0.85;
-	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.95}px;
+	color: ${({ theme }: ThemeProps) => theme.colors.primary.text};
+	background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
+	box-shadow: 0 5px 6px -3px ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
-	color: ${({ theme }: ThemeProps) => theme.colors.primary.subtle};
-	margin-bottom: calc(${({ theme }: ThemeProps) => theme.sizes.contentPaddingBottom} * 0.21);
-	border-bottom: 0.25rem solid transparent;
+	border-bottom: 0.5rem solid transparent;
 	transition: all 0.2s ease-out;
-	padding-top: 0.45rem;
-	padding-left: 0.45rem;
+	padding: 1.5rem 1rem;
+	position: absolute;
+	top: 75px;
+	right: 0;
+	left: 0;
 
 	h2 {
 		font-weight: 800;
+		margin-bottom: 0.25rem;
 	}
 
 	&:focus-visible {

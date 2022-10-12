@@ -1,21 +1,20 @@
-import styled from 'styled-components';
-import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { KeyboardEvent, useCallback, useRef, useState } from 'react';
 import Link from 'next/link';
+import { KeyboardEvent, useCallback, useRef, useState } from 'react';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import styled from 'styled-components';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { MainNavItem } from '../../../../data-hooks/useMainNav';
 // eslint-disable-next-line import/no-cycle
-import SideSection from './sideSection';
+import { sideButtonState } from '../../../../state/changeProperty';
 import { ThemeProps } from '../../../../types/theme';
-import titleState, { sideButtonState } from '../../../../state/changeProperty';
-
-const navButtonHeight = '2rem';
+import SideSection from './sideSection';
 
 const Container = styled.div`
 	width: 100%;
-	height: 100px;
 	z-index: 10;
+	position: relative;
+	overflow: visible;
 `;
 
 const ListContainer = styled.div`
@@ -29,28 +28,42 @@ const ListContainer = styled.div`
 
 const SideNavButton = styled.button`
 	-webkit-appearance: none;
-	height: 100%;
-	background: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
-	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.35}px;
+	height: 36px;
+	width: 36px;
+	box-sizing: content-box;
+	padding: 0;
+
+	background: ${({ theme }: ThemeProps) => theme.colors.primary.background}00;
+	border: 2px solid ${({ theme }: ThemeProps) => theme.colors.secondary.color};
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.5}px;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
-	color: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
+	color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 	text-align: center;
-	width: fit-content;
-	padding: 0.75rem;
+	margin-right: 0.25rem;
 
-	height: ${navButtonHeight};
+	display: grid;
+	place-content: center;
+	transition: color 0.2s ease-out, background 0.2s ease-out;
 
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-items: center;
-	white-space: nowrap;
-	justify-content: center;
+	&.open {
+		background: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
+	}
+
+	&,
+	&:visited {
+		color: ${({ theme }: ThemeProps) => theme.colors.primary.contrastColor};
+	}
+
+	&:hover,
+	&:focus-visible {
+		transition: all 0.2s ease-in;
+		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
+		outline-color: transparent;
+	}
 
 	&:focus-visible {
-		border-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder};
-		border-width: 0.15rem;
-		border-style: solid;
+		background: ${({ theme }: ThemeProps) => theme.colors.secondary.subtle};
+		text-decoration-color: ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 	}
 `;
 
@@ -82,11 +95,8 @@ export interface Props {
 export default function SideNav({ nav }: Props) {
 	const [buttonState, setButtonState] = useState(false);
 	const [keyPressState, setKeypresed] = useState(false);
-	const pageTitle = useRecoilValue(titleState);
 	const btnRef = useRef<HTMLButtonElement | null>(null);
 	const setSideNavButton = useSetRecoilState(sideButtonState);
-	const whiteText = '#fff';
-	const blackText = `${({ theme }: ThemeProps) => theme.colors.primary.text}`;
 
 	const buttonClick = useCallback(() => {
 		if (buttonState) {
@@ -122,13 +132,14 @@ export default function SideNav({ nav }: Props) {
 					aria-label="Button to open or close side navigation menu"
 					onClick={buttonClick}
 					onKeyPress={keyPress}
+					className={buttonState ? 'open' : 'closed'}
 				>
 					{buttonState ? <AiOutlineClose aria-hidden="true" /> : <AiOutlineMenu aria-hidden="true" />}
 				</SideNavButton>
 
 				<Link href="/" passHref>
 					<LogoLink role="link" aria-label="Link to C-Carts Homepage">
-						<span style={{ color: `${pageTitle === 'Homepage' ? whiteText : blackText}` }}>C-CARTS</span>
+						<span>C-CARTS</span>
 					</LogoLink>
 				</Link>
 			</ListContainer>

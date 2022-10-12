@@ -23,8 +23,8 @@ interface HeaderProps {
 	UiBreakPoint: boolean;
 }
 const Header = styled.header<HeaderProps>`
-	background-color: ${({ UiBreakPoint }: HeaderProps) => (UiBreakPoint ? 'none' : (theme: ThemeProps) => theme.theme.colors.primary.background)};
-	opacity: ${({ ops, UiBreakPoint }) => (UiBreakPoint ? fullOpacity : ops)};
+	background-color: ${(theme: ThemeProps) => theme.theme.colors.primary.background}bb;
+	backdrop-filter: blur(5px);
 	width: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -32,8 +32,8 @@ const Header = styled.header<HeaderProps>`
 	flex-wrap: nowrap;
 	align-items: center;
 	align-content: center;
-	padding-top: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,3vh,2rem)' : '')};
-	padding-bottom: ${({ ops }) => (ops === reducedOpacity ? 'clamp(1rem,1vh,1rem)' : '')};
+	padding-top: clamp(1rem, 2vh, 3rem);
+	padding-bottom: clamp(1rem, 1.5vh, 2rem);
 	padding-left: clamp(1rem, 5vw, 3rem);
 	padding-right: clamp(1rem, 5vw, 3rem);
 
