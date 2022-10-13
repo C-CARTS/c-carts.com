@@ -77,7 +77,7 @@ export default function Archive({ data }: Prop) {
 	allOptions.reverse();
 
 	const fileNameArray = data.flatMap((dt: FinancialData) => console.warn(dt));
-
+	console.warn({ fileNameArray });
 	return (
 		<SelectorWrap>
 			<Label htmlFor="financeData" id="combolabel">
@@ -112,7 +112,7 @@ export default function Archive({ data }: Prop) {
 							{urls[0].map((url: string, index: number) => (
 								<li key={url}>
 									<a href={url} target="_blank" rel="noreferrer">
-										{fileNameArray[index]} Quarter
+										{index} Quarter
 									</a>
 								</li>
 							))}
