@@ -53,7 +53,7 @@ export default function Archive({ data }: Prop) {
 
 	const dates = selectedYearData.slice(0, 1);
 	const urls = selectedYearData.slice(1);
-	// const Quarters = ['First', 'Second', 'Third', 'Fourth'];
+	const Quarters = ['Fourth', 'Third', 'First', 'Second'];
 
 	const onChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
 		(event: ChangeEvent<HTMLSelectElement>) => {
@@ -76,8 +76,6 @@ export default function Archive({ data }: Prop) {
 	allOptions.push('Select an Option');
 	allOptions.reverse();
 
-	const fileNameArray = data.flatMap((dt: FinancialData) => console.warn(dt));
-	console.warn({ fileNameArray });
 	return (
 		<SelectorWrap>
 			<Label htmlFor="financeData" id="combolabel">
@@ -112,7 +110,7 @@ export default function Archive({ data }: Prop) {
 							{urls[0].map((url: string, index: number) => (
 								<li key={url}>
 									<a href={url} target="_blank" rel="noreferrer">
-										{index} Quarter
+										{index < 5 ? Quarters[index] : 'Additional File'}
 									</a>
 								</li>
 							))}
