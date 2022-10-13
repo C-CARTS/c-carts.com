@@ -53,7 +53,7 @@ export default function Archive({ data }: Prop) {
 
 	const dates = selectedYearData.slice(0, 1);
 	const urls = selectedYearData.slice(1);
-	const Quarters = ['First', 'Second', 'Third', 'Fourth'];
+	// const Quarters = ['First', 'Second', 'Third', 'Fourth'];
 
 	const onChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
 		(event: ChangeEvent<HTMLSelectElement>) => {
@@ -75,6 +75,8 @@ export default function Archive({ data }: Prop) {
 	const allOptions = data.flatMap((dat: FinancialData) => dat.fiscalYear);
 	allOptions.push('Select an Option');
 	allOptions.reverse();
+
+	const fileNameArray = data.flatMap((dt: FinancialData) => dt.slug.current);
 
 	return (
 		<SelectorWrap>
@@ -110,7 +112,7 @@ export default function Archive({ data }: Prop) {
 							{urls[0].map((url: string, index: number) => (
 								<li key={url}>
 									<a href={url} target="_blank" rel="noreferrer">
-										{Quarters[index]} Quarter
+										{fileNameArray[index]} Quarter
 									</a>
 								</li>
 							))}
