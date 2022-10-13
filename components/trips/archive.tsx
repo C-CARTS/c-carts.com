@@ -76,7 +76,7 @@ export default function Archive({ data }: Prop) {
 	allOptions.push('Select an Option');
 	allOptions.reverse();
 
-	const fileNameArray = data.flatMap((dt: FinancialData) => dt.slug.current);
+	const fileNameArray = data.flatMap((dt: FinancialData) => console.warn(dt));
 
 	return (
 		<SelectorWrap>
