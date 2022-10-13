@@ -110,7 +110,7 @@ export default function Archive({ data }: Prop) {
 							{urls[0].map((url: string, index: number) => (
 								<li key={url}>
 									<a href={url} target="_blank" rel="noreferrer">
-										{index < 5 ? Quarters[index] : 'Additional File'}
+										{index < 4 ? Quarters[index] : 'Additional File'}
 									</a>
 								</li>
 							))}

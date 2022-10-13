@@ -1,16 +1,17 @@
 import { TotalTrips } from '@c-carts/cms';
-import { RadialBarSerie } from '@nivo/radial-bar';
+import { BarDatum } from '@nivo/bar';
+
 import dynamic from 'next/dynamic';
 
 import styled from 'styled-components';
 
-const ChartComponent = dynamic(() => import('./responsivePieChart'), { ssr: false });
+const GroupedBarChartComponent = dynamic(() => import('./responsiveStackedBarChart'), { ssr: false });
 
 interface Trips {
 	trips: Array<TotalTrips>;
 }
 
-const PieChartContainer = styled.div`
+const BarChartContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	display: flex;
@@ -33,25 +34,23 @@ const PieChartContainer = styled.div`
 export default function TripsTaken({ trips }: Trips) {
 	const dt = trips.filter((element: TotalTrips) => element.month);
 
-	const data = dt.map<RadialBarSerie>(({ month, denied, lift, sixtyPlus }: TotalTrips) => {
-		const properties = {
+	const data = dt.flatMap<BarDatum>(({ month, denied, lift, sixtyPlus }: TotalTrips) => {
+		const property = {
 			id: month,
-			data: [
-				{ x: 'Denied', y: denied },
-				{ x: 'Lift', y: lift },
-				{ x: 'SixtyPlus', y: sixtyPlus }
-			]
+			Denied: denied,
+			Lift: lift,
+			SixtyPlus: sixtyPlus
 		};
-		return properties;
+		return property;
 	});
 
 	return (
 		// eslint-disable-next-line jsx-a11y/aria-role
-		<PieChartContainer role="graphics-document">
-			<ChartComponent data={data} />
+		<BarChartContainer role="graphics-document">
+			<GroupedBarChartComponent data={data} />
 			<p aria-hidden>
-				Radial Bar chart for trips which were denied,Lyft provided or over sixty plus by C-Carts vehicles for october, november and december month.
+				Grouped Bar Chart for trips which were denied,Wheelchari lift provided or over sixty plus by C-CARTS vehicles for october, november and december month.
 			</p>
-		</PieChartContainer>
+		</BarChartContainer>
 	);
 }
