@@ -16,7 +16,7 @@ interface Props {
 }
 
 const FigureContainer = styled.figure`
-	width: 500px;
+	width: 100%;
 	height: 25rem;
 `;
 
@@ -34,6 +34,7 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 		colors: { chartTheme }
 	} = theme;
 	const keys = ['Denied', 'Lift', 'Sixty Plus'];
+	const gridXVal = [50, 100, 150, 200, 250, 300];
 	console.warn({ data });
 	return (
 		<FigureContainer role="group">
@@ -48,6 +49,7 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 				innerPadding={1}
 				groupMode="grouped"
 				enableGridX
+				gridXValues={gridXVal}
 				label="id"
 				colors={chartTheme}
 				axisBottom={{
