@@ -4,20 +4,13 @@ import { BarDatum, ResponsiveBar } from '@nivo/bar';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 
-// const extraProps = {
-// 	title: 'Radial Pie Chart denoting total trips by C-Carts Vehicle',
-// 	description: `Chart consist of three concentric circles with data for December, November and October from outer to innermost circle
-// 				respectively and, each concentric circle, provides a distribution of total
-// 				number of trips which were of type denied, lift ,sixty plus.`
-// };
-
 interface Props {
 	data: Array<BarDatum>;
 }
 
 const FigureContainer = styled.figure`
 	width: 100%;
-	height: 25rem;
+	height: 100%;
 `;
 
 const FigureCaption = styled.figure`
