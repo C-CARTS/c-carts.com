@@ -33,7 +33,8 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 	const {
 		colors: { chartTheme }
 	} = theme;
-	const keys = ['Denied', 'Lift', 'Sizty Plus'];
+	const keys = ['Denied', 'Lift', 'Sixty Plus'];
+	console.warn({ data });
 	return (
 		<FigureContainer role="group">
 			<ResponsiveBar
@@ -55,17 +56,9 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 					tickSize: 5,
 					tickPadding: 5,
 					tickRotation: 0,
-					legend: 'Trips Status',
+					legend: 'Months',
 					legendPosition: 'middle',
 					legendOffset: 42
-				}}
-				axisLeft={{
-					tickSize: 5,
-					tickPadding: 5,
-					tickRotation: 0,
-					legend: 'month',
-					legendPosition: 'middle',
-					legendOffset: -48
 				}}
 				legends={[
 					{
