@@ -82,8 +82,8 @@ const TableContainer = styled.div`
 
 	table > tr,
 	table > th {
-		border: 1px solid #ddd;
-		padding: 8px;
+		//border: 1px solid #ddd;
+		// padding: 8px;
 	}
 	tr:nth-child(even) {
 		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.layoutBorder}75;
