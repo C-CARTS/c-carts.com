@@ -78,10 +78,10 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 			/>
 			<FigureCaption>
 				<h2>Overview</h2>
-				<p>Radial Pie Chart with trips lifted, denied or over Sixty Plus</p>
+				<p>Grouped Bar Chart with trips Wheel Chair lift, denied or over sixty plus</p>
 				<h2>Values</h2>
 				<table>
-					<caption>C-Carts vehicle trips for october, november and december month</caption>
+					<caption>C-Carts vehicle trips for October, November and December month</caption>
 					<thead>
 						<tr>
 							<th id="blankPie" aria-hidden="true">
@@ -93,12 +93,12 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 						</tr>
 					</thead>
 					<tbody>
-						{data.map((dt) => (
-							<tr key={dt.month}>
-								<th scope="row">{dt.month}</th>
-								<td>{dt.denied}</td>
-								<td>{dt.lift}</td>
-								<td>{dt.sixtyPlus}</td>
+						{data.map(({ id, denied, lift, sixtyPlus }: BarDatum) => (
+							<tr key={id}>
+								<th scope="row">{id}</th>
+								<td>{denied}</td>
+								<td>{lift}</td>
+								<td>{sixtyPlus}</td>
 							</tr>
 						))}
 					</tbody>
