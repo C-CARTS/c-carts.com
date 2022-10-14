@@ -101,6 +101,7 @@ const TableContainer = styled.div`
 		width: auto;
 		overflow: none;
 		position: relative;
+		left: 0px;
 	}
 
 	@media (max-width: ${mediaQueryMaxWidths.tablesSm}px) {
