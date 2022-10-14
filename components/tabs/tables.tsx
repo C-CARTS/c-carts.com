@@ -18,7 +18,10 @@ const TableContainer = styled.div`
 	.columnWd {
 		height: 110px;
 	}
-
+	.morning,
+	.afternoon {
+		font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.45}rem;
+	}
 	.westbound table {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
