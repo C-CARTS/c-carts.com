@@ -46,7 +46,7 @@ export default function TripsTypes({ ttypes }: TTypes) {
 	return (
 		<BarChartContainer role="graphics-document">
 			<BarChart data={field} />
-			<span aria-hidden>Stacked Bar chart represent trips taken for specific purpose by C-Carts vehicles for month of Cotober, november and december</span>
+			<span aria-hidden>Stacked Bar chart represent trips taken for specific purpose by C-CARTS vehicles for month of Ootober, November and December</span>
 		</BarChartContainer>
 	);
 }

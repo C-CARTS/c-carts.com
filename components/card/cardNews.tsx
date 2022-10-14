@@ -12,11 +12,6 @@ const ErrorMessage = styled.div`
 const NewsCard = styled.div`
 	padding-left: 2rem;
 	padding-top: 2rem;
-	box-shadow: 2px 4px 12px hsl(220deg 0% 80%);
-	box-shadow: 2px 4px 12px hsl(0deg 0% 80%);
-	box-shadow: 2px 4px 12px hsl(360deg 0% 80%);
-	box-shadow: 2px 4px 12px hsl(180deg 0% 80%);
-	border-radius: 15px;
 `;
 
 interface Props {

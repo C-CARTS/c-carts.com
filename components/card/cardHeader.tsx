@@ -16,7 +16,6 @@ const Header = styled.header`
 `;
 
 const Heading = styled.h2`
-	text-transform: uppercase;
 	margin: 0px;
 	padding: 0px;
 	font-size: 1.315rem;
