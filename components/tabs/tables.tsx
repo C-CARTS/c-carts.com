@@ -7,6 +7,7 @@ import { ThemeProps } from '../../types/theme';
 
 const TableContainer = styled.div`
 	width: 100%;
+	height: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -97,6 +98,7 @@ const TableContainer = styled.div`
 
 	caption {
 		font-weight: 600;
+		overflow: none;
 	}
 
 	@media (max-width: ${mediaQueryMaxWidths.tablesSm}px) {
