@@ -15,6 +15,10 @@ const TableContainer = styled.div`
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 
+	.columnWd {
+		height: 110px;
+	}
+
 	.westbound table {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
 	}
