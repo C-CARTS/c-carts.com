@@ -42,12 +42,55 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 				indexBy="id"
 				keys={keys}
 				data={data}
+				margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+				padding={0.3}
+				innerPadding={1}
 				groupMode="grouped"
 				enableGridY
 				enableGridX
 				label="id"
 				gridYValues={['October', 'November', 'December']}
 				colors={chartTheme}
+				axisBottom={{
+					tickSize: 5,
+					tickPadding: 5,
+					tickRotation: 0,
+					legend: 'Trips Status',
+					legendPosition: 'middle',
+					legendOffset: 42
+				}}
+				axisLeft={{
+					tickSize: 5,
+					tickPadding: 5,
+					tickRotation: 0,
+					legend: 'month',
+					legendPosition: 'middle',
+					legendOffset: -48
+				}}
+				legends={[
+					{
+						dataFrom: 'keys',
+						anchor: 'bottom-right',
+						direction: 'column',
+						justify: false,
+						translateX: 120,
+						translateY: 0,
+						itemsSpacing: 5,
+						itemWidth: 100,
+						itemHeight: 20,
+						itemDirection: 'left-to-right',
+						itemOpacity: 5,
+						symbolSize: 20,
+						effects: [
+							{
+								on: 'hover',
+								style: {
+									itemOpacity: 1
+								}
+							}
+						]
+					}
+				]}
 			/>
 			<FigureCaption>
 				<h2>Overview</h2>
