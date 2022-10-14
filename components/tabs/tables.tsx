@@ -20,7 +20,7 @@ const TableContainer = styled.div`
 	}
 	.morning,
 	.afternoon {
-		font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.45}rem;
+		font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.0045}rem;
 	}
 	.westbound table {
 		width: ${({ theme }: ThemeProps) => theme.widths.fiveByTwelve}%;
