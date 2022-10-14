@@ -93,12 +93,12 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 						</tr>
 					</thead>
 					<tbody>
-						{data.map(({ id, denied, lift, sixtyPlus }: BarDatum) => (
-							<tr key={id}>
-								<th scope="row">{id}</th>
-								<td>{denied}</td>
-								<td>{lift}</td>
-								<td>{sixtyPlus}</td>
+						{data.map((dt: BarDatum) => (
+							<tr key={dt.id}>
+								<th scope="row">{dt.id}</th>
+								<td>{dt.denied}</td>
+								<td>{dt.lift}</td>
+								<td>{dt.sixtyPlus}</td>
 							</tr>
 						))}
 					</tbody>
