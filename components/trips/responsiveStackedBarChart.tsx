@@ -16,7 +16,7 @@ interface Props {
 }
 
 const FigureContainer = styled.figure`
-	width: 100%;
+	width: 500px;
 	height: 25rem;
 `;
 
@@ -47,10 +47,8 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 				padding={0.3}
 				innerPadding={1}
 				groupMode="grouped"
-				enableGridY
 				enableGridX
 				label="id"
-				gridYValues={['October', 'November', 'December']}
 				colors={chartTheme}
 				axisBottom={{
 					tickSize: 5,
