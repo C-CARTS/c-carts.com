@@ -6,10 +6,12 @@ interface Props {
 }
 
 export default function HeadContent({ title, description }: Props) {
+	const titleText = title ? `${title} | C-CARTS` : 'C-CARTS';
+
 	return (
 		<Head>
 			{description && <meta name="description" content={description} />}
-			{title && <title>{title} | C-CARTS</title>}
+			<title>{titleText}</title>
 		</Head>
 	);
 }
