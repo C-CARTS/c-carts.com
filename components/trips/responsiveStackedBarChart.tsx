@@ -26,7 +26,7 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 	const {
 		colors: { chartTheme }
 	} = theme;
-	const textColor = theme.colors.secondary.color;
+	const textColor = theme.colors.secondary.contrastColor;
 	const keys = ['Denied', 'Lift', 'SixtyPlus'];
 	return (
 		<FigureContainer role="group">
