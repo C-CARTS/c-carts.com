@@ -26,7 +26,7 @@ interface HeaderProps {
 const Header = styled.header<HeaderProps>`
 	background-color: ${(theme: ThemeProps) => theme.theme.colors.primary.background}bb;
 	backdrop-filter: blur(5px);
-	width: 100%;
+	width: ${({ ops }: HeaderProps) => (ops === 1 ? '1200px' : '100%')};
 	margin: 0 auto;
 	display: flex;
 	flex-direction: row;

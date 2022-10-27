@@ -11,7 +11,7 @@ const TableContainer = styled.div`
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: flex-start;
-	justify-content: center;
+	justify-content: flex-start;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 
