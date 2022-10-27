@@ -56,7 +56,7 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 					{
 						dataFrom: 'keys',
 						anchor: 'bottom-right',
-						direction: 'column',
+						direction: 'row',
 						justify: false,
 						translateX: 120,
 						translateY: 0,
