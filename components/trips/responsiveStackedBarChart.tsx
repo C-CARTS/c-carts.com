@@ -43,6 +43,7 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 				enableGridX
 				label="id"
 				colors={chartTheme}
+				labelSkipWidth={30}
 				labelTextColor={textColor}
 				axisBottom={{
 					tickSize: 5,
