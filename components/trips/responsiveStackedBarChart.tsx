@@ -44,6 +44,7 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 				label="id"
 				colors={chartTheme}
 				labelTextColor={textColor}
+				valueFormat={(value) => `${`" "${value}" "`}`}
 				axisBottom={{
 					tickSize: 5,
 					tickPadding: 5,
@@ -56,7 +57,7 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 					{
 						dataFrom: 'keys',
 						anchor: 'bottom-right',
-						direction: 'row',
+						direction: 'column',
 						justify: false,
 						translateX: 120,
 						translateY: 0,
