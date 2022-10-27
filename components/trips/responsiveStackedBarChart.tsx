@@ -26,8 +26,8 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 	const {
 		colors: { chartTheme }
 	} = theme;
+	const textColor = theme.colors.primary.background;
 	const keys = ['Denied', 'Lift', 'SixtyPlus'];
-	console.warn({ data });
 	return (
 		<FigureContainer role="group">
 			<ResponsiveBar
@@ -43,6 +43,7 @@ export default function ResponsiveGroupedBarChart({ data }: Props) {
 				enableGridX
 				label="id"
 				colors={chartTheme}
+				labelTextColor={textColor}
 				axisBottom={{
 					tickSize: 5,
 					tickPadding: 5,
