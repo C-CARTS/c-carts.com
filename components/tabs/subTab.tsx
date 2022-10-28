@@ -1,38 +1,65 @@
 import { KeyboardEventHandler, useCallback, useEffect, useRef } from 'react';
+import { MdMap, MdPictureAsPdf, MdSchedule } from 'react-icons/md';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import assertUnreachable from '../../helpers/assertUnreachable';
 import { breakPointState } from '../../state/changeProperty';
 import { currentSubTabState, focusSubTabState, SubTab as SubTabType } from '../../state/subTabState';
-import { mediaQueryMaxWidths } from '../../styles/theme';
+import { tabLabelCountSelector } from '../../state/tabState';
 import { ThemeProps } from '../../types/theme';
 
-const ButtonContainer = styled.div`
+const PickerWrap = styled.div<{ mobile: boolean }>`
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-content: center;
+	flex-flow: ${({ mobile }) => (mobile ? 'column nowrap' : 'row nowrap')};
 	width: 100%;
-	margin: 0.5rem 0px 0px 0px;
-	padding: 0px;
-
-	@media (max-width: ${mediaQueryMaxWidths.subtab}px) {
-		flex-direction: column;
-		flex-wrap: nowrap;
-	}
-	#file {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: none;
-		align-items: center;
-		justify-content: center;
-	}
+	align-items: center;
+	justify-content: center;
 `;
 
-const Span = styled.span`
-	margin-left: 10px;
-	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.0419}rem;
+const radius = '5px';
+
+const Button = styled.button<{ mobile: boolean; hasMultiple: boolean; current: boolean; first: boolean; last: boolean }>`
+	-webkit-appearance: none;
+	min-width: 12rem;
+	padding: 0.25rem 0.75rem;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+
+	background: ${({ theme, current }) => (current ? theme.colors.primary.tabsBackground : theme.colors.primary.background)};
+	color: ${({ theme, current }) => (current ? theme.colors.primary.tabsBackgroundContrast : theme.colors.primary.text)};
+
+	border: 2px solid ${({ theme }) => theme.colors.primary.tabsBackground};
+
+	border-top-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-top-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-bottom-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-top-right-radius: ${({ last, mobile }) => (last && !mobile ? radius : 0)};
+	border-bottom-right-radius: ${({ last, mobile }) => (last && !mobile ? radius : 0)};
+
+	width: ${({ mobile }) => (mobile ? '100%' : 'auto')};
+
+	+ button {
+		margin-left: ${({ mobile }) => (mobile ? 0 : '-2px')};
+		margin-top: ${({ mobile }) => (mobile ? '-2px' : 0)};
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		box-shadow: inset 0 0 0 2px ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
+	}
+
+	> svg {
+		color: ${({ theme, current }) => (current ? theme.colors.primary.tabsBackgroundContrast : theme.colors.primary.text)};
+		margin-right: 0.25rem;
+		font-size: 1.2rem;
+	}
 `;
 
 export default function SubTab() {
@@ -40,6 +67,7 @@ export default function SubTab() {
 	const mapRef = useRef<HTMLButtonElement>(null);
 	const pdfRef = useRef<HTMLButtonElement>(null);
 	const [currentSubTab, setCurrentSubTab] = useRecoilState(currentSubTabState);
+	const tabLabelCount = useRecoilValue(tabLabelCountSelector);
 	const breakpoint = useRecoilValue(breakPointState);
 	const [focusSubTab, setFocusSubTab] = useRecoilState(focusSubTabState);
 
@@ -88,18 +116,54 @@ export default function SubTab() {
 	);
 
 	return (
-		<ButtonContainer id="tabsContainer" aria-orientation={breakpoint ? 'vertical' : 'horizontal'} role="tablist" aria-label="subtab panel">
-			<button ref={scheduleRef} onKeyDown={keyPress} id="content" onClick={() => onSubTabClick(SubTabType.Schedule)} type="button">
-				Schedule
-			</button>
-			<button ref={mapRef} onKeyDown={keyPress} id="image" onClick={() => onSubTabClick(SubTabType.Map)} type="button">
-				Map
-			</button>
-			<button ref={pdfRef} onKeyDown={keyPress} id="file" onClick={() => onSubTabClick(SubTabType.Download)} type="button">
-				<Span id="pdfPanel" aria-label="Download Pdf" role="link">
+		<PickerWrap mobile={breakpoint} id="tabsContainer" aria-orientation={breakpoint ? 'vertical' : 'horizontal'} role="tablist" aria-label="subtab panel">
+			<Button
+				mobile={breakpoint}
+				hasMultiple={tabLabelCount > 1}
+				current={currentSubTab === SubTabType.Schedule}
+				first
+				last={false}
+				ref={scheduleRef}
+				onKeyDown={keyPress}
+				id="content"
+				onClick={() => onSubTabClick(SubTabType.Schedule)}
+				type="button"
+			>
+				<MdSchedule />
+				<span>Schedule</span>
+			</Button>
+			<Button
+				mobile={breakpoint}
+				hasMultiple={tabLabelCount > 1}
+				current={currentSubTab === SubTabType.Map}
+				first={false}
+				last={false}
+				ref={mapRef}
+				onKeyDown={keyPress}
+				id="image"
+				onClick={() => onSubTabClick(SubTabType.Map)}
+				type="button"
+			>
+				<MdMap />
+				<span>Map</span>
+			</Button>
+			<Button
+				mobile={breakpoint}
+				hasMultiple={tabLabelCount > 1}
+				current={currentSubTab === SubTabType.Download}
+				first={false}
+				last
+				ref={pdfRef}
+				onKeyDown={keyPress}
+				id="file"
+				onClick={() => onSubTabClick(SubTabType.Download)}
+				type="button"
+			>
+				<MdPictureAsPdf />
+				<span id="pdfPanel" aria-label="Download Pdf" role="link">
 					Pdf
-				</Span>
-			</button>
-		</ButtonContainer>
+				</span>
+			</Button>
+		</PickerWrap>
 	);
 }

@@ -10,7 +10,8 @@ const Theme: ThemeType = {
 			background: '#ffffff',
 			text: '#0a0000',
 			layoutBorder: '#dddddd',
-			tabsBackground: '#29af1d'
+			tabsBackground: '#d0d0ce',
+			tabsBackgroundContrast: '#222222'
 		},
 		secondary: {
 			color: '#3feee6',

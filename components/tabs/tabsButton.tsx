@@ -1,57 +1,61 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { breakPointState } from '../../state/changeProperty';
 import { currentTabState, routeFamilySelector, tabFocusState } from '../../state/tabState';
-import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 
 interface Props {
 	index: number;
+	first: boolean;
+	last: boolean;
 }
 
-const IndividualTab = styled.button`
-	padding: 0.25rem 0px;
-	text-transform: capitalize;
-	background: none;
-	border: none;
-	color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
-	width: ${({ theme }: ThemeProps) => theme.widths.threeByTwelve}%;
-	cursor: pointer;
-	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
+const radius = '10px';
 
-	&:focus,
-	&:active,
+const Button = styled.button<{ mobile: boolean; current: boolean; first: boolean; last: boolean }>`
+	-webkit-appearance: none;
+	padding: 0.5rem 1.25rem;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.1}px;
+
+	background: ${({ theme, current }) => (current ? theme.colors.secondary.color : theme.colors.primary.background)};
+	color: ${({ theme, current }) => (current ? theme.colors.secondary.contrast : theme.colors.primary.text)};
+
+	border: 2px solid ${({ theme }: ThemeProps) => theme.colors.secondary.color};
+
+	border-top-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-bottom-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-top-right-radius: ${({ last, mobile }) => (last && !mobile ? radius : 0)};
+	border-bottom-right-radius: ${({ last, mobile }) => (last && !mobile ? radius : 0)};
+
+	width: ${({ mobile }) => (mobile ? '100%' : 'auto')};
+
+	+ button {
+		margin-left: ${({ mobile }) => (mobile ? 0 : '-2px')};
+		margin-top: ${({ mobile }) => (mobile ? '-2px' : 0)};
+	}
+
+	&:focus {
+		outline: none;
+	}
+
 	&:focus-visible {
-		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
-		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
-		color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
-	}
-	@media (max-width: ${mediaQueryMaxWidths.tablesSm}px) {
-		width: ${({ theme }: ThemeProps) => theme.widths.sixByTwelve}%;
+		box-shadow: inset 0 0 0 2px ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 	}
 `;
 
-const DefaultTab = styled(IndividualTab)`
-	&:first-child {
-		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
-		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
-		color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
-	}
-`;
-
-export default function TabButton({ index }: Props) {
+export default function TabButton({ index, first, last }: Props) {
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const [activeIndex, setActiveIndex] = useRecoilState(currentTabState);
 	const isCurrent = useMemo(() => index === activeIndex, [index, activeIndex]);
 	const [tabFocus, setTabFocus] = useRecoilState(tabFocusState);
 	const { name } = useRecoilValue(routeFamilySelector(index));
+	const breakpoint = useRecoilValue(breakPointState);
 
 	const selectTab = useCallback(() => {
 		setActiveIndex(index);
 		setTabFocus(index);
 	}, [index, setActiveIndex, setTabFocus]);
-
-	const ButtonElement = useMemo(() => (isCurrent ? DefaultTab : IndividualTab), [isCurrent]);
 
 	useEffect(() => {
 		if (index === tabFocus) {
@@ -60,8 +64,20 @@ export default function TabButton({ index }: Props) {
 	}, [index, tabFocus]);
 
 	return (
-		<ButtonElement ref={buttonRef} onClick={selectTab} onKeyUp={selectTab} className="tabs-btn" aria-controls="tablist" role="tab" aria-selected={isCurrent}>
+		<Button
+			mobile={breakpoint}
+			current={isCurrent}
+			first={first}
+			last={last}
+			ref={buttonRef}
+			onClick={selectTab}
+			onKeyUp={selectTab}
+			className="tabs-btn"
+			aria-controls="tablist"
+			role="tab"
+			aria-selected={isCurrent}
+		>
 			{name}
-		</ButtonElement>
+		</Button>
 	);
 }
