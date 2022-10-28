@@ -1,17 +1,11 @@
-import { KeyboardEventHandler, MouseEventHandler, ReactNode, useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { tabIndexState } from '../../state/tabState';
+import { currentTabState, routeFamilySelector, tabFocusState } from '../../state/tabState';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 
-interface Props extends Pick<HTMLButtonElement, 'id'> {
-	subAttribute: boolean;
-	currentId: string | null;
-	onClick: MouseEventHandler<HTMLButtonElement>;
-	onKeyDown: KeyboardEventHandler<HTMLButtonElement>;
-	children: ReactNode;
-	ariaControls: string;
+interface Props {
 	index: number;
 }
 
@@ -45,31 +39,29 @@ const DefaultTab = styled(IndividualTab)`
 	}
 `;
 
-export default function TabButton({ index, subAttribute, onKeyDown, id, currentId, onClick, children, ariaControls }: Props) {
-	const ButtonElement = subAttribute ? DefaultTab : IndividualTab;
+export default function TabButton({ index }: Props) {
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const [activeIndex, setActiveIndex] = useRecoilState(currentTabState);
+	const isCurrent = useMemo(() => index === activeIndex, [index, activeIndex]);
+	const [tabFocus, setTabFocus] = useRecoilState(tabFocusState);
+	const { name } = useRecoilValue(routeFamilySelector(index));
 
-	const button = useRef<HTMLButtonElement | null>(null);
-	const [tabIndex, setTabIndex] = useRecoilState(tabIndexState);
+	const selectTab = useCallback(() => {
+		setActiveIndex(index);
+		setTabFocus(index);
+	}, [index, setActiveIndex, setTabFocus]);
+
+	const ButtonElement = useMemo(() => (isCurrent ? DefaultTab : IndividualTab), [isCurrent]);
 
 	useEffect(() => {
-		if (tabIndex === index && button.current) {
-			button.current.focus();
-			setTabIndex(null);
+		if (index === tabFocus) {
+			buttonRef.current?.focus();
 		}
-	}, [tabIndex, index, setTabIndex]);
+	}, [index, tabFocus]);
 
 	return (
-		<ButtonElement
-			ref={button}
-			className="tabs-btn"
-			onKeyDown={onKeyDown}
-			role="tab"
-			aria-controls={ariaControls}
-			aria-selected={currentId === id}
-			id={id}
-			onClick={onClick}
-		>
-			{children}
+		<ButtonElement ref={buttonRef} onClick={selectTab} onKeyUp={selectTab} className="tabs-btn" aria-controls="tablist" role="tab" aria-selected={isCurrent}>
+			{name}
 		</ButtonElement>
 	);
 }

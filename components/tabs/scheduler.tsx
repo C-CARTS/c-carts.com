@@ -1,34 +1,22 @@
-import { Routes } from '@c-carts/cms';
+import { useRecoilValue } from 'recoil';
 import useSchedules from '../../data-hooks/useSchedules';
-import EagleExpress from './eagleExpress';
-import Schedule from './schedule';
+import { tabLabelCountSelector } from '../../state/tabState';
+import CurrentContent from './currentContent';
+import MultiRoutePicker from './multiRoutePicker';
+import SubTab from './subTab';
 
-interface Props {
-	ids: string[];
-}
+export default function Scheduler() {
+	const tabLabelCount = useRecoilValue(tabLabelCountSelector);
 
-type eagleType = Routes | any;
-
-export default function Scheduler({ ids }: Props) {
-	const schdls = useSchedules();
-	let eagle = 0;
-	const eagleExp: eagleType[] = [];
-	schdls.map((sch: Routes) => {
-		if (sch.slug.current.match('eagle')) {
-			eagle += 1;
-			eagleExp.push(sch);
-		}
+	if (tabLabelCount === 0) {
 		return null;
-	});
-
-	if (ids.length === eagle) {
-		return <EagleExpress eagle={eagleExp} />;
 	}
+
 	return (
 		<>
-			{ids.map((id: string) => (
-				<Schedule id={id} key={id} />
-			))}
+			{tabLabelCount > 1 && <MultiRoutePicker />}
+			<SubTab />
+			<CurrentContent />
 		</>
 	);
 }

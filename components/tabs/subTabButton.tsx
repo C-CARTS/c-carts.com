@@ -1,18 +1,13 @@
-import { KeyboardEventHandler, MouseEventHandler, ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { focusTabState } from '../../state/subTabState';
+import { focusTabState, SubTab as SubTabType } from '../../state/subTabState';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import { ThemeProps } from '../../types/theme';
 
 interface Props extends Pick<HTMLButtonElement, 'id'> {
-	subAttribute: boolean;
-	currentId: string | null;
-	onClick: MouseEventHandler<HTMLButtonElement>;
-	onKeyDown: KeyboardEventHandler<HTMLButtonElement>;
 	children: ReactNode;
-	ariaControls: string;
-	index: number;
+	type: SubTabType;
 }
 
 const ActiveButton = styled.button`
