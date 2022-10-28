@@ -49,7 +49,7 @@ export default function TripsTaken({ trips }: Trips) {
 		<BarChartContainer role="graphics-document">
 			<GroupedBarChartComponent data={data} />
 			<p aria-hidden>
-				Grouped Bar Chart for trips which were denied,Wheel char lift provided or over sixty plus by C-CARTS vehicles for October, November and December month.
+				Grouped Bar Chart for trips which were denied,wheel chair lift provided or over sixty plus by C-CARTS vehicles for October, November and December month.
 			</p>
 		</BarChartContainer>
 	);

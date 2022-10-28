@@ -53,7 +53,7 @@ export default function Archive({ data }: Prop) {
 
 	const dates = selectedYearData.slice(0, 1);
 	const urls = selectedYearData.slice(1);
-	const Quarters = ['Fourth', 'Third', 'First', 'Second'];
+	const Quarters = ['Fourth', 'Third', 'Second', 'First'];
 
 	const onChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
 		(event: ChangeEvent<HTMLSelectElement>) => {
