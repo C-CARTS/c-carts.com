@@ -37,7 +37,7 @@ const Header = styled.header<HeaderProps & ThemeProps>`
 	padding-bottom: clamp(1rem, 1.5vh, 2rem);
 
 	&.mobile-open {
-		background: ${(theme: ThemeProps) => theme.theme.colors.primary.background};
+		background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 	}
 
 	@media screen and (max-width: 768px) {
