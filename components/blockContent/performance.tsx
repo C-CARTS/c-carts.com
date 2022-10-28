@@ -28,9 +28,9 @@ const ChartsContainer = styled.div`
 `;
 
 export default function PerformanceOperations({ block }: Props) {
-	const prfm = usePerformance();
+	const performance = usePerformance();
 
-	if (!prfm && block.label.length < 0) {
+	if (!performance && block.label.length < 0) {
 		return (
 			<p className="performanceData unavailable">
 				<strong>There are currently no schedules available</strong>
@@ -40,7 +40,7 @@ export default function PerformanceOperations({ block }: Props) {
 
 	return (
 		<div style={{ width: '100%' }}>
-			{prfm.map((val: Performance) => (
+			{performance.map((val: Performance) => (
 				<ChartsContainer className="charts" key={val._id}>
 					<TripsTaken trips={val.trips} />
 					<TripsTypes ttypes={val.tripTypes} />

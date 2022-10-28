@@ -25,9 +25,11 @@ const FigureCaption = styled.figure`
 
 export default function ResponsiveBarChart({ data }: Bar) {
 	const {
-		colors: { chartTheme }
+		colors: {
+			chartTheme,
+			primary: { text }
+		}
 	} = theme;
-	const textColor = theme.colors.primary.background;
 	return (
 		<FigureContainer role="group">
 			<ResponsiveBar
@@ -42,6 +44,7 @@ export default function ResponsiveBarChart({ data }: Bar) {
 				valueScale={{ type: 'linear' }}
 				indexScale={{ type: 'band', round: true }}
 				colors={chartTheme}
+				labelTextColor={text}
 				axisTop={undefined}
 				axisRight={null}
 				axisBottom={{
@@ -62,7 +65,6 @@ export default function ResponsiveBarChart({ data }: Bar) {
 				}}
 				labelSkipWidth={12}
 				labelSkipHeight={12}
-				labelTextColor={textColor}
 				legends={[
 					{
 						dataFrom: 'keys',

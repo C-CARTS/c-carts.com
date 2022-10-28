@@ -27,7 +27,7 @@ const Theme: ThemeType = {
 			subtle: '#DFF2F1',
 			underline: '#3feee6'
 		},
-		chartTheme: ['#9a3800', '#585c00', '#295e70', '#006800', '#0b50c3', '#9b00aa', '#b4002c']
+		chartTheme: ['#4A9FED', '#ED5D55', '#3FEEE6', '#EDA126', '#32ED7A', '#ED55D2', '#EDC926']
 	},
 	typography: {
 		baseFontSize: 20,
