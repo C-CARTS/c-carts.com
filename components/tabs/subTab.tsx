@@ -71,24 +71,42 @@ export default function SubTab() {
 	const breakpoint = useRecoilValue(breakPointState);
 	const [focusSubTab, setFocusSubTab] = useRecoilState(focusSubTabState);
 
-	const keyPress = useCallback<KeyboardEventHandler<HTMLButtonElement>>(() => {
-		// const { key } = event;
-		// const tabCount = Object.keys(SubTabType).length / 2;
-		// if (key === 'ArrowLeft') {
-		// 	if (focusSubTab === 0) {
-		// 		setFocusSubTab(tabCount - 1);
-		// 	} else {
-		// 		setFocusSubTab(currentSubTab - 1);
-		// 	}
-		// }
-		// if (key === 'ArrowRight') {
-		// 	if (currentSubTab === currentSubTab - 1) {
-		// 		setFocusSubTab(0);
-		// 	} else {
-		// 		setFocusSubTab(currentSubTab + 1);
-		// 	}
-		// }
-	}, []);
+	const keyPress = useCallback<KeyboardEventHandler<HTMLButtonElement>>(
+		({ key }) => {
+			const current = focusSubTab ?? currentSubTab;
+			if (key === 'ArrowRight') {
+				switch (current) {
+					case SubTabType.Schedule:
+						setFocusSubTab(SubTabType.Map);
+						break;
+					case SubTabType.Map:
+						setFocusSubTab(SubTabType.Download);
+						break;
+					case SubTabType.Download:
+						setFocusSubTab(SubTabType.Schedule);
+						break;
+					default:
+						assertUnreachable(current);
+				}
+			}
+			if (key === 'ArrowLeft') {
+				switch (current) {
+					case SubTabType.Schedule:
+						setFocusSubTab(SubTabType.Download);
+						break;
+					case SubTabType.Map:
+						setFocusSubTab(SubTabType.Schedule);
+						break;
+					case SubTabType.Download:
+						setFocusSubTab(SubTabType.Map);
+						break;
+					default:
+						setFocusSubTab(current);
+				}
+			}
+		},
+		[currentSubTab, focusSubTab, setFocusSubTab]
+	);
 
 	useEffect(() => {
 		if (focusSubTab !== null) {
@@ -133,6 +151,7 @@ export default function SubTab() {
 				ref={scheduleRef}
 				onKeyDown={keyPress}
 				id="content"
+				onFocus={() => setFocusSubTab(SubTabType.Schedule)}
 				onClick={() => onSubTabClick(SubTabType.Schedule)}
 				type="button"
 			>
@@ -148,6 +167,7 @@ export default function SubTab() {
 				ref={mapRef}
 				onKeyDown={keyPress}
 				id="image"
+				onFocus={() => setFocusSubTab(SubTabType.Map)}
 				onClick={() => onSubTabClick(SubTabType.Map)}
 				type="button"
 			>
@@ -163,6 +183,7 @@ export default function SubTab() {
 				ref={pdfRef}
 				onKeyDown={keyPress}
 				id="file"
+				onFocus={() => setFocusSubTab(SubTabType.Download)}
 				onClick={() => onSubTabClick(SubTabType.Download)}
 				type="button"
 			>

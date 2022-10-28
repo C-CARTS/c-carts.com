@@ -1,17 +1,17 @@
 import { Routes } from '@c-carts/cms';
 import { atom, selector, selectorFamily } from 'recoil';
 
-export const tabFocusState = atom<number>({
-	key: 'tabFocusState',
-	default: 0
-});
-
 /**
  * It is the atom to track active index of Tabs, and the default value is 0.
  */
 export const currentTabState = atom<number>({
 	key: 'currentTabState',
 	default: 0
+});
+
+export const focusTabState = atom<number | null>({
+	key: 'focusTabState',
+	default: null
 });
 
 export const loadedRoutesState = atom<Routes[]>({

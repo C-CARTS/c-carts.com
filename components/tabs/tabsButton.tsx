@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { KeyboardEventHandler, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { breakPointState } from '../../state/changeProperty';
-import { currentTabState, routeFamilySelector, tabFocusState } from '../../state/tabState';
+import { currentTabState, focusTabState, routeFamilySelector, tabLabelCountSelector } from '../../state/tabState';
 import { ThemeProps } from '../../types/theme';
 
 interface Props {
@@ -46,22 +46,45 @@ const Button = styled.button<{ mobile: boolean; current: boolean; first: boolean
 
 export default function TabButton({ index, first, last }: Props) {
 	const buttonRef = useRef<HTMLButtonElement>(null);
-	const [activeIndex, setActiveIndex] = useRecoilState(currentTabState);
+	const activeIndex = useRecoilValue(currentTabState);
 	const isCurrent = useMemo(() => index === activeIndex, [index, activeIndex]);
-	const [tabFocus, setTabFocus] = useRecoilState(tabFocusState);
 	const { name } = useRecoilValue(routeFamilySelector(index));
 	const breakpoint = useRecoilValue(breakPointState);
+	const tabLabelCount = useRecoilValue(tabLabelCountSelector);
+	const [focusTab, setFocusTab] = useRecoilState(focusTabState);
+	const [currentTab, setCurrentTab] = useRecoilState(currentTabState);
+
+	const keyPress = useCallback<KeyboardEventHandler<HTMLElement>>(
+		({ key }) => {
+			const maxIndex = tabLabelCount - 1;
+			const current = focusTab ?? currentTab;
+
+			if (key === 'ArrowLeft') {
+				if (current === 0) {
+					setFocusTab(maxIndex);
+				} else {
+					setFocusTab(current - 1);
+				}
+			} else if (key === 'ArrowRight') {
+				if (current === maxIndex) {
+					setFocusTab(0);
+				} else {
+					setFocusTab(current + 1);
+				}
+			}
+		},
+		[tabLabelCount, focusTab, currentTab, setFocusTab]
+	);
 
 	const selectTab = useCallback(() => {
-		setActiveIndex(index);
-		setTabFocus(index);
-	}, [index, setActiveIndex, setTabFocus]);
+		setCurrentTab(index);
+	}, [index, setCurrentTab]);
 
 	useEffect(() => {
-		if (index === tabFocus) {
+		if (focusTab === index) {
 			buttonRef.current?.focus();
 		}
-	}, [index, tabFocus]);
+	}, [focusTab, index]);
 
 	return (
 		<Button
@@ -70,8 +93,8 @@ export default function TabButton({ index, first, last }: Props) {
 			first={first}
 			last={last}
 			ref={buttonRef}
+			onKeyUp={keyPress}
 			onClick={selectTab}
-			onKeyUp={selectTab}
 			className="tabs-btn"
 			aria-controls="tablist"
 			role="tab"
