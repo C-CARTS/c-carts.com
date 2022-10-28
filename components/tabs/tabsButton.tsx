@@ -88,6 +88,7 @@ export default function TabButton({ index, first, last }: Props) {
 
 	return (
 		<Button
+			id={`variant-button-${index}`}
 			mobile={breakpoint}
 			current={isCurrent}
 			first={first}

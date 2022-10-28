@@ -21,7 +21,7 @@ export default function MapsTab({ mapUrl }: Prop) {
 		return <div>Unable to load image, image url null or incorrect</div>;
 	}
 	return (
-		<DisplayMap id="mapPanel" aria-labelledby="image" tabIndex={0} role="tabpanel">
+		<DisplayMap id="map-panel" aria-labelledby="map-button" tabIndex={0} role="tabpanel">
 			<img src={mapUrl} alt="Display Route Maps" />
 		</DisplayMap>
 	);

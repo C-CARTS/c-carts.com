@@ -143,6 +143,9 @@ export default function SubTab() {
 			aria-label="subtab panel"
 		>
 			<Button
+				id="schedule-button"
+				aria-selected={currentSubTab === SubTabType.Schedule}
+				aria-controls="table-panel"
 				mobile={breakpoint}
 				hasMultiple={tabLabelCount > 1}
 				current={currentSubTab === SubTabType.Schedule}
@@ -150,7 +153,6 @@ export default function SubTab() {
 				last={false}
 				ref={scheduleRef}
 				onKeyDown={keyPress}
-				id="content"
 				onFocus={() => setFocusSubTab(SubTabType.Schedule)}
 				onClick={() => onSubTabClick(SubTabType.Schedule)}
 				type="button"
@@ -159,6 +161,9 @@ export default function SubTab() {
 				<span>Schedule</span>
 			</Button>
 			<Button
+				id="map-button"
+				aria-selected={currentSubTab === SubTabType.Map}
+				aria-controls="map-panel"
 				mobile={breakpoint}
 				hasMultiple={tabLabelCount > 1}
 				current={currentSubTab === SubTabType.Map}
@@ -166,7 +171,6 @@ export default function SubTab() {
 				last={false}
 				ref={mapRef}
 				onKeyDown={keyPress}
-				id="image"
 				onFocus={() => setFocusSubTab(SubTabType.Map)}
 				onClick={() => onSubTabClick(SubTabType.Map)}
 				type="button"
@@ -175,6 +179,9 @@ export default function SubTab() {
 				<span>Map</span>
 			</Button>
 			<Button
+				id="download-button"
+				aria-selected={currentSubTab === SubTabType.Download}
+				aria-controls="download-panel"
 				mobile={breakpoint}
 				hasMultiple={tabLabelCount > 1}
 				current={currentSubTab === SubTabType.Download}
@@ -182,7 +189,6 @@ export default function SubTab() {
 				last
 				ref={pdfRef}
 				onKeyDown={keyPress}
-				id="file"
 				onFocus={() => setFocusSubTab(SubTabType.Download)}
 				onClick={() => onSubTabClick(SubTabType.Download)}
 				type="button"

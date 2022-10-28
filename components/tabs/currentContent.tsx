@@ -35,7 +35,11 @@ export default function CurrentContent() {
 		case SubTab.Map:
 			return <MapsTab mapUrl={urlFor(images).url()} />;
 		case SubTab.Download:
-			return null;
+			return (
+				<p id="download-panel" aria-labelledby="download-button">
+					Loading PDF
+				</p>
+			);
 		default:
 			assertUnreachable(subTab);
 	}
