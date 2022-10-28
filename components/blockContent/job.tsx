@@ -11,8 +11,8 @@ export default function JobsComponent({ job: { name, rate, content }, hideHeadin
 		<section className="job">
 			{hideHeading !== null && <h3>{name}</h3>}
 			{rate && (
-				<p>
-					<span className="sr">Pay Rate:${rate}</span>
+				<p className="sr">
+					<span>Pay Rate:${rate}</span>
 				</p>
 			)}
 			<PortableText blocks={content} />

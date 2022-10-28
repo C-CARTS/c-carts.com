@@ -38,13 +38,14 @@ interface WrapperProps {
 	};
 }
 
-const Wrapper = styled.div<WrapperProps>`
+const Wrapper = styled.div<WrapperProps & ThemeProps>`
 	width: 100%;
+	// max-width: ${({ theme }) => theme.sizes.maxContentWidth}px;
 	padding-top: clamp(1rem, 3vh, 2rem);
 	padding-right: 0;
 	padding-bottom: clamp(2rem, 5vh, 5rem);
 	padding-left: 0;
-	margin: 0;
+	margin: 0 auto;
 	background-color: none;
 	height: 100%;
 

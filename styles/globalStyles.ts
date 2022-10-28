@@ -148,20 +148,23 @@ h1, h2, h3, h4,h5, h6 {
 }
 
 h1 {
-	font-size: 2em;
+	font-weight: ${({ theme }: ThemeProps) => theme.typography.normalFontWeight};
+	font-size: 1.5em;
 	line-height: 1.5;
 	margin-bottom: 0.75em;
 }
 
 h2 {
-	font-size: 1.5em;
+	font-size: 1.25em;
 	line-height: 1;
 	margin-bottom: 1em;
+	margin-top: 1.5rem;
 }
 
 h3 {
 	font-size: 1em;
 	line-height: 1.5;
+	margin-bottom: 0.5rem;
 }
 div{
 	padding: 0px;

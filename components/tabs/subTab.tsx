@@ -8,12 +8,12 @@ import { currentSubTabState, focusSubTabState, SubTab as SubTabType } from '../.
 import { tabLabelCountSelector } from '../../state/tabState';
 import { ThemeProps } from '../../types/theme';
 
-const PickerWrap = styled.div<{ mobile: boolean }>`
+const PickerWrap = styled.div<{ multiple: boolean; mobile: boolean }>`
 	display: flex;
 	flex-flow: ${({ mobile }) => (mobile ? 'column nowrap' : 'row nowrap')};
 	width: 100%;
 	align-items: center;
-	justify-content: center;
+	justify-content: ${({ multiple }) => (multiple ? 'center' : 'flex-start')};
 `;
 
 const radius = '5px';
@@ -116,7 +116,14 @@ export default function SubTab() {
 	);
 
 	return (
-		<PickerWrap mobile={breakpoint} id="tabsContainer" aria-orientation={breakpoint ? 'vertical' : 'horizontal'} role="tablist" aria-label="subtab panel">
+		<PickerWrap
+			multiple={tabLabelCount > 1}
+			mobile={breakpoint}
+			id="tabsContainer"
+			aria-orientation={breakpoint ? 'vertical' : 'horizontal'}
+			role="tablist"
+			aria-label="subtab panel"
+		>
 			<Button
 				mobile={breakpoint}
 				hasMultiple={tabLabelCount > 1}

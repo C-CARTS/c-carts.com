@@ -23,7 +23,6 @@ const ListContainer = styled.div`
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: center;
-	padding-left: 0.45rem;
 `;
 
 const SideNavButton = styled.button`
