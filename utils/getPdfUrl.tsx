@@ -4,6 +4,7 @@ import config from '../sanity/sanityConfig';
 
 const getPdfUrl = (input: Routes['routePdfs']) => {
 	const filedData = getFile(input, config);
+
 	const {
 		asset: { url }
 	} = filedData;

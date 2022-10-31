@@ -28,14 +28,12 @@ const ChartsContainer = styled.div`
 
 export default function PerformanceOperations() {
 	const performance = usePerformance();
-	console.warn({ performance });
 	const initializeState = useCallback(
 		({ set }: { set: SetRecoilState }) => {
 			set(fiscalDataState, performance[0].finance);
 		},
 		[performance]
 	);
-
 	return (
 		<div style={{ width: '100%' }}>
 			{performance.map((val: Performance) => (

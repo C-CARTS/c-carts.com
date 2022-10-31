@@ -7,9 +7,11 @@ function urlSelector(data: FinancialData['fiscalData']) {
 	const urls = [];
 	if (data !== undefined) {
 		for (let i = 0; i < data.length; i++) {
-			const keys = data[i];
-			const url = getPdfUrl(keys);
-			urls.push(url);
+			const keys = data[i].pdfFile;
+			if (keys !== undefined) {
+				const url = getPdfUrl(keys);
+				urls.push(url);
+			}
 		}
 	}
 	return urls;
@@ -21,7 +23,7 @@ export const fiscalDataState = atom<FinancialData[]>({
 });
 
 export const fiscalYearState = atom<string>({
-	key: 'setFiscalYear',
+	key: 'fiscalYearState',
 	default: ''
 });
 

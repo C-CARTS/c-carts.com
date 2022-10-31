@@ -16,8 +16,6 @@ const Message = styled.div`
 	font-style: italic;
 `;
 
-const Quarters = ['Fourth', 'Third', 'Second', 'First'];
-
 export default function ArchiveDisplay() {
 	const fiscalYear = useRecoilValue(fiscalYearState);
 	const fiscalData = useRecoilValue(fiscalDataSelector);
@@ -37,7 +35,7 @@ export default function ArchiveDisplay() {
 				{urls.map((url: string, index: number) => (
 					<li key={url}>
 						<a href={url} target="_blank" rel="noreferrer">
-							{index < 4 ? Quarters[index] : 'Additional File'}
+							{index}
 						</a>
 					</li>
 				))}
