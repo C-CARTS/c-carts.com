@@ -1,10 +1,10 @@
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
-import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
-import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import PerformanceOperations from '../../../components/blockContent/performance';
 import GenericPage from '../../../components/generic/genericPage';
+import useMainNav, { getMainNav } from '../../../data-hooks/useMainNav';
 import usePerformance from '../../../data-hooks/usePerformance';
+import useSiteConfig from '../../../data-hooks/useSiteConfig';
 import sanityClient from '../../../sanity/sanityClient';
 
 const performanceSlug = 'performance';
@@ -19,12 +19,7 @@ function Perform() {
 
 	return (
 		<GenericPage title={'Performance' || 'Fiscal year Data'} siteConfig={siteConfig} mainNav={mainNav}>
-			<PerformanceOperations
-				block={{
-					_type: 'performanceSection',
-					label: 'string'
-				}}
-			/>
+			<PerformanceOperations />
 			<a href={`/${navSlug?.current}/${performzSlug?.current}`}>Back to {headline}</a>
 		</GenericPage>
 	);

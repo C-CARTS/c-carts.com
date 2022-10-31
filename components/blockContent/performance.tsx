@@ -1,15 +1,14 @@
-import { Performance, PerformanceSection } from '@c-carts/cms';
+import { Performance } from '@c-carts/cms';
+import { useCallback } from 'react';
+import { RecoilRoot, SetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import usePerformance from '../../data-hooks/usePerformance';
+import { fiscalDataState } from '../../state/archiveState';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import Archive from '../trips/archive';
 import SystemOperations from '../trips/systemOperations';
 import TripsTaken from '../trips/tripsTaken';
 import TripsTypes from '../trips/tripsTypes';
-
-interface Props {
-	block: PerformanceSection;
-}
 
 const ChartsContainer = styled.div`
 	width: 100%;
@@ -27,25 +26,26 @@ const ChartsContainer = styled.div`
 	}
 `;
 
-export default function PerformanceOperations({ block }: Props) {
-	const prfm = usePerformance();
-
-	if (!prfm && block.label.length < 0) {
-		return (
-			<p className="performanceData unavailable">
-				<strong>There are currently no schedules available</strong>
-			</p>
-		);
-	}
+export default function PerformanceOperations() {
+	const performance = usePerformance();
+	console.warn({ performance });
+	const initializeState = useCallback(
+		({ set }: { set: SetRecoilState }) => {
+			set(fiscalDataState, performance[0].finance);
+		},
+		[performance]
+	);
 
 	return (
 		<div style={{ width: '100%' }}>
-			{prfm.map((val: Performance) => (
+			{performance.map((val: Performance) => (
 				<ChartsContainer className="charts" key={val._id}>
 					<TripsTaken trips={val.trips} />
 					<TripsTypes ttypes={val.tripTypes} />
 					<SystemOperations system={val.systemOps} />
-					<Archive data={val.finance} />
+					<RecoilRoot initializeState={initializeState}>
+						<Archive />
+					</RecoilRoot>
 				</ChartsContainer>
 			))}
 		</div>

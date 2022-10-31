@@ -1,75 +1,107 @@
-import { KeyboardEventHandler, MouseEventHandler, ReactNode, useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
+import { KeyboardEventHandler, useCallback, useEffect, useMemo, useRef } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { tabIndexState } from '../../state/tabState';
-import { mediaQueryMaxWidths } from '../../styles/theme';
+import { breakPointState } from '../../state/changeProperty';
+import { currentTabState, focusTabState, routeFamilySelector, tabLabelCountSelector } from '../../state/tabState';
 import { ThemeProps } from '../../types/theme';
 
-interface Props extends Pick<HTMLButtonElement, 'id'> {
-	subAttribute: boolean;
-	currentId: string | null;
-	onClick: MouseEventHandler<HTMLButtonElement>;
-	onKeyDown: KeyboardEventHandler<HTMLButtonElement>;
-	children: ReactNode;
-	ariaControls: string;
+interface Props {
 	index: number;
+	first: boolean;
+	last: boolean;
 }
 
-const IndividualTab = styled.button`
-	padding: 0.25rem 0px;
-	text-transform: capitalize;
-	background: none;
-	border: none;
-	color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
-	width: ${({ theme }: ThemeProps) => theme.widths.threeByTwelve}%;
-	cursor: pointer;
-	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
+const radius = '10px';
 
-	&:focus,
-	&:active,
+const Button = styled.button<{ mobile: boolean; current: boolean; first: boolean; last: boolean }>`
+	-webkit-appearance: none;
+	padding: 0.5rem 1.25rem;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.1}px;
+
+	background: ${({ theme, current }) => (current ? theme.colors.secondary.color : theme.colors.primary.background)};
+	color: ${({ theme, current }) => (current ? theme.colors.secondary.contrast : theme.colors.primary.text)};
+
+	border: 2px solid ${({ theme }: ThemeProps) => theme.colors.secondary.color};
+
+	border-top-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-bottom-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-top-right-radius: ${({ last, mobile }) => (last && !mobile ? radius : 0)};
+	border-bottom-right-radius: ${({ last, mobile }) => (last && !mobile ? radius : 0)};
+
+	width: ${({ mobile }) => (mobile ? '100%' : 'auto')};
+
+	+ button {
+		margin-left: ${({ mobile }) => (mobile ? 0 : '-2px')};
+		margin-top: ${({ mobile }) => (mobile ? '-2px' : 0)};
+	}
+
+	&:focus {
+		outline: none;
+	}
+
 	&:focus-visible {
-		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
-		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
-		color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
-	}
-	@media (max-width: ${mediaQueryMaxWidths.tablesSm}px) {
-		width: ${({ theme }: ThemeProps) => theme.widths.sixByTwelve}%;
+		box-shadow: inset 0 0 0 2px ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 	}
 `;
 
-const DefaultTab = styled(IndividualTab)`
-	&:first-child {
-		border-bottom: 0.15rem solid ${({ theme }: ThemeProps) => theme.colors.link.underline};
-		background-color: ${({ theme }: ThemeProps) => theme.colors.primary.background};
-		color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
-	}
-`;
+export default function TabButton({ index, first, last }: Props) {
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const activeIndex = useRecoilValue(currentTabState);
+	const isCurrent = useMemo(() => index === activeIndex, [index, activeIndex]);
+	const { name } = useRecoilValue(routeFamilySelector(index));
+	const breakpoint = useRecoilValue(breakPointState);
+	const tabLabelCount = useRecoilValue(tabLabelCountSelector);
+	const [focusTab, setFocusTab] = useRecoilState(focusTabState);
+	const [currentTab, setCurrentTab] = useRecoilState(currentTabState);
 
-export default function TabButton({ index, subAttribute, onKeyDown, id, currentId, onClick, children, ariaControls }: Props) {
-	const ButtonElement = subAttribute ? DefaultTab : IndividualTab;
+	const keyPress = useCallback<KeyboardEventHandler<HTMLElement>>(
+		({ key }) => {
+			const maxIndex = tabLabelCount - 1;
+			const current = focusTab ?? currentTab;
 
-	const button = useRef<HTMLButtonElement | null>(null);
-	const [tabIndex, setTabIndex] = useRecoilState(tabIndexState);
+			if (key === 'ArrowLeft') {
+				if (current === 0) {
+					setFocusTab(maxIndex);
+				} else {
+					setFocusTab(current - 1);
+				}
+			} else if (key === 'ArrowRight') {
+				if (current === maxIndex) {
+					setFocusTab(0);
+				} else {
+					setFocusTab(current + 1);
+				}
+			}
+		},
+		[tabLabelCount, focusTab, currentTab, setFocusTab]
+	);
+
+	const selectTab = useCallback(() => {
+		setCurrentTab(index);
+	}, [index, setCurrentTab]);
 
 	useEffect(() => {
-		if (tabIndex === index && button.current) {
-			button.current.focus();
-			setTabIndex(null);
+		if (focusTab === index) {
+			buttonRef.current?.focus();
 		}
-	}, [tabIndex, index, setTabIndex]);
+	}, [focusTab, index]);
 
 	return (
-		<ButtonElement
-			ref={button}
+		<Button
+			id={`variant-button-${index}`}
+			mobile={breakpoint}
+			current={isCurrent}
+			first={first}
+			last={last}
+			ref={buttonRef}
+			onKeyUp={keyPress}
+			onClick={selectTab}
 			className="tabs-btn"
-			onKeyDown={onKeyDown}
+			aria-controls="tablist"
 			role="tab"
-			aria-controls={ariaControls}
-			aria-selected={currentId === id}
-			id={id}
-			onClick={onClick}
+			aria-selected={isCurrent}
 		>
-			{children}
-		</ButtonElement>
+			{name}
+		</Button>
 	);
 }

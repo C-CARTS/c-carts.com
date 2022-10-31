@@ -1,35 +1,54 @@
-import { atom, selector } from 'recoil';
-
-export const tabIndexState = atom<number | null>({
-	key: 'tabIndexState',
-	default: null
-});
+import { Routes } from '@c-carts/cms';
+import { atom, selector, selectorFamily } from 'recoil';
 
 /**
  * It is the atom to track active index of Tabs, and the default value is 0.
  */
-export const activeIndexAtom = atom({
-	key: 'activeIndex',
+export const currentTabState = atom<number>({
+	key: 'currentTabState',
 	default: 0
 });
 
-/**
- * It is the atom to track all labels of Tabs, and the default value is [].
- */
-export const labelArrayAtom = atom<string[]>({
-	key: 'labelArray',
+export const focusTabState = atom<number | null>({
+	key: 'focusTabState',
+	default: null
+});
+
+export const loadedRoutesState = atom<Routes[]>({
+	key: 'loadedRoutesState',
 	default: []
 });
 
-/**
- * It is the derived selector to retrieve active label of Tabs.
- * The value is based on the active index and all labels.
- */
-export const activeLabelSelector = selector({
-	key: 'accessTypeArray',
+export const currentRouteSelector = selector<Routes | null>({
+	key: 'currentRouteSelector',
 	get: ({ get }) => {
-		const activeIndex = get(activeIndexAtom);
-		const labelArray = get(labelArrayAtom);
-		return labelArray[activeIndex];
+		const loadedRoutes = get(loadedRoutesState);
+		const currentTab = get(currentTabState);
+
+		if (loadedRoutes === null) {
+			return null;
+		}
+		if (loadedRoutes.length === 1) {
+			return loadedRoutes[0];
+		}
+		return loadedRoutes[currentTab];
 	}
+});
+
+export const tabLabelCountSelector = selector<number>({
+	key: 'tabLabelCountSelector',
+	get: ({ get }) => {
+		const loadedRoutes = get(loadedRoutesState);
+		return loadedRoutes.length;
+	}
+});
+
+export const routeFamilySelector = selectorFamily<Routes, number>({
+	key: 'routeFamilySelector',
+	get:
+		(index: number) =>
+		({ get }) => {
+			const loadedRoutes = get(loadedRoutesState);
+			return loadedRoutes[index];
+		}
 });

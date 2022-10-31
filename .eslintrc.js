@@ -43,6 +43,8 @@ module.exports = {
 		'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
 		'no-console': ['error', { allow: ['warn', 'error'] }],
 		'no-underscore-dangle': ['error', { allow: ['_ref', '_type', '_key', '_id', '_updatedAt', '_createdAt'] }],
-		'@typescript-eslint/naming-convention': 'off'
+		'@typescript-eslint/naming-convention': 'off',
+		'no-unused-vars': 'off',
+		'@typescript-eslint/no-unused-vars': 'error'
 	}
 };

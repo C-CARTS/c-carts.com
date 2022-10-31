@@ -1,13 +1,17 @@
 import { atom } from 'recoil';
 
-const subTabAtom = atom<string>({
-	key: 'subTabAtom',
-	default: ''
+export enum SubTab {
+	Schedule = 0,
+	Map = 1,
+	Download = 2
+}
+
+export const currentSubTabState = atom<SubTab>({
+	key: 'currentSubTabState',
+	default: SubTab.Schedule
 });
 
-export const focusTabState = atom<number | null>({
-	key: 'focusTabState',
+export const focusSubTabState = atom<SubTab | null>({
+	key: 'focusSubTabState',
 	default: null
 });
-
-export default subTabAtom;

@@ -23,10 +23,10 @@ interface HeaderProps {
 	ops: number;
 	UiBreakPoint: boolean;
 }
-const Header = styled.header<HeaderProps>`
-	background-color: ${(theme: ThemeProps) => theme.theme.colors.primary.background}bb;
+const Header = styled.header<HeaderProps & ThemeProps>`
+	background-color: ${({ theme }) => theme.colors.primary.background}bb;
 	backdrop-filter: blur(5px);
-	width: ${({ ops }: HeaderProps) => (ops === 1 ? '1200px' : '100%')};
+	width: 100%;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: row;
@@ -35,11 +35,9 @@ const Header = styled.header<HeaderProps>`
 	align-content: center;
 	padding-top: clamp(1rem, 2vh, 3rem);
 	padding-bottom: clamp(1rem, 1.5vh, 2rem);
-	padding-left: clamp(1rem, 5vw, 3rem);
-	padding-right: clamp(1rem, 5vw, 3rem);
 
 	&.mobile-open {
-		background: ${(theme: ThemeProps) => theme.theme.colors.primary.background};
+		background: ${({ theme }: ThemeProps) => theme.colors.primary.background};
 	}
 
 	@media screen and (max-width: 768px) {
@@ -61,6 +59,8 @@ const InnerWrapper = styled.div`
 	max-width: ${({ theme }: ThemeProps) => theme.sizes.maxContentWidth}px;
 	justify-content: center;
 	width: 100%;
+	padding-left: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides};
+	padding-right: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides};
 
 	margin: 0 auto;
 	a {

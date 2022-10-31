@@ -1,183 +1,203 @@
-/* eslint-disable no-case-declarations */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import { Routes } from '@c-carts/cms';
-import { useRouter } from 'next/router';
-import { KeyboardEventHandler, MouseEventHandler, useCallback, useRef, useState } from 'react';
-import { GoDesktopDownload } from 'react-icons/go';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { KeyboardEventHandler, useCallback, useEffect, useRef } from 'react';
+import { MdMap, MdPictureAsPdf, MdSchedule } from 'react-icons/md';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import urlFor from '../../sanity/urlFor';
+import assertUnreachable from '../../helpers/assertUnreachable';
 import { breakPointState } from '../../state/changeProperty';
-import subTabAtom, { focusTabState } from '../../state/subTabState';
-import { mediaQueryMaxWidths } from '../../styles/theme';
+import { currentSubTabState, focusSubTabState, SubTab as SubTabType } from '../../state/subTabState';
+import { tabLabelCountSelector } from '../../state/tabState';
 import { ThemeProps } from '../../types/theme';
-import getPdfUrl from '../../utils/getPdfUrl';
-import MapsTab from './mapTab';
-import SubTabButton from './subTabButton';
-import Tables from './tables';
 
-interface Prop {
-	content: Routes['content'];
-	map: Routes['images'];
-	pdf: Routes['routePdfs'];
-}
-
-const ButtonContainer = styled.div`
+const PickerWrap = styled.div<{ multiple: boolean; mobile: boolean }>`
 	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-content: center;
+	flex-flow: ${({ mobile }) => (mobile ? 'column nowrap' : 'row nowrap')};
 	width: 100%;
-	margin: 0.5rem 0px 0px 0px;
-	padding: 0px;
+	align-items: center;
+	justify-content: ${({ multiple }) => (multiple ? 'center' : 'flex-start')};
+`;
 
-	@media (max-width: ${mediaQueryMaxWidths.subtab}px) {
-		flex-direction: column;
-		flex-wrap: nowrap;
+const radius = '5px';
+
+const Button = styled.button<{ mobile: boolean; hasMultiple: boolean; current: boolean; first: boolean; last: boolean }>`
+	-webkit-appearance: none;
+	min-width: 12rem;
+	padding: 0.25rem 0.75rem;
+	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize}px;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+
+	background: ${({ theme, current }) => (current ? theme.colors.primary.tabsBackground : theme.colors.primary.background)};
+	color: ${({ theme, current }) => (current ? theme.colors.primary.tabsBackgroundContrast : theme.colors.primary.text)};
+
+	border: 2px solid ${({ theme }) => theme.colors.primary.tabsBackground};
+
+	border-top-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-top-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-bottom-left-radius: ${({ first, mobile }) => (first && !mobile ? radius : 0)};
+	border-top-right-radius: ${({ last, mobile }) => (last && !mobile ? radius : 0)};
+	border-bottom-right-radius: ${({ last, mobile }) => (last && !mobile ? radius : 0)};
+
+	width: ${({ mobile }) => (mobile ? '100%' : 'auto')};
+
+	+ button {
+		margin-left: ${({ mobile }) => (mobile ? 0 : '-2px')};
+		margin-top: ${({ mobile }) => (mobile ? '-2px' : 0)};
 	}
-	#file {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: none;
-		align-items: center;
-		justify-content: center;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		box-shadow: inset 0 0 0 2px ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
+	}
+
+	> svg {
+		color: ${({ theme, current }) => (current ? theme.colors.primary.tabsBackgroundContrast : theme.colors.primary.text)};
+		margin-right: 0.25rem;
+		font-size: 1.2rem;
 	}
 `;
 
-const Span = styled.span`
-	margin-left: 10px;
-	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 0.0419}rem;
-`;
-
-function SubTab({ content, map, pdf }: Prop) {
-	const [subTabAttribute, setSubTabAttribute] = useRecoilState(subTabAtom);
+export default function SubTab() {
+	const scheduleRef = useRef<HTMLButtonElement>(null);
+	const mapRef = useRef<HTMLButtonElement>(null);
+	const pdfRef = useRef<HTMLButtonElement>(null);
+	const [currentSubTab, setCurrentSubTab] = useRecoilState(currentSubTabState);
+	const tabLabelCount = useRecoilValue(tabLabelCountSelector);
 	const breakpoint = useRecoilValue(breakPointState);
-	const { code } = content;
-	const imageUrl = urlFor(map.asset._ref);
-	const url = getPdfUrl(pdf);
-	const buttonRef = useRef<HTMLDivElement | null>(null);
-	const setFocusTab = useSetRecoilState(focusTabState);
-	const [currentId, setId] = useState<string | null>('content');
-	const { push } = useRouter();
-
-	const pushUrl = useCallback(
-		(link: string) => {
-			push(`${link}`);
-		},
-		[push]
-	);
+	const [focusSubTab, setFocusSubTab] = useRecoilState(focusSubTabState);
 
 	const keyPress = useCallback<KeyboardEventHandler<HTMLButtonElement>>(
-		(event) => {
-			const currentContent = event.currentTarget.textContent;
-			const { key } = event;
-			if (key === 'ArrowLeft') {
-				switch (currentContent) {
-					case 'Schedule':
-						setFocusTab(2);
-						break;
-					case 'Map':
-						setFocusTab(0);
-						break;
-					case 'Pdf':
-						setFocusTab(1);
-						break;
-
-					default:
-						break;
-				}
-			}
+		({ key }) => {
+			const current = focusSubTab ?? currentSubTab;
 			if (key === 'ArrowRight') {
-				switch (currentContent) {
-					case 'Schedule':
-						setFocusTab(1);
+				switch (current) {
+					case SubTabType.Schedule:
+						setFocusSubTab(SubTabType.Map);
 						break;
-					case 'Map':
-						setFocusTab(2);
+					case SubTabType.Map:
+						setFocusSubTab(SubTabType.Download);
 						break;
-					case 'Pdf':
-						setFocusTab(0);
+					case SubTabType.Download:
+						setFocusSubTab(SubTabType.Schedule);
 						break;
-
 					default:
+						assertUnreachable(current);
+				}
+			}
+			if (key === 'ArrowLeft') {
+				switch (current) {
+					case SubTabType.Schedule:
+						setFocusSubTab(SubTabType.Download);
 						break;
-				}
-			}
-
-			return null;
-		},
-		[setFocusTab]
-	);
-
-	const onSubTabClick = useCallback<MouseEventHandler<HTMLButtonElement>>(
-		(event: React.MouseEvent<HTMLButtonElement>) => {
-			if (event.currentTarget !== null) {
-				const attribute = event.currentTarget.getAttribute('id') as string;
-				setId(attribute);
-				setSubTabAttribute(attribute);
-				if (attribute === 'file') {
-					pushUrl(url);
+					case SubTabType.Map:
+						setFocusSubTab(SubTabType.Schedule);
+						break;
+					case SubTabType.Download:
+						setFocusSubTab(SubTabType.Map);
+						break;
+					default:
+						setFocusSubTab(current);
 				}
 			}
 		},
-		[setSubTabAttribute, setId, url, pushUrl]
+		[currentSubTab, focusSubTab, setFocusSubTab]
 	);
 
-	const display = (val: string) => {
-		switch (val) {
-			case 'image':
-				return <MapsTab mapUrl={imageUrl?.url()} />;
-			default:
-				return <Tables code={code} />;
+	useEffect(() => {
+		if (focusSubTab !== null) {
+			switch (focusSubTab) {
+				case SubTabType.Schedule:
+					scheduleRef.current?.focus();
+					break;
+				case SubTabType.Map:
+					mapRef.current?.focus();
+					break;
+				case SubTabType.Download:
+					pdfRef.current?.focus();
+					break;
+				default:
+					assertUnreachable(focusSubTab);
+			}
 		}
-	};
+	}, [focusSubTab, setFocusSubTab]);
 
-	const subAttribute = subTabAttribute === 'content' || subTabAttribute === '';
+	const onSubTabClick = useCallback(
+		(tab: SubTabType) => {
+			setCurrentSubTab(tab);
+		},
+		[setCurrentSubTab]
+	);
 
 	return (
-		<>
-			<ButtonContainer id="tabsContainer" aria-orientation={breakpoint ? 'vertical' : 'horizontal'} role="tablist" aria-label="subtab panel" ref={buttonRef}>
-				<SubTabButton
-					index={0}
-					currentId={currentId}
-					onKeyDown={keyPress}
-					ariaControls="tablesPanel"
-					id="content"
-					onClick={onSubTabClick}
-					subAttribute={subAttribute}
-				>
-					Schedule
-				</SubTabButton>
-				<SubTabButton
-					index={1}
-					currentId={currentId}
-					onKeyDown={keyPress}
-					ariaControls="mapPanel"
-					id="image"
-					onClick={onSubTabClick}
-					subAttribute={subAttribute}
-				>
-					Map
-				</SubTabButton>
-				<SubTabButton
-					index={2}
-					currentId={currentId}
-					onKeyDown={keyPress}
-					ariaControls="pdfPanel"
-					id="file"
-					onClick={onSubTabClick}
-					subAttribute={subAttribute}
-				>
-					<GoDesktopDownload aria-hidden />
-					<Span id="pdfPanel" aria-label="Download Pdf" role="link">
-						Pdf
-					</Span>
-				</SubTabButton>
-			</ButtonContainer>
-			{display(subTabAttribute)}
-		</>
+		<PickerWrap
+			multiple={tabLabelCount > 1}
+			mobile={breakpoint}
+			id="tabsContainer"
+			aria-orientation={breakpoint ? 'vertical' : 'horizontal'}
+			role="tablist"
+			aria-label="subtab panel"
+		>
+			<Button
+				id="schedule-button"
+				aria-selected={currentSubTab === SubTabType.Schedule}
+				aria-controls="table-panel"
+				mobile={breakpoint}
+				hasMultiple={tabLabelCount > 1}
+				current={currentSubTab === SubTabType.Schedule}
+				first
+				last={false}
+				ref={scheduleRef}
+				onKeyDown={keyPress}
+				onFocus={() => setFocusSubTab(SubTabType.Schedule)}
+				onClick={() => onSubTabClick(SubTabType.Schedule)}
+				type="button"
+			>
+				<MdSchedule />
+				<span>Schedule</span>
+			</Button>
+			<Button
+				id="map-button"
+				aria-selected={currentSubTab === SubTabType.Map}
+				aria-controls="map-panel"
+				mobile={breakpoint}
+				hasMultiple={tabLabelCount > 1}
+				current={currentSubTab === SubTabType.Map}
+				first={false}
+				last={false}
+				ref={mapRef}
+				onKeyDown={keyPress}
+				onFocus={() => setFocusSubTab(SubTabType.Map)}
+				onClick={() => onSubTabClick(SubTabType.Map)}
+				type="button"
+			>
+				<MdMap />
+				<span>Map</span>
+			</Button>
+			<Button
+				id="download-button"
+				aria-selected={currentSubTab === SubTabType.Download}
+				aria-controls="download-panel"
+				mobile={breakpoint}
+				hasMultiple={tabLabelCount > 1}
+				current={currentSubTab === SubTabType.Download}
+				first={false}
+				last
+				ref={pdfRef}
+				onKeyDown={keyPress}
+				onFocus={() => setFocusSubTab(SubTabType.Download)}
+				onClick={() => onSubTabClick(SubTabType.Download)}
+				type="button"
+			>
+				<MdPictureAsPdf />
+				<span id="pdfPanel" aria-label="Download Pdf" role="link">
+					Pdf
+				</span>
+			</Button>
+		</PickerWrap>
 	);
 }
-
-export default SubTab;
