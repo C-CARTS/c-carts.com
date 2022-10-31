@@ -4,7 +4,6 @@ import sanityClient from '../sanity/sanityClient';
 
 const usePerformance = createDataHook<Performance[]>('perform', async () => {
 	const data = await sanityClient.getAll('performance');
-	console.warn({ data });
 	return data;
 });
 

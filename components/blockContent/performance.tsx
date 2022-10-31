@@ -28,7 +28,7 @@ const ChartsContainer = styled.div`
 
 export default function PerformanceOperations() {
 	const performance = usePerformance();
-
+	console.warn({ performance });
 	const initializeState = useCallback(
 		({ set }: { set: SetRecoilState }) => {
 			set(fiscalDataState, performance[0].finance);
