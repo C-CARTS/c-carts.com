@@ -1,10 +1,9 @@
-import { CodeSection, ImageSection, JobsSection, NewsSection, PerformanceSection, RoutesReferences, TextSection } from '@c-carts/cms';
+import { CodeSection, ImageSection, JobsSection, NewsSection, RoutesReferences, TextSection } from '@c-carts/cms';
 import { SanityKeyed } from 'sanity-codegen/types';
 import assertUnreachable from '../../helpers/assertUnreachable';
 import ImageComponent from './image';
 import JobsComponent from './jobs';
 import NewsComponent from './newz';
-import PerformanceOperations from './performance';
 import DisplayHtmlTable from './table';
 import TextComponent from './text';
 import SchedulesRoutes from '../tabs/schedulesRoutes';
@@ -15,13 +14,13 @@ interface Props {
 		| SanityKeyed<TextSection>
 		| SanityKeyed<JobsSection>
 		| SanityKeyed<NewsSection>
-		| SanityKeyed<PerformanceSection>
 		| SanityKeyed<CodeSection>
 		| SanityKeyed<RoutesReferences>;
 }
 
 export default function Block({ block }: Props) {
 	const { _type } = block;
+	console.warn({ block });
 	switch (_type) {
 		case 'imageSection':
 			return <ImageComponent block={block as ImageSection} />;
@@ -31,8 +30,6 @@ export default function Block({ block }: Props) {
 			return <JobsComponent block={block as JobsSection} />;
 		case 'newsSection':
 			return <NewsComponent block={block as NewsSection} />;
-		case 'performanceSection':
-			return <PerformanceOperations block={block as PerformanceSection} />;
 		case 'codeSection':
 			return <DisplayHtmlTable block={block as CodeSection} />;
 		case 'routesReferences':
