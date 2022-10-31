@@ -14,8 +14,8 @@ interface Props {
 		| SanityKeyed<ImageSection>
 		| SanityKeyed<TextSection>
 		| SanityKeyed<JobsSection>
-		| SanityKeyed<NewsSection>
 		| SanityKeyed<PerformanceSection>
+		| SanityKeyed<NewsSection>
 		| SanityKeyed<CodeSection>
 		| SanityKeyed<RoutesReferences>;
 }
