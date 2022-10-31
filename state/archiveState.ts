@@ -15,11 +15,6 @@ function urlSelector(data: FinancialData['fiscalData']) {
 	return urls;
 }
 
-export const selectedOptionState = atom<boolean>({
-	key: 'selectedOptionState',
-	default: false
-});
-
 export const fiscalDataState = atom<FinancialData[]>({
 	key: 'fiscalDataState',
 	default: []
@@ -30,7 +25,23 @@ export const fiscalYearState = atom<string>({
 	default: ''
 });
 
-export const fiscalDataSelector = selector<Array<any>>({
+export const selectedOptionSelector = selector<boolean>({
+	key: 'selectedOptionSelector',
+	get: ({ get }) => {
+		const val = get(fiscalYearState);
+		return val !== null && val.length > 0;
+	}
+});
+
+interface FiscalData {
+	dates: {
+		start: string;
+		end: string;
+	};
+	urls: string[];
+}
+
+export const fiscalDataSelector = selector<FiscalData | null>({
 	key: 'fiscalDataSelector',
 	get: ({ get }) => {
 		const year = get(fiscalYearState);
@@ -38,10 +49,21 @@ export const fiscalDataSelector = selector<Array<any>>({
 		const data = fiscalData.find((val) => getYear(val.fiscalYear) === year);
 		const checkDataFlag = data !== undefined;
 		if (checkDataFlag) {
-			const val = { start: data.dateRange[0].startDate, end: data.dateRange[0].endDate };
-			const assert = urlSelector(data.fiscalData);
-			return [val, assert];
+			const dates = { start: data.dateRange[0].startDate ?? 'Unknown', end: data.dateRange[0].endDate ?? 'Unknown' };
+			const urls = urlSelector(data.fiscalData);
+			return { dates, urls };
 		}
-		return ['Data is undefined'];
+		return null;
+	}
+});
+
+export const allOptionsSelector = selector<string[]>({
+	key: 'allOptionsSelector',
+	get: ({ get }) => {
+		const data = get(fiscalDataState);
+		const allOptions = data.flatMap((dat: FinancialData) => dat.fiscalYear);
+		allOptions.push('Select an Option');
+		allOptions.reverse();
+		return allOptions;
 	}
 });

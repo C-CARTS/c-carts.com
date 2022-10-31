@@ -1,15 +1,14 @@
-import { Performance, PerformanceSection } from '@c-carts/cms';
+import { Performance } from '@c-carts/cms';
+import { useCallback } from 'react';
+import { RecoilRoot, SetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import usePerformance from '../../data-hooks/usePerformance';
+import { fiscalDataState } from '../../state/archiveState';
 import { mediaQueryMaxWidths } from '../../styles/theme';
 import Archive from '../trips/archive';
 import SystemOperations from '../trips/systemOperations';
 import TripsTaken from '../trips/tripsTaken';
 import TripsTypes from '../trips/tripsTypes';
-
-interface Props {
-	block: PerformanceSection;
-}
 
 const ChartsContainer = styled.div`
 	width: 100%;
@@ -27,16 +26,15 @@ const ChartsContainer = styled.div`
 	}
 `;
 
-export default function PerformanceOperations({ block }: Props) {
+export default function PerformanceOperations() {
 	const performance = usePerformance();
 
-	if (!performance && block.label.length < 0) {
-		return (
-			<p className="performanceData unavailable">
-				<strong>There are currently no schedules available</strong>
-			</p>
-		);
-	}
+	const initializeState = useCallback(
+		({ set }: { set: SetRecoilState }) => {
+			set(fiscalDataState, performance[0].finance);
+		},
+		[performance]
+	);
 
 	return (
 		<div style={{ width: '100%' }}>
@@ -45,7 +43,9 @@ export default function PerformanceOperations({ block }: Props) {
 					<TripsTaken trips={val.trips} />
 					<TripsTypes ttypes={val.tripTypes} />
 					<SystemOperations system={val.systemOps} />
-					<Archive data={val.finance} />
+					<RecoilRoot initializeState={initializeState}>
+						<Archive />
+					</RecoilRoot>
 				</ChartsContainer>
 			))}
 		</div>

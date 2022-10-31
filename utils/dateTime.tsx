@@ -12,6 +12,6 @@ export function getYear(date: string) {
 }
 
 export function formatDate(date: string) {
-	const format = dayjs(date).format('MMM-YYYY');
+	const format = dayjs(date).format('MMMM YYYY');
 	return format;
 }
