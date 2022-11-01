@@ -24,7 +24,7 @@ export default function ArchiveDisplay() {
 		return <Message id="archive-message">Select a year to view archived fiscal reports.</Message>;
 	}
 
-	const { dates, urls } = fiscalData;
+	const { dates, urls, labels } = fiscalData;
 
 	return (
 		<div>
@@ -35,7 +35,7 @@ export default function ArchiveDisplay() {
 				{urls.map((url: string, index: number) => (
 					<li key={url}>
 						<a href={url} target="_blank" rel="noreferrer">
-							{index}
+							{labels[index]}
 						</a>
 					</li>
 				))}

@@ -17,6 +17,19 @@ function urlSelector(data: FinancialData['fiscalData']) {
 	return urls;
 }
 
+function labelSelector(data: FinancialData['fiscalData']) {
+	const labels = [];
+	if (data !== undefined) {
+		for (let i = 0; i < data.length; i++) {
+			const keys = data[i].label;
+			if (keys !== undefined) {
+				labels.push(keys);
+			}
+		}
+	}
+	return labels;
+}
+
 export const fiscalDataState = atom<FinancialData[]>({
 	key: 'fiscalDataState',
 	default: []
@@ -41,19 +54,21 @@ interface FiscalData {
 		end: string;
 	};
 	urls: string[];
+	labels: string[];
 }
 
 export const fiscalDataSelector = selector<FiscalData | null>({
 	key: 'fiscalDataSelector',
 	get: ({ get }) => {
 		const year = get(fiscalYearState);
-		const fiscalData: FinancialData[] = get(fiscalDataState);
-		const data = fiscalData.find((val) => getYear(val.fiscalYear) === year);
+		const finance: FinancialData[] = get(fiscalDataState);
+		const data = finance.find((val) => getYear(val.fiscalYear) === year);
 		const checkDataFlag = data !== undefined;
 		if (checkDataFlag) {
 			const dates = { start: data.dateRange[0].startDate ?? 'Unknown', end: data.dateRange[0].endDate ?? 'Unknown' };
 			const urls = urlSelector(data.fiscalData);
-			return { dates, urls };
+			const labels = labelSelector(data.fiscalData);
+			return { dates, urls, labels };
 		}
 		return null;
 	}
