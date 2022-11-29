@@ -74,7 +74,7 @@ const InnerWrapper = styled.div`
 	}
 `;
 
-const LogoLink = styled.a`
+const LogoLink = styled(Link)`
 	font-size: 1.5rem;
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
@@ -133,11 +133,9 @@ export default function Menu({ shortTitle, nav }: Props) {
 			) : (
 				<OuterWrapper>
 					<InnerWrapper>
-						<Link href="/" passHref>
-							<LogoLink id="logoLink" role="link" title="home" aria-label={`Return to ${shortTitle} homepage`}>
-								{shortTitle}
-							</LogoLink>
-						</Link>
+						<LogoLink href="/" id="logoLink" role="link" title="home" aria-label={`Return to ${shortTitle} homepage`}>
+							{shortTitle}
+						</LogoLink>
 						<MainNav nav={nav} />
 					</InnerWrapper>
 				</OuterWrapper>

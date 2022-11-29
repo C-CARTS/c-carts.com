@@ -66,7 +66,7 @@ const SideNavButton = styled.button`
 	}
 `;
 
-const LogoLink = styled.a`
+const LogoLink = styled(Link)`
 	font-size: calc(${({ theme }: ThemeProps) => theme.typography.baseFontSize} * 0.086rem);
 	font-weight: ${({ theme }: ThemeProps) => theme.typography.boldFontWeight};
 	text-decoration-color: transparent;
@@ -131,11 +131,9 @@ export default function SideNav({ nav }: Props) {
 					{mobileMenuOpen ? <AiOutlineClose aria-hidden="true" /> : <AiOutlineMenu aria-hidden="true" />}
 				</SideNavButton>
 
-				<Link href="/" passHref>
-					<LogoLink role="link" aria-label="Link to C-Carts Homepage">
-						<span>C-CARTS</span>
-					</LogoLink>
-				</Link>
+				<LogoLink href="/" role="link" aria-label="Link to C-Carts Homepage">
+					<span>C-CARTS</span>
+				</LogoLink>
 			</ListContainer>
 
 			<SideSection nav={nav} />
