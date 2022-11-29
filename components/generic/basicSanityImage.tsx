@@ -1,7 +1,7 @@
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { useNextSanityImage, UseNextSanityImageBuilder } from 'next-sanity-image';
-import type { ImageProps } from 'next/image';
-import Image from 'next/image';
+import type { ImageProps } from 'next/legacy/image';
+import Image from 'next/legacy/image';
 import { useCallback, useMemo } from 'react';
 import { basicClient } from '../../sanity/sanityClient';
 
