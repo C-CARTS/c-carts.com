@@ -15,7 +15,7 @@ export default function JobsComponent({ job: { name, rate, content }, hideHeadin
 					<span>Pay Rate:${rate}</span>
 				</p>
 			)}
-			<PortableText blocks={content} />
+			<PortableText value={content} />
 		</section>
 	);
 }

@@ -6,5 +6,5 @@ interface Props {
 }
 
 export default function TextComponent({ block: { text } }: Props) {
-	return <PortableText blocks={text} />;
+	return <PortableText value={text} />;
 }

@@ -1,8 +1,6 @@
-import { PortableText } from '@c-carts/cms';
-
+import { PortableText as Text } from '@c-carts/cms';
 import styled from 'styled-components';
-import PortableTxt from '../../sanity/portableText';
-
+import PortableText from '../../sanity/portableText';
 import CardButton from './cardButton';
 
 const CardBodyContent = styled.div`
@@ -29,14 +27,14 @@ const TextSection = styled(CardBodyContent)`
 `;
 
 interface Prop {
-	content: PortableText | undefined;
+	content: Text;
 	slug: string;
 }
 export default function CardBody({ content, slug }: Prop) {
 	return (
 		<CardBodyContent>
 			<TextSection>
-				<PortableTxt blocks={content} />
+				<PortableText value={content} />
 			</TextSection>
 			<CardButton news={slug} />
 		</CardBodyContent>

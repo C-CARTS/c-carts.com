@@ -1,7 +1,7 @@
 const withPWA = require('next-pwa')({
 	dest: 'public'
 });
-const { experimental_use } = require('react');
+
 const runtimeCaching = require('./cache.js');
 
 module.exports = withPWA((phase) => {

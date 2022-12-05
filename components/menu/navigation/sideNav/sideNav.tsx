@@ -31,7 +31,6 @@ const SideNavButton = styled.button`
 	width: 36px;
 	box-sizing: content-box;
 	padding: 0;
-
 	background: ${({ theme }: ThemeProps) => theme.colors.primary.background}00;
 	border: 2px solid ${({ theme }: ThemeProps) => theme.colors.secondary.color};
 	font-size: ${({ theme }: ThemeProps) => theme.typography.baseFontSize * 1.5}px;
@@ -39,6 +38,7 @@ const SideNavButton = styled.button`
 	color: ${({ theme }: ThemeProps) => theme.colors.secondary.contrastColor};
 	text-align: center;
 	margin-right: 0.25rem;
+	margin-left: ${({ theme }: ThemeProps) => theme.sizes.contentPaddingSides};
 
 	display: grid;
 	place-content: center;
