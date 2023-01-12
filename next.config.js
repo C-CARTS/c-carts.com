@@ -21,6 +21,9 @@ module.exports = withPWA((phase) => {
 			runtimeCaching
 		},
 		swcMinify: true,
+		experimental: {
+			appDir: true
+		},
 		compiler: {
 			removeConsole: {
 				exclude
