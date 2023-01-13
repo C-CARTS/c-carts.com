@@ -52,7 +52,7 @@
     json5 "^2.2.2"
     semver "^6.3.0"
 
-"@babel/generator@^7.20.7":
+"@babel/generator@7.20.7", "@babel/generator@^7.20.7":
   version "7.20.7"
   resolved "https://pkgs.dev.azure.com/cumtd/C-CARTS/_packaging/c-carts/npm/registry/@babel/generator/-/generator-7.20.7.tgz#f8ef57c8242665c5929fe2e8d82ba75460187b4a"
   integrity sha1-+O9XyCQmZcWSn+Lo2CunVGAYe0o=

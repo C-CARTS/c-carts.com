@@ -25,6 +25,12 @@ npm install -g vsts-npm-auth
 vsts-npm-auth -config .npmrc -force -E 525600
 ```
 
+No force flag is used -force
+
+```powershell
+vsts-npm-auth -config .npmrc
+```
+
 To get a new token for a NPM_RC env variable (used for deployment pipelines) run:
 
 ```powershell
