@@ -53,10 +53,6 @@ const page = defineType({
 			title: "Open Graph Image",
 			description: "Image for sharing previews on Facebook, Twitter etc.",
 			fieldset: "metadata",
-			options: {
-				hotspot: true,
-			},
-			validation: (rule) => rule.required(),
 		}),
 		defineField({
 			name: "includeInSitemap",

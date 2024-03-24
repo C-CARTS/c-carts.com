@@ -1,0 +1,29 @@
+.contentWrap {
+	display: flex;
+	flex-flow: column nowrap;
+	margin: 0 auto;
+	height: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	color: var(--primary-text);
+}
+.contentWrap * {
+	width: min(100%, var(--max-content-width));
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mainContent {
+	padding: var(--content-padding-top) var(--content-padding-sides)
+		var(--content-padding-bottom);
+	max-width: var(--max-content-width);
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	flex: 1 1 auto;
+	background-color: var(--primary-background);
+}

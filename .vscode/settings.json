@@ -17,13 +17,7 @@
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"cSpell.words": [
-		"fieldsets",
-		"geopoint",
-		"hotspot",
-		"lqip",
-		"Parens"
-	],
+	"cSpell.words": ["fieldsets", "geopoint", "hotspot", "lqip", "Parens"],
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
 	"files.associations": {
@@ -36,6 +30,7 @@
 		"**/.next": true,
 		"**/.sanity": true,
 		"**/bin": true,
+		"**/dist": true,
 		"**/node_modules": true,
 		"**/obj": true,
 		"next-env.d.ts": true
