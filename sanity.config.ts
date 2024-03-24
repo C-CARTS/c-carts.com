@@ -11,6 +11,8 @@ import navItem from "./sanity/schema/documents/navItem";
 import news from "./sanity/schema/documents/news";
 import page from "./sanity/schema/documents/page";
 import siteConfig from "./sanity/schema/documents/siteConfig";
+import imageWithAlt from "./sanity/schema/objects/imageWithAlt";
+
 const apiKey =
 	process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ??
 	throwError("No NEXT_PUBLIC_GOOGLE_MAPS_API_KEY");
@@ -20,7 +22,7 @@ const config = defineConfig({
 	projectId,
 	dataset,
 	schema: {
-		types: [job, news, siteConfig, navItem, page],
+		types: [job, news, siteConfig, navItem, page, imageWithAlt],
 	},
 	plugins: [
 		structureTool({ structure }),

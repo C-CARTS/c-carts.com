@@ -22,7 +22,7 @@ const siteConfig = defineType({
 		}),
 		defineField({
 			name: "bannerImage",
-			type: "image",
+			type: "imageWithAlt",
 			title: "Banner Image",
 			description: "Background image for homepage",
 			options: {
@@ -57,7 +57,7 @@ const siteConfig = defineType({
 			name: "brandLogo",
 			title: "Brand Logo",
 			description: "The logo for the site",
-			type: "image",
+			type: "imageWithAlt",
 			options: {
 				hotspot: true,
 			},

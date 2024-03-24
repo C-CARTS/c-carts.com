@@ -1,5 +1,10 @@
 import { FcDocument, FcGlobe, FcSettings, FcTodoList } from "react-icons/fc";
 import type { StructureResolver } from "sanity/structure";
+import throwError from "../helpers/throwError";
+
+const settingsName =
+	process.env.NEXT_PUBLIC_SETTINGS_DOC_NAME ??
+	throwError("No NEXT_PUBLIC_SETTINGS_DOC_NAME");
 
 const structure: StructureResolver = (S, context) => {
 	console.log("s ctx", context);
@@ -18,8 +23,8 @@ const structure: StructureResolver = (S, context) => {
 								.icon(FcGlobe)
 								.child(
 									S.document()
-										.schemaType("siteConfig")
-										.documentId("siteConfig"),
+										.schemaType(settingsName)
+										.documentId(settingsName),
 								),
 							S.listItem()
 								.icon(FcTodoList)

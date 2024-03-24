@@ -49,7 +49,7 @@ const page = defineType({
 		}),
 		defineField({
 			name: "openGraphImage",
-			type: "image",
+			type: "imageWithAlt",
 			title: "Open Graph Image",
 			description: "Image for sharing previews on Facebook, Twitter etc.",
 			fieldset: "metadata",
