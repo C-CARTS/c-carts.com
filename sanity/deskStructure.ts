@@ -1,3 +1,4 @@
+import { FcDocument, FcGlobe, FcSettings, FcTodoList } from "react-icons/fc";
 import type { StructureResolver } from "sanity/structure";
 
 const structure: StructureResolver = (S, context) => {
@@ -6,9 +7,31 @@ const structure: StructureResolver = (S, context) => {
 		.title("Content")
 		.items([
 			S.listItem()
-				.title("Site Configuration")
-				.schemaType("siteConfig")
-				.child(S.document().schemaType("siteConfig").documentId("siteConfig")),
+				.title("Settings")
+				.icon(FcSettings)
+				.child(
+					S.list()
+						.title("Items")
+						.items([
+							S.listItem()
+								.title("Global Settings")
+								.icon(FcGlobe)
+								.child(
+									S.document()
+										.schemaType("siteConfig")
+										.documentId("siteConfig"),
+								),
+							S.listItem()
+								.icon(FcTodoList)
+								.title("Navigation")
+								.child(S.documentTypeList("navItem").title("Nav Items")),
+						]),
+				),
+			S.listItem()
+				.title("Pages")
+				.icon(FcDocument)
+				.schemaType("page")
+				.child(S.documentTypeList("page").title("Pages")),
 			S.listItem()
 				.title("Jobs")
 				.schemaType("job")

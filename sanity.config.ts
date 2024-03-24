@@ -7,7 +7,9 @@ import throwError from "./helpers/throwError";
 import structure from "./sanity/deskStructure";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import job from "./sanity/schema/documents/job";
+import navItem from "./sanity/schema/documents/navItem";
 import news from "./sanity/schema/documents/news";
+import page from "./sanity/schema/documents/page";
 import siteConfig from "./sanity/schema/documents/siteConfig";
 const apiKey =
 	process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ??
@@ -18,7 +20,7 @@ const config = defineConfig({
 	projectId,
 	dataset,
 	schema: {
-		types: [job, news, siteConfig],
+		types: [job, news, siteConfig, navItem, page],
 	},
 	plugins: [
 		structureTool({ structure }),
