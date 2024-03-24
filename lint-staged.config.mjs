@@ -6,7 +6,7 @@ const buildEslintCommand = (filenames) => [
 
 const config = {
 	"**/*.(ts|tsx)": () => "npx tsc --noEmit",
-	"*.{js,jsx,ts,tsx}": [buildEslintCommand],
+	"*.{js,jsx,ts,tsx,mjs}": [buildEslintCommand],
 	"**/*.(md|json)": (filenames) =>
 		`npx prettier --write ${filenames.join(" ")}`,
 };
