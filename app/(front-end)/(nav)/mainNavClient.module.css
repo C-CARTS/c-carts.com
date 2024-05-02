@@ -1,0 +1,8 @@
+.nav {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	margin-left: auto;
+}

@@ -17,7 +17,14 @@
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"cSpell.words": ["fieldsets", "geopoint", "hotspot", "lqip", "Parens"],
+	"cSpell.words": [
+		"clsx",
+		"fieldsets",
+		"geopoint",
+		"hotspot",
+		"lqip",
+		"Parens"
+	],
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
 	"files.associations": {

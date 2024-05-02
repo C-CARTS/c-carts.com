@@ -3,6 +3,7 @@
 	--primary-subtle: #fdd9d9;
 	--primary-contrast: #0a0000;
 	--primary-bg: #fff;
+	--primary-bg-translucent: #ffffffbb;
 	--primary-text: var(--primary-contrast);
 	--secondary-color: #3feee6;
 	--secondary-subtle: #dff2f1;

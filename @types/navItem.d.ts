@@ -1,10 +1,14 @@
-import type { Reference, SanityDocument, Slug } from "sanity";
+import type { SanityDocument, Slug } from "sanity";
 
 type NavItem = SanityDocument & {
 	_type: "navItem";
 	title: string;
 	slug: Slug;
-	children: Reference[];
+	children: {
+		_id: string;
+		title: string;
+		slug: Slug;
+	}[];
 };
 
 export default NavItem;

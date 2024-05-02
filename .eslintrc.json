@@ -1,25 +1,22 @@
 {
-    "extends": [
-        "next",
-        "next/core-web-vitals",
-        "eslint:recommended",
-        "plugin:jsx-a11y/strict",
-        "prettier"
-    ],
-    "globals": {
-        "React": "readonly"
-    },
-    "plugins": [
-        "prettier",
-        "jsx-a11y"
-    ],
-    "rules": {
-        "no-unused-vars": [
-            1,
-            {
-                "args": "after-used",
-                "argsIgnorePattern": "^_"
-            }
-        ]
-    }
+	"extends": [
+		"next",
+		"next/core-web-vitals",
+		"eslint:recommended",
+		"plugin:jsx-a11y/strict",
+		"prettier"
+	],
+	"globals": {
+		"React": "readonly"
+	},
+	"plugins": ["prettier", "jsx-a11y"],
+	"rules": {
+		"no-unused-vars": [
+			1,
+			{
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		]
+	}
 }
