@@ -1,9 +1,5 @@
-import {
-	defineArrayMember,
-	defineField,
-	defineType,
-} from "@sanity-typed/types";
 import { FcDocument } from "react-icons/fc";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 const page = defineType({
 	name: "page",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import SiteConfig from "../../@types/siteConfig";
 import { client } from "../../sanity/lib/client";
 import "./global.css";
 import classes from "./layout.module.css";
@@ -7,7 +8,7 @@ import SkipLink from "./skipLink";
 
 async function getConfig() {
 	const query = `*[ _id == 'siteConfig' && _type == 'siteConfig' ][0]`;
-	const config = await client.fetch(query);
+	const config = await client.fetch<SiteConfig>(query);
 	return config;
 }
 

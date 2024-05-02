@@ -1,7 +1,6 @@
-import type { DocumentValues, InferSchemaValues } from "@sanity-typed/types";
-import { defineConfig } from "@sanity-typed/types";
 import { googleMapsInput } from "@sanity/google-maps-input";
 import { visionTool } from "@sanity/vision";
+import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import throwError from "./helpers/throwError";
 import structure from "./sanity/deskStructure";
@@ -39,7 +38,3 @@ const config = defineConfig({
 });
 
 export default config;
-
-export type SanityValues = InferSchemaValues<typeof config>;
-
-export type SanityDocuments = DocumentValues<SanityValues>;

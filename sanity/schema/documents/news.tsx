@@ -1,9 +1,5 @@
-import {
-	defineArrayMember,
-	defineField,
-	defineType,
-} from "@sanity-typed/types";
 import { FcNews } from "react-icons/fc";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 const news = defineType({
 	name: "news",

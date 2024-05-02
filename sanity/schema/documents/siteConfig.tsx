@@ -1,5 +1,5 @@
-import { defineField, defineType } from "@sanity-typed/types";
 import { FcSettings } from "react-icons/fc";
+import { defineField, defineType } from "sanity";
 
 const siteConfig = defineType({
 	name: "siteConfig",

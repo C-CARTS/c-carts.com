@@ -1,4 +1,4 @@
-import { defineField, defineType } from "@sanity-typed/types";
+import { defineField, defineType } from "sanity";
 
 const imageWithAlt = defineType({
 	title: "Image",

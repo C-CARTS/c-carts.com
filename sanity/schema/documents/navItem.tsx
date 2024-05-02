@@ -1,9 +1,5 @@
-import {
-	defineArrayMember,
-	defineField,
-	defineType,
-} from "@sanity-typed/types";
 import { FcViewDetails } from "react-icons/fc";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 const navItem = defineType({
 	name: "navItem",
@@ -43,16 +39,16 @@ const navItem = defineType({
 	],
 	preview: {
 		select: {
-			title: 'title',
-			slug: 'slug.current'
+			title: "title",
+			slug: "slug.current",
 		},
 		prepare({ title, slug }) {
-			const s = slug === '/' ? '/' : `/${slug}`;
+			const s = slug === "/" ? "/" : `/${slug}`;
 			return {
-				title: `${title} (${s})`
+				title: `${title} (${s})`,
 			};
-		}
-	}
+		},
+	},
 });
 
 export default navItem;
