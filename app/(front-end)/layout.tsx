@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { getSiteConfig } from "../../helpers/api";
-import MainMenu from "./(nav)/mainMenu";
 import "./global.css";
+import HeaderContent from "./headerContent";
 import styles from "./layout.module.css";
 import SkipLink from "./skipLink";
 
@@ -22,18 +22,14 @@ export default async function RootLayout({
 	children,
 }: Readonly<{ children: ReactNode }>) {
 	const config = await getSiteConfig();
-	const { lang } = config;
+	const { lang, bannerImage } = config;
 
 	return (
 		<html lang={lang}>
 			<body>
 				<div className={styles.contentWrap}>
 					<SkipLink />
-					<div className={styles.wrapper}>
-						<div className={styles.menuWrapper}>
-							<MainMenu />
-						</div>
-					</div>
+					<HeaderContent bannerImage={bannerImage} />
 					<div className={styles.mainWrap}>
 						<main id="main-content" className={styles.main}>
 							{children}
