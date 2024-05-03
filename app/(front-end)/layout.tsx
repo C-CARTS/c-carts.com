@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { getSiteConfig } from "../../helpers/api";
 import MainMenu from "./(nav)/mainMenu";
 import "./global.css";
-import classes from "./layout.module.css";
+import styles from "./layout.module.css";
 import SkipLink from "./skipLink";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,12 +27,18 @@ export default async function RootLayout({
 	return (
 		<html lang={lang}>
 			<body>
-				<SkipLink />
-				<div className="classes.contentWrap">
-					<MainMenu />
-					<main id="main-content" className={classes.mainContent}>
-						{children}
-					</main>
+				<div className={styles.contentWrap}>
+					<SkipLink />
+					<div className={styles.wrapper}>
+						<div className={styles.menuWrapper}>
+							<MainMenu />
+						</div>
+					</div>
+					<div className={styles.mainWrap}>
+						<main id="main-content" className={styles.main}>
+							{children}
+						</main>
+					</div>
 				</div>
 			</body>
 		</html>
