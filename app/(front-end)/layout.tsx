@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { getSiteConfig } from "../../helpers/api";
-import MainMenu from "./(nav)/manMenu";
+import MainMenu from "./(nav)/mainMenu";
 import "./global.css";
 import classes from "./layout.module.css";
 import SkipLink from "./skipLink";

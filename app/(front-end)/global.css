@@ -50,9 +50,9 @@
 	--large-desktop-hero-h: 2;
 
 	--max-content-width: 1500px;
-	--content-padding-sides: "clamp(1rem, 5vw, 3rem)";
-	--content-padding-top: "clamp(1rem, 3vh, 2rem)";
-	--content-padding-bottom: "clamp(2rem, 5vh, 5rem)";
+	--content-padding-sides: clamp(1rem, 5vw, 3rem);
+	--content-padding-top: clamp(1rem, 3vh, 2rem);
+	--content-padding-bottom: clamp(2rem, 5vh, 5rem);
 }
 
 * {

@@ -1,8 +1,11 @@
 .nav {
+	grid-area: nav;
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 	z-index: 1000;
-	margin-left: auto;
+	justify-self: flex-end;
+	width: 100%;
+	padding-right: var(--content-padding-sides);
 }

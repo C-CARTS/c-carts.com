@@ -51,7 +51,7 @@
 .navButton.open,
 .navButton.open:hover {
 	outline: transparent;
-	border-bottom-color: var(secondary-color);
+	border-bottom-color: var(--secondary-color);
 	transition: all 0.2s ease-in;
 	background: var(--secondary-subtle);
 }

@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useCallback, useContext, useMemo, useRef } from "react";
 import NavItem from "../../../@types/navItem";
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
+import DownArrow from "./downArrow";
 import { AppContext } from "./mainNavClient";
 import { Actions } from "./menuReducer";
 import styles from "./navSection.module.css";
@@ -52,15 +53,16 @@ export default function NavSection({
 	});
 
 	return (
-		<div className={buttonClass}>
+		<div className={styles.navSection}>
 			<button
-				className={styles.navButton}
+				className={buttonClass}
 				aria-controls="main-nav"
 				onClick={buttonClick}
 				ref={buttonRef}
 				aria-haspopup={isOpen}
 				aria-label={`${title} menu`}
 			>
+				<DownArrow />
 				{title}
 			</button>
 			{isOpen && (
