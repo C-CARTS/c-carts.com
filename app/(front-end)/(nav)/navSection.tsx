@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useCallback, useContext, useMemo, useRef } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
 import NavItem from "../../../@types/navItem";
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import DownArrow from "./downArrow";
@@ -28,10 +28,11 @@ export default function NavSection({
 		[openIndexState, index],
 	);
 
-	// const isFocused = useMemo(
-	// 	() => focusIndexState === index,
-	// 	[focusIndexState, index],
-	// );
+	useEffect(() => {
+		if (focusIndexState === index) {
+			buttonRef.current?.focus();
+		}
+	}, [focusIndexState, index]);
 
 	const buttonRef = useRef<HTMLButtonElement | null>(null);
 	const menuRef = useRef<HTMLDivElement | null>(null);
