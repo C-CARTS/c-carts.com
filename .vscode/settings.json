@@ -20,10 +20,12 @@
 	"cSpell.words": [
 		"clsx",
 		"fieldsets",
+		"focalpoint",
 		"geopoint",
 		"hotspot",
 		"lqip",
-		"Parens"
+		"Parens",
+		"usehooks"
 	],
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
