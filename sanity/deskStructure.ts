@@ -6,8 +6,7 @@ const settingsName =
 	process.env.NEXT_PUBLIC_SETTINGS_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_SETTINGS_DOC_NAME");
 
-const structure: StructureResolver = (S, context) => {
-	console.log("s ctx", context);
+const structure: StructureResolver = (S, _context) => {
 	return S.list()
 		.title("Content")
 		.items([

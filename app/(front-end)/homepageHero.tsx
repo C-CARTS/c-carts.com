@@ -29,14 +29,6 @@ export default function HomePageHero({ bannerImage }: Props) {
 	});
 	const deviceScale = useDevicePixelRatio();
 
-	useEffect(() => {
-		console.log("info", {
-			bannerImage,
-			windowWidth,
-			deviceScale,
-		});
-	});
-
 	const imageUrl = useMemo(() => {
 		let width = 2500;
 		let height = 450;
@@ -67,7 +59,6 @@ export default function HomePageHero({ bannerImage }: Props) {
 	}, [bannerImage, windowWidth, deviceScale]);
 
 	useEffect(() => {
-		console.log("imageUrl", imageUrl);
 		if (imageUrl) {
 			setHeroOptions(imageUrl);
 		}

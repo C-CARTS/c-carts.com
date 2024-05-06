@@ -16,6 +16,5 @@ export async function getNavItems(): Promise<NavItem[]> {
 		children[]->{ _id, title, slug }
 	  }`;
 	const result = await client.fetch<NavItem[]>(query);
-	console.log("nav", result);
 	return result;
 }

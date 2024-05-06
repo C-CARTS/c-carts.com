@@ -1,6 +1,6 @@
 "use client";
 
-import { KeyboardEvent, useCallback, useContext, useEffect } from "react";
+import { KeyboardEvent, useCallback, useContext } from "react";
 import { Slug } from "sanity";
 import { AppContext } from "./mainNavClient";
 import { Actions } from "./menuReducer";
@@ -15,10 +15,6 @@ interface Props {
 
 export default function SubPage({ title, slug, parentSlug, last }: Props) {
 	const { dispatch } = useContext(AppContext);
-
-	useEffect(() => {
-		console.log("sp", { slug, parentSlug });
-	}, [slug, parentSlug]);
 
 	const onKeyDown = useCallback(
 		({ key, shiftKey }: KeyboardEvent<HTMLAnchorElement>) => {

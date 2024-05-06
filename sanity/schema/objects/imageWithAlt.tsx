@@ -15,12 +15,6 @@ const imageWithAlt = defineType({
 					const hasAlt = val !== undefined && val.length > 0;
 					const decorative =
 						(ctx.parent as { decorative?: boolean })?.decorative === true;
-					console.log("validate", {
-						ctx,
-						val,
-						hasAlt,
-						decorative,
-					});
 
 					if (decorative) {
 						return !hasAlt || "Alt text is not needed for decorative images";

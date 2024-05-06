@@ -39,7 +39,6 @@ export default function MainNavClient({ navItems, shortTitle }: Props) {
 	useEffect(() => {
 		function escapeFunction({ key }: KeyboardEvent) {
 			if (key === "Escape" && openIndexState !== null) {
-				console.log("Key Pressed", key);
 				dispatch({
 					type: Actions.EscapeKeyPressed,
 					currentIndex: openIndexState,
