@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function NavSection({
-	navItem: { title, slug, children },
+	navItem: { title, children },
 	index,
 }: Props) {
 	const {
@@ -72,7 +72,6 @@ export default function NavSection({
 						<li key={_id} role="none" className={styles.li}>
 							<SubPage
 								title={title}
-								parentSlug={slug}
 								slug={childSlug}
 								last={i === children.length - 1}
 							/>

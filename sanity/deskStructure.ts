@@ -1,10 +1,20 @@
-import { FcDocument, FcGlobe, FcSettings, FcTodoList } from "react-icons/fc";
+import {
+	FcDocument,
+	FcGlobe,
+	FcHome,
+	FcSettings,
+	FcTodoList,
+} from "react-icons/fc";
 import type { StructureResolver } from "sanity/structure";
 import throwError from "../helpers/throwError";
 
 const settingsName =
 	process.env.NEXT_PUBLIC_SETTINGS_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_SETTINGS_DOC_NAME");
+
+const homepageName =
+	process.env.NEXT_PUBLIC_HOMEPAGE_DOC_NAME ??
+	throwError("No NEXT_PUBLIC_HOMEPAGE_DOC_NAME");
 
 const structure: StructureResolver = (S, _context) => {
 	return S.list()
@@ -24,6 +34,12 @@ const structure: StructureResolver = (S, _context) => {
 									S.document()
 										.schemaType(settingsName)
 										.documentId(settingsName),
+								),
+							S.listItem()
+								.title("Homepage")
+								.icon(FcHome)
+								.child(
+									S.document().schemaType("page").documentId(homepageName),
 								),
 							S.listItem()
 								.icon(FcTodoList)

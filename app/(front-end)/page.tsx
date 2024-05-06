@@ -1,7 +1,7 @@
-import { getSiteConfig } from "../../helpers/api";
+import { getHomepage } from "../../helpers/api";
+import SanityPage from "./sanityPage";
 
 export default async function Home() {
-	const config = await getSiteConfig();
-	const { title } = config;
-	return <h1>{title}</h1>;
+	const homepage = await getHomepage();
+	return <SanityPage page={homepage} />;
 }

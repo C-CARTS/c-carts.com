@@ -9,11 +9,10 @@ import styles from "./subPage.module.css";
 interface Props {
 	title: string;
 	last: boolean;
-	parentSlug: Slug;
 	slug: Slug;
 }
 
-export default function SubPage({ title, slug, parentSlug, last }: Props) {
+export default function SubPage({ title, slug, last }: Props) {
 	const { dispatch } = useContext(AppContext);
 
 	const onKeyDown = useCallback(
@@ -26,13 +25,12 @@ export default function SubPage({ title, slug, parentSlug, last }: Props) {
 		[dispatch, last],
 	);
 
-	if (slug && parentSlug) {
-		const { current: parentSlugVal } = parentSlug;
+	if (slug) {
 		const { current: slugVal } = slug;
 		return (
 			<a
 				aria-current="page"
-				href={`/${parentSlugVal}/${slugVal}`}
+				href={`/${slugVal}`}
 				onKeyDown={onKeyDown}
 				className={styles.a}
 			>
