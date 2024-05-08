@@ -1,6 +1,7 @@
-import NavItem from "../@types/navItem";
-import Page from "../@types/page";
-import SiteConfig from "../@types/siteConfig";
+import type ImageData from "../@types/imageData";
+import type NavItem from "../@types/navItem";
+import type Page from "../@types/page";
+import type SiteConfig from "../@types/siteConfig";
 import { client } from "../sanity/lib/client";
 import throwError from "./throwError";
 
@@ -14,7 +15,7 @@ const homepageName =
 
 export function getSiteConfig(): Promise<SiteConfig> {
 	const query = `*[ _id == '${settingsName}' && _type == 'siteConfig' ][0]`;
-	return client.fetch<SiteConfig>(query);
+	return client.fetch(query);
 }
 
 export function getNavItems(): Promise<NavItem[]> {
@@ -29,10 +30,17 @@ export function getNavItems(): Promise<NavItem[]> {
 
 export function getHomepage(): Promise<Page> {
 	const query = `*[ _id == '${homepageName}' && _type == 'page' ][0]`;
-	return client.fetch<Page>(query);
+	return client.fetch(query);
 }
 
-export function getPage(slug: string): Promise<Page> {
+export async function getPage(slug: string): Promise<Page> {
 	const query = `*[ slug.current == '${slug}' && _type == 'page' ][0]`;
-	return client.fetch<Page>(query);
+	const data = await client.fetch(query);
+	return data;
+}
+
+export async function getImage(id: string): Promise<ImageData> {
+	const query = `*[ _id == '${id}' && _type == 'sanity.imageAsset' ][0]`;
+	const data = await client.fetch(query);
+	return data;
 }

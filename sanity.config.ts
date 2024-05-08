@@ -1,4 +1,5 @@
 import { googleMapsInput } from "@sanity/google-maps-input";
+import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
@@ -34,6 +35,7 @@ const config = defineConfig({
 			defaultZoom: 12,
 		}),
 		visionTool({ defaultApiVersion: apiVersion }),
+		table(),
 	],
 });
 

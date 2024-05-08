@@ -33,7 +33,11 @@ const page = defineType({
 			name: "content",
 			title: "Page sections",
 			type: "array",
-			of: [defineArrayMember({ type: "block" })],
+			of: [
+				defineArrayMember({ type: "block" }),
+				defineArrayMember({ type: "imageWithAlt" }),
+				defineArrayMember({ type: "table" }),
+			],
 		}),
 		defineField({
 			name: "description",

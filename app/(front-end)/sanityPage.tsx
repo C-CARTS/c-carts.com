@@ -1,5 +1,5 @@
 import Page from "../../@types/page";
-import SanityBlockContent from "./sanityBlockContent";
+import SanityBlockContent from "./(sanityBlock)/sanityBlockContent";
 
 interface Props {
 	page: Page;

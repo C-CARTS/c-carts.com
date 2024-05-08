@@ -38,5 +38,5 @@ export default function SubPage({ title, slug, last }: Props) {
 			</a>
 		);
 	}
-	return <span>AHHHHHHH</span>;
+	return null;
 }
