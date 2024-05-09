@@ -1,3 +1,4 @@
+import "server-only";
 import type ImageData from "../@types/imageData";
 import type NavItem from "../@types/navItem";
 import type Page from "../@types/page";

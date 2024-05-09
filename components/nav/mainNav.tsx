@@ -1,3 +1,4 @@
+import "server-only";
 import { getNavItems, getSiteConfig } from "../../helpers/api";
 import MainNavClient from "./mainNavClient";
 

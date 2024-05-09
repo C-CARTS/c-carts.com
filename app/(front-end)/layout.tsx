@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import "server-only";
 import SkipLink from "../../components/skipLink";
 import { getSiteConfig } from "../../helpers/api";
 import "./global.css";

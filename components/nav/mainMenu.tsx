@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "server-only";
 import { getSiteConfig } from "../../helpers/api";
 import styles from "./mainMenu.module.css";
 import MainNav from "./mainNav";
