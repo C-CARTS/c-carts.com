@@ -38,8 +38,10 @@ export async function POST(req: NextRequest) {
 		switch (type) {
 			case "page":
 				if (slug?.current === HOMEPAGE_NAME) {
+					revalidateTag(`page-${HOMEPAGE_NAME}`);
 					revalidatePath("/");
 				} else if (slug?.current) {
+					revalidateTag(`page-${slug}`);
 					revalidatePath(`/${slug.current}`);
 				} else {
 					console.warn("No slug.current in post", { slug });

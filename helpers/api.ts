@@ -42,7 +42,7 @@ export async function getNavItems(): Promise<NavItem[]> {
 		{},
 		{
 			cache,
-			next: { tags: [settingsName] },
+			next: { tags: ["nav"] },
 		},
 	);
 }
@@ -54,7 +54,7 @@ export async function getHomepage(): Promise<Page> {
 		{},
 		{
 			cache,
-			next: { tags: [settingsName] },
+			next: { tags: [`page-${homepageName}`] },
 		},
 	);
 }
@@ -66,7 +66,7 @@ export async function getPage(slug: string): Promise<Page> {
 		{},
 		{
 			cache,
-			next: { tags: [settingsName] },
+			next: { tags: [`page-${slug}`] },
 		},
 	);
 	return data;
@@ -87,5 +87,5 @@ export async function getImage(id: string): Promise<ImageData> {
 
 export async function getAllPageSlugs(): Promise<{ slug: Slug }[]> {
 	const query = `*[_type == 'page'] { slug }`;
-	return await client.fetch(query);
+	return await client.fetch(query, {}, { cache: "no-store" });
 }
