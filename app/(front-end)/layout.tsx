@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import SkipLink from "../../components/skipLink";
 import { getSiteConfig } from "../../helpers/api";
 import "./global.css";
-import HeaderContent from "./headerContent";
 import styles from "./layout.module.css";
-import SkipLink from "./skipLink";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const config = await getSiteConfig();
@@ -22,19 +21,14 @@ export default async function RootLayout({
 	children,
 }: Readonly<{ children: ReactNode }>) {
 	const config = await getSiteConfig();
-	const { lang, bannerImage } = config;
+	const { lang } = config;
 
 	return (
 		<html lang={lang}>
 			<body>
 				<div className={styles.contentWrap}>
 					<SkipLink />
-					<HeaderContent bannerImage={bannerImage} />
-					<div className={styles.mainWrap}>
-						<main id="main-content" className={styles.main}>
-							{children}
-						</main>
-					</div>
+					{children}
 				</div>
 			</body>
 		</html>

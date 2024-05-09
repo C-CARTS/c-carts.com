@@ -13,24 +13,24 @@ const homepageName =
 	process.env.NEXT_PUBLIC_HOMEPAGE_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_HOMEPAGE_DOC_NAME");
 
-export function getSiteConfig(): Promise<SiteConfig> {
+export async function getSiteConfig(): Promise<SiteConfig> {
 	const query = `*[ _id == '${settingsName}' && _type == 'siteConfig' ][0]`;
-	return client.fetch(query);
+	return await client.fetch(query);
 }
 
-export function getNavItems(): Promise<NavItem[]> {
+export async function getNavItems(): Promise<NavItem[]> {
 	const query = `* [ _type == 'navItem' ]{
 		_id,
 		title,
 		slug,
 		children[]->{ _id, title, slug }
 	  }`;
-	return client.fetch<NavItem[]>(query);
+	return await client.fetch<NavItem[]>(query);
 }
 
-export function getHomepage(): Promise<Page> {
+export async function getHomepage(): Promise<Page> {
 	const query = `*[ _id == '${homepageName}' && _type == 'page' ][0]`;
-	return client.fetch(query);
+	return await client.fetch(query);
 }
 
 export async function getPage(slug: string): Promise<Page> {

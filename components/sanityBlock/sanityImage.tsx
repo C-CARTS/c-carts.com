@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import throwError from "../../../helpers/throwError";
+import throwError from "../../helpers/throwError";
 import styles from "./sanityImage.module.css";
 
 interface Props {
@@ -46,7 +46,7 @@ export default function SanityImage({
 			height={height}
 			placeholder="blur"
 			blurDataURL={`data:image/jpeg${blurDataURL}`}
-			className={styles.imgWrap}
+			className={styles.img}
 			sizes={`(max-width: ${MAX_IMAGE_SIZE}px) 100vw, ${MAX_IMAGE_SIZE}px`}
 			quality={70}
 		/>

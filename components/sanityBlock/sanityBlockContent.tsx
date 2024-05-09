@@ -1,5 +1,5 @@
 import { PortableText } from "next-sanity";
-import BlockContent from "../../../@types/block";
+import BlockContent from "../../@types/block";
 import ImageWithAlt from "./imageWithAlt";
 import Table from "./table";
 

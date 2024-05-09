@@ -20,7 +20,7 @@ function getImageNameFromRef(ref: string): string {
 }
 
 export function buildUrl(
-	imageName: string,
+	url: string,
 	width: number,
 	height: number,
 	deviceScale: number,
@@ -34,7 +34,7 @@ export function buildUrl(
 	params.append("w", width.toString());
 	params.append("crop", "entropy");
 
-	return `https://cdn.sanity.io/images/${projectId}/${dataset}/${imageName}?${params.toString()}`;
+	return `${url}?${params.toString()}`;
 }
 
 export function sanityImageUrl({

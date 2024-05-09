@@ -1,4 +1,4 @@
-import SanityBlockContent from "../(sanityBlock)/sanityBlockContent";
+import SanityPage from "../../../components/sanityPage";
 import { getPage } from "../../../helpers/api";
 
 interface Props {
@@ -14,10 +14,5 @@ export default async function Page({ params: { slug } }: Props) {
 		return null;
 	}
 
-	return (
-		<>
-			<h1>{page.title}</h1>
-			<SanityBlockContent content={page.content} />
-		</>
-	);
+	return <SanityPage page={page} />;
 }

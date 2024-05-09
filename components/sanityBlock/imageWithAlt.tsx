@@ -1,7 +1,7 @@
-import ImageWithAlt from "../../../@types/imageWithAlt";
-import { getImage } from "../../../helpers/api";
-import { buildUrl } from "../../../helpers/sanityImageUrl";
-import throwError from "../../../helpers/throwError";
+import ImageWithAlt from "../../@types/imageWithAlt";
+import { getImage } from "../../helpers/api";
+import { buildUrl } from "../../helpers/sanityImageUrl";
+import throwError from "../../helpers/throwError";
 import SanityImage from "./sanityImage";
 
 const MAX_IMAGE_SIZE = parseInt(
@@ -35,7 +35,7 @@ export default async function Table({ value }: Props) {
 	}
 
 	const {
-		originalFilename,
+		url,
 		metadata: {
 			lqip, // low quality image placeholder
 			dimensions: { width: originalWidth, aspectRatio },
@@ -49,7 +49,7 @@ export default async function Table({ value }: Props) {
 	const height = Math.round(width / aspectRatio);
 
 	// build the image url. We'll build it at 3x max size and next/image will scale it down as needed
-	const src = buildUrl(originalFilename, width, height, 3);
+	const src = buildUrl(url, width, height, 3);
 
 	return (
 		<SanityImage

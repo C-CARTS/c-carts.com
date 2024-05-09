@@ -1,4 +1,4 @@
-import type { Table as TableType } from "../../../@types/block";
+import type { Table as TableType } from "../../@types/block";
 
 interface Props {
 	value: TableType;

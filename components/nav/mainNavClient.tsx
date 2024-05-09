@@ -1,7 +1,7 @@
 "use client";
 
 import { Context, Dispatch, createContext, useEffect, useReducer } from "react";
-import NavItem from "../../../@types/navItem";
+import NavItem from "../../@types/navItem";
 import styles from "./mainNavClient.module.css";
 import { Action, Actions, State, StateDefaults, reducer } from "./menuReducer";
 import NavSection from "./navSection";

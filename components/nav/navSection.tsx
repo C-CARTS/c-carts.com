@@ -2,8 +2,8 @@
 
 import clsx from "clsx";
 import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
-import NavItem from "../../../@types/navItem";
-import useOnClickOutside from "../../../hooks/useOnClickOutside";
+import NavItem from "../../@types/navItem";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import DownArrow from "./downArrow";
 import { AppContext } from "./mainNavClient";
 import { Actions } from "./menuReducer";

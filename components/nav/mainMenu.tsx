@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSiteConfig } from "../../../helpers/api";
+import { getSiteConfig } from "../../helpers/api";
 import styles from "./mainMenu.module.css";
 import MainNav from "./mainNav";
 
