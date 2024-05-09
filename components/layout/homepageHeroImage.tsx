@@ -4,17 +4,10 @@ import Image from "next/image";
 
 interface Props {
 	src: string;
-	width: number;
-	height: number;
 	blurDataURL: string;
 }
 
-export default function HomepageHeroImage({
-	src,
-	width,
-	height,
-	blurDataURL,
-}: Props) {
+export default function HomepageHeroImage({ src, blurDataURL }: Props) {
 	return (
 		<Image
 			src={src}

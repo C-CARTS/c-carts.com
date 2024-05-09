@@ -1,3 +1,4 @@
+import { Slug } from "sanity";
 import "server-only";
 import type ImageData from "../@types/imageData";
 import type NavItem from "../@types/navItem";
@@ -44,4 +45,9 @@ export async function getImage(id: string): Promise<ImageData> {
 	const query = `*[ _id == '${id}' && _type == 'sanity.imageAsset' ][0]`;
 	const data = await client.fetch(query);
 	return data;
+}
+
+export async function getAllPageSlugs(): Promise<{ slug: Slug }[]> {
+	const query = `*[_type == 'page'] { slug }`;
+	return await client.fetch(query);
 }

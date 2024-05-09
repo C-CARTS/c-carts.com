@@ -1,11 +1,13 @@
 import "server-only";
 import SanityPage from "../../../components/sanityPage";
-import { getPage } from "../../../helpers/api";
+import { getAllPageSlugs, getHomepage, getPage } from "../../../helpers/api";
+
+interface Params {
+	slug: string;
+}
 
 interface Props {
-	params: {
-		slug: string;
-	};
+	params: Params;
 }
 
 export default async function Page({ params: { slug } }: Props) {
@@ -16,4 +18,16 @@ export default async function Page({ params: { slug } }: Props) {
 	}
 
 	return <SanityPage page={page} />;
+}
+
+export async function generateStaticParams(): Promise<Params[]> {
+	const slugs = await getAllPageSlugs();
+	const {
+		slug: { current: homepageSlug },
+	} = await getHomepage();
+	const mapped = slugs
+		.map(({ slug: { current } }) => ({ slug: current }))
+		.filter(({ slug }) => slug !== homepageSlug);
+
+	return mapped;
 }

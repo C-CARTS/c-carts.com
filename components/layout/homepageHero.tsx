@@ -18,19 +18,12 @@ export default async function HomepageHero() {
 		},
 	} = image;
 
-	console.log("image", image);
-
 	// build the image url. We'll build it at 3x max size and next/image will scale it down as needed
 	const src = buildUrl(url, width, height, 1);
 
 	return (
 		<div className={styles.imgWrap}>
-			<HomepageHeroImage
-				src={src}
-				width={width}
-				height={height}
-				blurDataURL={lqip}
-			/>
+			<HomepageHeroImage src={src} blurDataURL={lqip} />
 		</div>
 	);
 }
