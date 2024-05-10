@@ -4,6 +4,7 @@ import {
 	FcGlobe,
 	FcHome,
 	FcMoneyTransfer,
+	FcNews,
 	FcSettings,
 	FcTodoList,
 } from "react-icons/fc";
@@ -21,6 +22,10 @@ const homepageName =
 const jobsPageName =
 	process.env.NEXT_PUBLIC_JOBS_PAGE_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_JOBS_PAGE_DOC_NAME");
+
+const newsPageName =
+	process.env.NEXT_PUBLIC_NEWS_PAGE_DOC_NAME ??
+	throwError("No NEXT_PUBLIC_NEWS_PAGE_DOC_NAME");
 
 const structure: StructureResolver = (S, _context) => {
 	return S.list()
@@ -74,6 +79,26 @@ const structure: StructureResolver = (S, _context) => {
 						]),
 				),
 			S.listItem()
+				.title("News")
+				.icon(FcNews)
+				.child(
+					S.list()
+						.title("Items")
+						.items([
+							S.listItem()
+								.title("News Page")
+								.icon(FcDocument)
+								.child(
+									S.document().schemaType("page").documentId(newsPageName),
+								),
+							S.listItem()
+								.title("Stories")
+								.icon(FcNews)
+								.schemaType("news")
+								.child(S.documentTypeList("news").title("Stories")),
+						]),
+				),
+			S.listItem()
 				.title("Pages")
 				.icon(FcDocument)
 				.schemaType("page")
@@ -81,13 +106,9 @@ const structure: StructureResolver = (S, _context) => {
 					S.documentTypeList("page")
 						.title("Pages")
 						.filter(
-							`_type == "page" && _id != "${homepageName}" && _id != "${jobsPageName}"`,
+							`_type == "page" && _id != "${homepageName}" && _id != "${jobsPageName}" && _id != "${newsPageName}"`,
 						),
 				),
-			S.listItem()
-				.title("News")
-				.schemaType("news")
-				.child(S.documentTypeList("news").title("News")),
 		]);
 };
 

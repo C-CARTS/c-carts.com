@@ -47,6 +47,13 @@ export async function POST(req: NextRequest) {
 					console.warn("No slug.current in post", { slug });
 				}
 				break;
+			case "news":
+				revalidateTag("news");
+				revalidateTag(`news-${slug}`);
+				if (slug?.current) {
+					revalidatePath(`/news/${slug.current}`);
+				}
+				break;
 			case NEXT_PUBLIC_SETTINGS_DOC_NAME:
 				revalidateTag(NEXT_PUBLIC_SETTINGS_DOC_NAME);
 				break;

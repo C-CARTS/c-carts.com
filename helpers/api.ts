@@ -4,6 +4,7 @@ import FileAsset from "../@types/fileAsset";
 import type ImageData from "../@types/imageData";
 import Job from "../@types/job";
 import type NavItem from "../@types/navItem";
+import News from "../@types/news";
 import type Page from "../@types/page";
 import type SiteConfig from "../@types/siteConfig";
 import { client } from "../sanity/lib/client";
@@ -23,6 +24,10 @@ const homepageName =
 const jobsPageName =
 	process.env.NEXT_PUBLIC_JOBS_PAGE_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_JOBS_PAGE_DOC_NAME");
+
+const newsPageName =
+	process.env.NEXT_PUBLIC_NEWS_PAGE_DOC_NAME ??
+	throwError("No NEXT_PUBLIC_NEWS_PAGE_DOC_NAME");
 
 export async function getSiteConfig(): Promise<SiteConfig> {
 	const query = `*[ _id == '${settingsName}' && _type == 'siteConfig' ][0]`;
@@ -73,6 +78,18 @@ export async function getJobsPage(): Promise<Page> {
 		{
 			cache,
 			next: { tags: [`page-${jobsPageName}`] },
+		},
+	);
+}
+
+export async function getNewsPage(): Promise<Page> {
+	const query = `*[ _id == '${newsPageName}' && _type == 'page' ][0]`;
+	return await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: [`page-${newsPageName}`] },
 		},
 	);
 }
@@ -130,6 +147,36 @@ export async function getJobs(): Promise<Job[]> {
 		{
 			cache,
 			next: { tags: ["jobs"] },
+		},
+	);
+
+	return data;
+}
+
+export async function getNews(): Promise<News[]> {
+	const query = `*[_type == 'news'] | order(date desc)`;
+
+	const data = await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: ["news"] },
+		},
+	);
+
+	return data;
+}
+
+export async function getNewsItem(slug: string) {
+	const query = `*[_type == 'news' && slug.current == '${slug}'][0]`;
+
+	const data = await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: [`news-${slug}`] },
 		},
 	);
 

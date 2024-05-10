@@ -1,5 +1,5 @@
 import { FcNews } from "react-icons/fc";
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 const news = defineType({
 	name: "news",
@@ -26,12 +26,7 @@ const news = defineType({
 		defineField({
 			name: "content",
 			title: "Job Description",
-			type: "array",
-			of: [
-				defineArrayMember({ type: "block" }),
-				defineArrayMember({ type: "image" }),
-			],
-			validation: (rule) => rule.required(),
+			type: "content",
 		}),
 	],
 	preview: {
