@@ -6,6 +6,7 @@ import Job from "../@types/job";
 import type NavItem from "../@types/navItem";
 import News from "../@types/news";
 import type Page from "../@types/page";
+import Performance from "../@types/performance";
 import type SiteConfig from "../@types/siteConfig";
 import { client } from "../sanity/lib/client";
 import throwError from "./throwError";
@@ -28,6 +29,10 @@ const jobsPageName =
 const newsPageName =
 	process.env.NEXT_PUBLIC_NEWS_PAGE_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_NEWS_PAGE_DOC_NAME");
+
+const performancePageName =
+	process.env.NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME ??
+	throwError("No NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME");
 
 export async function getSiteConfig(): Promise<SiteConfig> {
 	const query = `*[ _id == '${settingsName}' && _type == 'siteConfig' ][0]`;
@@ -78,6 +83,18 @@ export async function getJobsPage(): Promise<Page> {
 		{
 			cache,
 			next: { tags: [`page-${jobsPageName}`] },
+		},
+	);
+}
+
+export async function getPerformancePage(): Promise<Page> {
+	const query = `*[ _id == '${performancePageName}' && _type == 'page' ][0]`;
+	return await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: [`page-${performancePageName}`] },
 		},
 	);
 }
@@ -168,7 +185,7 @@ export async function getNews(): Promise<News[]> {
 	return data;
 }
 
-export async function getNewsItem(slug: string) {
+export async function getNewsItem(slug: string): Promise<News> {
 	const query = `*[_type == 'news' && slug.current == '${slug}'][0]`;
 
 	const data = await client.fetch(
@@ -183,7 +200,22 @@ export async function getNewsItem(slug: string) {
 	return data;
 }
 
-export async function getJob(slug: string) {
+export async function getPerformanceData(): Promise<Performance[]> {
+	const query = `*[_type == 'performance'] | order(date desc) | order(quarter desc)`;
+
+	const data = await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: [`performance`] },
+		},
+	);
+
+	return data;
+}
+
+export async function getJob(slug: string): Promise<Job> {
 	const query = `*[_type == 'job' && slug.current == '${slug}'][0]`;
 
 	const data = await client.fetch(

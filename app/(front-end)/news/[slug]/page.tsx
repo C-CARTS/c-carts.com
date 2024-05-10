@@ -1,3 +1,4 @@
+import "server-only";
 import SanityPage from "../../../../components/sanityPage";
 import { getNews, getNewsItem } from "../../../../helpers/api";
 

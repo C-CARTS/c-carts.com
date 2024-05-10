@@ -1,3 +1,4 @@
+import "server-only";
 import { getJobs } from "../../../helpers/api";
 import Job from "./job";
 

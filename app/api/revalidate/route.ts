@@ -54,6 +54,9 @@ export async function POST(req: NextRequest) {
 					revalidatePath(`/news/${slug.current}`);
 				}
 				break;
+			case "performance":
+				revalidateTag("performance");
+				break;
 			case "job":
 				revalidateTag("jobs");
 				revalidateTag(`jobs-${slug}`);

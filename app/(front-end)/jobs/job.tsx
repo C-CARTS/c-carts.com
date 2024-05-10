@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "server-only";
 import JobType from "../../../@types/job";
 import SanityBlockContent from "../../../components/sanityBlock/sanityBlockContent";
 import { getJobsPage } from "../../../helpers/api";
