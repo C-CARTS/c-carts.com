@@ -1,30 +1,40 @@
 import { ReactNode } from "react";
+import Job from "../@types/job";
 import News from "../@types/news";
 import Page from "../@types/page";
 import { assertUnreachable } from "../helpers/assertUnreachable";
 import StandardLayout from "./layout/standardLayout";
 import SanityBlockContent from "./sanityBlock/sanityBlockContent";
 
+type PageType = Page | News | Job;
+
 interface Props {
 	isHomepage?: boolean;
-	page: Page | News;
+	page: PageType;
 	children?: ReactNode;
 }
 
-function isPage(page: Page | News): page is Page {
+function isPage(page: PageType): page is Page {
 	return (page as Page).title !== undefined;
 }
 
-function isNews(page: Page | News): page is News {
+function isNews(page: PageType): page is News {
 	return (page as News).headline !== undefined;
 }
 
-function getPageTitle(page: Page | News): string {
+function isJob(page: PageType): page is Job {
+	return (page as Job).position !== undefined;
+}
+
+function getPageTitle(page: PageType): string {
 	if (isPage(page)) {
 		return page.title;
 	}
 	if (isNews(page)) {
 		return page.headline;
+	}
+	if (isJob(page)) {
+		return page.position;
 	}
 	assertUnreachable(page);
 }

@@ -182,3 +182,18 @@ export async function getNewsItem(slug: string) {
 
 	return data;
 }
+
+export async function getJob(slug: string) {
+	const query = `*[_type == 'job' && slug.current == '${slug}'][0]`;
+
+	const data = await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: [`jobs-${slug}`] },
+		},
+	);
+
+	return data;
+}

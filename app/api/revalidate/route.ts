@@ -54,12 +54,17 @@ export async function POST(req: NextRequest) {
 					revalidatePath(`/news/${slug.current}`);
 				}
 				break;
+			case "job":
+				revalidateTag("jobs");
+				revalidateTag(`jobs-${slug}`);
+				if (slug?.current) {
+					revalidatePath(`/jobs/${slug.current}`);
+				}
+				break;
 			case NEXT_PUBLIC_SETTINGS_DOC_NAME:
 				revalidateTag(NEXT_PUBLIC_SETTINGS_DOC_NAME);
 				break;
-			case "job":
-				revalidateTag("jobs");
-				break;
+
 			case "navItem":
 				revalidateTag("nav");
 				break;

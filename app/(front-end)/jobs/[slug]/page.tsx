@@ -1,5 +1,5 @@
 import SanityPage from "../../../../components/sanityPage";
-import { getNews, getNewsItem } from "../../../../helpers/api";
+import { getJob, getJobs } from "../../../../helpers/api";
 
 interface Params {
 	slug: string;
@@ -10,13 +10,13 @@ interface Props {
 }
 
 export default async function Page({ params: { slug } }: Props) {
-	const news = await getNewsItem(slug);
+	const job = await getJob(slug);
 
-	return <SanityPage page={news} />;
+	return <SanityPage page={job} />;
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-	const news = await getNews();
+	const news = await getJobs();
 	const mapped = news.map(({ slug: { current } }) => ({ slug: current }));
 	return mapped;
 }
