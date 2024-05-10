@@ -6,8 +6,10 @@ import NewsItems from "./newsItems";
 export default async function Home() {
 	const newsPage = await getNewsPage();
 	return (
-		<SanityPage page={newsPage}>
-			<NewsItems />
-		</SanityPage>
+		<div style={{ backgroundColor: "red" }}>
+			<SanityPage page={newsPage}>
+				<NewsItems />
+			</SanityPage>
+		</div>
 	);
 }
