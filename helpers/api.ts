@@ -2,6 +2,7 @@ import { Slug } from "sanity";
 import "server-only";
 import FileAsset from "../@types/fileAsset";
 import type ImageData from "../@types/imageData";
+import Job from "../@types/job";
 import type NavItem from "../@types/navItem";
 import type Page from "../@types/page";
 import type SiteConfig from "../@types/siteConfig";
@@ -18,6 +19,10 @@ const settingsName =
 const homepageName =
 	process.env.NEXT_PUBLIC_HOMEPAGE_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_HOMEPAGE_DOC_NAME");
+
+const jobsPageName =
+	process.env.NEXT_PUBLIC_JOBS_PAGE_DOC_NAME ??
+	throwError("No NEXT_PUBLIC_JOBS_PAGE_DOC_NAME");
 
 export async function getSiteConfig(): Promise<SiteConfig> {
 	const query = `*[ _id == '${settingsName}' && _type == 'siteConfig' ][0]`;
@@ -56,6 +61,18 @@ export async function getHomepage(): Promise<Page> {
 		{
 			cache,
 			next: { tags: [`page-${homepageName}`] },
+		},
+	);
+}
+
+export async function getJobsPage(): Promise<Page> {
+	const query = `*[ _id == '${jobsPageName}' && _type == 'page' ][0]`;
+	return await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: [`page-${jobsPageName}`] },
 		},
 	);
 }
@@ -101,5 +118,20 @@ export async function getFile(id: string): Promise<FileAsset> {
 			next: { tags: ["files"] },
 		},
 	);
+	return data;
+}
+
+export async function getJobs(): Promise<Job[]> {
+	const query = `*[_type == 'job'] | order(date desc)`;
+
+	const data = await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: ["jobs"] },
+		},
+	);
+
 	return data;
 }

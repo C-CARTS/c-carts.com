@@ -50,6 +50,9 @@ export async function POST(req: NextRequest) {
 			case NEXT_PUBLIC_SETTINGS_DOC_NAME:
 				revalidateTag(NEXT_PUBLIC_SETTINGS_DOC_NAME);
 				break;
+			case "job":
+				revalidateTag("jobs");
+				break;
 			case "navItem":
 				revalidateTag("nav");
 				break;
