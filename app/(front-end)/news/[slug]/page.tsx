@@ -12,12 +12,7 @@ interface Props {
 export default async function Page({ params: { slug } }: Props) {
 	const news = await getNewsItem(slug);
 
-	return (
-		<>
-			<h1>SLUGGGGG: {slug}</h1>
-			<SanityPage page={news} />
-		</>
-	);
+	return <SanityPage page={news} />;
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
