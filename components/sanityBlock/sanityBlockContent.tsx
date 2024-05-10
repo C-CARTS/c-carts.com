@@ -1,6 +1,7 @@
 import { PortableText } from "next-sanity";
 import BlockContent from "../../@types/block";
 import ImageWithAlt from "./imageWithAlt";
+import PdfLink from "./pdfLink";
 import Table from "./table";
 
 interface Props {
@@ -11,6 +12,9 @@ const components = {
 	types: {
 		imageWithAlt: ImageWithAlt,
 		table: Table,
+	},
+	marks: {
+		pdfLink: PdfLink,
 	},
 };
 

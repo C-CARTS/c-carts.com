@@ -11,6 +11,7 @@ import navItem from "./sanity/schema/documents/navItem";
 import news from "./sanity/schema/documents/news";
 import page from "./sanity/schema/documents/page";
 import siteConfig from "./sanity/schema/documents/siteConfig";
+import content from "./sanity/schema/objects/content";
 import imageWithAlt from "./sanity/schema/objects/imageWithAlt";
 
 const apiKey =
@@ -22,7 +23,7 @@ const config = defineConfig({
 	projectId,
 	dataset,
 	schema: {
-		types: [job, news, siteConfig, navItem, page, imageWithAlt],
+		types: [job, news, siteConfig, navItem, page, imageWithAlt, content],
 	},
 	plugins: [
 		structureTool({ structure }),

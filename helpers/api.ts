@@ -1,5 +1,6 @@
 import { Slug } from "sanity";
 import "server-only";
+import FileAsset from "../@types/fileAsset";
 import type ImageData from "../@types/imageData";
 import type NavItem from "../@types/navItem";
 import type Page from "../@types/page";
@@ -88,4 +89,17 @@ export async function getImage(id: string): Promise<ImageData> {
 export async function getAllPageSlugs(): Promise<{ slug: Slug }[]> {
 	const query = `*[_type == 'page'] { slug }`;
 	return await client.fetch(query, {}, { cache: "no-store" });
+}
+
+export async function getFile(id: string): Promise<FileAsset> {
+	const query = `*[ _id == '${id}' && _type == 'sanity.fileAsset' ][0]`;
+	const data = await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: ["files"] },
+		},
+	);
+	return data;
 }

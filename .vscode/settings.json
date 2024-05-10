@@ -25,6 +25,7 @@
 		"hotspot",
 		"lqip",
 		"Parens",
+		"portabletext",
 		"usehooks"
 	],
 	"editor.defaultFormatter": "esbenp.prettier-vscode",

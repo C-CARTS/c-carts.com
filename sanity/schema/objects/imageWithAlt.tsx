@@ -1,8 +1,10 @@
+import { MdInsertPhoto } from "react-icons/md";
 import { defineField, defineType } from "sanity";
 
 const imageWithAlt = defineType({
 	title: "Image",
 	name: "imageWithAlt",
+	icon: MdInsertPhoto,
 	type: "image",
 	options: { hotspot: true },
 	fields: [

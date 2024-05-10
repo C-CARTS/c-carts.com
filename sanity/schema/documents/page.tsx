@@ -1,5 +1,5 @@
 import { FcDocument } from "react-icons/fc";
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 const page = defineType({
 	name: "page",
@@ -32,12 +32,7 @@ const page = defineType({
 		defineField({
 			name: "content",
 			title: "Page sections",
-			type: "array",
-			of: [
-				defineArrayMember({ type: "block" }),
-				defineArrayMember({ type: "imageWithAlt" }),
-				defineArrayMember({ type: "table" }),
-			],
+			type: "content",
 		}),
 		defineField({
 			name: "description",
