@@ -1,3 +1,4 @@
+import "server-only";
 import { getNews } from "../../../helpers/api";
 import Job from "./newsItem";
 

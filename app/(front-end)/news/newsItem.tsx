@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "server-only";
 import News from "../../../@types/news";
 import SanityBlockContent from "../../../components/sanityBlock/sanityBlockContent";
 import { getNewsPage } from "../../../helpers/api";
