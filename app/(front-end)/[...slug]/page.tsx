@@ -17,12 +17,7 @@ export default async function Page({ params: { slug } }: Props) {
 		return null;
 	}
 
-	return (
-		<>
-			<h1>SLUGGGGG: {slug}</h1>
-			<SanityPage page={page} />;
-		</>
-	);
+	return <SanityPage page={page} />;
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
