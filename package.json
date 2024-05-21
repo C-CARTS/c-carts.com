@@ -61,7 +61,7 @@
 		"build:next": "next build",
 		"build:sanity": "sanity build",
 		"build:all": "npm run build:next && npm run build:sanity",
-		"dev": "next dev --turbo",
+		"dev": "next dev",
 		"lint": "next lint",
 		"prepare": "husky",
 		"prettier": "prettier --write .",

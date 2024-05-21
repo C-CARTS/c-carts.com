@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "server-only";
+import Footer from "../../components/footer";
 import SkipLink from "../../components/skipLink";
 import { getSiteConfig } from "../../helpers/api";
 import "./global.css";
@@ -30,6 +31,7 @@ export default async function RootLayout({
 				<div className={styles.contentWrap}>
 					<SkipLink />
 					{children}
+					<Footer />
 				</div>
 			</body>
 		</html>

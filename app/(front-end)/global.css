@@ -17,14 +17,6 @@
 	--link-subtle: #dff2f1;
 	--link-underline: var(--secondary-color);
 
-	--chart-a: #4a9fed;
-	--chart-b: #ed5d55;
-	--chart-c: #3feee6;
-	--chart-d: #eda126;
-	--chart-e: #32ed7a;
-	--chart-f: #ed55d2;
-	--chart-g: #edc926;
-
 	--base-font-size: 20px;
 	--base-line-height: 1.6;
 	--font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
