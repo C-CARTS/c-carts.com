@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import throwError from "../../helpers/throwError";
 import styles from "./sanityImage.module.css";

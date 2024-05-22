@@ -30,7 +30,5 @@ export async function generateStaticParams(): Promise<Params[]> {
 		.map(({ slug: { current } }) => ({ slug: current }))
 		.filter(({ slug }) => slug[0] !== homepageSlug);
 
-	console.log("mapped", mapped);
-
 	return mapped;
 }
