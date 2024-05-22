@@ -20,10 +20,7 @@ export default async function Footer() {
 	} = await getImage(logo?._ref ?? throwError("No logo"));
 	const width = 400;
 	const height = Math.round(400 / aspectRatio);
-
 	const src = buildUrl(url, width, height, 3);
-
-	console.log("url", { url, src });
 
 	return (
 		<footer className={styles.footer}>
