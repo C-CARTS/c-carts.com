@@ -29,7 +29,7 @@ const newsPageName =
 	process.env.NEXT_PUBLIC_NEWS_PAGE_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_NEWS_PAGE_DOC_NAME");
 
-const performancePage =
+const performancePageName =
 	process.env.NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME");
 
@@ -115,7 +115,9 @@ const structure: StructureResolver = (S, _context) => {
 								.title("Performance Page")
 								.icon(FcDocument)
 								.child(
-									S.document().schemaType("page").documentId(performancePage),
+									S.document()
+										.schemaType("page")
+										.documentId(performancePageName),
 								),
 							S.listItem()
 								.title("Quarters")
@@ -132,7 +134,7 @@ const structure: StructureResolver = (S, _context) => {
 					S.documentTypeList("page")
 						.title("Pages")
 						.filter(
-							`_type == "page" && _id != "${homepageName}" && _id != "${jobsPageName}" && _id != "${newsPageName} && _id != "${performancePage}`,
+							`_type == "page" && _id != "${homepageName}" && _id != "${jobsPageName}" && _id != "${newsPageName}" && _id != "${performancePageName}"`,
 						),
 				),
 		]);

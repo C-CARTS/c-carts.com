@@ -1,3 +1,4 @@
+import { codeInput } from "@sanity/code-input";
 import { googleMapsInput } from "@sanity/google-maps-input";
 import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
@@ -13,7 +14,9 @@ import page from "./sanity/schema/documents/page";
 import performance from "./sanity/schema/documents/performance";
 import siteConfig from "./sanity/schema/documents/siteConfig";
 import content from "./sanity/schema/objects/content";
+import fixedRoute from "./sanity/schema/objects/fixedRoute";
 import imageWithAlt from "./sanity/schema/objects/imageWithAlt";
+
 const apiKey =
 	process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ??
 	throwError("No NEXT_PUBLIC_GOOGLE_MAPS_API_KEY");
@@ -24,18 +27,21 @@ const config = defineConfig({
 	dataset,
 	schema: {
 		types: [
+			// docs
 			job,
-			news,
-			siteConfig,
 			navItem,
+			news,
 			page,
-			imageWithAlt,
-			content,
 			performance,
+			siteConfig,
+			// objects
+			content,
+			fixedRoute,
+			imageWithAlt,
 		],
 	},
 	plugins: [
-		structureTool({ structure }),
+		codeInput(),
 		googleMapsInput({
 			apiKey,
 			defaultLocation: {
@@ -44,8 +50,9 @@ const config = defineConfig({
 			},
 			defaultZoom: 12,
 		}),
-		visionTool({ defaultApiVersion: apiVersion }),
+		structureTool({ structure }),
 		table(),
+		visionTool({ defaultApiVersion: apiVersion }),
 	],
 });
 

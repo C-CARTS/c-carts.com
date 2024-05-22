@@ -1,4 +1,5 @@
 import {
+	MdDirectionsBus,
 	MdInsertPhoto,
 	MdOutlinePictureAsPdf,
 	MdTableChart,
@@ -40,6 +41,11 @@ const content = defineType({
 			title: "Image",
 		}),
 		defineArrayMember({ type: "table", icon: MdTableChart, title: "Table" }),
+		defineArrayMember({
+			type: "fixedRoute",
+			icon: MdDirectionsBus,
+			title: "Fixed Route",
+		}),
 	],
 });
 
