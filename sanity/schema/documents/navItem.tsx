@@ -30,12 +30,10 @@ const navItem = defineType({
 	preview: {
 		select: {
 			title: "title",
-			slug: "slug.current",
 		},
-		prepare({ title, slug }) {
-			const s = slug === "/" ? "/" : `/${slug}`;
+		prepare({ title }) {
 			return {
-				title: `${title} (${s})`,
+				title,
 			};
 		},
 	},

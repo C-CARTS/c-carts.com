@@ -1,3 +1,4 @@
+import "server-only";
 import ImageWithAlt from "../../@types/imageWithAlt";
 import { getImage } from "../../helpers/api";
 import buildUrl from "../../helpers/sanityImageUrl";

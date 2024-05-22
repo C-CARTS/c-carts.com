@@ -1,3 +1,4 @@
+import "server-only";
 import type { Table as TableType } from "../../@types/block";
 import styles from "./table.module.css";
 
