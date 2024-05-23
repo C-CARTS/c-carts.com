@@ -50,9 +50,10 @@ export async function getNavItems(): Promise<NavItem[]> {
 	const query = `* [ _type == 'navItem' ]{
 		_id,
 		title,
+		sortOrder,
 		slug,
 		children[]->{ _id, title, slug }
-	  }`;
+	} | order(sortOrder asc)`;
 	return await client.fetch<NavItem[]>(
 		query,
 		{},

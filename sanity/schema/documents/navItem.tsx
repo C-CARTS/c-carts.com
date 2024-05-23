@@ -15,6 +15,13 @@ const navItem = defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
+			name: "sortOrder",
+			title: "Sort Order",
+			type: "number",
+			description: "Sort order of the nav item.",
+			validation: (rule) => rule.required().min(0).integer(),
+		}),
+		defineField({
 			name: "children",
 			title: "Children",
 			type: "array",
@@ -26,6 +33,13 @@ const navItem = defineType({
 			],
 			validation: (rule) => rule.required(),
 		}),
+	],
+	orderings: [
+		{
+			name: "sortOrder",
+			title: "Sort Order",
+			by: [{ field: "sortOrder", direction: "asc" }],
+		},
 	],
 	preview: {
 		select: {
