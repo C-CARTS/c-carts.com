@@ -70,3 +70,13 @@
 	margin-right: 0.1rem;
 	transition: all 0.2s ease-out;
 }
+
+@media (max-width: 740px) {
+	.navSection {
+		margin-left: 0;
+	}
+
+	.navButton {
+		font-size: 1.1rem;
+	}
+}

@@ -18,7 +18,7 @@ export default function HomepageHeroImage({ src, blurDataURL }: Props) {
 			sizes="100vw"
 			quality={60}
 			fill
-			objectFit="cover"
+			style={{ objectFit: "cover", objectPosition: "center top" }}
 		/>
 	);
 }
