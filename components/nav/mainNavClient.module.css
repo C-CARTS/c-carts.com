@@ -8,4 +8,5 @@
 	justify-self: flex-end;
 	width: 100%;
 	padding-right: var(--content-padding-sides);
+	margin: 0;
 }

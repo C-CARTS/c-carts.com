@@ -56,11 +56,11 @@ export default function MainNavClient({ navItems, shortTitle }: Props) {
 	return (
 		<AppContext.Provider value={context}>
 			<nav aria-label={`${shortTitle} Menu`} id="main-nav-container">
-				<div role="list" className={styles.nav}>
+				<ul className={styles.nav}>
 					{navItems.map((item, index) => (
 						<NavSection key={item._id} navItem={item} index={index} />
 					))}
-				</div>
+				</ul>
 			</nav>
 		</AppContext.Provider>
 	);

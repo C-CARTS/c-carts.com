@@ -35,7 +35,7 @@ export default function NavSection({
 	}, [focusIndexState, index]);
 
 	const buttonRef = useRef<HTMLButtonElement | null>(null);
-	const menuRef = useRef<HTMLDivElement | null>(null);
+	const menuRef = useRef<HTMLLIElement | null>(null);
 
 	// close menu on click outside
 	useOnClickOutside(menuRef, () => {
@@ -59,7 +59,7 @@ export default function NavSection({
 	});
 
 	return (
-		<div className={styles.navSection} ref={menuRef} role="listitem">
+		<li className={styles.navSection} ref={menuRef}>
 			<button
 				className={buttonClass}
 				aria-controls={id}
@@ -80,7 +80,7 @@ export default function NavSection({
 				id={id}
 			>
 				{children.map(({ _id, title, slug: childSlug }, i) => (
-					<li key={_id} role="none" className={styles.li}>
+					<li key={_id} className={styles.li}>
 						<SubPage
 							title={title}
 							slug={childSlug}
@@ -89,6 +89,6 @@ export default function NavSection({
 					</li>
 				))}
 			</ul>
-		</div>
+		</li>
 	);
 }

@@ -1,4 +1,5 @@
 .navSection {
+	list-style: none;
 	margin-left: 1rem;
 	position: relative;
 	--nav-button-height: 2rem;
