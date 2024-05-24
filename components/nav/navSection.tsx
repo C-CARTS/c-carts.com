@@ -2,8 +2,8 @@
 
 import clsx from "clsx";
 import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
+import { useOnClickOutside } from "usehooks-ts";
 import NavItem from "../../@types/navItem";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
 import DownArrow from "./downArrow";
 import { AppContext } from "./mainNavClient";
 import { Actions } from "./menuReducer";
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function NavSection({
-	navItem: { title, children },
+	navItem: { title, children, _id: id },
 	index,
 }: Props) {
 	const {
@@ -39,6 +39,7 @@ export default function NavSection({
 
 	// close menu on click outside
 	useOnClickOutside(menuRef, () => {
+		console.log("foo");
 		if (isOpen) {
 			dispatch({ type: Actions.ClickedOutsideMenu });
 		}
@@ -53,32 +54,36 @@ export default function NavSection({
 		[styles.open]: isOpen,
 	});
 
+	const ulClass = clsx({
+		[styles.ul]: true,
+		[styles.open]: isOpen,
+	});
+
 	return (
 		<div className={styles.navSection}>
 			<button
 				className={buttonClass}
-				aria-controls="main-nav"
+				aria-controls={id}
 				onClick={buttonClick}
 				ref={buttonRef}
-				aria-haspopup={isOpen}
+				aria-haspopup="true"
+				aria-expanded={isOpen}
 				aria-label={`${title} menu`}
 			>
 				<DownArrow />
 				{title}
 			</button>
-			{isOpen && (
-				<ul className={styles.ul} aria-label={`${title} sub menu`}>
-					{children.map(({ _id, title, slug: childSlug }, i) => (
-						<li key={_id} role="none" className={styles.li}>
-							<SubPage
-								title={title}
-								slug={childSlug}
-								last={i === children.length - 1}
-							/>
-						</li>
-					))}
-				</ul>
-			)}
+			<ul className={ulClass} aria-label={`${title} sub menu`} id={id}>
+				{children.map(({ _id, title, slug: childSlug }, i) => (
+					<li key={_id} role="none" className={styles.li}>
+						<SubPage
+							title={title}
+							slug={childSlug}
+							last={i === children.length - 1}
+						/>
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }
