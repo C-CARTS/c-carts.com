@@ -1,7 +1,16 @@
 import { MetadataRoute } from "next";
 import { getSiteConfig } from "../helpers/api";
 
-export default async function manifest(): Promise<MetadataRoute.Manifest> {
+type FormFactorManifestType = MetadataRoute.Manifest & {
+	screenshots: {
+		src: string;
+		sizes: string;
+		type: string;
+		form_factor: "wide" | "narrow";
+	}[];
+};
+
+export default async function manifest(): Promise<FormFactorManifestType> {
 	const { shortTitle, title } = await getSiteConfig();
 
 	return {
@@ -12,59 +21,73 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
 		display: "standalone",
 		background_color: "#fff",
 		theme_color: "#3feee6",
+		screenshots: [
+			{
+				src: "/images/screenshot-wide.jpeg",
+				sizes: "3501x1823",
+				type: "	image/jpeg",
+				form_factor: "wide",
+			},
+			{
+				src: "/images/screenshot-mobile.jpeg",
+				sizes: "585x1262",
+				type: "	image/jpeg",
+				form_factor: "narrow",
+			},
+		],
 		icons: [
 			{
-				src: "/icons/icon-48x48.png",
+				src: "/images/icon-48.png",
 				sizes: "48x48",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-72x72.png",
+				src: "/images/icon-72.png",
 				sizes: "72x72",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-96x96.png",
+				src: "/images/icon-96.png",
 				sizes: "96x96",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-128x128.png",
+				src: "/images/icon-128.png",
 				sizes: "128x128",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-144x144.png",
+				src: "/images/icon-144.png",
 				sizes: "144x144",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-152x152.png",
+				src: "/images/icon-152.png",
 				sizes: "152x152",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-192x192.png",
+				src: "/images/icon-192.png",
 				sizes: "192x192",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-256x256.png",
+				src: "/images/icon-256.png",
 				sizes: "256x256",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-384x384.png",
+				src: "/images/icon-384.png",
 				sizes: "384x384",
 				type: "image/png",
 			},
 			{
-				src: "/icons/icon-512x512.png",
+				src: "/images/icon-512.png",
 				sizes: "512x512",
 				type: "image/png",
 			},
 			{
-				src: "/icons/maskable_icon-512.png",
+				src: "/images/maskable_icon-512.png",
 				sizes: "512x512",
 				type: "image/png",
 				purpose: "maskable",

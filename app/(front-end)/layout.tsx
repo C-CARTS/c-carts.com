@@ -15,6 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	const metadata: Metadata = {
 		title: shortTitle,
 		description: title,
+		themeColor: "#3feee6",
 	};
 
 	return metadata;
@@ -32,7 +33,7 @@ export default async function RootLayout({
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
-					href="/icons/icon-180x180.png"
+					href="/images/icon-180.png"
 				/>
 			</Head>
 			<body>
