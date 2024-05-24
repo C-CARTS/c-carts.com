@@ -31,19 +31,33 @@ export default async function Page({ params: { slug } }: Props) {
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-	const slugs = await getAllPageSlugs();
+	try {
+		const slugs = await getAllPageSlugs();
+		console.log("slugs", slugs);
 
-	console.log("slugs", slugs);
+		const homepageData = await getHomepage();
+		if (!homepageData || !homepageData.slug || !homepageData.slug.current) {
+			throw new Error("Invalid homepage data");
+		}
+		const homepageSlug = homepageData.slug.current;
 
-	const {
-		slug: { current: homepageSlug },
-	} = await getHomepage();
+		const mapped = slugs
+			.map((slugObj) => {
+				if (slugObj && slugObj.slug && slugObj.slug.current) {
+					return { slug: slugObj.slug.current };
+				}
+				return null; // Return null for invalid entries
+			})
+			.filter(
+				(slugObj) =>
+					slugObj && slugObj.slug && slugObj.slug[0] !== homepageSlug,
+			);
 
-	const mapped = slugs
-		.map(({ slug: { current } }) => ({ slug: current }))
-		.filter(({ slug }) => slug[0] !== homepageSlug);
+		console.log("mapped", mapped);
 
-	console.log("mapped", mapped);
-
-	return mapped;
+		return mapped as Params[];
+	} catch (error) {
+		console.error("Error in generateStaticParams:", error);
+		return []; // Return an empty array on error
+	}
 }
