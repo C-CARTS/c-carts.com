@@ -42,7 +42,7 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
 
-      - name: Install Dependancies
+      - name: Install Dependencies
         run: |
           npm ci
           npm install -g @sanity/cli@latest
