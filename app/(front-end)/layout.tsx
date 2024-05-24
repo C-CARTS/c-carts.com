@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { ReactNode } from "react";
 import "server-only";
 import Footer from "../../components/footer";
@@ -27,6 +28,13 @@ export default async function RootLayout({
 
 	return (
 		<html lang={lang}>
+			<Head>
+				<link
+					rel="apple-touch-icon"
+					sizes="180x180"
+					href="/icons/icon-180x180.png"
+				/>
+			</Head>
 			<body>
 				<div className={styles.contentWrap}>
 					<SkipLink />
