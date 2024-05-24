@@ -29,6 +29,14 @@
 	--content-padding-sides: clamp(1rem, 5vw, 3rem);
 	--content-padding-top: clamp(1rem, 3vh, 2rem);
 	--content-padding-bottom: clamp(2rem, 5vh, 5rem);
+
+	--transition-duration: 0.2s;
+}
+
+@media (prefers-reduced-motion) {
+	:root {
+		--transition-duration: 0s;
+	}
 }
 
 * {
@@ -52,15 +60,15 @@ a {
 	color: var(--primary-text);
 	text-underline-offset: 0.15em;
 	text-decoration-color: var(--link-underline);
-	transition: text-decoration-color 0.2s ease-out;
+	transition: text-decoration-color var(--transition-duration) ease-out;
 }
 
 a:hover,
 a:focus-visible {
 	text-decoration-color: var(--link-color);
 	transition:
-		text-decoration-color 0.2s ease-in,
-		color 0.2s ease-in;
+		text-decoration-color var(--transition-duration) ease-in,
+		color var(--transition-duration) ease-in;
 }
 
 a:focus-visible {

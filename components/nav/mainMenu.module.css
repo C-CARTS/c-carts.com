@@ -52,7 +52,7 @@
 	font-weight: var(--bold-font-weight);
 	text-decoration-color: transparent;
 	text-decoration-thickness: 0.22rem;
-	transition: all 0.2s ease-out;
+	transition: all var(--transition-duration) ease-out;
 	outline-color: transparent;
 	grid-area: logo;
 }
@@ -64,7 +64,7 @@
 
 .logoLink:hover,
 .logoLink:focus-visible {
-	transition: all 0.2s ease-in;
+	transition: all var(--transition-duration) ease-in;
 	text-decoration-color: var(--layout-border);
 	outline-color: transparent;
 }

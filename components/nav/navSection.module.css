@@ -43,7 +43,7 @@
 	min-width: 5.5rem;
 	height: var(--nav-button-height);
 	border-bottom: 0.25rem solid transparent;
-	transition: all 0.2s ease-out;
+	transition: allvar(--transition-duration) ease-out;
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
@@ -57,14 +57,14 @@
 .navButton.open:hover {
 	outline: transparent;
 	border-bottom-color: var(--secondary-color);
-	transition: all 0.2s ease-in;
+	transition: all var(--transition-duration) ease-in;
 	background: var(--secondary-subtle);
 }
 
 .navButton.open svg,
 .navButton.open:hover svg {
 	color: var(--secondary-color);
-	transition: all 0.2s ease-in;
+	transition: all var(--transition-duration) ease-in;
 }
 
 .navButton:hover {
@@ -73,7 +73,7 @@
 
 .navButton svg {
 	margin-right: 0.1rem;
-	transition: all 0.2s ease-out;
+	transition: all var(--transition-duration) ease-out;
 }
 
 @media (max-width: 740px) {

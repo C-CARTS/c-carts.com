@@ -4,7 +4,7 @@
 	left: -13.2rem;
 	top: 1rem;
 	display: block;
-	transition: left 0.2s ease-out;
+	transition: left var(--transition-duration) ease-out;
 	z-index: 1100;
 	background: var(--primary-color);
 	color: var(--primary-contrast);
@@ -15,7 +15,7 @@
 .a:focus,
 .a:focus-visible {
 	left: 0;
-	transition: left 0.2s ease-in;
+	transition: left var(--transition-duration) ease-in;
 	outline-color: transparent;
 	outline: none;
 }
