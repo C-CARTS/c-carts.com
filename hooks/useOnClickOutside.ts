@@ -1,11 +1,14 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject, useEffect } from "react";
 
 export type ClickEvent = MouseEvent | TouchEvent;
 
 // eslint-disable-next-line no-unused-vars
 type HandlerFunction = (event: ClickEvent) => void;
 
-function useOnClickOutside<T extends HTMLElement = HTMLElement>(ref: RefObject<T>, handler: HandlerFunction): void {
+function useOnClickOutside<T extends HTMLElement = HTMLElement>(
+	ref: RefObject<T>,
+	handler: HandlerFunction,
+): void {
 	useEffect(() => {
 		const listener = (event: ClickEvent) => {
 			const element = ref?.current;

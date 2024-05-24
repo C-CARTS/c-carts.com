@@ -1,0 +1,27 @@
+.a {
+	position: fixed;
+	width: 13rem;
+	left: -13.2rem;
+	top: 1rem;
+	display: block;
+	transition: left var(--transition-duration) ease-out;
+	z-index: 1100;
+	background: var(--primary-color);
+	color: var(--primary-contrast);
+	font-weight: var(--bold-font-weight);
+	box-shadow: 0.1rem 0.1rem 0 0.015rem var(--layout-border) 88;
+}
+
+.a:focus,
+.a:focus-visible {
+	left: 0;
+	transition: left var(--transition-duration) ease-in;
+	outline-color: transparent;
+	outline: none;
+}
+
+.span {
+	display: block;
+	padding: 0.5rem 1.25rem;
+	text-align: center;
+}

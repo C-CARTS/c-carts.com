@@ -1,0 +1,9 @@
+.tableContainer {
+	width: 100%;
+	margin: 0 0 1.5em 0;
+	overflow-x: auto;
+}
+
+.tableContainer table {
+	width: 100%;
+}

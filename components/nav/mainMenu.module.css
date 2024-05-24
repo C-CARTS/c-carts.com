@@ -1,0 +1,95 @@
+.header {
+	background-color: var(--primary-bg-translucent);
+	backdrop-filter: blur(5px);
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	align-content: center;
+	padding-top: clamp(0.5rem, 2vh, 3rem);
+	padding-bottom: clamp(0.5rem, 1.5vh, 2rem);
+}
+
+.header.mobile-open {
+	background: var(--primary-bg);
+}
+
+@media screen and (max-width: 768px) {
+	.header {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.outerWrap {
+	width: 100%;
+}
+
+.innerWrap {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: max-content 1fr;
+	gap: 1rem;
+	grid-template-areas: "logo nav";
+	max-width: var(--max-content-width);
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding-left: var(--content-padding-sides);
+	padding-right: var(--content-padding-sides);
+	margin: 0 auto;
+}
+
+.innerWrap a {
+	width: 100%;
+	justify-self: flex-start;
+}
+
+.logoLink {
+	font-size: 1.5rem;
+	font-weight: var(--bold-font-weight);
+	text-decoration-color: transparent;
+	text-decoration-thickness: 0.22rem;
+	transition: all var(--transition-duration) ease-out;
+	outline-color: transparent;
+	grid-area: logo;
+}
+
+.logoLink,
+.logoLink:visited {
+	color: var(--primary-contrast);
+}
+
+.logoLink:hover,
+.logoLink:focus-visible {
+	transition: all var(--transition-duration) ease-in;
+	text-decoration-color: var(--layout-border);
+	outline-color: transparent;
+}
+
+.logoLink:focus-visible {
+	background: var(--secondary-subtle);
+	text-decoration-color: var(--secondary-color);
+}
+
+@media (max-width: 740px) {
+	.innerWrap {
+		gap: 0.5rem;
+	}
+
+	.logoLink {
+		font-size: 1.25rem;
+	}
+}
+
+@media (max-width: 540px) {
+	.innerWrap {
+		gap: 0.25rem;
+	}
+
+	.logoLink {
+		font-size: 1rem;
+	}
+}

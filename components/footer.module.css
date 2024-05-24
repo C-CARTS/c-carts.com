@@ -1,0 +1,68 @@
+.footer {
+	background: var(--layout-border);
+	color: var(--primary-text);
+}
+
+.footerContent {
+	padding: 5rem var(--content-padding-sides);
+	width: min(100%, var(--max-content-width));
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 400px;
+	grid-template-rows: 1fr;
+	grid-template-areas: "contact logo";
+	align-items: center;
+	grid-gap: 1rem;
+}
+
+@media (max-width: 768px) {
+	.footerContent {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		grid-template-areas: "contact" "logo";
+		grid-gap: 3rem;
+	}
+}
+
+.contact {
+	grid-area: contact;
+}
+
+.contact p {
+	margin: 0;
+}
+
+.contact p span,
+.contact p strong {
+	display: block;
+}
+
+.contact p,
+.contact a {
+	color: var(--primary-text);
+	text-decoration-color: var(--primary-text);
+}
+
+.contact a:hover,
+.contact a:focus-visible {
+	text-decoration-color: var(--primary-color);
+}
+
+.contact a:focus-visible {
+	outline-color: transparent;
+	background: var(--primary-subtle);
+	outline: 0;
+	border: 0;
+}
+
+.logo {
+	grid-area: logo;
+	width: 100%;
+	max-width: 400px;
+}
+
+.img {
+	width: 100%;
+	height: auto;
+	max-width: 400px;
+}
