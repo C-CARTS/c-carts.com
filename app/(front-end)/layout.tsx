@@ -15,7 +15,6 @@ export async function generateMetadata(): Promise<Metadata> {
 	const metadata: Metadata = {
 		title: shortTitle,
 		description: title,
-		themeColor: "#3feee6",
 	};
 
 	return metadata;
@@ -35,6 +34,7 @@ export default async function RootLayout({
 					sizes="180x180"
 					href="/images/icon-180.png"
 				/>
+				<meta name="theme-color" content="#3feee6" />
 			</Head>
 			<body>
 				<div className={styles.contentWrap}>
