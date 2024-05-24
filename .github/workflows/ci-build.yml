@@ -1,0 +1,54 @@
+name: CI - Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  NEXT_PUBLIC_SANITY_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
+  NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+  NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+  NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+  NEXT_PUBLIC_SETTINGS_DOC_NAME: ${{ vars.NEXT_PUBLIC_SETTINGS_DOC_NAME }}
+  NEXT_PUBLIC_HOMEPAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_HOMEPAGE_DOC_NAME }}
+  NEXT_PUBLIC_JOBS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_JOBS_PAGE_DOC_NAME }}
+  NEXT_PUBLIC_NEWS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_NEWS_PAGE_DOC_NAME }}
+  NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME }}
+  NEXT_PUBLIC_MAX_IMAGE_SIZE: ${{ vars.NEXT_PUBLIC_MAX_IMAGE_SIZE }}
+  SANITY_WEBHOOK_SECRET: ${{ secrets.SANITY_WEBHOOK_SECRET }}
+  NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 21.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: Install Dependancies
+        run: |
+          npm ci
+          npm install -g @sanity/cli@latest
+
+      - name: Build Next
+        run: npm run build:next
+
+      - name: Build Sanity
+        run: npm run build:sanity
