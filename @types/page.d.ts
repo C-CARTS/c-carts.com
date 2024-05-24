@@ -8,6 +8,7 @@ type Page = SanityDocument & {
 	slug: Slug;
 	content: BlockContent[];
 	openGraphImage: ImageWithAlt;
+	description: string;
 	includeInSitemap: boolean;
 	disallowRobots: boolean;
 };
