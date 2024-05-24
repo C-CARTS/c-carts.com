@@ -8,11 +8,11 @@ const buildEslintCommand = (filenames) => {
 };
 
 const config = {
+	"package-lock.json": () => "echo 'Ignoring package-lock.json'",
 	"**/*.{ts,tsx}": () => "npx tsc --noEmit",
 	"**/*.{js,jsx,ts,tsx,mjs}": (filenames) => [buildEslintCommand(filenames)],
 	"**/*.{md,json}": (filenames) =>
 		`npx prettier --write ${filenames.join(" ")}`,
-	"package-lock.json": () => "echo 'Ignoring package-lock.json'",
 };
 
 export default config;
