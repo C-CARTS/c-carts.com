@@ -39,7 +39,6 @@ export default function NavSection({
 
 	// close menu on click outside
 	useOnClickOutside(menuRef, () => {
-		console.log("foo");
 		if (isOpen) {
 			dispatch({ type: Actions.ClickedOutsideMenu });
 		}
@@ -56,11 +55,11 @@ export default function NavSection({
 
 	const ulClass = clsx({
 		[styles.ul]: true,
-		[styles.open]: isOpen,
+		[styles.closed]: !isOpen,
 	});
 
 	return (
-		<div className={styles.navSection}>
+		<div className={styles.navSection} ref={menuRef} role="listitem">
 			<button
 				className={buttonClass}
 				aria-controls={id}
@@ -69,11 +68,17 @@ export default function NavSection({
 				aria-haspopup="true"
 				aria-expanded={isOpen}
 				aria-label={`${title} menu`}
+				type="button"
 			>
 				<DownArrow />
 				{title}
 			</button>
-			<ul className={ulClass} aria-label={`${title} sub menu`} id={id}>
+			<ul
+				className={ulClass}
+				aria-label={`${title} sub menu`}
+				aria-hidden={!isOpen}
+				id={id}
+			>
 				{children.map(({ _id, title, slug: childSlug }, i) => (
 					<li key={_id} role="none" className={styles.li}>
 						<SubPage
