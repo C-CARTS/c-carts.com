@@ -1,8 +1,8 @@
 import Link from "next/link";
 import "server-only";
 import JobType from "../../../@types/job";
+import { getJobsPage } from "../../../api";
 import SanityBlockContent from "../../../components/sanityBlock/sanityBlockContent";
-import { getJobsPage } from "../../../helpers/api";
 
 interface Props {
 	job: JobType;

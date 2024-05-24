@@ -1,5 +1,5 @@
+import { getJob, getJobs } from "../../../../api";
 import SanityPage from "../../../../components/sanityPage";
-import { getJob, getJobs } from "../../../../helpers/api";
 
 interface Params {
 	slug: string;

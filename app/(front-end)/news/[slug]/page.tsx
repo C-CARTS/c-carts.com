@@ -1,6 +1,6 @@
 import "server-only";
+import { getNews, getNewsItem } from "../../../../api";
 import SanityPage from "../../../../components/sanityPage";
-import { getNews, getNewsItem } from "../../../../helpers/api";
 
 interface Params {
 	slug: string;

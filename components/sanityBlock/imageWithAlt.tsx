@@ -1,6 +1,6 @@
 import "server-only";
 import ImageWithAlt from "../../@types/imageWithAlt";
-import { getImage } from "../../helpers/api";
+import { getImage } from "../../api";
 import buildUrl from "../../helpers/sanityImageUrl";
 import throwError from "../../helpers/throwError";
 import SanityImage from "./sanityImage";

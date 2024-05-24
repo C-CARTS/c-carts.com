@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Page from "../@types/page";
-import { getImage, getSiteConfig } from "./api";
+import { getImage, getSiteConfig } from "../api";
 import buildUrl from "./sanityImageUrl";
 import throwError from "./throwError";
 

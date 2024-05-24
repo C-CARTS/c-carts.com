@@ -1,6 +1,6 @@
 import "server-only";
 import PerformanceType from "../../../@types/performance";
-import { getFile } from "../../../helpers/api";
+import { getFile } from "../../../api";
 
 interface Props {
 	performance: PerformanceType;

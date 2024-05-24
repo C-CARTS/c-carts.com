@@ -1,15 +1,15 @@
 import { Slug } from "sanity";
 import "server-only";
-import FileAsset from "../@types/fileAsset";
-import type ImageData from "../@types/imageData";
-import Job from "../@types/job";
-import type NavItem from "../@types/navItem";
-import News from "../@types/news";
-import type Page from "../@types/page";
-import Performance from "../@types/performance";
-import type SiteConfig from "../@types/siteConfig";
-import { client } from "../sanity/lib/client";
-import throwError from "./throwError";
+import type FileAsset from "./@types/fileAsset";
+import type ImageData from "./@types/imageData";
+import type Job from "./@types/job";
+import type NavItem from "./@types/navItem";
+import type News from "./@types/news";
+import type Page from "./@types/page";
+import type Performance from "./@types/performance";
+import type SiteConfig from "./@types/siteConfig";
+import throwError from "./helpers/throwError";
+import { client } from "./sanity/lib/client";
 
 const isDev = process.env.NODE_ENV === "development";
 const cache = isDev ? "no-store" : "force-cache";

@@ -1,5 +1,5 @@
 import "server-only";
-import { getNavItems, getSiteConfig } from "../../helpers/api";
+import { getNavItems, getSiteConfig } from "../../api";
 import MainNavClient from "./mainNavClient";
 
 export default async function MainNav() {

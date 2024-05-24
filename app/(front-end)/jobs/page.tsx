@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import "server-only";
+import { getJobsPage } from "../../../api";
 import SanityPage from "../../../components/sanityPage";
-import { getJobsPage } from "../../../helpers/api";
 import generatePageMetadata from "../../../helpers/generatePageMetadata";
 import Jobs from "./jobs";
 

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { RiFilePdf2Fill } from "react-icons/ri";
 import "server-only";
 import type FixedRouteType from "../../../@types/fixedRoute";
-import { getFile } from "../../../helpers/api";
+import { getFile } from "../../../api";
 import styles from "./fixedRoute.module.css";
 import Map from "./map";
 import TimeTable from "./timeTable";

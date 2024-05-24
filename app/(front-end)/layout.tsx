@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Head from "next/head";
 import { ReactNode } from "react";
 import "server-only";
+import { getSiteConfig } from "../../api";
 import Footer from "../../components/footer";
 import SkipLink from "../../components/skipLink";
-import { getSiteConfig } from "../../helpers/api";
 import "./global.css";
 import styles from "./layout.module.css";
 

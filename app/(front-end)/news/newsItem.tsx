@@ -1,8 +1,8 @@
 import Link from "next/link";
 import "server-only";
 import News from "../../../@types/news";
+import { getNewsPage } from "../../../api";
 import SanityBlockContent from "../../../components/sanityBlock/sanityBlockContent";
-import { getNewsPage } from "../../../helpers/api";
 
 interface Props {
 	news: News;

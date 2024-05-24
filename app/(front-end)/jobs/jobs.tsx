@@ -1,5 +1,5 @@
 import "server-only";
-import { getJobs } from "../../../helpers/api";
+import { getJobs } from "../../../api";
 import Job from "./job";
 
 export default async function Jobs() {

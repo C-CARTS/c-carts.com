@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { getSiteConfig } from "../helpers/api";
+import { getSiteConfig } from "../api";
 
 type FormFactorManifestType = MetadataRoute.Manifest & {
 	screenshots: {

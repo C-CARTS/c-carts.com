@@ -1,7 +1,7 @@
 import { PortableTextMarkComponentProps } from "@portabletext/react";
 import { TypedObject } from "sanity";
 import "server-only";
-import { getFile } from "../../helpers/api";
+import { getFile } from "../../api";
 
 type File = TypedObject & {
 	file: {

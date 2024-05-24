@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import "server-only";
+import { getNewsPage } from "../../../api";
 import SanityPage from "../../../components/sanityPage";
-import { getNewsPage } from "../../../helpers/api";
 import generatePageMetadata from "../../../helpers/generatePageMetadata";
 import NewsItems from "./newsItems";
 

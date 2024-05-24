@@ -1,6 +1,6 @@
 import "server-only";
+import { getPerformancePage } from "../../../api";
 import SanityPage from "../../../components/sanityPage";
-import { getPerformancePage } from "../../../helpers/api";
 import PerformanceData from "./performanceData";
 
 export default async function Home() {

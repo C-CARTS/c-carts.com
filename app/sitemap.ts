@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { Slug } from "sanity";
-import { getAllPageSlugs, getHomepage } from "../helpers/api";
+import { getAllPageSlugs, getHomepage } from "../api";
 import throwError from "../helpers/throwError";
 
 const baseUrl =

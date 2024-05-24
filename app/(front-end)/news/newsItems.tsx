@@ -1,5 +1,5 @@
 import "server-only";
-import { getNews } from "../../../helpers/api";
+import { getNews } from "../../../api";
 import Job from "./newsItem";
 
 export default async function NewsItems() {

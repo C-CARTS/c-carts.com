@@ -1,5 +1,5 @@
 import "server-only";
-import { getImage, getSiteConfig } from "../../helpers/api";
+import { getImage, getSiteConfig } from "../../api";
 import buildUrl from "../../helpers/sanityImageUrl";
 import styles from "./homepageHero.module.css";
 import HomepageHeroImage from "./homepageHeroImage";

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import "server-only";
-import { getImage, getSiteConfig } from "../helpers/api";
+import { getImage, getSiteConfig } from "../api";
 import buildUrl from "../helpers/sanityImageUrl";
 import throwError from "../helpers/throwError";
 import styles from "./footer.module.css";

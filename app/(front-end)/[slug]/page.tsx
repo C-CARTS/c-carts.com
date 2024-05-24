@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import "server-only";
+import { getAllPageSlugs, getHomepage, getPage } from "../../../api";
 import SanityPage from "../../../components/sanityPage";
-import { getAllPageSlugs, getHomepage, getPage } from "../../../helpers/api";
 import generatePageMetadata from "../../../helpers/generatePageMetadata";
 
 interface Params {

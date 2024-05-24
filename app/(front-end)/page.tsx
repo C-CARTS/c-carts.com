@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import "server-only";
+import { getHomepage } from "../../api";
 import SanityPage from "../../components/sanityPage";
-import { getHomepage } from "../../helpers/api";
 import generatePageMetadata from "../../helpers/generatePageMetadata";
 
 export async function generateMetadata(): Promise<Metadata> {

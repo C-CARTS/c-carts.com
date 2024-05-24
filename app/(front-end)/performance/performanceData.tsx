@@ -1,5 +1,5 @@
 import "server-only";
-import { getPerformanceData } from "../../../helpers/api";
+import { getPerformanceData } from "../../../api";
 import Year from "./year";
 export default async function PerformanceData() {
 	const performanceData = await getPerformanceData();
