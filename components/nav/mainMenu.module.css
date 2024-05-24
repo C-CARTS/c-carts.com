@@ -8,8 +8,8 @@
 	flex-wrap: nowrap;
 	align-items: center;
 	align-content: center;
-	padding-top: clamp(1rem, 2vh, 3rem);
-	padding-bottom: clamp(1rem, 1.5vh, 2rem);
+	padding-top: clamp(0.5rem, 2vh, 3rem);
+	padding-bottom: clamp(0.5rem, 1.5vh, 2rem);
 }
 
 .header.mobile-open {
@@ -31,7 +31,7 @@
 	display: grid;
 	grid-template-rows: 1fr;
 	grid-template-columns: max-content 1fr;
-	grid-gap: 1rem;
+	gap: 1rem;
 	grid-template-areas: "logo nav";
 	max-width: var(--max-content-width);
 	justify-content: center;
@@ -72,4 +72,24 @@
 .logoLink:focus-visible {
 	background: var(--secondary-subtle);
 	text-decoration-color: var(--secondary-color);
+}
+
+@media (max-width: 740px) {
+	.innerWrap {
+		gap: 0.5rem;
+	}
+
+	.logoLink {
+		font-size: 1.25rem;
+	}
+}
+
+@media (max-width: 540px) {
+	.innerWrap {
+		gap: 0.25rem;
+	}
+
+	.logoLink {
+		font-size: 1rem;
+	}
 }

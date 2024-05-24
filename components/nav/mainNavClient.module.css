@@ -9,9 +9,3 @@
 	width: 100%;
 	padding-right: var(--content-padding-sides);
 }
-
-@media (max-width: 605px) {
-	.nav {
-		display: none;
-	}
-}
