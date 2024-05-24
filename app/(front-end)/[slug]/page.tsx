@@ -32,6 +32,9 @@ export default async function Page({ params: { slug } }: Props) {
 
 export async function generateStaticParams(): Promise<Params[]> {
 	const slugs = await getAllPageSlugs();
+
+	console.log("slugs", slugs);
+
 	const {
 		slug: { current: homepageSlug },
 	} = await getHomepage();
@@ -39,6 +42,8 @@ export async function generateStaticParams(): Promise<Params[]> {
 	const mapped = slugs
 		.map(({ slug: { current } }) => ({ slug: current }))
 		.filter(({ slug }) => slug[0] !== homepageSlug);
+
+	console.log("mapped", mapped);
 
 	return mapped;
 }
