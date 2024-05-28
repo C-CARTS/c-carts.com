@@ -1,5 +1,8 @@
 # C-CARTS.com
 
+![GitHub deployments](https://img.shields.io/github/deployments/C-CARTS/c-carts.com/Production?label=Vercel%20Deployment)
+[![CI - Build](https://github.com/C-CARTS/c-carts.com/actions/workflows/ci-build.yml/badge.svg)](https://github.com/C-CARTS/c-carts.com/actions/workflows/ci-build.yml)
+
 ## Overview
 
 This repository contains the codebase for the [C-CARTS.com][c-carts] website. The site is built using [NextJS][next] and [Sanity][sanity]
