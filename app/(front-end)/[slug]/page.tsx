@@ -1,8 +1,13 @@
 import { Metadata } from "next";
 import "server-only";
-import { getAllPageSlugs, getHomepage, getPage } from "../../../api";
+import { getAllPageSlugs, getPage } from "../../../api";
 import SanityPage from "../../../components/sanityPage";
 import generatePageMetadata from "../../../helpers/generatePageMetadata";
+import throwError from "../../../helpers/throwError";
+
+const staticSlugs = (
+	process.env.STATIC_SLUGS ?? throwError("No STATIC_SLUGS")
+).split(",");
 
 interface Params {
 	slug: string;
@@ -35,23 +40,10 @@ export async function generateStaticParams(): Promise<Params[]> {
 		const slugs = await getAllPageSlugs();
 		console.log("slugs", slugs);
 
-		const homepageData = await getHomepage();
-		if (!homepageData || !homepageData.slug || !homepageData.slug.current) {
-			throw new Error("Invalid homepage data");
-		}
-		const homepageSlug = homepageData.slug.current;
-
 		const mapped = slugs
-			.map((slugObj) => {
-				if (slugObj && slugObj.slug && slugObj.slug.current) {
-					return { slug: slugObj.slug.current };
-				}
-				return null; // Return null for invalid entries
-			})
-			.filter(
-				(slugObj) =>
-					slugObj && slugObj.slug && slugObj.slug[0] !== homepageSlug,
-			);
+			.filter((slugObj) => slugObj && slugObj.slug && slugObj.slug.current) // Filter out invalid entries
+			.filter((slugObj) => !staticSlugs.includes(slugObj.slug.current)) // Filter out slugs that have a static route
+			.map(({ slug: { current: slug } }) => ({ slug }));
 
 		console.log("mapped", mapped);
 
