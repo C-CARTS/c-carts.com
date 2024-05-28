@@ -16,7 +16,7 @@ export default async function Page({ params: { slug } }: Props) {
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-	const news = await getJobs();
-	const mapped = news.map(({ slug: { current } }) => ({ slug: current }));
+	const jobs = await getJobs();
+	const mapped = jobs.map(({ slug: { current } }) => ({ slug: current }));
 	return mapped;
 }

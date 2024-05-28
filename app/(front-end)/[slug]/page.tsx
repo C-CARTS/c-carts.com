@@ -1,8 +1,13 @@
 import { Metadata } from "next";
 import "server-only";
-import { getAllPageSlugs, getHomepage, getPage } from "../../../api";
+import { getAllPageSlugs, getPage } from "../../../api";
 import SanityPage from "../../../components/sanityPage";
 import generatePageMetadata from "../../../helpers/generatePageMetadata";
+import throwError from "../../../helpers/throwError";
+
+const staticSlugs = (
+	process.env.STATIC_SLUGS ?? throwError("No STATIC_SLUGS")
+).split(",");
 
 interface Params {
 	slug: string;
@@ -31,14 +36,15 @@ export default async function Page({ params: { slug } }: Props) {
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-	const slugs = await getAllPageSlugs();
-	const {
-		slug: { current: homepageSlug },
-	} = await getHomepage();
-
-	const mapped = slugs
-		.map(({ slug: { current } }) => ({ slug: current }))
-		.filter(({ slug }) => slug[0] !== homepageSlug);
-
-	return mapped;
+	try {
+		const slugs = await getAllPageSlugs();
+		const mapped = slugs
+			.filter((slugObj) => slugObj && slugObj.slug && slugObj.slug.current) // Filter out invalid entries
+			.filter((slugObj) => !staticSlugs.includes(slugObj.slug.current)) // Filter out slugs that have a static route
+			.map(({ slug: { current: slug } }) => ({ slug }));
+		return mapped;
+	} catch (error) {
+		console.error("Error in generateStaticParams:", error);
+		return []; // Return an empty array on error
+	}
 }
