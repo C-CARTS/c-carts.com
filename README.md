@@ -42,6 +42,7 @@ NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME="performance"
 NEXT_PUBLIC_MAX_IMAGE_SIZE=1500
 SANITY_WEBHOOK_SECRET="<SECRET_STRING>"
 NEXT_PUBLIC_BASE_URL="https://c-carts.com"
+STATIC_SLUGS="jobs,news,performance,champaign-county-area-rural-transit-system,/"
 ```
 
 3. Install packages
