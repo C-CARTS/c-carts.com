@@ -16,6 +16,18 @@ const content = defineType({
 			marks: {
 				annotations: [
 					{
+						name: "link",
+						type: "object",
+						title: "Link",
+						fields: [
+							{
+								name: "href",
+								type: "url",
+								title: "URL",
+							},
+						],
+					},
+					{
 						name: "pdfLink",
 						type: "object",
 						title: "PDF Link",
