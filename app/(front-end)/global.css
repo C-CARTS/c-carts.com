@@ -140,10 +140,6 @@ li {
 	margin: 0;
 }
 
-li + li {
-	margin-top: 0.25em;
-}
-
 em,
 i {
 	font-style: italic;
