@@ -38,16 +38,11 @@ export default async function Page({ params: { slug } }: Props) {
 export async function generateStaticParams(): Promise<Params[]> {
 	try {
 		const slugs = await getAllPageSlugs();
-		console.log("slugs", slugs);
-
 		const mapped = slugs
 			.filter((slugObj) => slugObj && slugObj.slug && slugObj.slug.current) // Filter out invalid entries
 			.filter((slugObj) => !staticSlugs.includes(slugObj.slug.current)) // Filter out slugs that have a static route
 			.map(({ slug: { current: slug } }) => ({ slug }));
-
-		console.log("mapped", mapped);
-
-		return mapped as Params[];
+		return mapped;
 	} catch (error) {
 		console.error("Error in generateStaticParams:", error);
 		return []; // Return an empty array on error
