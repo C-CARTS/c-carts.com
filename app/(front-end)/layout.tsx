@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import Head from "next/head";
 import { ReactNode } from "react";
@@ -42,6 +44,8 @@ export default async function RootLayout({
 					{children}
 					<Footer />
 				</div>
+				<SpeedInsights />
+				<Analytics />
 			</body>
 		</html>
 	);
