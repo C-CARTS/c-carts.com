@@ -1,8 +1,8 @@
+import Image from "next/image";
 import "server-only";
 import { getImage, getSiteConfig } from "../../api";
 import buildUrl from "../../helpers/sanityImageUrl";
 import styles from "./homepageHero.module.css";
-import HomepageHeroImage from "./homepageHeroImage";
 
 export default async function HomepageHero() {
 	const {
@@ -19,11 +19,20 @@ export default async function HomepageHero() {
 	} = image;
 
 	// build the image url. We'll build it at 3x max size and next/image will scale it down as needed
-	const src = buildUrl(url, width, height, 1);
+	const src = buildUrl(url, width, height, 1, 60);
 
 	return (
 		<div className={styles.imgWrap}>
-			<HomepageHeroImage src={src} blurDataURL={lqip} />
+			<Image
+				src={src}
+				placeholder="blur"
+				priority
+				blurDataURL={lqip}
+				alt=""
+				sizes="100vw"
+				fill
+				style={{ objectFit: "cover", objectPosition: "center" }}
+			/>
 		</div>
 	);
 }
