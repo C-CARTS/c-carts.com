@@ -1,19 +1,21 @@
+import imageUrlBuilder from "@sanity/image-url";
 import "server-only";
+import { client } from "../sanity/lib/client";
 
 export default function buildUrl(
 	url: string,
 	width: number,
 	height: number,
 	deviceScale: number,
+	quality: number = 75,
 ): string {
-	const params = new URLSearchParams();
-
-	params.append("auto", "format");
-	params.append("fit", "crop");
-	params.append("dpr", deviceScale.toString());
-	params.append("h", height.toString());
-	params.append("w", width.toString());
-	params.append("crop", "entropy");
-
-	return `${url}?${params.toString()}`;
+	const builder = imageUrlBuilder(client);
+	return builder
+		.image(url)
+		.width(width)
+		.height(height)
+		.dpr(deviceScale)
+		.crop("focalpoint")
+		.quality(quality)
+		.url();
 }

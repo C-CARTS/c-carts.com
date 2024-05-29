@@ -19,7 +19,7 @@ export default async function HomepageHero() {
 	} = image;
 
 	// build the image url. We'll build it at 3x max size and next/image will scale it down as needed
-	const src = buildUrl(url, width, height, 1);
+	const src = buildUrl(url, width, height, 1, 60);
 
 	return (
 		<div className={styles.imgWrap}>
@@ -30,7 +30,6 @@ export default async function HomepageHero() {
 				blurDataURL={lqip}
 				alt=""
 				sizes="100vw"
-				quality={60}
 				fill
 				style={{ objectFit: "cover", objectPosition: "center" }}
 			/>
