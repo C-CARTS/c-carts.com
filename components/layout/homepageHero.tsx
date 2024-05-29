@@ -1,8 +1,8 @@
+import Image from "next/image";
 import "server-only";
 import { getImage, getSiteConfig } from "../../api";
 import buildUrl from "../../helpers/sanityImageUrl";
 import styles from "./homepageHero.module.css";
-import HomepageHeroImage from "./homepageHeroImage";
 
 export default async function HomepageHero() {
 	const {
@@ -23,7 +23,17 @@ export default async function HomepageHero() {
 
 	return (
 		<div className={styles.imgWrap}>
-			<HomepageHeroImage src={src} blurDataURL={lqip} />
+			<Image
+				src={src}
+				placeholder="blur"
+				priority
+				blurDataURL={lqip}
+				alt=""
+				sizes="100vw"
+				quality={60}
+				fill
+				style={{ objectFit: "cover", objectPosition: "center" }}
+			/>
 		</div>
 	);
 }
