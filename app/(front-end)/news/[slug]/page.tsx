@@ -10,6 +10,8 @@ interface Props {
 	params: Params;
 }
 
+export const revalidate = 14_400; // 4 hours
+
 export default async function Page({ params: { slug } }: Props) {
 	const news = await getNewsItem(slug);
 
