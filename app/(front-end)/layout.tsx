@@ -17,6 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
 	const metadata: Metadata = {
 		title: shortTitle,
 		description: title,
+		openGraph: {
+			siteName: shortTitle,
+		},
 	};
 
 	return metadata;
