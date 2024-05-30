@@ -47,6 +47,7 @@ export default async function generatePageMetadata(
 				type: "website",
 				title,
 				description,
+				siteName: siteTitle,
 				url: isHomepage ? `${baseUrl}/` : `${baseUrl}/${slug}`,
 				images: [
 					{
