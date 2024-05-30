@@ -17,6 +17,8 @@ interface Props {
 	params: Params;
 }
 
+export const revalidate = 14_400; // 4 hours
+
 export async function generateMetadata({
 	params: { slug },
 }: Props): Promise<Metadata> {

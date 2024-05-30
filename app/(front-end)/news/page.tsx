@@ -11,6 +11,8 @@ export async function generateMetadata(): Promise<Metadata> {
 	return metadata;
 }
 
+export const revalidate = 14_400; // 4 hours
+
 export default async function Home() {
 	const newsPage = await getNewsPage();
 	return (
