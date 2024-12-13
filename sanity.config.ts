@@ -7,6 +7,7 @@ import { structureTool } from "sanity/structure";
 import throwError from "./helpers/throwError";
 import structure from "./sanity/deskStructure";
 import { apiVersion, dataset, projectId } from "./sanity/env";
+import gtfsFeed from "./sanity/schema/documents/gtfsFeed";
 import job from "./sanity/schema/documents/job";
 import navItem from "./sanity/schema/documents/navItem";
 import news from "./sanity/schema/documents/news";
@@ -32,6 +33,7 @@ const config = defineConfig({
 			navItem,
 			news,
 			page,
+			gtfsFeed,
 			performance,
 			siteConfig,
 			// objects

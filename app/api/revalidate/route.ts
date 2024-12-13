@@ -54,6 +54,9 @@ export async function POST(req: NextRequest) {
 					revalidatePath(`/news/${slug.current}`);
 				}
 				break;
+			case "gtfsFeed":
+				revalidateTag("gtfsFeed");
+				break;
 			case "performance":
 				revalidateTag("performance");
 				break;
