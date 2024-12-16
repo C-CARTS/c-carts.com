@@ -10,6 +10,8 @@ import {
 	FcSettings,
 	FcTodoList,
 } from "react-icons/fc";
+import { MdFolderZip } from "react-icons/md";
+
 import type { StructureResolver } from "sanity/structure";
 import throwError from "../helpers/throwError";
 
@@ -32,6 +34,10 @@ const newsPageName =
 const performancePageName =
 	process.env.NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME ??
 	throwError("No NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME");
+
+const gtfsFeedPageName =
+	process.env.NEXT_PUBLIC_GTFS_PAGE_DOC_NAME ??
+	throwError("No NEXT_PUBLIC_GTFS_PAGE_DOC_NAME");
 
 const structure: StructureResolver = (S, _context) => {
 	return S.list()
@@ -62,6 +68,14 @@ const structure: StructureResolver = (S, _context) => {
 								.icon(FcTodoList)
 								.title("Navigation")
 								.child(S.documentTypeList("navItem").title("Nav Items")),
+							S.listItem()
+								.title("Live GTFS Feed")
+								.icon(MdFolderZip)
+								.child(
+									S.document()
+										.schemaType(gtfsFeedPageName)
+										.documentId(gtfsFeedPageName),
+								),
 						]),
 				),
 			S.listItem()

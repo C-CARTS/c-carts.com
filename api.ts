@@ -1,6 +1,7 @@
 import { Slug } from "sanity";
 import "server-only";
 import type FileAsset from "./@types/fileAsset";
+import GtfsFeed from "./@types/gtfsFeed";
 import type ImageData from "./@types/imageData";
 import type Job from "./@types/job";
 import type NavItem from "./@types/navItem";
@@ -229,4 +230,16 @@ export async function getJob(slug: string): Promise<Job> {
 	);
 
 	return data;
+}
+
+export async function getGtfsFeed(): Promise<GtfsFeed> {
+	const query = `*[_type == "gtfsFeed"][0]{ ..., feed{asset-> }}`;
+	return await client.fetch(
+		query,
+		{},
+		{
+			cache,
+			next: { tags: ["gtfsFeed"] },
+		},
+	);
 }

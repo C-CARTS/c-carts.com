@@ -12,6 +12,11 @@ export default async function generatePageMetadata(
 	isHomepage: boolean,
 ): Promise<Metadata> {
 	const { shortTitle: siteTitle } = await getSiteConfig();
+
+	if (page === null) {
+		return {};
+	}
+
 	const {
 		title: pageTitle,
 		openGraphImage: { asset, alt },
