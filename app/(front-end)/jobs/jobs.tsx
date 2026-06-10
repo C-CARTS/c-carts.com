@@ -7,13 +7,13 @@ export default async function Jobs() {
 
 	return (
 		<div>
-			<h2>Job Openings</h2>
-			{(!jobs || !jobs.length) && (
-				<p>
-					There are not currently any job openings. Please check back later.
-				</p>
-			)}
-			{jobs && jobs.map((job) => <Job key={job._id} job={job} />)}
+			{jobs &&
+				jobs.map((job) => (
+					<>
+						<h2>Job Openings</h2>
+						<Job key={job._id} job={job} />
+					</>
+				))}
 		</div>
 	);
 }
