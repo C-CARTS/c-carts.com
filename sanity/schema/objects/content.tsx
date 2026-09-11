@@ -1,4 +1,5 @@
 import {
+	MdAttachFile,
 	MdDirectionsBus,
 	MdInsertPhoto,
 	MdOutlinePictureAsPdf,
@@ -57,6 +58,11 @@ const content = defineType({
 			type: "fixedRoute",
 			icon: MdDirectionsBus,
 			title: "Fixed Route",
+		}),
+		defineArrayMember({
+			type: "fileAttachment",
+			icon: MdAttachFile,
+			title: "File",
 		}),
 	],
 });

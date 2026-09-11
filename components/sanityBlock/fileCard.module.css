@@ -1,0 +1,50 @@
+.card {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	max-width: 80ch;
+	margin: 0 0 1.5em 0;
+	padding: 0.75rem 1rem;
+	border: 1px solid var(--layout-border);
+	border-radius: 8px;
+	background: var(--primary-bg);
+	transition:
+		border-color var(--transition-duration) ease-out,
+		background var(--transition-duration) ease-out;
+}
+
+.card:hover,
+.card:focus-within {
+	border-color: var(--link-color);
+	background: var(--link-subtle);
+}
+
+.icon {
+	flex-shrink: 0;
+	font-size: 1.5em;
+	color: var(--link-color);
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.link {
+	font-weight: var(--bold-font-weight);
+	overflow-wrap: anywhere;
+}
+
+/* stretch the link so the whole card is clickable while keeping one accessible link */
+.link::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.meta {
+	font-size: 0.8em;
+	color: var(--primary-text);
+}

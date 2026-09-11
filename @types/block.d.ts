@@ -1,3 +1,4 @@
+import FileAttachment from "./fileAttachment";
 import ImageWithAlt from "./imageWithAlt";
 
 export type BlockText = {
@@ -23,6 +24,6 @@ export type Table = {
 	}[];
 };
 
-type BlockContent = BlockText | ImageWithAlt | Table;
+type BlockContent = BlockText | ImageWithAlt | Table | FileAttachment;
 
 export default BlockContent;

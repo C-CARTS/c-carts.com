@@ -1,6 +1,7 @@
 import { PortableText } from "next-sanity";
 import "server-only";
 import BlockContent from "../../@types/block";
+import FileCard from "./fileCard";
 import FixedRoute from "./fixedRoute/fixedRoute";
 import ImageWithAlt from "./imageWithAlt";
 import PdfLink from "./pdfLink";
@@ -15,6 +16,7 @@ const components = {
 		imageWithAlt: ImageWithAlt,
 		table: Table,
 		fixedRoute: FixedRoute,
+		fileAttachment: FileCard,
 	},
 	marks: {
 		pdfLink: PdfLink,

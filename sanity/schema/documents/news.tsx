@@ -25,7 +25,7 @@ const news = defineType({
 		}),
 		defineField({
 			name: "content",
-			title: "Job Description",
+			title: "Content",
 			type: "content",
 		}),
 	],

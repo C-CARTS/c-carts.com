@@ -15,6 +15,7 @@ import page from "./sanity/schema/documents/page";
 import performance from "./sanity/schema/documents/performance";
 import siteConfig from "./sanity/schema/documents/siteConfig";
 import content from "./sanity/schema/objects/content";
+import fileAttachment from "./sanity/schema/objects/fileAttachment";
 import fixedRoute from "./sanity/schema/objects/fixedRoute";
 import imageWithAlt from "./sanity/schema/objects/imageWithAlt";
 
@@ -38,6 +39,7 @@ const config = defineConfig({
 			siteConfig,
 			// objects
 			content,
+			fileAttachment,
 			fixedRoute,
 			imageWithAlt,
 		],
