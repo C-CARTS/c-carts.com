@@ -43,8 +43,6 @@ jobs:
         with:
           node-version: 24.x
           check-latest: true
-          cache: "pnpm"
-          cache-dependency-path: pnpm-lock.yaml
 
       - name: Enable Corepack
         run: |
