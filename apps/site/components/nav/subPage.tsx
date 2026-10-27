@@ -1,6 +1,7 @@
 "use client";
 
 import type { Slug } from "@c-carts/types";
+import { usePathname } from "next/navigation";
 import { type KeyboardEvent, useCallback, useContext } from "react";
 import { AppContext } from "./mainNavClient";
 import { Actions } from "./menuReducer";
@@ -14,6 +15,7 @@ interface Props {
 
 export default function SubPage({ title, slug, last }: Props) {
 	const { dispatch } = useContext(AppContext);
+	const pathname = usePathname();
 
 	const onKeyDown = useCallback(
 		({ key, shiftKey }: KeyboardEvent<HTMLAnchorElement>) => {
@@ -27,8 +29,15 @@ export default function SubPage({ title, slug, last }: Props) {
 
 	if (slug) {
 		const { current: slugVal } = slug;
+		const href = slugVal === "/" ? "/" : `/${slugVal.replace(/^\/+|\/+$/g, "")}`;
+		const currentPath = pathname.replace(/\/+$/, "") || "/";
 		return (
-			<a aria-current="page" href={`/${slugVal}`} onKeyDown={onKeyDown} className={styles.a}>
+			<a
+				aria-current={currentPath === href ? "page" : undefined}
+				href={href}
+				onKeyDown={onKeyDown}
+				className={styles.a}
+			>
 				<span>{title}</span>
 			</a>
 		);

@@ -1,5 +1,4 @@
 import "server-only";
-import { Fragment } from "react";
 import { getJobs } from "../../../api";
 import Job from "./job";
 
@@ -8,11 +7,9 @@ export default async function Jobs() {
 
 	return (
 		<div>
+			<h2>Job Openings</h2>
 			{jobs.map((job) => (
-				<Fragment key={job._id}>
-					<h2>Job Openings</h2>
-					<Job job={job} />
-				</Fragment>
+				<Job key={job._id} job={job} />
 			))}
 		</div>
 	);

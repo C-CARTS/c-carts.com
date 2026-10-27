@@ -98,7 +98,7 @@ const structure: StructureResolver = (S, _context) => {
 							S.listItem()
 								.title("Quarters")
 								.icon(FcLineChart)
-								.schemaType("news")
+								.schemaType("performance")
 								.child(S.documentTypeList("performance").title("Quarters")),
 						]),
 				),

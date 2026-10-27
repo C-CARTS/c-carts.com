@@ -89,5 +89,6 @@ export function getJob(slug: string) {
 }
 
 export async function getGtfsFeed() {
-	return required(await client.fetch(GTFS_QUERY, {}, cacheOptions(["gtfsFeed"])), "GTFS feed");
+	const id = serverEnv.NEXT_PUBLIC_GTFS_PAGE_DOC_NAME;
+	return required(await client.fetch(GTFS_QUERY, { id }, cacheOptions(["gtfsFeed"])), "GTFS feed");
 }

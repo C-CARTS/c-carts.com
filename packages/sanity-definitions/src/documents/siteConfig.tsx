@@ -34,7 +34,7 @@ const siteConfig = defineType({
 			name: "url",
 			title: "URL",
 			type: "string",
-			description: "The main site URL. Used to create canonical url.",
+			description: "Legacy value retained for compatibility. Canonical URLs use the site's NEXT_PUBLIC_BASE_URL.",
 			validation: (rule) => rule.required(),
 		}),
 		defineField({

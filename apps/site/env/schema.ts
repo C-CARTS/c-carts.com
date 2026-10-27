@@ -16,6 +16,7 @@ export const ServerEnvSchema = z.object({
 	NEXT_PUBLIC_JOBS_PAGE_DOC_NAME: documentId,
 	NEXT_PUBLIC_NEWS_PAGE_DOC_NAME: documentId,
 	NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME: documentId,
+	NEXT_PUBLIC_GTFS_PAGE_DOC_NAME: documentId.default("gtfsFeed"),
 	SANITY_WEBHOOK_SECRET: z.string().trim().min(1),
 	STATIC_SLUGS: z
 		.string()

@@ -48,6 +48,7 @@ The previous repository-root `.env` is **not** loaded by the workspace apps. Mov
 | `NEXT_PUBLIC_JOBS_PAGE_DOC_NAME`                              | Jobs listing document ID, normally `jobsPage`                                                                                 |
 | `NEXT_PUBLIC_NEWS_PAGE_DOC_NAME`                              | News listing document ID, normally `newsPage`                                                                                 |
 | `NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME`                       | Performance page ID, normally `performance`                                                                                   |
+| `NEXT_PUBLIC_GTFS_PAGE_DOC_NAME`                              | GTFS feed singleton ID, normally `gtfsFeed`                                                                                   |
 | `NEXT_PUBLIC_MAX_IMAGE_SIZE`                                  | Positive integer image-width limit, normally `1500`                                                                           |
 | `NEXT_PUBLIC_BASE_URL`                                        | Canonical public site URL                                                                                                     |
 | `STATIC_SLUGS`                                                | Comma-separated routes excluded from generic static-page generation                                                           |
@@ -102,7 +103,9 @@ Husky runs lint-staged and commitlint. Staged formatting is scoped to staged fil
 
 Keep pnpm's build-script allowlist narrow and review release-age exceptions rather than disabling install protections. Upgrade retained direct dependencies to latest stable, aligning framework/plugin peers and React versions; remove obsolete dependencies. Do not bypass compatibility with forced installs. Dependabot handles weekly package/Action updates, with deliberate review for framework majors and guarded minor/patch auto-merge subject to repository checks.
 
-Scoped, same-major overrides patch pinned `js-yaml`, `smol-toml`, and `undici` dependencies in Sanity's build tooling; remove them when the parents adopt the fixes. One moderate `uuid@10` advisory remains in `@sanity/cli -> typeid-js@0.3`: no patched 10.x release exists, so it is not forced across a breaking major. Recheck `pnpm audit --prod` with each Sanity CLI upgrade. This is a tooling dependency, not an assertion that all dependency advisories are cleared.
+Scoped overrides patch vulnerable dependencies in Sanity's build tooling, including `uuid` under `typeid-js@1.2.0`; keep each override scoped and remove it when the parent adopts the fix. Recheck `pnpm audit` and test the Studio build with each Sanity CLI upgrade.
+
+Sanity timetable code is treated as untrusted HTML and sanitized to the table/formatting elements and attributes the site supports before rendering. SVG image optimization remains enabled for Sanity assets with attachment disposition and a restrictive SVG content security policy.
 
 Studio runtime auto-updates are disabled: deployed Studio changes must pass dependency review and CI. CodeQL is retained. Bundle-size PR reporting was removed; Vercel Analytics and Speed Insights remain.
 
@@ -111,6 +114,8 @@ Review Node 24 type-package patch/minor updates separately; bulk helpers and Dep
 ## Caching and APIs
 
 Production Sanity data and page ISR retain a **14,400-second** safety-net interval. Slug enumeration remains uncached. Sanity's signed webhook at `/api/revalidate` verifies the raw request body, validates its payload, waits for Content Lake consistency, and expires the corresponding tags immediately using `{ expire: 0 }` before invalidating relevant paths. This deliberately does not switch publishing to stale-while-revalidate.
+
+The generated sitemap and `robots.txt` use each page's Sanity `includeInSitemap` and `disallowRobots` settings. A missing `includeInSitemap` value is treated as included for compatibility with existing content.
 
 Configure the existing Sanity webhook to keep sending `_id`, `_type`, and optional `slug.current`, using the matching server-only secret. Invalid/malformed requests do not invalidate content; unexpected failures are logged and return an error. File-asset changes also invalidate file/GTFS consumers.
 

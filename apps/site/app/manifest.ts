@@ -25,13 +25,13 @@ export default async function manifest(): Promise<FormFactorManifestType> {
 			{
 				src: "/images/screenshot-wide.jpeg",
 				sizes: "3501x1823",
-				type: "	image/jpeg",
+				type: "image/jpeg",
 				form_factor: "wide",
 			},
 			{
 				src: "/images/screenshot-mobile.jpeg",
 				sizes: "585x1262",
-				type: "	image/jpeg",
+				type: "image/jpeg",
 				form_factor: "narrow",
 			},
 		],

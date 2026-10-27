@@ -62,7 +62,7 @@ const page = defineType({
 			name: "disallowRobots",
 			type: "boolean",
 			title: "Disallow in robots.txt",
-			description: "Hide this route for search engines",
+			description: "Ask compliant crawlers not to fetch this route through robots.txt",
 			initialValue: false,
 			fieldset: "metadata",
 			validation: (rule) => rule.required(),

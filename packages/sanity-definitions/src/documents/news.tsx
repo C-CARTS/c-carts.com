@@ -32,7 +32,7 @@ const news = defineType({
 	preview: {
 		select: {
 			title: "headline",
-			subtitle: "dateTime",
+			subtitle: "_createdAt",
 		},
 	},
 });

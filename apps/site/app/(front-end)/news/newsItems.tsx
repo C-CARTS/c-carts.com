@@ -1,6 +1,6 @@
 import "server-only";
 import { getNews } from "../../../api";
-import Job from "./newsItem";
+import NewsItem from "./newsItem";
 
 export default async function NewsItems() {
 	const newsItems = await getNews();
@@ -10,7 +10,7 @@ export default async function NewsItems() {
 			<h2>Stories</h2>
 			{!newsItems.length && <p>There are not currently any news stories posted. Please check back later.</p>}
 			{newsItems.map((newsItem) => (
-				<Job key={newsItem._id} news={newsItem} />
+				<NewsItem key={newsItem._id} news={newsItem} />
 			))}
 		</div>
 	);

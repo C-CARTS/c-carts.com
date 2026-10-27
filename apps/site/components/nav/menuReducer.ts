@@ -48,10 +48,9 @@ export function reducer(state: State, action: Action): State {
 			return {
 				...state,
 				openIndexState: null,
-				focusIndexState: state.openIndexState,
 			};
 		case Actions.MenuButtonClicked:
-			if (state.openIndexState && state.openIndexState === action.clickedIndex) {
+			if (state.openIndexState !== null && state.openIndexState === action.clickedIndex) {
 				return {
 					...state,
 					openIndexState: null,

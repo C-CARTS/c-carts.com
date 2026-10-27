@@ -65,9 +65,14 @@ describe("cache and query contracts", () => {
 	it("uses static parameterized queries with preserved projections", () => {
 		expect(Object.keys(queries)).toHaveLength(13);
 		expect(queries.PAGE_BY_SLUG_QUERY).toContain("$slug");
+		expect(queries.JOBS_QUERY).toContain("_createdAt desc");
+		expect(queries.NEWS_QUERY).toContain("_createdAt desc");
+		expect(queries.PERFORMANCE_QUERY).toContain("order(year desc, quarter desc)");
 		expect(queries.SITE_CONFIG_QUERY).toContain("$id");
 		expect(queries.NAV_ITEMS_QUERY).toContain("children[]->{_id, title, slug}");
+		expect(queries.GTFS_QUERY).toContain("$id");
 		expect(queries.GTFS_QUERY).toContain("feed{asset->}");
+		expect(ServerEnvSchema.parse(fixture).NEXT_PUBLIC_GTFS_PAGE_DOC_NAME).toBe("gtfsFeed");
 	});
 });
 
