@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const OriginSchema = z.url().refine((value) => {
+export const StudioOriginSchema = z.url().refine((value) => {
 	const url = new URL(value);
 	return (
 		(url.protocol === "https:" || (url.protocol === "http:" && ["localhost", "127.0.0.1"].includes(url.hostname))) &&
@@ -12,14 +12,16 @@ const OriginSchema = z.url().refine((value) => {
 	);
 }, "STUDIO_ORIGIN must be an HTTPS origin (or local HTTP origin), without a path or credentials");
 
-export function studioRewrites(origin: string | undefined) {
-	if (!origin) {
-		// Generation and static checks do not need a deployed Studio. Production validation requires this value.
-		return [];
+export function studioRedirects(
+	origin: string | undefined,
+	{ permanent = true, siteOrigin }: { permanent?: boolean; siteOrigin?: string } = {},
+) {
+	const target = new URL(StudioOriginSchema.parse(origin)).origin;
+	if (siteOrigin && target === new URL(siteOrigin).origin) {
+		throw new Error("STUDIO_ORIGIN must not point back to the public site");
 	}
-	const target = new URL(OriginSchema.parse(origin)).origin;
 	return [
-		{ source: "/studio", destination: `${target}/studio` },
-		{ source: "/studio/:path*", destination: `${target}/studio/:path*` },
+		{ source: "/studio", destination: `${target}/`, permanent },
+		{ source: "/studio/:path*", destination: `${target}/:path*`, permanent },
 	];
 }

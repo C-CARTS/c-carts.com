@@ -23,6 +23,7 @@ jobs:
       SANITY_STUDIO_PROJECT_ID: testproject
       SANITY_STUDIO_DATASET: production
       SANITY_STUDIO_GOOGLE_MAPS_API_KEY: verification-only
+      STUDIO_ORIGIN: https://studio.example.com
 
     steps:
       - name: Checkout
@@ -64,6 +65,7 @@ jobs:
       NEXT_PUBLIC_MAX_IMAGE_SIZE: ${{ vars.NEXT_PUBLIC_MAX_IMAGE_SIZE }}
       NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
       SANITY_WEBHOOK_SECRET: ${{ secrets.SANITY_WEBHOOK_SECRET }}
+      # Explicit redirect destination; production uses https://studio.c-carts.com.
       STUDIO_ORIGIN: ${{ vars.STUDIO_ORIGIN }}
       STATIC_SLUGS: ${{ vars.STATIC_SLUGS }}
       SANITY_STUDIO_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}

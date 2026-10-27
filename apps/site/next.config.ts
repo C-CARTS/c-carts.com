@@ -1,15 +1,19 @@
 import type { NextConfig } from "next";
-import { studioRewrites } from "./lib/studio-routing";
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
+import { studioRedirects } from "./lib/studio-routing";
 
-const nextConfig: NextConfig = {
+const nextConfig = (phase: string): NextConfig => ({
 	images: {
 		dangerouslyAllowSVG: true,
 		qualities: [70, 75],
 		remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io", pathname: "/images/**" }],
 	},
-	async rewrites() {
-		return { beforeFiles: studioRewrites(process.env.STUDIO_ORIGIN), afterFiles: [], fallback: [] };
+	async redirects() {
+		return studioRedirects(process.env.STUDIO_ORIGIN, {
+			permanent: phase !== PHASE_DEVELOPMENT_SERVER,
+			...(process.env.NEXT_PUBLIC_BASE_URL ? { siteOrigin: process.env.NEXT_PUBLIC_BASE_URL } : {}),
+		});
 	},
-};
+});
 
 export default nextConfig;

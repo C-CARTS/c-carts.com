@@ -6,22 +6,18 @@
 	"outputDirectory": "dist",
 	"routes": [
 		{
-			"src": "/studio/((?:assets|static)/.*|[^/]+\\.(?:ico|png|svg|webmanifest))",
-			"dest": "/$1"
-		},
-		{
 			"handle": "filesystem"
 		},
 		{
-			"src": "/studio/.*\\.(?:js|mjs|css|map)$",
+			"src": "/(?:assets|static)(?:/.*)?",
 			"status": 404
 		},
 		{
-			"src": "/studio(?:/.*)?",
-			"dest": "/index.html"
+			"src": "/.*\\.(?:js|mjs|css|map|ico|png|svg|webmanifest)",
+			"status": 404
 		},
 		{
-			"src": "/",
+			"src": "/.*",
 			"dest": "/index.html"
 		}
 	]

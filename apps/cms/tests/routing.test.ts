@@ -6,31 +6,27 @@ function firstPathRoute(pathname: string) {
 }
 
 describe("standalone Studio static hosting", () => {
-	it.each([
-		["/studio/assets/app.js", "/assets/app.js"],
-		["/studio/assets/missing.css", "/assets/missing.css"],
-		["/studio/static/app.js", "/static/app.js"],
-		["/studio/favicon.ico", "/favicon.ico"],
-	])("serves %s as a file, never the SPA fallback", (pathname, expected) => {
-		const route = firstPathRoute(pathname);
-		expect(route).toBeDefined();
-		if (!route || !("src" in route) || !("dest" in route)) {
-			throw new Error("Missing static asset route");
-		}
-		expect(pathname.replace(new RegExp(`^${route.src}$`), route.dest)).toBe(expected);
+	it("serves existing files before applying the SPA fallback or missing-asset rules", () => {
+		expect(vercel.routes[0]).toEqual({ handle: "filesystem" });
 	});
 
-	it.each(["/studio", "/studio/", "/studio/structure/settings", "/studio/structure/page;drafts.homepage"])(
+	it.each(["/", "/structure/settings", "/structure/page;drafts.homepage", "/intent/edit/id=homepage;type=page"])(
 		"falls back to the Studio HTML for %s",
 		(pathname) => {
 			expect(firstPathRoute(pathname)).toMatchObject({ dest: "/index.html" });
 		},
 	);
 
-	it.each(["/studio/missing.js", "/studio/deep/missing.css", "/studio/missing.js.map"])(
-		"does not disguise an unrecognized asset request as HTML: %s",
-		(pathname) => {
-			expect(firstPathRoute(pathname)).toMatchObject({ status: 404 });
-		},
-	);
+	it.each([
+		"/assets/missing.js",
+		"/static/missing.css",
+		"/static/missing-font.woff2",
+		"/missing.js",
+		"/deep/missing.css",
+		"/missing.js.map",
+		"/favicon.ico",
+		"/manifest.webmanifest",
+	])("does not disguise an unrecognized asset request as HTML: %s", (pathname) => {
+		expect(firstPathRoute(pathname)).toMatchObject({ status: 404 });
+	});
 });

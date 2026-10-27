@@ -33,26 +33,26 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Site: `http://localhost:3000`. Studio: `http://localhost:3333/studio`. With `STUDIO_ORIGIN=http://localhost:3333`, the site's `/studio` path proxies to the standalone development server. `pnpm dev:site` and `pnpm dev:cms` run only the selected app. Schema/query types are generated before the site starts; regenerate after changes when running only the site.
+Site: `http://localhost:3000`. Studio: `http://localhost:3333/`. With `STUDIO_ORIGIN=http://localhost:3333`, the site's `/studio` path redirects to the standalone development server, stripping `/studio` and preserving deep links and query parameters. Development uses temporary 307 redirects to avoid caching localhost destinations. `pnpm dev:site` and `pnpm dev:cms` run only the selected app. Schema/query types are generated before the site starts; regenerate after changes when running only the site.
 
 The previous repository-root `.env` is **not** loaded by the workspace apps. Move its relevant values to the app-specific files; do not commit them. Next loads its standard `.env*` precedence. Sanity loads Studio env files through its CLI. Validation scripts use the corresponding loader rather than a different dotenv order.
 
 ### Site environment
 
-| Variable                                                      | Purpose                                                                                                |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET` | Existing Content Lake project and dataset; do not substitute a new project                             |
-| `NEXT_PUBLIC_SANITY_API_VERSION`                              | Dated content API contract, currently `2024-03-21`; package upgrades do not automatically advance this |
-| `NEXT_PUBLIC_SETTINGS_DOC_NAME`                               | Settings document ID, normally `siteConfig`                                                            |
-| `NEXT_PUBLIC_HOMEPAGE_DOC_NAME`                               | Home document ID, normally `homepage`                                                                  |
-| `NEXT_PUBLIC_JOBS_PAGE_DOC_NAME`                              | Jobs listing document ID, normally `jobsPage`                                                          |
-| `NEXT_PUBLIC_NEWS_PAGE_DOC_NAME`                              | News listing document ID, normally `newsPage`                                                          |
-| `NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME`                       | Performance page ID, normally `performance`                                                            |
-| `NEXT_PUBLIC_MAX_IMAGE_SIZE`                                  | Positive integer image-width limit, normally `1500`                                                    |
-| `NEXT_PUBLIC_BASE_URL`                                        | Canonical public site URL                                                                              |
-| `STATIC_SLUGS`                                                | Comma-separated routes excluded from generic static-page generation                                    |
-| `SANITY_WEBHOOK_SECRET`                                       | Required server-only signature secret; never put it in a public-prefixed variable                      |
-| `STUDIO_ORIGIN`                                               | Dedicated Studio upstream origin, without `/studio`, credentials, query, or fragment                   |
+| Variable                                                      | Purpose                                                                                                                       |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET` | Existing Content Lake project and dataset; do not substitute a new project                                                    |
+| `NEXT_PUBLIC_SANITY_API_VERSION`                              | Dated content API contract, currently `2024-03-21`; package upgrades do not automatically advance this                        |
+| `NEXT_PUBLIC_SETTINGS_DOC_NAME`                               | Settings document ID, normally `siteConfig`                                                                                   |
+| `NEXT_PUBLIC_HOMEPAGE_DOC_NAME`                               | Home document ID, normally `homepage`                                                                                         |
+| `NEXT_PUBLIC_JOBS_PAGE_DOC_NAME`                              | Jobs listing document ID, normally `jobsPage`                                                                                 |
+| `NEXT_PUBLIC_NEWS_PAGE_DOC_NAME`                              | News listing document ID, normally `newsPage`                                                                                 |
+| `NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME`                       | Performance page ID, normally `performance`                                                                                   |
+| `NEXT_PUBLIC_MAX_IMAGE_SIZE`                                  | Positive integer image-width limit, normally `1500`                                                                           |
+| `NEXT_PUBLIC_BASE_URL`                                        | Canonical public site URL                                                                                                     |
+| `STATIC_SLUGS`                                                | Comma-separated routes excluded from generic static-page generation                                                           |
+| `SANITY_WEBHOOK_SECRET`                                       | Required server-only signature secret; never put it in a public-prefixed variable                                             |
+| `STUDIO_ORIGIN`                                               | Studio redirect destination origin, without a path, credentials, query, or fragment; production: `https://studio.c-carts.com` |
 
 `NEXT_PUBLIC_*` values are public, not a way to store secrets. Only the explicit public env accessor is used by browser-compatible code. The site's Sanity configuration and webhook secret remain server-only.
 
@@ -88,6 +88,7 @@ Verification without live configuration can explicitly supply test-only public S
 $env:SANITY_STUDIO_PROJECT_ID = "testproject"
 $env:SANITY_STUDIO_DATASET = "production"
 $env:SANITY_STUDIO_GOOGLE_MAPS_API_KEY = "verification-only"
+$env:STUDIO_ORIGIN = "https://studio.example.com"
 pnpm ci:verify
 ```
 
@@ -115,12 +116,13 @@ Configure the existing Sanity webhook to keep sending `_id`, `_type`, and option
 
 `/api/gtfs` returns the configured feed bytes as `application/zip` with the download name `gtfs.zip`. Upstream/missing-asset failures are logged and return a generic error, not private diagnostics.
 
-## Vercel deployment and `/studio`
+## Vercel projects and domains
 
 **Changing this repository does not update Vercel project settings or perform a cutover.** Use two projects linked to the same repo:
 
 | Setting            | Public website                                                                | Studio                                 |
 | ------------------ | ----------------------------------------------------------------------------- | -------------------------------------- |
+| Production domain  | `c-carts.com`                                                                 | `studio.c-carts.com`                   |
 | Root directory     | `apps/site`                                                                   | `apps/cms`                             |
 | Framework          | Next.js                                                                       | Static/Other                           |
 | Runtime/build Node | `24.x`                                                                        | `24.x`                                 |
@@ -129,15 +131,36 @@ Configure the existing Sanity webhook to keep sending `_id`, `_type`, and option
 | Output             | Next's `.next`                                                                | `dist`                                 |
 | Environment        | Actual site values, `STUDIO_ORIGIN`, and public Studio type-generation values | Actual public `SANITY_STUDIO_*` values |
 
-Enable access to workspace files outside each project's root. Keep the existing public domain on the site project. Supply the dedicated CMS origin as `STUDIO_ORIGIN` without a path. Site rewrites preserve `/studio` and `/studio/:path*` before generic page routing. CMS CLI config sets the base path exactly once; its static configuration serves assets before deep-link HTML fallback.
+Enable access to workspace files outside each project's root. Keep `c-carts.com` on the site project and assign `studio.c-carts.com` to the CMS project. Studio is mounted at `/`, not `/studio`, with root-relative assets and a filesystem-first SPA fallback for deep links. Missing asset requests return 404 instead of Studio HTML.
 
 The site build extracts the CMS schema before compiling. Its Vercel project also needs `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`, and `SANITY_STUDIO_GOOGLE_MAPS_API_KEY` for that build step, matching the CMS project. Vercel projects do not share env settings automatically. Locally, the CMS command loads these from `apps/cms/.env.local`.
 
-Set production and preview origins explicitly. Do not point a preview silently at production Studio, and do not point the Studio upstream back to the public site. Verify preview pairing and Vercel deployment protection: a protected upstream must be accessible to its approved proxy without leaking bypass tokens or disabling protection accidentally.
+### Redirects and environment scopes
 
-Before cutover, verify `/studio`, trailing slash, deep document URLs, authentication redirects, JS/CSS assets, browser CORS credentials, and Maps key restrictions. Sanity CORS must allow the public Studio origin and approved development/preview origins. Any CORS change, schema publication, or external Studio registration is an administrative action, not part of building the source. If registering a self-hosted Studio, review `sanity deploy --external --url https://c-carts.com/studio` and its schema-publication effects before running it.
+Set the site's Production `STUDIO_ORIGIN` to `https://studio.c-carts.com` and keep local development set to `http://localhost:3333`. Set Preview destinations explicitly to the intended CMS preview deployment or stable preview alias; the two Vercel projects are not automatically paired by this repository. Do not silently route previews to production Studio. For GitHub's trusted build job, set its `STUDIO_ORIGIN` repository variable explicitly as well.
 
-Keep the previous production deployment available until the split preview works. Roll back by restoring the previous deployment and its corresponding project root/build/environment settings. Keep the existing Sanity project, dataset, content, and webhook endpoint throughout.
+Built deployments issue permanent **308 redirects** from `/studio` and `/studio/:path*`, before generic page routing. The old prefix is removed, with nested paths and query strings retained:
+
+```text
+https://c-carts.com/studio
+  -> https://studio.c-carts.com/
+https://c-carts.com/studio/structure/page;drafts.homepage?view=preview
+  -> https://studio.c-carts.com/structure/page;drafts.homepage?view=preview
+```
+
+Changing the destination requires rebuilding/redeploying the site; restart local development after changing its env file. Existing app-specific env files are not changed automatically. Origins with paths/credentials are rejected, as is redirecting back to the public site's own origin. There is no longer a Studio proxy: users navigate to the CMS host directly, and Vercel deployment protection applies normally to that host. Do not put protection-bypass tokens in redirect destinations.
+
+### Administrative cutover
+
+1. Configure the CMS project and its environment, deploy it, and add `studio.c-carts.com` under that project's domains. Apply the exact DNS records Vercel supplies at the authoritative DNS provider; do not guess an IP or CNAME. Wait for Vercel to confirm domain ownership and working HTTPS.
+2. In the existing Sanity project's CORS settings, allow `https://studio.c-carts.com` with credentials and explicitly approved local/preview origins. The origin excludes a path. With the provided local URLs, use `http://localhost:3333`; if opening `127.0.0.1:3333` directly, allow that origin separately. Restrict the public Google Maps browser key to the new Studio host and approved local/preview hosts and required APIs.
+3. If maintaining a self-hosted Studio registration, update its URL to `https://studio.c-carts.com`. Review `sanity deploy --external --url https://studio.c-carts.com` and its schema-publication effects before running it. Source builds do not perform registration or publish schemas.
+4. Verify Studio login/logout, editor tools, Maps, document navigation, intent links, deep-link refresh, favicon/manifest, and JS/CSS assets on the new host. Verify approved previews and their Vercel protection without weakening protection or leaking tokens.
+5. Configure the public site's Production redirect destination, confirm its existing domain remains `c-carts.com`, and deploy the site only after Studio is working. Verify `/studio`, `/studio/`, nested and encoded document paths, and query parameters. Keep `/api/revalidate` and its webhook configuration on the public site unchanged; navigation redirects do not require new public-site API CORS rules.
+
+All DNS, Vercel domain/env, Sanity CORS/registration, key-restriction changes, and remote deployments are separate administrative actions requiring authorization. Do not remove previous allowed origins until the migration is verified and older deployments no longer need them.
+
+Keep the previous deployments and settings for rollback. **308 redirects can be cached permanently by clients**: reverting the website deployment does not revoke a cached redirect. Keep `studio.c-carts.com` serving a working Studio even during rollback. Preserve the existing Sanity project, dataset, content, and webhook endpoint throughout.
 
 ## Validation and contribution
 

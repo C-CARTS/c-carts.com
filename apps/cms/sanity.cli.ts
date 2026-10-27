@@ -6,28 +6,8 @@ export default defineCliConfig({
 		projectId: studioEnv.SANITY_STUDIO_PROJECT_ID,
 		dataset: studioEnv.SANITY_STUDIO_DATASET,
 	},
-	project: {
-		basePath: "/studio",
-	},
 	deployment: {
 		autoUpdates: false,
-	},
-	vite: {
-		plugins: [
-			{
-				name: "studio-static-base-path",
-				generateBundle: {
-					order: "post",
-					handler(_options, bundle) {
-						const html = bundle["index.html"];
-						if (html?.type === "asset" && typeof html.source === "string") {
-							// Sanity 6's default favicon links ignore project.basePath.
-							html.source = html.source.replaceAll('href="/static/', 'href="/studio/static/');
-						}
-					},
-				},
-			},
-		],
 	},
 	typegen: {
 		enabled: false,

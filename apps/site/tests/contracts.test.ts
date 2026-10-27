@@ -5,7 +5,7 @@ import { cacheOptions, DATA_CACHE_TTL_SECONDS } from "../lib/sanity/cache";
 import { gtfsResponse } from "../lib/sanity/gtfs";
 import * as queries from "../lib/sanity/queries";
 import { invalidationTargets, readWebhook, waitForContentLake } from "../lib/sanity/webhook";
-import { studioRewrites } from "../lib/studio-routing";
+import { studioRedirects } from "../lib/studio-routing";
 
 const fixture = {
 	NEXT_PUBLIC_SANITY_PROJECT_ID: "testproject",
@@ -137,20 +137,38 @@ describe("GTFS downloads", () => {
 	});
 });
 
-describe("standalone Studio rewrites", () => {
-	it("preserves the base path and deep-link suffix once", () => {
-		expect(studioRewrites("https://cms.example.com")).toEqual([
-			{ source: "/studio", destination: "https://cms.example.com/studio" },
-			{ source: "/studio/:path*", destination: "https://cms.example.com/studio/:path*" },
+describe("standalone Studio redirects", () => {
+	it("permanently redirects old paths to the Studio domain root", () => {
+		expect(studioRedirects("https://studio.c-carts.com")).toEqual([
+			{ source: "/studio", destination: "https://studio.c-carts.com/", permanent: true },
+			{ source: "/studio/:path*", destination: "https://studio.c-carts.com/:path*", permanent: true },
 		]);
-		expect(studioRewrites("http://localhost:3333")[1]?.destination).toBe("http://localhost:3333/studio/:path*");
+	});
+	it("uses non-cacheable local development redirects", () => {
+		expect(studioRedirects("http://localhost:3333", { permanent: false })).toEqual([
+			{ source: "/studio", destination: "http://localhost:3333/", permanent: false },
+			{ source: "/studio/:path*", destination: "http://localhost:3333/:path*", permanent: false },
+		]);
+	});
+	it("requires an explicit destination and rejects a self-origin loop", () => {
+		expect(() => studioRedirects(undefined)).toThrow();
+		expect(() => studioRedirects("")).toThrow();
+		expect(() => studioRedirects("https://c-carts.com/", { siteOrigin: "https://c-carts.com" })).toThrow(
+			"must not point back",
+		);
+	});
+	it("uses explicitly configured preview origins without production fallback", () => {
+		expect(studioRedirects("https://cms-preview.example.com/")[0]?.destination).toBe(
+			"https://cms-preview.example.com/",
+		);
 	});
 	it.each([
 		"http://remote.example.com",
 		"https://example.com/studio",
 		"https://user:password@example.com",
 		"https://example.com?token=secret",
-	])("rejects invalid upstream %s", (origin) => {
-		expect(() => studioRewrites(origin)).toThrow();
+		"https://example.com#fragment",
+	])("rejects invalid destination %s", (origin) => {
+		expect(() => studioRedirects(origin)).toThrow();
 	});
 });

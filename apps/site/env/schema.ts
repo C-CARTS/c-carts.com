@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { StudioOriginSchema } from "../lib/studio-routing";
 
 const documentId = z.string().trim().min(1);
 export const PublicEnvSchema = z.object({
@@ -26,5 +27,5 @@ export const ServerEnvSchema = z.object({
 				.filter(Boolean),
 		)
 		.pipe(z.array(z.string()).min(1)),
-	STUDIO_ORIGIN: z.url(),
+	STUDIO_ORIGIN: StudioOriginSchema,
 });
