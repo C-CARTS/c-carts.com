@@ -1,0 +1,25 @@
+{
+	"version": "0.2",
+	"language": "en",
+	"words": [
+		"clsx",
+		"fieldsets",
+		"focalpoint",
+		"geopoint",
+		"GROQ",
+		"GTFS",
+		"hotspot",
+		"lockfiles",
+		"lqip",
+		"nextjs",
+		"Parens",
+		"popovertarget",
+		"portabletext",
+		"rantoul",
+		"typechecks",
+		"typegen",
+		"usehooks",
+		"Vercel"
+	],
+	"ignorePaths": ["**/node_modules/**", "**/.next/**", "**/dist/**", "**/schema.json", "**/sanity-types.ts"]
+}

@@ -1,0 +1,49 @@
+{
+	"name": "@c-carts/site",
+	"version": "2.1.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": "24.x"
+	},
+	"scripts": {
+		"dev": "next dev",
+		"prebuild": "pnpm --filter @c-carts/cms typegen && pnpm validate:env",
+		"build": "next build",
+		"start": "next start",
+		"typegen": "next typegen",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"test": "vitest run",
+		"validate:env": "tsx scripts/validate-env.ts",
+		"clean": "tsx ../../scripts/clean.ts .next tsconfig.tsbuildinfo next-env.d.ts"
+	},
+	"dependencies": {
+		"@c-carts/types": "workspace:*",
+		"@portabletext/react": "^8.0.1",
+		"@portabletext/types": "^4.0.2",
+		"@sanity/client": "^8.11.0",
+		"@sanity/image-url": "^2.1.1",
+		"@sanity/webhook": "^4.0.4",
+		"@vercel/analytics": "^2.0.1",
+		"@vercel/speed-insights": "^2.0.0",
+		"clsx": "^2.1.1",
+		"groq": "^6.20.0",
+		"next": "16.4.3",
+		"react": "19.3.1",
+		"react-dom": "19.3.1",
+		"react-icons": "^5.7.0",
+		"sanitize-html": "^2.18.1",
+		"server-only": "^0.0.1",
+		"sharp": "^0.35.5",
+		"zod": "^4.6.7"
+	},
+	"devDependencies": {
+		"@next/env": "16.4.3",
+		"@types/node": "^24.19.2",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"@types/sanitize-html": "^2.16.2",
+		"typescript": "^7.0.2",
+		"vitest": "^5.0.5"
+	}
+}

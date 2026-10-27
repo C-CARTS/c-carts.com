@@ -1,39 +1,26 @@
 {
-	"[graphql]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"[css][graphql][javascript][javascriptreact][json][jsonc][typescript][typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
 	},
-	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
 	},
-	"[javascriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"[markdown]": {
+		"editor.defaultFormatter": "vscode.markdown-language-features"
 	},
-	"[json]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
 	},
-	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"biome.enabled": true,
+	"cSpell.configFile": ".vscode/cspell.json",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.biome": "explicit",
+		"source.organizeImports.biome": "explicit"
 	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"cSpell.words": [
-		"clsx",
-		"fieldsets",
-		"focalpoint",
-		"geopoint",
-		"GTFS",
-		"hotspot",
-		"lqip",
-		"nextjs",
-		"Parens",
-		"popovertarget",
-		"portabletext",
-		"rantoul",
-		"usehooks"
-	],
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
+	"editor.rulers": [120],
+	"eslint.enable": false,
+	"prettier.enable": false,
 	"files.associations": {
 		".env": "env",
 		".env.*": "env"
@@ -43,13 +30,28 @@
 		"**/.git": true,
 		"**/.next": true,
 		"**/.sanity": true,
-		"**/bin": true,
+		"**/.vercel": true,
 		"**/dist": true,
 		"**/node_modules": true,
-		"**/obj": true,
-		"next-env.d.ts": true
+		"**/next-env.d.ts": true
 	},
 	"files.insertFinalNewline": true,
 	"files.trimFinalNewlines": true,
-	"files.trimTrailingWhitespace": true
+	"files.trimTrailingWhitespace": true,
+	"files.watcherExclude": {
+		"**/.next/**": true,
+		"**/.sanity/**": true,
+		"**/.vercel/**": true,
+		"**/dist/**": true,
+		"**/node_modules/**": true
+	},
+	"search.exclude": {
+		"**/.next": true,
+		"**/.sanity": true,
+		"**/.vercel": true,
+		"**/dist": true,
+		"**/node_modules": true,
+		"**/schema.json": true,
+		"**/sanity-types.ts": true
+	}
 }

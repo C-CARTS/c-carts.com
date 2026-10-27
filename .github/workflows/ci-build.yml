@@ -1,58 +1,105 @@
-name: CI - Build
+name: CI
 
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches: [main]
   pull_request:
-    branches: ["main"]
 
-env:
-  NEXT_PUBLIC_SANITY_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
-  NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
-  NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-  NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
-  NEXT_PUBLIC_SETTINGS_DOC_NAME: ${{ vars.NEXT_PUBLIC_SETTINGS_DOC_NAME }}
-  NEXT_PUBLIC_HOMEPAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_HOMEPAGE_DOC_NAME }}
-  NEXT_PUBLIC_JOBS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_JOBS_PAGE_DOC_NAME }}
-  NEXT_PUBLIC_NEWS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_NEWS_PAGE_DOC_NAME }}
-  NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME }}
-  NEXT_PUBLIC_MAX_IMAGE_SIZE: ${{ vars.NEXT_PUBLIC_MAX_IMAGE_SIZE }}
-  SANITY_WEBHOOK_SECRET: ${{ secrets.SANITY_WEBHOOK_SECRET }}
-  NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
-  STATIC_SLUGS: ${{ vars.STATIC_SLUGS }}
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  build:
-    name: "Build"
+  verify:
+    name: Verify
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [24.x]
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      SANITY_STUDIO_PROJECT_ID: testproject
+      SANITY_STUDIO_DATASET: production
+      SANITY_STUDIO_GOOGLE_MAPS_API_KEY: verification-only
+      STUDIO_ORIGIN: https://studio.example.com
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/checkout@v7
         with:
-          node-version: ${{ matrix.node-version }}
-          check-latest: true
+          persist-credentials: false
 
-      - name: Enable Corepack
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
+      - name: Setup pnpm and Node 24
+        uses: pnpm/setup@v3
+        with:
+          runtime: node@24
+          cache: true
+          require-lockfile: true
 
-      - name: Install Dependencies
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm add -g @sanity/cli@latest
+      - name: Generate, lint, typecheck, and test
+        run: pnpm ci:verify
 
-      - name: Build Next
-        run: pnpm run build:next
+      - name: Build Studio without live credentials
+        run: pnpm --filter @c-carts/cms build
 
-      - name: Build Sanity
-        run: pnpm run build:sanity
+  build:
+    name: Build
+    needs: verify
+    if: >-
+      github.actor != 'dependabot[bot]' &&
+      (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SANITY_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{  secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+      NEXT_PUBLIC_SETTINGS_DOC_NAME: ${{ vars.NEXT_PUBLIC_SETTINGS_DOC_NAME }}
+      NEXT_PUBLIC_HOMEPAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_HOMEPAGE_DOC_NAME }}
+      NEXT_PUBLIC_JOBS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_JOBS_PAGE_DOC_NAME }}
+      NEXT_PUBLIC_NEWS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_NEWS_PAGE_DOC_NAME }}
+      NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME }}
+      NEXT_PUBLIC_GTFS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_GTFS_PAGE_DOC_NAME }}
+      NEXT_PUBLIC_MAX_IMAGE_SIZE: ${{ vars.NEXT_PUBLIC_MAX_IMAGE_SIZE }}
+      NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
+      SANITY_WEBHOOK_SECRET: ${{ secrets.SANITY_WEBHOOK_SECRET }}
+      # Explicit redirect destination; production uses https://studio.c-carts.com.
+      STUDIO_ORIGIN: ${{ vars.STUDIO_ORIGIN }}
+      STATIC_SLUGS: ${{ vars.STATIC_SLUGS }}
+      SANITY_STUDIO_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
+      SANITY_STUDIO_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+      SANITY_STUDIO_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+      SANITY_STUDIO_GOOGLE_MAPS_API_KEY: ${{  secrets.SANITY_STUDIO_GOOGLE_MAPS_API_KEY }}
+      SANITY_STUDIO_SETTINGS_DOC_NAME: ${{ vars.NEXT_PUBLIC_SETTINGS_DOC_NAME }}
+      SANITY_STUDIO_HOMEPAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_HOMEPAGE_DOC_NAME }}
+      SANITY_STUDIO_JOBS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_JOBS_PAGE_DOC_NAME }}
+      SANITY_STUDIO_NEWS_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_NEWS_PAGE_DOC_NAME }}
+      SANITY_STUDIO_PERFORMANCE_PAGE_DOC_NAME: ${{ vars.NEXT_PUBLIC_PERFORMANCE_PAGE_DOC_NAME }}
+      SANITY_STUDIO_GTFS_PAGE_DOC_NAME: ${{ vars.SANITY_STUDIO_GTFS_PAGE_DOC_NAME || 'gtfsFeed' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Setup pnpm and Node 24
+        uses: pnpm/setup@v3
+        with:
+          runtime: node@24
+          cache: true
+          require-lockfile: true
+
+      - name: Cache Next.js build
+        uses: actions/cache@v6
+        with:
+          path: apps/site/.next/cache
+          key: ${{ runner.os }}-node24-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('apps/site/**/*.ts', 'apps/site/**/*.tsx', 'apps/site/**/*.js', 'apps/site/**/*.jsx', 'packages/**/*.ts', 'packages/**/*.tsx', '!**/node_modules/**', '!**/.next/**') }}
+          restore-keys: |
+            ${{ runner.os }}-node24-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+
+      - name: Build site and Studio
+        run: pnpm build

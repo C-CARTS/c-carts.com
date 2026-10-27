@@ -1,0 +1,8 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"types": ["@sanity/client"]
+	},
+	"include": ["sanity-types.ts"],
+	"exclude": ["node_modules"]
+}

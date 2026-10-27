@@ -26,6 +26,10 @@ Closes # <!-- Issue # here -->
 - [ ] I have updated the documentation as required
 - [ ] All the tests have passed
 
+<!-- Record the exact commands and results for frozen install, pnpm ci:verify,
+pnpm build, and any route/Studio smoke checks. Explain checks not run and list
+Vercel/Sanity administrative changes separately from source-code changes. -->
+
 ## ℹ Additional Information
 
 <!-- Any additional information like breaking changes, dependencies added, screenshots, comparisons between new and old behavior, etc. -->

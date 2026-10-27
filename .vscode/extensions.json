@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"biomejs.biome",
+		"streetsidesoftware.code-spell-checker",
+		"redhat.vscode-yaml",
+		"EditorConfig.EditorConfig",
+		"github.vscode-github-actions"
+	],
+	"unwantedRecommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
+}

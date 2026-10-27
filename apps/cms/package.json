@@ -1,0 +1,39 @@
+{
+	"name": "@c-carts/cms",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": "24.x"
+	},
+	"scripts": {
+		"dev": "sanity dev --host 127.0.0.1",
+		"build": "sanity build",
+		"start": "sanity preview --host 127.0.0.1",
+		"schema:extract": "sanity schema extract --path schema.json --enforce-required-fields --force",
+		"typegen": "pnpm schema:extract && sanity typegen generate",
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run",
+		"clean": "tsx ../../scripts/clean.ts dist .sanity schema.json tsconfig.tsbuildinfo"
+	},
+	"dependencies": {
+		"@c-carts/sanity-definitions": "workspace:*",
+		"@sanity/code-input": "7.3.14",
+		"@sanity/google-maps-input": "6.1.17",
+		"@sanity/table": "3.1.20",
+		"@sanity/vision": "6.20.0",
+		"react": "19.3.1",
+		"react-dom": "19.3.1",
+		"react-icons": "5.7.0",
+		"sanity": "6.20.0",
+		"styled-components": "6.6.0",
+		"zod": "4.6.7"
+	},
+	"devDependencies": {
+		"@types/node": "24.19.2",
+		"@types/react": "19.3.0",
+		"@types/react-dom": "19.3.0",
+		"typescript": "7.0.2",
+		"vitest": "5.0.5"
+	}
+}
