@@ -1,0 +1,24 @@
+{
+	"name": "@c-carts/types",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": "24.x"
+	},
+	"exports": {
+		".": "./sanity-types.ts"
+	},
+	"types": "./sanity-types.ts",
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"clean": "tsx ../../scripts/clean.ts sanity-types.ts tsconfig.tsbuildinfo"
+	},
+	"peerDependencies": {
+		"@sanity/client": "^8.11.0"
+	},
+	"devDependencies": {
+		"@sanity/client": "8.11.0",
+		"typescript": "7.0.2"
+	}
+}

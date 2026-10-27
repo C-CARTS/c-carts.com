@@ -1,0 +1,28 @@
+{
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"framework": null,
+	"installCommand": "pnpm install --frozen-lockfile",
+	"buildCommand": "pnpm --filter @c-carts/cms build",
+	"outputDirectory": "dist",
+	"routes": [
+		{
+			"src": "/studio/((?:assets|static)/.*|[^/]+\\.(?:ico|png|svg|webmanifest))",
+			"dest": "/$1"
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "/studio/.*\\.(?:js|mjs|css|map)$",
+			"status": 404
+		},
+		{
+			"src": "/studio(?:/.*)?",
+			"dest": "/index.html"
+		},
+		{
+			"src": "/",
+			"dest": "/index.html"
+		}
+	]
+}

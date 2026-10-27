@@ -1,1 +1,1 @@
-npx lint-staged
+pnpm exec lint-staged --config lintstagedrc.mjs --concurrent false
