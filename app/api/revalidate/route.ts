@@ -33,25 +33,28 @@ export async function POST(req: NextRequest) {
 
 	try {
 		const { _id: id, _type: type, slug } = body;
-		console.info("Revalidating", { id, type, slug });
+		const slugValue = slug?.current;
+		console.info("Revalidating", { id, type, slug: slugValue });
 
 		switch (type) {
 			case "page":
-				if (slug?.current === HOMEPAGE_NAME) {
-					revalidateTag(`page-${HOMEPAGE_NAME}`);
+				// Fixed pages (homepage, jobs, news, performance) are tagged by _id; others by slug.
+				revalidateTag(`page-${id}`);
+				if (id === HOMEPAGE_NAME) {
 					revalidatePath("/");
-				} else if (slug?.current) {
-					revalidateTag(`page-${slug}`);
-					revalidatePath(`/${slug.current}`);
+				}
+				if (slugValue) {
+					revalidateTag(`page-${slugValue}`);
+					revalidatePath(`/${slugValue}`);
 				} else {
 					console.warn("No slug.current in post", { slug });
 				}
 				break;
 			case "news":
 				revalidateTag("news");
-				revalidateTag(`news-${slug}`);
-				if (slug?.current) {
-					revalidatePath(`/news/${slug.current}`);
+				if (slugValue) {
+					revalidateTag(`news-${slugValue}`);
+					revalidatePath(`/news/${slugValue}`);
 				}
 				break;
 			case "gtfsFeed":
@@ -62,9 +65,9 @@ export async function POST(req: NextRequest) {
 				break;
 			case "job":
 				revalidateTag("jobs");
-				revalidateTag(`jobs-${slug}`);
-				if (slug?.current) {
-					revalidatePath(`/jobs/${slug.current}`);
+				if (slugValue) {
+					revalidateTag(`jobs-${slugValue}`);
+					revalidatePath(`/jobs/${slugValue}`);
 				}
 				break;
 			case NEXT_PUBLIC_SETTINGS_DOC_NAME:
@@ -81,7 +84,7 @@ export async function POST(req: NextRequest) {
 				return new Response(`No managed type: ${type}`, { status: 304 });
 		}
 
-		return new Response(`Revalidated "${type}" with slug "${slug?.current}"`, {
+		return new Response(`Revalidated "${type}" with slug "${slugValue}"`, {
 			status: 200,
 		});
 	} catch (err) {

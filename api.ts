@@ -13,7 +13,17 @@ import throwError from "./helpers/throwError";
 import { client } from "./sanity/lib/client";
 
 const isDev = process.env.NODE_ENV === "development";
-const cache = isDev ? "no-store" : "force-cache";
+
+// Cached responses must expire. With `cache: "force-cache"` they never do, and the Vercel Data Cache keeps them
+// across deployments, so ISR regeneration could serve stale Sanity content. Webhook tag revalidation handles
+// immediate updates; this TTL is the safety net.
+const DATA_CACHE_TTL_SECONDS = 14_400; // 4 hours
+
+function cacheOptions(tags: string[]) {
+	return isDev
+		? { cache: "no-store" as const }
+		: { next: { revalidate: DATA_CACHE_TTL_SECONDS, tags } };
+}
 
 const settingsName =
 	process.env.NEXT_PUBLIC_SETTINGS_DOC_NAME ??
@@ -40,10 +50,7 @@ export async function getSiteConfig(): Promise<SiteConfig> {
 	return await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [settingsName] },
-		},
+		cacheOptions([settingsName]),
 	);
 }
 
@@ -58,10 +65,7 @@ export async function getNavItems(): Promise<NavItem[]> {
 	return await client.fetch<NavItem[]>(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: ["nav"] },
-		},
+		cacheOptions(["nav"]),
 	);
 }
 
@@ -70,10 +74,7 @@ export async function getHomepage(): Promise<Page> {
 	return await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [`page-${homepageName}`] },
-		},
+		cacheOptions([`page-${homepageName}`]),
 	);
 }
 
@@ -82,10 +83,7 @@ export async function getJobsPage(): Promise<Page> {
 	return await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [`page-${jobsPageName}`] },
-		},
+		cacheOptions([`page-${jobsPageName}`]),
 	);
 }
 
@@ -94,10 +92,7 @@ export async function getPerformancePage(): Promise<Page> {
 	return await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [`page-${performancePageName}`] },
-		},
+		cacheOptions([`page-${performancePageName}`]),
 	);
 }
 
@@ -106,10 +101,7 @@ export async function getNewsPage(): Promise<Page> {
 	return await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [`page-${newsPageName}`] },
-		},
+		cacheOptions([`page-${newsPageName}`]),
 	);
 }
 
@@ -118,10 +110,7 @@ export async function getPage(slug: string): Promise<Page> {
 	const data = await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [`page-${slug}`] },
-		},
+		cacheOptions([`page-${slug}`]),
 	);
 	return data;
 }
@@ -131,10 +120,7 @@ export async function getImage(id: string): Promise<ImageData> {
 	const data = await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: ["images"] },
-		},
+		cacheOptions(["images"]),
 	);
 	return data;
 }
@@ -149,10 +135,7 @@ export async function getFile(id: string): Promise<FileAsset> {
 	const data = await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: ["files"] },
-		},
+		cacheOptions(["files"]),
 	);
 	return data;
 }
@@ -163,10 +146,7 @@ export async function getJobs(): Promise<Job[]> {
 	const data = await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: ["jobs"] },
-		},
+		cacheOptions(["jobs"]),
 	);
 
 	return data;
@@ -178,10 +158,7 @@ export async function getNews(): Promise<News[]> {
 	const data = await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: ["news"] },
-		},
+		cacheOptions(["news"]),
 	);
 
 	return data;
@@ -193,10 +170,7 @@ export async function getNewsItem(slug: string): Promise<News> {
 	const data = await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [`news-${slug}`] },
-		},
+		cacheOptions([`news-${slug}`]),
 	);
 
 	return data;
@@ -208,10 +182,7 @@ export async function getPerformanceData(): Promise<Performance[]> {
 	const data = await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [`performance`] },
-		},
+		cacheOptions([`performance`]),
 	);
 
 	return data;
@@ -223,10 +194,7 @@ export async function getJob(slug: string): Promise<Job> {
 	const data = await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: [`jobs-${slug}`] },
-		},
+		cacheOptions([`jobs-${slug}`]),
 	);
 
 	return data;
@@ -237,9 +205,6 @@ export async function getGtfsFeed(): Promise<GtfsFeed> {
 	return await client.fetch(
 		query,
 		{},
-		{
-			cache,
-			next: { tags: ["gtfsFeed"] },
-		},
+		cacheOptions(["gtfsFeed"]),
 	);
 }
