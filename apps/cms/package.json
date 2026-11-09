@@ -18,14 +18,14 @@
 	},
 	"dependencies": {
 		"@c-carts/sanity-definitions": "workspace:*",
-		"@sanity/code-input": "7.3.14",
+		"@sanity/code-input": "7.3.15",
 		"@sanity/google-maps-input": "6.1.17",
 		"@sanity/table": "3.1.20",
-		"@sanity/vision": "6.21.0",
+		"@sanity/vision": "6.22.0",
 		"react": "19.3.1",
 		"react-dom": "19.3.1",
 		"react-icons": "5.7.0",
-		"sanity": "6.21.0",
+		"sanity": "6.22.0",
 		"styled-components": "6.6.0",
 		"zod": "4.6.7"
 	},
