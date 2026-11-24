@@ -2,6 +2,7 @@ import { defineCliConfig } from "sanity/cli";
 import { studioEnv } from "./env";
 
 export default defineCliConfig({
+	studioHost: "c-carts",
 	api: {
 		projectId: studioEnv.SANITY_STUDIO_PROJECT_ID,
 		dataset: studioEnv.SANITY_STUDIO_DATASET,

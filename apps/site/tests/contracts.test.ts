@@ -144,9 +144,9 @@ describe("GTFS downloads", () => {
 
 describe("standalone Studio redirects", () => {
 	it("permanently redirects old paths to the Studio domain root", () => {
-		expect(studioRedirects("https://studio.c-carts.com")).toEqual([
-			{ source: "/studio", destination: "https://studio.c-carts.com/", permanent: true },
-			{ source: "/studio/:path*", destination: "https://studio.c-carts.com/:path*", permanent: true },
+		expect(studioRedirects("https://c-carts.sanity.studio")).toEqual([
+			{ source: "/studio", destination: "https://c-carts.sanity.studio/", permanent: true },
+			{ source: "/studio/:path*", destination: "https://c-carts.sanity.studio/:path*", permanent: true },
 		]);
 	});
 	it("uses non-cacheable local development redirects", () => {

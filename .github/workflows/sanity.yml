@@ -53,7 +53,7 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/setup@v3
         with:
-          runtime: node@26
+          runtime: node@24
           cache: true
           # Fail if pnpm-lock.yaml does not match package.json
           # (runs `pnpm install --frozen-lockfile`).

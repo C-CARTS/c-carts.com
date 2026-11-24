@@ -9,13 +9,13 @@ describe("Studio redirect configuration", () => {
 		[PHASE_DEVELOPMENT_SERVER, false],
 		[PHASE_PRODUCTION_BUILD, true],
 	])("uses the correct redirect permanence for %s", async (phase, permanent) => {
-		vi.stubEnv("STUDIO_ORIGIN", "https://studio.c-carts.com");
+		vi.stubEnv("STUDIO_ORIGIN", "https://c-carts.sanity.studio");
 		vi.stubEnv("NEXT_PUBLIC_BASE_URL", "https://c-carts.com");
 		const config = nextConfig(phase);
 		expect(config.rewrites).toBeUndefined();
 		expect(await config.redirects?.()).toEqual([
-			{ source: "/studio", destination: "https://studio.c-carts.com/", permanent },
-			{ source: "/studio/:path*", destination: "https://studio.c-carts.com/:path*", permanent },
+			{ source: "/studio", destination: "https://c-carts.sanity.studio/", permanent },
+			{ source: "/studio/:path*", destination: "https://c-carts.sanity.studio/:path*", permanent },
 		]);
 	});
 

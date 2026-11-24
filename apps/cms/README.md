@@ -64,35 +64,29 @@ by the standalone Studio build.
 Extraction/typegen read local schema sources; no authentication token or
 Content Lake writes are needed.
 
-## Vercel static hosting
+## Sanity hosting
 
-Create a separate Vercel project rooted at `apps/cms`, with Node 24 and access
-to workspace files outside that directory. `vercel.json` builds this workspace
-with the locked dependencies and publishes `dist`. Supply the three actual
-public Studio env values in each deployment's appropriate scope. Assign
-`studio.c-carts.com` to this project, not the public Next.js project.
+`sanity.cli.ts` sets `studioHost` to `c-carts`, so the GitHub deployment
+workflow publishes this Studio to `https://c-carts.sanity.studio`. It runs
+`pnpm --filter ./apps/cms run deploy` on the current `main` revision using
+Node 24. Configure the `SANITY_DEPLOYMENT_TOKEN` GitHub Actions secret with
+deployment permission for the existing project, along with the workflow's
+public Studio environment values. The hostname must be available to or
+assigned to that project. Runtime auto-updates remain disabled.
 
-The bundle is mounted at `/`, with root-relative `/static` assets. Static routing
-serves existing files first, returns 404 for missing assets, and falls back to
-`index.html` for document/structure/intent deep links. No path-prefix rewriting
-or favicon patch is needed. The public website redirects its old `/studio`
-URLs to this host, stripping that prefix and retaining deep links and queries.
-`sanity preview` uses Vite's own SPA fallback, not `vercel.json`; it may return
-HTML for nonexistent assets. Verify missing-asset 404s on a Vercel preview
-before cutover, in addition to the configuration regression tests.
+`sanity deploy` builds and uploads the Studio and extracts and uploads its
+schema. Local build and type-generation commands do not publish either.
+`vercel.json` and its routing tests describe the previous static-hosting
+configuration; they do not configure Sanity hosting.
 
-Use Vercel-provided DNS records and confirm HTTPS. Add the new Studio origin
-`https://studio.c-carts.com` to the existing Sanity project's credentialed CORS
-allowlist; approve local/preview origins explicitly and update browser Maps
-restrictions. If a self-hosted Studio registration is used, its URL becomes
-`https://studio.c-carts.com`. Do not change project, dataset, or content IDs.
+Review the existing project's CORS settings for the hosted origin and approved
+local/preview origins, and update browser Maps key restrictions as needed.
+Verify login/logout, assets, Maps, navigation, and deep-link refresh before
+pointing the public site's `STUDIO_ORIGIN` at the new host. The site strips
+the old `/studio` prefix and retains deep links and queries. Cached 308
+redirects cannot be revoked by a website rollback; keep old and new
+destinations working as needed.
 
-Verify login/logout, preview pairing, normal Vercel protection on the CMS host,
-assets, Maps, and deep-link refresh before enabling the website's permanent
-redirects. Deploy and verify Studio first. Cached 308 redirects cannot be
-revoked by a website rollback; keep the Studio hostname working.
-
-Registration, schema publication, CORS/DNS/domain changes, remote deployment,
-and production cutover require separate authorization; these local commands
-do not perform them. See the root README for the two-project settings and
-administrative cutover procedure.
+Registration, schema publication, CORS/domain changes, remote deployment,
+and production cutover require separate authorization. See the root README
+for environment settings and the administrative cutover procedure.
