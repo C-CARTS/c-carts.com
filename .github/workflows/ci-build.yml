@@ -66,7 +66,7 @@ jobs:
       NEXT_PUBLIC_MAX_IMAGE_SIZE: ${{ vars.NEXT_PUBLIC_MAX_IMAGE_SIZE }}
       NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
       SANITY_WEBHOOK_SECRET: ${{ secrets.SANITY_WEBHOOK_SECRET }}
-      # Explicit redirect destination; production uses https://studio.c-carts.com.
+      # Explicit redirect destination; production uses https://c-carts.sanity.studio.
       STUDIO_ORIGIN: ${{ vars.STUDIO_ORIGIN }}
       STATIC_SLUGS: ${{ vars.STATIC_SLUGS }}
       SANITY_STUDIO_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
