@@ -7,8 +7,10 @@
 		"node": "24.x"
 	},
 	"scripts": {
-		"dev": "sanity dev --host 127.0.0.1",
 		"build": "sanity build",
+		"deploy": "sanity deploy",
+		"deploy-graphql": "sanity graphql deploy",
+		"dev": "sanity dev --host 127.0.0.1",
 		"start": "sanity preview --host 127.0.0.1",
 		"schema:extract": "sanity schema extract --path schema.json --enforce-required-fields --force",
 		"typegen": "pnpm schema:extract && sanity typegen generate",

@@ -1,0 +1,61 @@
+name: Deploy Sanity
+
+# The main site deploys to Vercel when the main branch is updated
+# So we want Sanity to be deployed at the same time
+
+on:
+  push:
+    branches:
+      - main
+
+# Least privilege by default. Nothing in this workflow writes to the repo.
+permissions:
+  contents: read
+
+# Skip husky git-hook installation (package.json "prepare" script) in CI.
+env:
+  HUSKY: "0"
+  # repository > Settings > Secrets > Actions
+  SANITY_AUTH_TOKEN: ${{ secrets.SANITY_DEPLOYMENT_TOKEN }}
+
+# Ensure proper ordering if another push happens before the first deploy finishes
+concurrency:
+  group: sanity-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          # Nothing here pushes, so do not leave the token in .git/config.
+          persist-credentials: false
+
+      # pnpm/setup installs pnpm (version from "packageManager" in package.json)
+      # and Node, then runs `pnpm install`. It does not use corepack, so no
+      # `corepack enable` step is needed (Node 25+ no longer ships corepack).
+
+      - name: Set up pnpm
+        uses: pnpm/setup@v3
+        with:
+          runtime: node@26
+          cache: true
+          # Fail if pnpm-lock.yaml does not match package.json
+          # (runs `pnpm install --frozen-lockfile`).
+          require-lockfile: true
+
+      - name: Deploy Sanity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          main_sha=$(gh api "repos/${GITHUB_REPOSITORY}/commits/main" --jq '.sha')
+          if [ "$GITHUB_SHA" != "$main_sha" ]; then
+            echo "Skipping deployment: this revision is no longer the current main HEAD."
+            exit 0
+          fi
+          pnpm --filter ./apps/cms run deploy
